@@ -1,0 +1,266 @@
+2023-03-31 18:28:02,234 INFO    MainThread:3373 [internal.py:wandb_internal():93] W&B internal server running at pid: 3373, started at: 2023-03-31 18:28:02.234170
+2023-03-31 18:28:02,238 INFO    WriterThread:3373 [datastore.py:open_for_write():75] open: wandb_logs/wandb/run-20230331_182801-3urgg9xl/run-3urgg9xl.wandb
+2023-03-31 18:28:02,242 DEBUG   SenderThread:3373 [sender.py:send():232] send: header
+2023-03-31 18:28:02,242 DEBUG   SenderThread:3373 [sender.py:send():232] send: run
+2023-03-31 18:28:02,246 INFO    SenderThread:3373 [sender.py:_maybe_setup_resume():490] checking resume status for None/HyperNets_imgNtabular/3urgg9xl
+2023-03-31 18:28:03,365 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: check_version
+2023-03-31 18:28:03,371 INFO    SenderThread:3373 [dir_watcher.py:__init__():197] watching files in: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files
+2023-03-31 18:28:03,371 INFO    SenderThread:3373 [sender.py:_start_run_threads():814] run started: 3urgg9xl with start time 1680276481
+2023-03-31 18:28:03,371 DEBUG   SenderThread:3373 [sender.py:send():232] send: summary
+2023-03-31 18:28:03,372 INFO    SenderThread:3373 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2023-03-31 18:28:03,372 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: check_version
+2023-03-31 18:28:03,692 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: run_start
+2023-03-31 18:28:04,375 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_created():244] file/dir created: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/wandb-summary.json
+2023-03-31 18:28:05,857 DEBUG   HandlerThread:3373 [meta.py:__init__():35] meta init
+2023-03-31 18:28:05,857 DEBUG   HandlerThread:3373 [meta.py:__init__():49] meta init done
+2023-03-31 18:28:05,857 DEBUG   HandlerThread:3373 [meta.py:probe():209] probe
+2023-03-31 18:28:05,864 DEBUG   HandlerThread:3373 [git.py:repo():29] git repository is invalid
+2023-03-31 18:28:05,864 DEBUG   HandlerThread:3373 [meta.py:_save_pip():53] save pip
+2023-03-31 18:28:05,865 DEBUG   HandlerThread:3373 [meta.py:_save_pip():67] save pip done
+2023-03-31 18:28:05,865 DEBUG   HandlerThread:3373 [meta.py:probe():247] probe done
+2023-03-31 18:28:05,869 DEBUG   SenderThread:3373 [sender.py:send():232] send: files
+2023-03-31 18:28:05,869 INFO    SenderThread:3373 [sender.py:_save_file():948] saving file wandb-metadata.json with policy now
+2023-03-31 18:28:05,876 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 18:28:05,877 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 18:28:06,236 DEBUG   SenderThread:3373 [sender.py:send():232] send: telemetry
+2023-03-31 18:28:06,236 DEBUG   SenderThread:3373 [sender.py:send():232] send: metric
+2023-03-31 18:28:06,236 DEBUG   SenderThread:3373 [sender.py:send():232] send: telemetry
+2023-03-31 18:28:06,236 DEBUG   SenderThread:3373 [sender.py:send():232] send: metric
+2023-03-31 18:28:06,236 WARNING SenderThread:3373 [sender.py:send_metric():904] Seen metric with glob (shouldn't happen)
+2023-03-31 18:28:06,237 DEBUG   SenderThread:3373 [sender.py:send():232] send: config
+2023-03-31 18:28:06,377 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_created():244] file/dir created: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/requirements.txt
+2023-03-31 18:28:06,379 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_created():244] file/dir created: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/wandb-metadata.json
+2023-03-31 18:28:06,379 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_created():244] file/dir created: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:28:06,872 INFO    Thread-11 :3373 [upload_job.py:push():132] Uploaded file /tmp/tmpedo9744ywandb/3dkrlxv6-wandb-metadata.json
+2023-03-31 18:28:08,378 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:28:10,379 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:28:14,380 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:28:16,381 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:28:18,382 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:28:20,383 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:28:21,247 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 18:28:21,248 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 18:28:22,383 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:28:24,384 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:28:26,385 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:28:28,386 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:28:30,387 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:28:32,388 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:28:33,389 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/config.yaml
+2023-03-31 18:28:34,389 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:28:34,534 DEBUG   SenderThread:3373 [sender.py:send():232] send: stats
+2023-03-31 18:28:36,390 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:28:36,605 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 18:28:36,605 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 18:28:38,391 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:28:40,392 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:28:42,393 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:28:44,394 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:28:46,395 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:28:48,396 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:28:50,396 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:28:51,952 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 18:28:51,952 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 18:28:52,397 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:28:54,398 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:28:56,399 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:28:58,400 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:00,401 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:02,401 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:04,402 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:05,137 DEBUG   SenderThread:3373 [sender.py:send():232] send: stats
+2023-03-31 18:29:06,403 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:07,350 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 18:29:07,350 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 18:29:08,404 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:10,405 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:12,406 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:14,407 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:16,408 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:18,409 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:20,410 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:22,410 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:22,724 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 18:29:22,725 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 18:29:24,411 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:26,412 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:28,413 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:30,414 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:32,415 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:34,416 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:35,722 DEBUG   SenderThread:3373 [sender.py:send():232] send: stats
+2023-03-31 18:29:36,417 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:38,077 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 18:29:38,078 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 18:29:38,419 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:40,420 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:42,421 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:44,422 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:46,423 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:48,424 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:50,425 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:52,425 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:53,433 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 18:29:53,433 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 18:29:54,426 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:56,427 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:29:58,428 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:00,429 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:02,429 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:04,430 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:06,323 DEBUG   SenderThread:3373 [sender.py:send():232] send: stats
+2023-03-31 18:30:06,431 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:08,432 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:08,798 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 18:30:08,798 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 18:30:10,434 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:12,435 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:14,436 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:16,437 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:18,438 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:20,439 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:22,439 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:24,163 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 18:30:24,163 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 18:30:24,440 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:26,441 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:28,442 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:30,443 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:32,444 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:34,445 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:36,445 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:36,916 DEBUG   SenderThread:3373 [sender.py:send():232] send: stats
+2023-03-31 18:30:38,446 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:39,526 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 18:30:39,526 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 18:30:40,447 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:42,448 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:44,449 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:46,450 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:48,451 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:50,452 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:52,452 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:53,661 WARNING MainThread:3373 [internal.py:wandb_internal():153] Internal process interrupt: 1
+2023-03-31 18:30:53,669 DEBUG   SenderThread:3373 [sender.py:send():232] send: telemetry
+2023-03-31 18:30:54,453 INFO    Thread-7  :3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:56,503 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 18:30:56,503 DEBUG   SenderThread:3373 [sender.py:send():232] send: exit
+2023-03-31 18:30:56,504 INFO    SenderThread:3373 [sender.py:send_exit():368] handling exit code: 0
+2023-03-31 18:30:56,505 INFO    SenderThread:3373 [sender.py:send_exit():370] handling runtime: 172
+2023-03-31 18:30:56,506 INFO    SenderThread:3373 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2023-03-31 18:30:56,506 INFO    SenderThread:3373 [sender.py:send_exit():376] send defer
+2023-03-31 18:30:56,506 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 18:30:56,507 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: defer
+2023-03-31 18:30:56,507 INFO    HandlerThread:3373 [handler.py:handle_request_defer():164] handle defer: 0
+2023-03-31 18:30:56,507 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: defer
+2023-03-31 18:30:56,507 INFO    SenderThread:3373 [sender.py:send_request_defer():385] handle sender defer: 0
+2023-03-31 18:30:56,507 INFO    SenderThread:3373 [sender.py:transition_state():389] send defer: 1
+2023-03-31 18:30:56,508 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: defer
+2023-03-31 18:30:56,508 INFO    HandlerThread:3373 [handler.py:handle_request_defer():164] handle defer: 1
+2023-03-31 18:30:56,563 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: defer
+2023-03-31 18:30:56,564 INFO    SenderThread:3373 [sender.py:send_request_defer():385] handle sender defer: 1
+2023-03-31 18:30:56,564 INFO    SenderThread:3373 [sender.py:transition_state():389] send defer: 2
+2023-03-31 18:30:56,565 DEBUG   SenderThread:3373 [sender.py:send():232] send: stats
+2023-03-31 18:30:56,565 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: defer
+2023-03-31 18:30:56,566 INFO    HandlerThread:3373 [handler.py:handle_request_defer():164] handle defer: 2
+2023-03-31 18:30:56,566 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: defer
+2023-03-31 18:30:56,566 INFO    SenderThread:3373 [sender.py:send_request_defer():385] handle sender defer: 2
+2023-03-31 18:30:56,566 INFO    SenderThread:3373 [sender.py:transition_state():389] send defer: 3
+2023-03-31 18:30:56,566 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: defer
+2023-03-31 18:30:56,567 INFO    HandlerThread:3373 [handler.py:handle_request_defer():164] handle defer: 3
+2023-03-31 18:30:56,567 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: defer
+2023-03-31 18:30:56,567 INFO    SenderThread:3373 [sender.py:send_request_defer():385] handle sender defer: 3
+2023-03-31 18:30:56,567 INFO    SenderThread:3373 [sender.py:transition_state():389] send defer: 4
+2023-03-31 18:30:56,567 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: defer
+2023-03-31 18:30:56,568 INFO    HandlerThread:3373 [handler.py:handle_request_defer():164] handle defer: 4
+2023-03-31 18:30:56,568 DEBUG   SenderThread:3373 [sender.py:send():232] send: summary
+2023-03-31 18:30:56,568 INFO    SenderThread:3373 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2023-03-31 18:30:56,569 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: defer
+2023-03-31 18:30:56,569 INFO    SenderThread:3373 [sender.py:send_request_defer():385] handle sender defer: 4
+2023-03-31 18:30:56,569 INFO    SenderThread:3373 [sender.py:transition_state():389] send defer: 5
+2023-03-31 18:30:56,569 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: defer
+2023-03-31 18:30:56,569 INFO    HandlerThread:3373 [handler.py:handle_request_defer():164] handle defer: 5
+2023-03-31 18:30:56,570 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: defer
+2023-03-31 18:30:56,570 INFO    SenderThread:3373 [sender.py:send_request_defer():385] handle sender defer: 5
+2023-03-31 18:30:56,608 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 18:30:56,995 INFO    SenderThread:3373 [sender.py:transition_state():389] send defer: 6
+2023-03-31 18:30:56,995 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 18:30:56,996 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: defer
+2023-03-31 18:30:56,996 INFO    HandlerThread:3373 [handler.py:handle_request_defer():164] handle defer: 6
+2023-03-31 18:30:56,996 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: defer
+2023-03-31 18:30:56,996 INFO    SenderThread:3373 [sender.py:send_request_defer():385] handle sender defer: 6
+2023-03-31 18:30:56,996 INFO    SenderThread:3373 [dir_watcher.py:finish():312] shutting down directory watcher
+2023-03-31 18:30:57,097 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 18:30:57,455 INFO    SenderThread:3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/wandb-summary.json
+2023-03-31 18:30:57,455 INFO    SenderThread:3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:57,455 INFO    SenderThread:3373 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/config.yaml
+2023-03-31 18:30:57,456 INFO    SenderThread:3373 [dir_watcher.py:finish():342] scan: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files
+2023-03-31 18:30:57,456 INFO    SenderThread:3373 [dir_watcher.py:finish():356] scan save: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/config.yaml config.yaml
+2023-03-31 18:30:57,456 INFO    SenderThread:3373 [dir_watcher.py:finish():356] scan save: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/requirements.txt requirements.txt
+2023-03-31 18:30:57,457 INFO    SenderThread:3373 [dir_watcher.py:finish():356] scan save: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log output.log
+2023-03-31 18:30:57,468 INFO    SenderThread:3373 [dir_watcher.py:finish():356] scan save: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/wandb-summary.json wandb-summary.json
+2023-03-31 18:30:57,477 INFO    SenderThread:3373 [dir_watcher.py:finish():356] scan save: wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/wandb-metadata.json wandb-metadata.json
+2023-03-31 18:30:57,478 INFO    SenderThread:3373 [sender.py:transition_state():389] send defer: 7
+2023-03-31 18:30:57,478 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 18:30:57,486 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: defer
+2023-03-31 18:30:57,486 INFO    HandlerThread:3373 [handler.py:handle_request_defer():164] handle defer: 7
+2023-03-31 18:30:57,487 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: defer
+2023-03-31 18:30:57,487 INFO    SenderThread:3373 [sender.py:send_request_defer():385] handle sender defer: 7
+2023-03-31 18:30:57,487 INFO    SenderThread:3373 [file_pusher.py:finish():145] shutting down file pusher
+2023-03-31 18:30:57,587 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 18:30:57,588 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 18:30:57,690 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 18:30:57,690 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 18:30:57,792 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 18:30:57,792 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 18:30:57,894 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 18:30:57,895 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 18:30:57,997 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 18:30:57,997 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 18:30:58,099 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 18:30:58,100 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 18:30:58,202 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 18:30:58,202 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 18:30:58,304 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 18:30:58,305 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 18:30:58,379 INFO    Thread-14 :3373 [upload_job.py:push():132] Uploaded file wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/output.log
+2023-03-31 18:30:58,390 INFO    Thread-12 :3373 [upload_job.py:push():132] Uploaded file wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/config.yaml
+2023-03-31 18:30:58,407 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 18:30:58,407 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 18:30:58,414 INFO    Thread-13 :3373 [upload_job.py:push():132] Uploaded file wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/requirements.txt
+2023-03-31 18:30:58,420 INFO    Thread-15 :3373 [upload_job.py:push():132] Uploaded file wandb_logs/wandb/run-20230331_182801-3urgg9xl/files/wandb-summary.json
+2023-03-31 18:30:58,509 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 18:30:58,509 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 18:30:58,611 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 18:30:58,612 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 18:30:58,621 INFO    Thread-6  :3373 [sender.py:transition_state():389] send defer: 8
+2023-03-31 18:30:58,621 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: defer
+2023-03-31 18:30:58,621 INFO    HandlerThread:3373 [handler.py:handle_request_defer():164] handle defer: 8
+2023-03-31 18:30:58,622 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: defer
+2023-03-31 18:30:58,622 INFO    SenderThread:3373 [sender.py:send_request_defer():385] handle sender defer: 8
+2023-03-31 18:30:58,714 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 18:30:59,498 INFO    SenderThread:3373 [sender.py:transition_state():389] send defer: 9
+2023-03-31 18:30:59,499 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 18:30:59,500 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: defer
+2023-03-31 18:30:59,500 INFO    HandlerThread:3373 [handler.py:handle_request_defer():164] handle defer: 9
+2023-03-31 18:30:59,500 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: defer
+2023-03-31 18:30:59,500 INFO    SenderThread:3373 [sender.py:send_request_defer():385] handle sender defer: 9
+2023-03-31 18:30:59,500 INFO    SenderThread:3373 [sender.py:transition_state():389] send defer: 10
+2023-03-31 18:30:59,501 DEBUG   SenderThread:3373 [sender.py:send():232] send: final
+2023-03-31 18:30:59,501 DEBUG   SenderThread:3373 [sender.py:send():232] send: footer
+2023-03-31 18:30:59,502 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: defer
+2023-03-31 18:30:59,502 INFO    HandlerThread:3373 [handler.py:handle_request_defer():164] handle defer: 10
+2023-03-31 18:30:59,502 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: defer
+2023-03-31 18:30:59,502 INFO    SenderThread:3373 [sender.py:send_request_defer():385] handle sender defer: 10
+2023-03-31 18:30:59,601 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 18:30:59,601 DEBUG   SenderThread:3373 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 18:30:59,602 INFO    SenderThread:3373 [file_pusher.py:join():150] waiting for file pusher
+2023-03-31 18:31:00,392 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: sampled_history
+2023-03-31 18:31:00,393 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: get_summary
+2023-03-31 18:31:00,394 DEBUG   HandlerThread:3373 [handler.py:handle_request():141] handle_request: shutdown
+2023-03-31 18:31:00,394 INFO    HandlerThread:3373 [handler.py:finish():806] shutting down handler
+2023-03-31 18:31:00,501 INFO    WriterThread:3373 [datastore.py:close():279] close: wandb_logs/wandb/run-20230331_182801-3urgg9xl/run-3urgg9xl.wandb
+2023-03-31 18:31:01,290 INFO    SenderThread:3373 [sender.py:finish():1110] shutting down sender
+2023-03-31 18:31:01,291 INFO    SenderThread:3373 [file_pusher.py:finish():145] shutting down file pusher
+2023-03-31 18:31:01,291 INFO    SenderThread:3373 [file_pusher.py:join():150] waiting for file pusher
+2023-03-31 18:31:01,293 INFO    MainThread:3373 [internal.py:handle_exit():80] Internal process exited

@@ -1,0 +1,949 @@
+2023-03-06 16:31:55,814 INFO    MainThread:36734 [internal.py:wandb_internal():93] W&B internal server running at pid: 36734, started at: 2023-03-06 16:31:55.813551
+2023-03-06 16:31:55,822 INFO    WriterThread:36734 [datastore.py:open_for_write():75] open: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/run-1xsb6fz1.wandb
+2023-03-06 16:31:55,836 DEBUG   SenderThread:36734 [sender.py:send():232] send: header
+2023-03-06 16:31:55,836 DEBUG   SenderThread:36734 [sender.py:send():232] send: run
+2023-03-06 16:31:55,845 INFO    SenderThread:36734 [sender.py:_maybe_setup_resume():490] checking resume status for None/HyperNets_imgNtabular/1xsb6fz1
+2023-03-06 16:31:56,712 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: check_version
+2023-03-06 16:31:56,719 INFO    SenderThread:36734 [dir_watcher.py:__init__():197] watching files in: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files
+2023-03-06 16:31:56,719 INFO    SenderThread:36734 [sender.py:_start_run_threads():814] run started: 1xsb6fz1 with start time 1678113113
+2023-03-06 16:31:56,720 DEBUG   SenderThread:36734 [sender.py:send():232] send: summary
+2023-03-06 16:31:56,721 INFO    SenderThread:36734 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2023-03-06 16:31:56,722 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: check_version
+2023-03-06 16:31:57,025 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: run_start
+2023-03-06 16:31:57,765 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_created():244] file/dir created: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/wandb-summary.json
+2023-03-06 16:32:01,143 DEBUG   HandlerThread:36734 [meta.py:__init__():35] meta init
+2023-03-06 16:32:01,143 DEBUG   HandlerThread:36734 [meta.py:__init__():49] meta init done
+2023-03-06 16:32:01,143 DEBUG   HandlerThread:36734 [meta.py:probe():209] probe
+2023-03-06 16:32:01,165 DEBUG   HandlerThread:36734 [git.py:repo():29] git repository is invalid
+2023-03-06 16:32:01,165 DEBUG   HandlerThread:36734 [meta.py:_save_pip():53] save pip
+2023-03-06 16:32:01,169 DEBUG   HandlerThread:36734 [meta.py:_save_pip():67] save pip done
+2023-03-06 16:32:01,169 DEBUG   HandlerThread:36734 [meta.py:probe():247] probe done
+2023-03-06 16:32:01,179 DEBUG   SenderThread:36734 [sender.py:send():232] send: files
+2023-03-06 16:32:01,179 INFO    SenderThread:36734 [sender.py:_save_file():948] saving file wandb-metadata.json with policy now
+2023-03-06 16:32:01,208 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:32:01,208 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:32:01,578 DEBUG   SenderThread:36734 [sender.py:send():232] send: telemetry
+2023-03-06 16:32:01,579 DEBUG   SenderThread:36734 [sender.py:send():232] send: metric
+2023-03-06 16:32:01,579 DEBUG   SenderThread:36734 [sender.py:send():232] send: telemetry
+2023-03-06 16:32:01,580 DEBUG   SenderThread:36734 [sender.py:send():232] send: metric
+2023-03-06 16:32:01,582 WARNING SenderThread:36734 [sender.py:send_metric():904] Seen metric with glob (shouldn't happen)
+2023-03-06 16:32:01,582 DEBUG   SenderThread:36734 [sender.py:send():232] send: config
+2023-03-06 16:32:01,767 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_created():244] file/dir created: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/wandb-metadata.json
+2023-03-06 16:32:01,772 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_created():244] file/dir created: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:32:01,773 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_created():244] file/dir created: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/requirements.txt
+2023-03-06 16:32:02,512 INFO    Thread-16 :36734 [upload_job.py:push():132] Uploaded file /tmp/tmp1kl241sewandb/465ndbwm-wandb-metadata.json
+2023-03-06 16:32:16,580 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:32:16,581 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:32:23,787 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:32:26,789 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/config.yaml
+2023-03-06 16:32:30,207 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:32:31,939 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:32:31,940 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:32:33,797 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:32:47,303 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:32:47,304 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:32:55,819 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:33:01,132 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:33:02,652 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:33:02,653 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:33:15,839 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:33:18,009 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:33:18,010 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:33:27,850 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:33:31,988 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:33:33,356 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:33:33,356 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:33:33,856 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:33:48,714 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:33:48,715 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:34:02,920 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:34:04,063 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:34:04,063 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:34:19,409 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:34:19,410 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:34:33,952 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:34:34,768 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:34:34,768 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:34:50,110 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:34:50,111 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:34:57,934 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:35:05,145 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:35:05,464 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:35:05,464 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:35:20,810 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:35:20,810 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:35:36,150 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:35:36,151 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:35:36,518 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:35:51,520 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:35:51,520 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:36:06,887 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:36:06,888 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:36:07,525 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:36:13,003 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:36:22,235 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:36:22,236 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:36:37,588 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:36:37,589 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:36:38,947 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:36:52,935 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:36:52,935 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:37:08,279 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:37:08,280 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:37:10,301 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:37:23,627 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:37:23,628 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:37:25,073 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:37:38,975 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:37:38,976 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:37:41,437 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:37:54,340 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:37:54,341 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:38:09,700 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:38:09,700 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:38:12,636 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:38:25,046 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:38:25,047 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:38:40,428 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:38:40,428 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:38:43,690 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:38:55,778 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:38:55,779 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:39:11,151 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:39:11,152 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:39:14,787 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:39:26,501 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:39:26,501 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:39:41,843 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:39:41,844 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:39:45,852 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:39:46,205 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:39:48,207 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:39:57,200 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:39:57,201 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:40:13,044 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:40:13,044 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:40:16,846 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:40:28,387 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:40:28,387 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:40:43,734 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:40:43,735 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:40:47,706 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:40:59,139 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:40:59,140 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:41:14,497 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:41:14,498 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:41:18,766 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:41:30,025 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:41:30,026 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:41:31,302 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:41:35,307 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:41:45,963 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:41:45,964 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:41:49,775 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:42:01,328 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:42:01,329 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:42:16,678 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:42:16,679 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:42:20,631 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:42:32,034 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:42:32,035 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:42:47,381 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:42:47,382 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:42:51,549 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:42:52,404 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:42:55,407 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:42:57,409 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:42:59,411 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:43:01,413 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:43:02,772 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:43:02,773 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:43:03,415 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:43:05,416 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:43:07,418 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:43:09,420 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:43:11,422 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:43:14,425 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:43:16,427 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:43:18,122 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:43:18,123 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:43:18,430 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:43:20,431 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:43:22,434 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:43:22,452 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:43:24,436 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:43:26,438 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:43:30,441 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:43:32,443 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:43:33,582 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:43:33,583 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:43:34,445 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:43:36,447 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:43:38,449 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:43:40,451 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:43:43,454 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:43:45,456 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:43:47,459 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:43:49,109 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:43:49,109 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:43:49,461 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:43:51,462 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:43:53,465 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:43:53,500 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:43:55,467 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:43:57,469 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:43:59,470 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:44:01,472 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:44:04,475 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:44:04,699 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:44:04,700 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:44:06,477 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:44:08,479 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:44:10,482 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:44:12,483 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:44:14,485 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:44:16,487 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:44:18,489 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:44:20,206 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:44:20,207 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:44:20,491 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:44:22,494 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:44:24,496 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:44:24,706 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:44:26,498 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:44:29,501 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:44:31,503 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:44:33,506 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:44:35,508 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:44:35,781 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:44:35,782 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:44:37,510 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:44:39,512 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:44:41,514 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:44:43,516 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:44:45,518 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:44:51,212 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:44:51,212 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:44:55,647 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:45:01,534 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:45:05,538 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:45:06,556 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:45:06,557 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:45:07,541 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:45:09,542 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:45:15,548 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:45:17,550 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:45:19,552 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:45:21,554 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:45:22,303 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:45:22,304 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:45:23,556 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:45:25,558 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:45:26,576 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:45:27,560 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:45:29,562 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:45:31,565 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:45:33,567 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:45:35,569 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:45:37,572 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:45:37,698 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:45:37,699 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:45:40,575 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:45:42,577 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:45:44,578 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:45:46,581 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:45:48,583 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:45:50,585 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:45:52,588 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:45:53,154 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:45:53,155 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:45:54,590 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:45:56,592 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:45:57,671 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:45:58,594 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:00,597 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:02,598 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:04,600 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:06,602 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:08,604 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:08,673 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:46:08,674 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:46:10,606 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:12,609 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:15,612 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:17,614 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:19,616 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:21,618 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:23,621 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:24,451 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:46:24,452 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:46:25,622 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:27,624 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:28,805 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:46:29,626 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:31,628 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:33,630 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:35,632 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:37,634 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:39,636 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:40,011 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:46:40,011 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:46:41,639 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:44,642 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:46,644 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:48,647 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:50,649 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:52,651 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:54,653 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:55,673 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:46:55,674 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:46:56,656 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:58,658 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:46:59,776 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:47:00,659 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:47:02,661 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:47:04,663 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:47:07,665 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:47:09,667 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:47:11,157 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:47:11,158 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:47:11,668 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:47:13,670 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:47:17,675 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:47:19,677 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:47:21,679 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:47:23,681 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:47:25,682 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:47:26,876 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:47:26,876 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:47:27,684 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:47:29,687 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:47:30,773 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:47:31,690 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:47:33,692 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:47:35,694 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:47:37,696 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:47:40,699 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:47:42,239 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:47:42,240 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:47:42,701 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:47:46,704 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:47:48,706 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:47:50,708 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:47:52,711 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:47:54,713 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:47:56,715 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:47:57,653 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:47:57,654 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:47:58,717 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:48:00,719 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:48:01,634 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:48:02,721 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:48:04,724 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:48:06,725 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:48:08,728 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:48:10,729 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:48:12,732 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:48:13,286 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:48:13,287 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:48:14,733 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:48:17,736 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:48:19,738 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:48:21,739 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:48:23,742 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:48:25,743 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:48:27,745 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:48:28,742 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:48:28,742 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:48:29,763 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:48:31,765 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:48:32,556 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:48:33,767 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:48:35,769 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:48:37,771 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:48:39,773 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:48:41,776 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:48:43,778 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:48:44,277 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:48:44,278 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:48:59,632 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:48:59,633 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:49:03,458 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:49:03,795 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:49:05,797 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:49:08,799 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:49:10,801 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:49:12,803 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:49:14,805 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:49:15,031 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:49:15,031 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:49:16,807 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:49:18,809 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:49:20,811 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:49:22,813 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:49:27,818 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:49:29,821 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:49:30,693 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:49:30,693 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:49:31,823 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:49:33,825 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:49:34,487 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:49:35,827 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:49:37,829 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:49:39,832 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:49:43,836 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:49:45,837 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:49:46,220 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:49:46,220 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:49:47,840 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:49:49,842 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:49:51,843 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:49:53,846 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:49:55,848 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:49:57,850 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:49:59,852 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:50:01,692 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:50:01,693 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:50:01,853 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:50:03,856 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:50:05,516 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:50:05,857 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:50:07,859 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:50:09,861 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:50:11,863 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:50:13,865 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:50:15,867 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:50:17,310 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:50:17,311 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:50:17,869 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:50:20,872 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:50:22,874 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:50:24,876 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:50:26,878 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:50:28,879 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:50:30,882 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:50:32,827 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:50:32,828 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:50:32,883 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:50:34,885 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:50:36,553 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:50:36,888 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:50:38,890 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:50:42,894 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:50:44,896 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:50:46,898 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:50:48,389 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:50:48,390 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:50:48,900 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:50:50,902 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:50:52,905 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:50:54,906 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:50:59,911 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:51:01,913 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:51:03,863 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:51:03,863 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:51:03,916 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:51:05,918 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:51:07,412 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:51:08,921 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:51:10,923 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:51:12,925 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:51:14,927 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:51:16,929 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:51:18,931 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:51:19,887 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:51:19,887 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:51:20,933 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:51:22,935 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:51:34,945 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:51:35,449 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:51:35,449 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:51:36,947 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:51:38,372 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:51:38,949 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:51:40,951 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:51:42,954 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:51:44,956 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:51:46,957 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:51:48,959 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:51:50,961 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:51:51,194 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:51:51,195 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:51:52,963 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:51:54,965 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:51:56,967 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:51:59,970 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:52:01,972 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:52:03,974 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:52:05,975 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:52:06,703 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:52:06,704 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:52:07,977 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:52:09,300 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:52:09,980 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:52:12,983 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:52:16,987 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:52:18,989 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:52:20,991 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:52:22,069 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:52:22,070 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:52:22,992 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:52:24,995 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:52:26,997 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:52:28,999 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:52:31,001 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:52:33,003 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:52:35,005 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:52:37,008 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:52:37,578 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:52:37,579 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:52:39,009 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:52:40,383 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:52:52,926 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:52:52,927 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:53:08,273 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:53:08,274 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:53:11,340 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:53:23,616 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:53:23,617 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:53:38,960 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:53:38,961 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:53:42,222 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:53:54,318 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:53:54,319 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:54:03,091 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:54:09,675 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:54:09,676 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:54:13,131 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:54:25,024 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:54:25,025 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:54:31,117 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:54:40,397 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:54:40,397 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:54:41,126 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:54:44,125 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:54:48,142 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:54:55,801 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:54:55,802 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:54:58,153 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:55:11,146 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:55:11,147 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:55:15,038 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:55:26,526 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:55:26,527 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:55:41,877 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:55:41,878 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:55:45,902 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:55:57,221 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:55:57,221 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:56:09,217 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:56:12,578 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:56:12,579 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:56:16,906 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:56:27,923 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:56:27,924 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:56:38,242 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:56:43,270 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:56:43,271 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:56:44,247 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:56:47,891 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:56:48,251 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:56:58,635 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:56:58,636 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:57:14,007 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:57:14,008 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:57:18,776 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:57:29,429 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:57:29,430 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:57:44,789 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:57:44,789 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:57:49,735 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:58:00,137 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:58:00,138 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:58:15,507 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:58:15,508 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:58:20,806 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:58:30,871 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:58:30,872 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:58:36,351 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:58:46,231 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:58:46,231 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:58:51,733 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:58:56,370 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:59:01,587 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:59:01,587 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:59:08,381 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:59:16,932 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:59:16,933 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:59:22,611 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:59:35,509 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:59:35,509 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:59:50,421 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 16:59:50,863 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 16:59:50,864 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 16:59:53,612 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 16:59:55,425 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:00:06,202 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:00:06,202 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:00:21,545 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:00:21,546 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:00:24,606 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:00:33,460 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:00:36,899 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:00:36,899 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:00:52,244 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:00:52,245 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:00:55,566 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:01:07,593 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:01:07,593 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:01:15,498 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:01:22,942 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:01:22,943 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:01:26,501 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:01:38,309 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:01:38,310 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:01:51,542 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:01:53,737 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:01:53,738 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:01:57,592 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:02:09,099 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:02:09,100 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:02:17,565 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:02:24,447 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:02:24,448 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:02:25,573 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:02:28,760 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:02:31,579 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:02:39,816 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:02:39,817 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:02:55,177 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:02:55,178 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:02:59,846 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:03:10,547 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:03:10,547 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:03:17,620 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:03:25,893 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:03:25,894 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:03:31,043 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:03:38,641 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:03:41,268 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:03:41,269 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:03:46,649 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:03:56,614 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:03:56,615 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:04:02,160 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:04:02,663 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:04:12,074 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:04:12,074 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:04:12,672 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:04:18,678 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:04:24,684 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:04:27,457 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:04:27,457 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:04:28,687 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:04:33,393 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:04:42,819 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:04:42,819 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:04:46,704 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:04:48,706 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:04:58,157 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:04:58,158 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:05:04,583 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:05:13,510 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:05:13,511 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:05:28,853 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:05:28,854 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:05:35,626 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:05:44,203 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:05:44,204 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:05:57,771 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:05:59,562 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:05:59,563 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:06:06,521 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:06:09,782 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:06:14,912 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:06:14,913 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:06:21,794 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:06:30,264 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:06:30,265 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:06:37,358 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:06:45,630 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:06:45,631 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:06:47,818 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:07:00,978 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:07:00,978 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:07:03,832 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:07:08,304 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:07:13,841 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:07:16,363 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:07:16,364 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:07:31,725 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:07:31,726 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:07:39,157 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:07:47,085 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:07:47,086 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:08:02,445 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:08:02,445 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:08:10,127 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:08:14,899 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:08:17,820 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:08:17,821 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:08:33,182 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:08:33,183 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:08:36,919 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:08:40,971 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:08:48,548 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:08:48,549 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:08:55,938 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:09:03,893 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:09:03,894 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:09:12,001 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:09:19,240 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:09:19,241 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:09:24,965 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:09:32,973 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:09:34,589 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:09:34,590 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:09:42,933 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:09:49,935 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:09:49,936 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:09:53,993 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:10:03,001 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:10:05,280 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:10:05,281 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:10:13,896 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:10:20,643 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:10:20,643 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:10:35,989 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:10:35,989 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:10:44,785 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:10:51,351 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:10:51,352 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:11:00,053 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:11:06,711 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:11:06,712 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:11:14,065 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:11:15,814 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:11:22,073 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:11:22,079 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:11:22,080 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:11:37,428 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:11:37,429 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:11:46,745 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:11:49,097 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:11:52,793 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:11:52,794 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:11:55,103 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:12:08,116 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:12:08,198 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:12:08,199 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:12:17,767 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:12:23,558 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:12:23,558 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:12:38,905 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:12:38,906 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:12:42,147 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:12:48,677 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:12:49,153 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:12:54,262 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:12:54,263 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:12:59,162 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:13:05,168 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:13:09,599 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:13:09,600 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:13:19,691 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:13:24,959 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:13:24,960 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:13:30,192 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:13:40,201 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:13:40,318 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:13:40,319 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:13:50,645 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:13:55,765 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:13:55,766 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:13:59,221 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:14:03,225 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:14:11,219 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:14:11,219 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:14:21,635 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:14:26,566 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:14:26,567 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:14:31,254 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:14:41,994 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:14:41,995 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:14:42,263 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:14:50,270 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:14:52,732 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:14:57,357 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:14:57,358 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:15:12,714 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:15:12,714 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:15:23,620 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:15:28,059 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:15:28,059 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:15:43,427 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:15:43,428 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:15:54,479 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:15:58,900 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:15:58,901 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:16:14,298 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:16:14,298 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:16:25,317 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:16:29,643 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:16:29,644 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:16:45,003 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:16:45,004 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:16:56,054 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:17:00,349 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:17:00,350 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:17:15,692 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:17:15,692 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:17:26,814 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:17:31,059 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:17:31,060 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:17:46,416 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:17:46,416 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:17:57,609 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:18:01,776 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:18:01,777 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:18:17,135 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:18:17,136 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:18:28,542 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:18:32,490 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:18:32,490 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:18:47,850 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:18:47,850 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:18:59,687 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:19:04,764 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-06 17:19:04,765 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: stop_status
+2023-03-06 17:19:12,963 WARNING MainThread:36734 [internal.py:wandb_internal():153] Internal process interrupt: 1
+2023-03-06 17:19:13,074 DEBUG   SenderThread:36734 [sender.py:send():232] send: telemetry
+2023-03-06 17:19:14,514 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:19:15,417 DEBUG   SenderThread:36734 [sender.py:send():232] send: exit
+2023-03-06 17:19:15,418 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-06 17:19:15,418 INFO    SenderThread:36734 [sender.py:send_exit():368] handling exit code: 0
+2023-03-06 17:19:15,423 INFO    SenderThread:36734 [sender.py:send_exit():370] handling runtime: 2838
+2023-03-06 17:19:15,424 INFO    SenderThread:36734 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2023-03-06 17:19:15,424 INFO    SenderThread:36734 [sender.py:send_exit():376] send defer
+2023-03-06 17:19:15,425 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: poll_exit
+2023-03-06 17:19:15,426 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: defer
+2023-03-06 17:19:15,426 INFO    HandlerThread:36734 [handler.py:handle_request_defer():164] handle defer: 0
+2023-03-06 17:19:15,427 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: defer
+2023-03-06 17:19:15,427 INFO    SenderThread:36734 [sender.py:send_request_defer():385] handle sender defer: 0
+2023-03-06 17:19:15,427 INFO    SenderThread:36734 [sender.py:transition_state():389] send defer: 1
+2023-03-06 17:19:15,428 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: defer
+2023-03-06 17:19:15,428 INFO    HandlerThread:36734 [handler.py:handle_request_defer():164] handle defer: 1
+2023-03-06 17:19:15,515 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/wandb-summary.json
+2023-03-06 17:19:15,516 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:19:15,556 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-06 17:19:15,558 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: defer
+2023-03-06 17:19:15,558 INFO    SenderThread:36734 [sender.py:send_request_defer():385] handle sender defer: 1
+2023-03-06 17:19:15,558 INFO    SenderThread:36734 [sender.py:transition_state():389] send defer: 2
+2023-03-06 17:19:15,559 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: poll_exit
+2023-03-06 17:19:15,559 DEBUG   SenderThread:36734 [sender.py:send():232] send: stats
+2023-03-06 17:19:15,560 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: defer
+2023-03-06 17:19:15,562 INFO    HandlerThread:36734 [handler.py:handle_request_defer():164] handle defer: 2
+2023-03-06 17:19:15,562 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: defer
+2023-03-06 17:19:15,562 INFO    SenderThread:36734 [sender.py:send_request_defer():385] handle sender defer: 2
+2023-03-06 17:19:15,562 INFO    SenderThread:36734 [sender.py:transition_state():389] send defer: 3
+2023-03-06 17:19:15,563 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: defer
+2023-03-06 17:19:15,563 INFO    HandlerThread:36734 [handler.py:handle_request_defer():164] handle defer: 3
+2023-03-06 17:19:15,564 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: defer
+2023-03-06 17:19:15,564 INFO    SenderThread:36734 [sender.py:send_request_defer():385] handle sender defer: 3
+2023-03-06 17:19:15,565 INFO    SenderThread:36734 [sender.py:transition_state():389] send defer: 4
+2023-03-06 17:19:15,565 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: defer
+2023-03-06 17:19:15,566 INFO    HandlerThread:36734 [handler.py:handle_request_defer():164] handle defer: 4
+2023-03-06 17:19:15,567 DEBUG   SenderThread:36734 [sender.py:send():232] send: summary
+2023-03-06 17:19:15,567 INFO    SenderThread:36734 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2023-03-06 17:19:15,568 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: defer
+2023-03-06 17:19:15,568 INFO    SenderThread:36734 [sender.py:send_request_defer():385] handle sender defer: 4
+2023-03-06 17:19:15,569 INFO    SenderThread:36734 [sender.py:transition_state():389] send defer: 5
+2023-03-06 17:19:15,569 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: defer
+2023-03-06 17:19:15,569 INFO    HandlerThread:36734 [handler.py:handle_request_defer():164] handle defer: 5
+2023-03-06 17:19:15,570 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: defer
+2023-03-06 17:19:15,570 INFO    SenderThread:36734 [sender.py:send_request_defer():385] handle sender defer: 5
+2023-03-06 17:19:15,663 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-06 17:19:16,006 INFO    SenderThread:36734 [sender.py:transition_state():389] send defer: 6
+2023-03-06 17:19:16,007 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: poll_exit
+2023-03-06 17:19:16,008 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: defer
+2023-03-06 17:19:16,008 INFO    HandlerThread:36734 [handler.py:handle_request_defer():164] handle defer: 6
+2023-03-06 17:19:16,009 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: defer
+2023-03-06 17:19:16,009 INFO    SenderThread:36734 [sender.py:send_request_defer():385] handle sender defer: 6
+2023-03-06 17:19:16,009 INFO    SenderThread:36734 [dir_watcher.py:finish():312] shutting down directory watcher
+2023-03-06 17:19:16,110 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-06 17:19:16,516 INFO    Thread-12 :36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/wandb-summary.json
+2023-03-06 17:19:16,519 INFO    SenderThread:36734 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/config.yaml
+2023-03-06 17:19:16,520 INFO    SenderThread:36734 [dir_watcher.py:finish():342] scan: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files
+2023-03-06 17:19:16,520 INFO    SenderThread:36734 [dir_watcher.py:finish():356] scan save: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/config.yaml config.yaml
+2023-03-06 17:19:16,521 INFO    SenderThread:36734 [dir_watcher.py:finish():356] scan save: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/requirements.txt requirements.txt
+2023-03-06 17:19:16,522 INFO    SenderThread:36734 [dir_watcher.py:finish():356] scan save: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log output.log
+2023-03-06 17:19:16,549 INFO    SenderThread:36734 [dir_watcher.py:finish():356] scan save: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/wandb-summary.json wandb-summary.json
+2023-03-06 17:19:16,575 INFO    SenderThread:36734 [dir_watcher.py:finish():356] scan save: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/wandb-metadata.json wandb-metadata.json
+2023-03-06 17:19:16,582 INFO    SenderThread:36734 [sender.py:transition_state():389] send defer: 7
+2023-03-06 17:19:16,588 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: poll_exit
+2023-03-06 17:19:16,589 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: defer
+2023-03-06 17:19:16,590 INFO    HandlerThread:36734 [handler.py:handle_request_defer():164] handle defer: 7
+2023-03-06 17:19:16,607 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: defer
+2023-03-06 17:19:16,607 INFO    SenderThread:36734 [sender.py:send_request_defer():385] handle sender defer: 7
+2023-03-06 17:19:16,612 INFO    SenderThread:36734 [file_pusher.py:finish():145] shutting down file pusher
+2023-03-06 17:19:16,691 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-06 17:19:16,692 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: poll_exit
+2023-03-06 17:19:16,795 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-06 17:19:16,796 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: poll_exit
+2023-03-06 17:19:16,898 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-06 17:19:16,899 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: poll_exit
+2023-03-06 17:19:17,001 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-06 17:19:17,002 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: poll_exit
+2023-03-06 17:19:17,105 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-06 17:19:17,106 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: poll_exit
+2023-03-06 17:19:17,208 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-06 17:19:17,209 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: poll_exit
+2023-03-06 17:19:17,311 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-06 17:19:17,312 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: poll_exit
+2023-03-06 17:19:17,414 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-06 17:19:17,415 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: poll_exit
+2023-03-06 17:19:17,501 INFO    Thread-17 :36734 [upload_job.py:push():132] Uploaded file wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/config.yaml
+2023-03-06 17:19:17,518 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-06 17:19:17,518 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: poll_exit
+2023-03-06 17:19:17,621 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-06 17:19:17,622 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: poll_exit
+2023-03-06 17:19:17,670 INFO    Thread-18 :36734 [upload_job.py:push():132] Uploaded file wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/requirements.txt
+2023-03-06 17:19:17,725 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-06 17:19:17,725 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: poll_exit
+2023-03-06 17:19:17,740 INFO    Thread-20 :36734 [upload_job.py:push():132] Uploaded file wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/wandb-summary.json
+2023-03-06 17:19:17,825 INFO    Thread-19 :36734 [upload_job.py:push():132] Uploaded file wandb_logs/wandb/run-20230306_163152-1xsb6fz1/files/output.log
+2023-03-06 17:19:17,828 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-06 17:19:17,828 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: poll_exit
+2023-03-06 17:19:17,931 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-06 17:19:17,932 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: poll_exit
+2023-03-06 17:19:18,026 INFO    Thread-11 :36734 [sender.py:transition_state():389] send defer: 8
+2023-03-06 17:19:18,027 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: defer
+2023-03-06 17:19:18,028 INFO    HandlerThread:36734 [handler.py:handle_request_defer():164] handle defer: 8
+2023-03-06 17:19:18,028 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: defer
+2023-03-06 17:19:18,028 INFO    SenderThread:36734 [sender.py:send_request_defer():385] handle sender defer: 8
+2023-03-06 17:19:18,039 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-06 17:19:18,729 INFO    SenderThread:36734 [sender.py:transition_state():389] send defer: 9
+2023-03-06 17:19:18,730 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: poll_exit
+2023-03-06 17:19:18,732 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: defer
+2023-03-06 17:19:18,732 INFO    HandlerThread:36734 [handler.py:handle_request_defer():164] handle defer: 9
+2023-03-06 17:19:18,733 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: defer
+2023-03-06 17:19:18,733 INFO    SenderThread:36734 [sender.py:send_request_defer():385] handle sender defer: 9
+2023-03-06 17:19:18,734 INFO    SenderThread:36734 [sender.py:transition_state():389] send defer: 10
+2023-03-06 17:19:18,735 DEBUG   SenderThread:36734 [sender.py:send():232] send: final
+2023-03-06 17:19:18,736 DEBUG   SenderThread:36734 [sender.py:send():232] send: footer
+2023-03-06 17:19:18,736 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: defer
+2023-03-06 17:19:18,737 INFO    HandlerThread:36734 [handler.py:handle_request_defer():164] handle defer: 10
+2023-03-06 17:19:18,737 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: defer
+2023-03-06 17:19:18,737 INFO    SenderThread:36734 [sender.py:send_request_defer():385] handle sender defer: 10
+2023-03-06 17:19:18,834 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-06 17:19:18,834 DEBUG   SenderThread:36734 [sender.py:send_request():246] send_request: poll_exit
+2023-03-06 17:19:18,835 INFO    SenderThread:36734 [file_pusher.py:join():150] waiting for file pusher
+2023-03-06 17:19:19,627 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: sampled_history
+2023-03-06 17:19:19,629 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: get_summary
+2023-03-06 17:19:19,630 DEBUG   HandlerThread:36734 [handler.py:handle_request():141] handle_request: shutdown
+2023-03-06 17:19:19,631 INFO    HandlerThread:36734 [handler.py:finish():806] shutting down handler
+2023-03-06 17:19:19,736 INFO    WriterThread:36734 [datastore.py:close():279] close: wandb_logs/wandb/run-20230306_163152-1xsb6fz1/run-1xsb6fz1.wandb
+2023-03-06 17:19:20,525 INFO    SenderThread:36734 [sender.py:finish():1110] shutting down sender
+2023-03-06 17:19:20,526 INFO    SenderThread:36734 [file_pusher.py:finish():145] shutting down file pusher
+2023-03-06 17:19:20,526 INFO    SenderThread:36734 [file_pusher.py:join():150] waiting for file pusher
+2023-03-06 17:19:20,867 INFO    MainThread:36734 [internal.py:handle_exit():80] Internal process exited

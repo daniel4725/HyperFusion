@@ -1,0 +1,24 @@
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/connectors/checkpoint_connector.py:46: LightningDeprecationWarning: Setting `Trainer(resume_from_checkpoint=)` is deprecated in v1.5 and will be removed in v1.7. Please pass `Trainer.fit(ckpt_path=)` directly instead.
+  "Setting `Trainer(resume_from_checkpoint=)` is deprecated in v1.5 and"
+GPU available: True, used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/trainer.py:1906: LightningDeprecationWarning: `trainer.resume_from_checkpoint` is deprecated in v1.5 and will be removed in v1.7. Specify the fit checkpoint path with `trainer.fit(ckpt_path=)` instead.
+  "`trainer.resume_from_checkpoint` is deprecated in v1.5 and will be removed in v1.7."
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0,1,2,3]
+class weights:  tensor([0.9537, 0.6977, 1.9299])
+  | Name  | Type                                | Params
+--------------------------------------------------------------
+0 | model | age_noembd_lastblockHyp_FFT_fcHyp_2 | 3.6 M
+--------------------------------------------------------------
+3.6 M     Trainable params
+0         Non-trainable params
+3.6 M     Total params
+14.545    Total estimated model params size (MB)
+Epoch 0:   0% 0/428 [00:00<?, ?it/s]
+/home/duenias/.local/lib/python3.6/site-packages/torchmetrics/utilities/prints.py:36: UserWarning: No positive samples in targets, true positive value should be meaningless. Returning zero tensor in true positive score
+
+
+Epoch 0:   7% 32/428 [00:05<01:02,  6.32it/s, loss=nan, v_num=icby]
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/trainer.py:688: UserWarning: Detected KeyboardInterrupt, attempting graceful shutdown...
+  rank_zero_warn("Detected KeyboardInterrupt, attempting graceful shutdown...")

@@ -1,0 +1,78 @@
+
+class weights:  tensor([0.9537, 0.6977, 1.9299])
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/connectors/checkpoint_connector.py:46: LightningDeprecationWarning: Setting `Trainer(resume_from_checkpoint=)` is deprecated in v1.5 and will be removed in v1.7. Please pass `Trainer.fit(ckpt_path=)` directly instead.
+  "Setting `Trainer(resume_from_checkpoint=)` is deprecated in v1.5 and"
+GPU available: True, used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/trainer.py:1906: LightningDeprecationWarning: `trainer.resume_from_checkpoint` is deprecated in v1.5 and will be removed in v1.7. Specify the fit checkpoint path with `trainer.fit(ckpt_path=)` instead.
+  "`trainer.resume_from_checkpoint` is deprecated in v1.5 and will be removed in v1.7."
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0,1,2,3]
+  | Name  | Type    | Params
+----------------------------------
+0 | model | FilmHNN | 3.6 M
+----------------------------------
+3.6 M     Trainable params
+0         Non-trainable params
+3.6 M     Total params
+14.418    Total estimated model params size (MB)
+
+
+
+
+
+Epoch 0:  68%|█████████████████████████████████████████████████████████                           | 19/28 [00:42<00:19,  2.22s/it, loss=1.15, v_num=ncwg]
+/home/duenias/.local/lib/python3.6/site-packages/torchmetrics/utilities/prints.py:36: UserWarning: No positive samples in targets, true positive value should be meaningless. Returning zero tensor in true positive score
+  warnings.warn(*args, **kwargs)
+/home/duenias/.local/lib/python3.6/site-packages/torchmetrics/utilities/prints.py:36: UserWarning: No negative samples in targets, false positive value should be meaningless. Returning zero tensor in false positive score
+Epoch 0:  75%|███████████████████████████████████████████████████████████████                     | 21/28 [00:42<00:14,  2.04s/it, loss=1.15, v_num=ncwg]
+
+Validating:  29%|██████████████████████████████▎                                                                           | 2/7 [00:27<00:56, 11.35s/it]
+mean epoch time: 1M 11S
+time from start: 1M 11S
+estimated time remain: 58M 34S
+
+
+
+
+Epoch 1:  75%|███ | 21/28 [00:42<00:14,  2.02s/it, loss=1.1, v_num=ncwg, val/acc=0.349, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.344]
+
+Validating:  71%|███████████████████████████████████████████████████████████████████████████▋                              | 5/7 [00:28<00:05,  2.63s/it]
+mean epoch time: 1M 11S
+time from start: 2M 23S
+estimated time remain: 57M 18S
+
+
+
+
+
+Epoch 2:  75%|██▎| 21/28 [00:41<00:13,  1.99s/it, loss=1.09, v_num=ncwg, val/acc=0.336, val/best_balanced_acc=0.351, val/best_acc=0.351, train/acc=0.390]
+
+Validating:  14%|███████████████▏                                                                                          | 1/7 [00:27<02:44, 27.48s/it]
+mean epoch time: 1M 11S
+time from start: 3M 34S
+estimated time remain: 55M 57S
+
+
+
+
+Epoch 3:  75%|██▎| 21/28 [00:41<00:13,  1.97s/it, loss=1.09, v_num=ncwg, val/acc=0.315, val/best_balanced_acc=0.385, val/best_acc=0.385, train/acc=0.384]
+
+
+Validating:  86%|██████████████████████████████████████████████████████████████████████████████████████████▊               | 6/7 [00:28<00:01,  1.82s/it]
+mean epoch time: 1M 11S
+time from start: 4M 44S
+estimated time remain: 54M 33S
+
+
+
+
+Epoch 4:  75%|██▎| 21/28 [00:41<00:13,  1.99s/it, loss=1.09, v_num=ncwg, val/acc=0.356, val/best_balanced_acc=0.409, val/best_acc=0.409, train/acc=0.419]
+
+Validating:  57%|████████████████████████████████████████████████████████████▌                                             | 4/7 [00:28<00:11,  3.97s/it]
+mean epoch time: 1M 11S
+time from start: 5M 55S
+estimated time remain: 53M 21S
+Epoch 5:   0%|            | 0/28 [00:00<?, ?it/s, loss=1.09, v_num=ncwg, val/acc=0.428, val/best_balanced_acc=0.416, val/best_acc=0.416, train/acc=0.369]
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/trainer.py:688: UserWarning: Detected KeyboardInterrupt, attempting graceful shutdown...
+  rank_zero_warn("Detected KeyboardInterrupt, attempting graceful shutdown...")

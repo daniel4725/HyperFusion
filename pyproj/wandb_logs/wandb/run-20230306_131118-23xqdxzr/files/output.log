@@ -1,0 +1,39 @@
+
+class weights:  tensor([1.3180, 0.5777, 1.9601])
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/connectors/checkpoint_connector.py:46: LightningDeprecationWarning: Setting `Trainer(resume_from_checkpoint=)` is deprecated in v1.5 and will be removed in v1.7. Please pass `Trainer.fit(ckpt_path=)` directly instead.
+  "Setting `Trainer(resume_from_checkpoint=)` is deprecated in v1.5 and"
+GPU available: True, used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/trainer.py:1906: LightningDeprecationWarning: `trainer.resume_from_checkpoint` is deprecated in v1.5 and will be removed in v1.7. Specify the fit checkpoint path with `trainer.fit(ckpt_path=)` instead.
+  "`trainer.resume_from_checkpoint` is deprecated in v1.5 and will be removed in v1.7."
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0,1,2,3]
+Epoch 0:   0% 0/50 [00:00<?, ?it/s]
+  | Name  | Type                                | Params
+--------------------------------------------------------------
+0 | model | age_noembd_lastblockHyp_FFT_fcHyp_2 | 4.1 M
+--------------------------------------------------------------
+4.1 M     Trainable params
+0         Non-trainable params
+4.1 M     Total params
+16.273    Total estimated model params size (MB)
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/data_loading.py:639: UserWarning: You requested to overfit but enabled training dataloader shuffling. We are turning off the training dataloader shuffling for you.
+  "You requested to overfit but enabled training dataloader shuffling."
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/data_loading.py:133: UserWarning: The dataloader, train_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 40 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  f"The dataloader, {name}, does not have many workers which may be a bottleneck."
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/data_loading.py:474: UserWarning: You requested to overfit but enabled val/test dataloader shuffling. We are turning it off for you.
+  "You requested to overfit but enabled val/test dataloader shuffling."
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/data_loading.py:133: UserWarning: The dataloader, val_dataloader 0, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 40 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  f"The dataloader, {name}, does not have many workers which may be a bottleneck."
+/home/duenias/.local/lib/python3.6/site-packages/torchmetrics/utilities/prints.py:36: UserWarning: No positive samples in targets, true positive value should be meaningless. Returning zero tensor in true positive score
+  warnings.warn(*args, **kwargs)
+/home/duenias/.local/lib/python3.6/site-packages/torchmetrics/utilities/prints.py:36: UserWarning: No negative samples in targets, false positive value should be meaningless. Returning zero tensor in false positive score
+
+
+
+
+
+
+Epoch 0:  20% 10/50 [00:13<00:54,  1.36s/it, loss=1.66, v_num=dxzr]
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/trainer.py:688: UserWarning: Detected KeyboardInterrupt, attempting graceful shutdown...
+  rank_zero_warn("Detected KeyboardInterrupt, attempting graceful shutdown...")

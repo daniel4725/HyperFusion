@@ -1,0 +1,451 @@
+
+class weights:  tensor([0.9537, 0.6977, 1.9299])
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/connectors/checkpoint_connector.py:46: LightningDeprecationWarning: Setting `Trainer(resume_from_checkpoint=)` is deprecated in v1.5 and will be removed in v1.7. Please pass `Trainer.fit(ckpt_path=)` directly instead.
+  "Setting `Trainer(resume_from_checkpoint=)` is deprecated in v1.5 and"
+GPU available: True, used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/trainer.py:1906: LightningDeprecationWarning: `trainer.resume_from_checkpoint` is deprecated in v1.5 and will be removed in v1.7. Specify the fit checkpoint path with `trainer.fit(ckpt_path=)` instead.
+  "`trainer.resume_from_checkpoint` is deprecated in v1.5 and will be removed in v1.7."
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0,1,2,3]
+Epoch 0:   0%|                                                                                                                    | 0/28 [00:00<?, ?it/s]
+  | Name  | Type    | Params
+----------------------------------
+0 | model | FilmHNN | 3.6 M
+----------------------------------
+3.6 M     Trainable params
+0         Non-trainable params
+3.6 M     Total params
+
+
+
+
+
+Epoch 0:  75%|███████████████████████████████████████████████████████████████▊                     | 21/28 [00:44<00:14,  2.13s/it, loss=nan, v_num=wp06]
+Validating:   0%|                                                                                                                  | 0/7 [00:00<?, ?it/s]
+/home/duenias/.local/lib/python3.6/site-packages/torchmetrics/utilities/prints.py:36: UserWarning: No negative samples in targets, false positive value should be meaningless. Returning zero tensor in false positive score
+  warnings.warn(*args, **kwargs)
+/home/duenias/.local/lib/python3.6/site-packages/torchmetrics/utilities/prints.py:36: UserWarning: No positive samples in targets, true positive value should be meaningless. Returning zero tensor in true positive score
+
+Validating:  14%|███████████████▏                                                                                          | 1/7 [00:29<02:59, 29.95s/it]
+mean epoch time: 1M 16S
+time from start: 1M 16S
+estimated time remain: 1H 2M 25S
+
+
+
+
+Epoch 1:  75%|███ | 21/28 [00:44<00:14,  2.10s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.376]
+
+Validating:  29%|██████████████████████████████▎                                                                           | 2/7 [00:30<01:03, 12.61s/it]
+mean epoch time: 1M 16S
+time from start: 2M 32S
+estimated time remain: 1H 1M 3S
+
+
+
+
+Epoch 2:  75%|███ | 21/28 [00:44<00:14,  2.10s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.376]
+
+Validating:  29%|██████████████████████████████▎                                                                           | 2/7 [00:30<01:02, 12.53s/it]
+mean epoch time: 1M 16S
+time from start: 3M 48S
+estimated time remain: 59M 39S
+
+
+
+
+
+Epoch 3:  75%|███ | 21/28 [00:45<00:15,  2.15s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.376]
+
+Validating:  86%|██████████████████████████████████████████████████████████████████████████████████████████▊               | 6/7 [00:31<00:02,  2.00s/it]
+mean epoch time: 1M 16S
+time from start: 5M 5S
+estimated time remain: 58M 34S
+
+
+
+
+
+Epoch 4:  75%|███ | 21/28 [00:44<00:14,  2.12s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.376]
+
+Validating:  29%|██████████████████████████████▎                                                                           | 2/7 [00:29<01:01, 12.30s/it]
+mean epoch time: 1M 16S
+time from start: 6M 21S
+estimated time remain: 57M 13S
+
+
+
+
+Epoch 5:  75%|███ | 21/28 [00:43<00:14,  2.06s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+
+Validating:  86%|██████████████████████████████████████████████████████████████████████████████████████████▊               | 6/7 [00:30<00:01,  1.95s/it]
+mean epoch time: 1M 16S
+time from start: 7M 36S
+estimated time remain: 55M 44S
+
+
+
+
+
+Epoch 6:  75%|███ | 21/28 [00:44<00:14,  2.13s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.376]
+
+Validating:  86%|██████████████████████████████████████████████████████████████████████████████████████████▊               | 6/7 [00:31<00:01,  1.97s/it]
+mean epoch time: 1M 16S
+time from start: 8M 52S
+estimated time remain: 54M 30S
+
+
+
+
+
+Epoch 7:  75%|███ | 21/28 [00:44<00:14,  2.10s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+
+Validating:  43%|█████████████████████████████████████████████▍                                                            | 3/7 [00:29<00:27,  6.76s/it]
+mean epoch time: 1M 15S
+time from start: 10M 7S
+estimated time remain: 53M 9S
+
+
+
+
+
+Epoch 8:  75%|███ | 21/28 [00:43<00:14,  2.06s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.376]
+
+Validating:  14%|███████████████▏                                                                                          | 1/7 [00:27<02:43, 27.25s/it]
+mean epoch time: 1M 15S
+time from start: 11M 19S
+estimated time remain: 51M 37S
+
+
+
+
+
+Epoch 9:  75%|███ | 21/28 [00:43<00:14,  2.07s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.376]
+
+Validating:  71%|███████████████████████████████████████████████████████████████████████████▋                              | 5/7 [00:30<00:05,  2.83s/it]
+mean epoch time: 1M 15S
+time from start: 12M 34S
+estimated time remain: 50M 19S
+
+
+
+
+Epoch 10:  75%|██▎| 21/28 [00:43<00:14,  2.09s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+
+Validating:  29%|██████████████████████████████▎                                                                           | 2/7 [00:30<01:02, 12.45s/it]
+mean epoch time: 1M 15S
+time from start: 13M 50S
+estimated time remain: 48M 59S
+
+
+
+
+Epoch 11:  75%|██▎| 21/28 [00:43<00:14,  2.08s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+Validating:   0%|                                                                                                                  | 0/7 [00:00<?, ?it/s]
+mean epoch time: 1M 15S
+time from start: 15M 5S
+estimated time remain: 47M 39S
+
+
+
+
+
+Epoch 12:  75%|██▎| 21/28 [00:44<00:14,  2.12s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+
+Validating:  86%|██████████████████████████████████████████████████████████████████████████████████████████▊               | 6/7 [00:31<00:01,  1.98s/it]
+mean epoch time: 1M 15S
+time from start: 16M 21S
+estimated time remain: 46M 25S
+
+
+
+
+Epoch 13:  75%|██▎| 21/28 [00:43<00:14,  2.07s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+
+Validating:  86%|██████████████████████████████████████████████████████████████████████████████████████████▊               | 6/7 [00:30<00:01,  1.95s/it]
+mean epoch time: 1M 15S
+time from start: 17M 35S
+estimated time remain: 45M 0S
+
+
+
+
+
+Epoch 14:  75%|██▎| 21/28 [00:43<00:14,  2.08s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+
+Validating:  29%|██████████████████████████████▎                                                                           | 2/7 [00:29<01:01, 12.28s/it]
+mean epoch time: 1M 14S
+time from start: 18M 50S
+estimated time remain: 43M 42S
+
+
+
+
+
+Epoch 15:  75%|██▎| 21/28 [00:43<00:14,  2.06s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+
+Validating:  86%|██████████████████████████████████████████████████████████████████████████████████████████▊               | 6/7 [00:29<00:01,  1.89s/it]
+mean epoch time: 1M 14S
+time from start: 20M 4S
+estimated time remain: 42M 23S
+
+
+
+
+Epoch 16:  75%|██▎| 21/28 [00:43<00:14,  2.05s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.376]
+
+Validating:  14%|███████████████▏                                                                                          | 1/7 [00:28<02:50, 28.39s/it]
+mean epoch time: 1M 14S
+time from start: 21M 17S
+estimated time remain: 40M 58S
+Epoch 17:   4%|▏   | 1/28 [00:34<15:21, 34.15s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+Epoch 17:  21%|▊   | 6/28 [00:36<02:13,  6.07s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+Epoch 17:  36%|█  | 10/28 [00:38<01:08,  3.82s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+Epoch 17:  54%|█▌ | 15/28 [00:40<00:35,  2.70s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+Epoch 17:  68%|██ | 19/28 [00:42<00:20,  2.22s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+Epoch 17:  75%|██▎| 21/28 [00:42<00:14,  2.04s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+Epoch 17:  89%|██▋| 25/28 [01:10<00:08,  2.83s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+estimated time remain: 39M 34S11<00:00,  2.57s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+estimated time remain: 39M 34S11<00:00,  2.57s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+estimated time remain: 39M 34S11<00:00,  2.57s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+estimated time remain: 39M 34S11<00:00,  2.57s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+estimated time remain: 39M 34S11<00:00,  2.57s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+estimated time remain: 39M 34S11<00:00,  2.57s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+estimated time remain: 39M 34S11<00:00,  2.57s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+Epoch 19:   0%|            | 0/28 [00:00<?, ?it/s, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+Epoch 19:   4%|▏   | 1/28 [00:34<15:26, 34.33s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+Epoch 19:  18%|▋   | 5/28 [00:36<02:46,  7.23s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+Epoch 19:  32%|█▎  | 9/28 [00:37<01:20,  4.22s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+Epoch 19:  50%|█▌ | 14/28 [00:40<00:40,  2.87s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+Epoch 19:  64%|█▉ | 18/28 [00:42<00:23,  2.34s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+Epoch 19:  75%|██▎| 21/28 [00:43<00:14,  2.06s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+Epoch 19:  89%|██▋| 25/28 [01:12<00:08,  2.89s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+estimated time remain: 37M 1S:13<00:00,  2.63s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+estimated time remain: 37M 1S:13<00:00,  2.63s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+estimated time remain: 37M 1S:13<00:00,  2.63s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+estimated time remain: 37M 1S:13<00:00,  2.63s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+estimated time remain: 37M 1S:13<00:00,  2.63s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+estimated time remain: 37M 1S:13<00:00,  2.63s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+estimated time remain: 37M 1S:13<00:00,  2.63s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+mean epoch time: 1M 13S37M 1S:13<00:00,  2.63s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+
+Epoch 21:   4%|▏   | 1/28 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+Epoch 21:   4%|▏   | 1/28 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+Epoch 21:   4%|▏   | 1/28 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+Epoch 21:   4%|▏   | 1/28 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+Epoch 21:   4%|▏   | 1/28 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+Epoch 21:   4%|▏   | 1/28 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+Epoch 21:   4%|▏   | 1/28 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 27M 20S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 27M 20S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 27M 20S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 27M 20S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 27M 20S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 27M 20S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 27M 20S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 27M 20S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 28M 33S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 28M 33S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 28M 33S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 28M 33S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 28M 33S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 28M 33S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 28M 33S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 28M 33S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 29M 46S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 29M 46S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 29M 46S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 29M 46S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 29M 46S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 29M 46S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 29M 46S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 30M 59S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 30M 59S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 30M 59S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 30M 59S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 30M 59S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 30M 59S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 30M 59S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 32M 11S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 32M 11S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 32M 11S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 32M 11S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 32M 11S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 32M 11S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 32M 11S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 32M 11S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 33M 22S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 33M 22S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 33M 22S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 33M 22S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 33M 22S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 33M 22S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 33M 22S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 34M 35S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 34M 35S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 34M 35S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 34M 35S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 34M 35S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 34M 35S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 34M 35S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 34M 35S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 35M 48S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 35M 48S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 35M 48S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 35M 48S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 35M 48S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 35M 48S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 35M 48S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 37M 1SS8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 37M 1SS8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 37M 1SS8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 37M 1SS8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 37M 1SS8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 37M 1SS8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 37M 1SS8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 37M 1SS8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 38M 15S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 38M 15S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 38M 15S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 38M 15S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 38M 15S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 38M 15S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 38M 15S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 38M 15S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 39M 27S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 39M 27S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 39M 27S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 39M 27S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 39M 27S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 39M 27S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 39M 27S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 40M 40S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 40M 40S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 40M 40S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 40M 40S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 40M 40S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 40M 40S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 40M 40S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 40M 40S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 41M 53S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 41M 53S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 41M 53S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 41M 53S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 41M 53S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 41M 53S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 41M 53S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 41M 53S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 43M 6SS8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 43M 6SS8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 43M 6SS8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 43M 6SS8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 43M 6SS8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 43M 6SS8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 43M 6SS8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 44M 17S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 44M 17S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 44M 17S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 44M 17S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 44M 17S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 44M 17S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 44M 17S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 44M 17S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 45M 30S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 45M 30S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 45M 30S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 45M 30S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 45M 30S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 45M 30S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 45M 30S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 46M 43S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 46M 43S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 46M 43S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 46M 43S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 46M 43S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 46M 43S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 46M 43S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 46M 43S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 47M 56S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 47M 56S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 47M 56S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 47M 56S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 47M 56S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 47M 56S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 47M 56S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 47M 56S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 49M 8SS8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 49M 8SS8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 49M 8SS8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 49M 8SS8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 49M 8SS8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 49M 8SS8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 49M 8SS8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 50M 21S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 50M 21S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 50M 21S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 50M 21S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 50M 21S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 50M 21S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 50M 21S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 51M 34S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 51M 34S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 51M 34S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 51M 34S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 51M 34S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 51M 34S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 52M 46S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 52M 46S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 52M 46S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 52M 46S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 52M 46S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 52M 46S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 52M 46S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 52M 46S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 53M 59S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 53M 59S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 53M 59S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 53M 59S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 53M 59S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 53M 59S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 53M 59S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 55M 12S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 55M 12S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 55M 12S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 55M 12S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 55M 12S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 55M 12S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 55M 12S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 55M 12S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 56M 24S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 56M 24S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 56M 24S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 56M 24S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 56M 24S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 56M 24S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 56M 24S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 57M 37S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 57M 37S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 57M 37S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 57M 37S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 57M 37S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 57M 37S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 57M 37S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 58M 49S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 58M 49S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 58M 49S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 58M 49S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 58M 49S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 58M 49S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 58M 49S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 58M 49S8 [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 1H 0M 2S [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 1H 0M 2S [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 1H 0M 2S [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 1H 0M 2S [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 1H 0M 2S [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 1H 0M 2S [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 1H 0M 2S [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 1H 0M 2S [00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 1H 1M 15S[00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+time from start: 1H 1M 15S[00:33<15:06, 33.58s/it, loss=nan, v_num=wp06, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]

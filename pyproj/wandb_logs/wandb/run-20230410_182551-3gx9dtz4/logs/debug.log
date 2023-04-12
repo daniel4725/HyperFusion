@@ -1,0 +1,180 @@
+2023-04-10 18:25:51,670 INFO    MainThread:16629 [wandb_setup.py:_flush():76] Loading settings from /home/duenias/.config/wandb/settings
+2023-04-10 18:25:51,670 INFO    MainThread:16629 [wandb_setup.py:_flush():76] Loading settings from /home/duenias/PycharmProjects/HyperNetworks/pyproj/wandb/settings
+2023-04-10 18:25:51,670 INFO    MainThread:16629 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2023-04-10 18:25:51,671 INFO    MainThread:16629 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'model_trainer.py', 'program': 'model_trainer.py'}
+2023-04-10 18:25:51,671 INFO    MainThread:16629 [wandb_init.py:_log_setup():428] Logging user logs to wandb_logs/wandb/run-20230410_182551-3gx9dtz4/logs/debug.log
+2023-04-10 18:25:51,671 INFO    MainThread:16629 [wandb_init.py:_log_setup():429] Logging internal logs to wandb_logs/wandb/run-20230410_182551-3gx9dtz4/logs/debug-internal.log
+2023-04-10 18:25:51,671 INFO    MainThread:16629 [wandb_init.py:init():462] calling init triggers
+2023-04-10 18:25:51,671 INFO    MainThread:16629 [wandb_init.py:init():466] wandb.init called with sweep_config: {}
+config: {}
+2023-04-10 18:25:51,671 INFO    MainThread:16629 [wandb_init.py:init():515] starting backend
+2023-04-10 18:25:51,672 INFO    MainThread:16629 [backend.py:_multiprocessing_setup():99] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2023-04-10 18:25:51,690 INFO    MainThread:16629 [backend.py:ensure_launched():217] starting backend process...
+2023-04-10 18:25:51,702 INFO    MainThread:16629 [backend.py:ensure_launched():222] started backend process with pid: 16725
+2023-04-10 18:25:51,703 INFO    MainThread:16629 [wandb_init.py:init():525] backend started and connected
+2023-04-10 18:25:51,707 INFO    MainThread:16629 [wandb_init.py:init():596] updated telemetry
+2023-04-10 18:25:51,709 INFO    MainThread:16629 [wandb_init.py:init():628] communicating run to backend with 30 second timeout
+2023-04-10 18:25:53,736 INFO    MainThread:16629 [wandb_run.py:_on_init():1924] communicating current version
+2023-04-10 18:25:54,033 INFO    MainThread:16629 [wandb_run.py:_on_init():1928] got version response upgrade_message: "wandb version 0.14.2 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2023-04-10 18:25:54,033 INFO    MainThread:16629 [wandb_init.py:init():662] starting run threads in backend
+2023-04-10 18:25:56,007 INFO    MainThread:16629 [wandb_run.py:_console_start():1898] atexit reg
+2023-04-10 18:25:56,008 INFO    MainThread:16629 [wandb_run.py:_redirect():1771] redirect: SettingsConsole.REDIRECT
+2023-04-10 18:25:56,012 INFO    MainThread:16629 [wandb_run.py:_redirect():1776] Redirecting console.
+2023-04-10 18:25:56,016 INFO    MainThread:16629 [wandb_run.py:_redirect():1832] Redirects installed.
+2023-04-10 18:25:56,017 INFO    MainThread:16629 [wandb_init.py:init():688] run started, returning control to user process
+2023-04-10 18:25:56,020 INFO    MainThread:16629 [wandb_run.py:_config_callback():1136] config_cb None None {'GPU': [2], 'wandb_log': True, 'logs_dir': 'wandb_logs', 'wandb_sweeping': False, 'experiment_name': 'tests0-Film', 'epochs': 50, 'lr': 0.0001, 'batch_size': 64, 'L2': 1e-05, 'num_workers': 24, 'model': 'FilmHNN', 'init_features': 32, 'dropout': 0.0, 'bn_momentum': 0.05, 'hidden_shapes': [1], 'cnn_mlp_shapes': [3], 'cnn_mlp_dropout': 0.0, 'cnn_dropout': 0.1, 'metadata_path': 'metadata_by_features_sets/set-5.csv', 'adni_dir': '/home/duenias/PycharmProjects/HyperNetworks/ADNI_2023/ADNI', 'data_fold': 0, 'transform': 'hippo_crop_lNr', 'load2ram': False, 'with_skull': False, 'no_bias_field_correct': True, 'overfit_batches': 0.0, 'class_names': ['CN', 'MCI', 'AD'], 'checkpoint_dir': '/home/duenias/PycharmProjects/HyperNetworks/pyproj/checkpoints', 'enable_checkpointing': False, 'continue_from_checkpoint': False, 'cp_cont_epoch': 1, 'project_name': 'HyperNets_imgNtabular', 'runfromshell': True}
+2023-04-10 19:26:50,975 INFO    MainThread:16629 [wandb_run.py:_atexit_cleanup():1867] got exitcode: 0
+2023-04-10 19:26:50,977 INFO    MainThread:16629 [wandb_run.py:_restore():1839] restore
+2023-04-10 19:26:53,096 INFO    MainThread:16629 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 1
+}
+pusher_stats {
+  uploaded_bytes: 1260
+  total_bytes: 1260
+}
+
+2023-04-10 19:26:53,227 INFO    MainThread:16629 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 1
+}
+pusher_stats {
+  uploaded_bytes: 1260
+  total_bytes: 1260
+}
+
+2023-04-10 19:26:53,864 INFO    MainThread:16629 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 1
+}
+pusher_stats {
+  uploaded_bytes: 1260
+  total_bytes: 1260
+}
+
+2023-04-10 19:26:54,491 INFO    MainThread:16629 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 1260
+  total_bytes: 55621
+}
+
+2023-04-10 19:26:54,594 INFO    MainThread:16629 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 1260
+  total_bytes: 55621
+}
+
+2023-04-10 19:26:54,696 INFO    MainThread:16629 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 1260
+  total_bytes: 55621
+}
+
+2023-04-10 19:26:54,798 INFO    MainThread:16629 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 1260
+  total_bytes: 55621
+}
+
+2023-04-10 19:26:54,900 INFO    MainThread:16629 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 1260
+  total_bytes: 55621
+}
+
+2023-04-10 19:26:55,002 INFO    MainThread:16629 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 1260
+  total_bytes: 55621
+}
+
+2023-04-10 19:26:55,105 INFO    MainThread:16629 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 55621
+  total_bytes: 55621
+}
+
+2023-04-10 19:26:55,207 INFO    MainThread:16629 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 55621
+  total_bytes: 55621
+}
+
+2023-04-10 19:26:55,309 INFO    MainThread:16629 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 55621
+  total_bytes: 55621
+}
+
+2023-04-10 19:26:55,411 INFO    MainThread:16629 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 55621
+  total_bytes: 55621
+}
+
+2023-04-10 19:26:55,514 INFO    MainThread:16629 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 55621
+  total_bytes: 55621
+}
+
+2023-04-10 19:26:55,616 INFO    MainThread:16629 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 55621
+  total_bytes: 55621
+}
+
+2023-04-10 19:26:55,718 INFO    MainThread:16629 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 55621
+  total_bytes: 55621
+}
+
+2023-04-10 19:26:56,389 INFO    MainThread:16629 [wandb_run.py:_on_finish():1996] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 55621
+  total_bytes: 55621
+}
+
+2023-04-10 19:26:57,179 INFO    MainThread:16629 [wandb_run.py:_on_finish():1996] got exit ret: done: true
+exit_result {
+}
+file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 55621
+  total_bytes: 55621
+}
+local_info {
+}
+
+2023-04-10 19:26:58,620 INFO    MainThread:16629 [wandb_run.py:_footer_history_summary_info():3104] rendering history
+2023-04-10 19:26:58,625 INFO    MainThread:16629 [wandb_run.py:_footer_history_summary_info():3136] rendering summary
+2023-04-10 19:26:58,631 INFO    MainThread:16629 [wandb_run.py:_footer_sync_info():3060] logging synced files

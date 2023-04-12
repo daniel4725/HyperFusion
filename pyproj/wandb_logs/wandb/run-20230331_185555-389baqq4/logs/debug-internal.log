@@ -1,0 +1,412 @@
+2023-03-31 18:55:56,506 INFO    MainThread:10053 [internal.py:wandb_internal():93] W&B internal server running at pid: 10053, started at: 2023-03-31 18:55:56.506262
+2023-03-31 18:55:56,508 INFO    WriterThread:10053 [datastore.py:open_for_write():75] open: wandb_logs/wandb/run-20230331_185555-389baqq4/run-389baqq4.wandb
+2023-03-31 18:55:56,511 DEBUG   SenderThread:10053 [sender.py:send():232] send: header
+2023-03-31 18:55:56,511 DEBUG   SenderThread:10053 [sender.py:send():232] send: run
+2023-03-31 18:55:56,513 INFO    SenderThread:10053 [sender.py:_maybe_setup_resume():490] checking resume status for None/HyperNets_imgNtabular/389baqq4
+2023-03-31 18:55:57,332 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: check_version
+2023-03-31 18:55:57,337 INFO    SenderThread:10053 [dir_watcher.py:__init__():197] watching files in: wandb_logs/wandb/run-20230331_185555-389baqq4/files
+2023-03-31 18:55:57,337 INFO    SenderThread:10053 [sender.py:_start_run_threads():814] run started: 389baqq4 with start time 1680278155
+2023-03-31 18:55:57,337 DEBUG   SenderThread:10053 [sender.py:send():232] send: summary
+2023-03-31 18:55:57,338 INFO    SenderThread:10053 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2023-03-31 18:55:57,338 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: check_version
+2023-03-31 18:55:57,634 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: run_start
+2023-03-31 18:55:58,347 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_created():244] file/dir created: wandb_logs/wandb/run-20230331_185555-389baqq4/files/wandb-summary.json
+2023-03-31 18:55:59,448 DEBUG   HandlerThread:10053 [meta.py:__init__():35] meta init
+2023-03-31 18:55:59,449 DEBUG   HandlerThread:10053 [meta.py:__init__():49] meta init done
+2023-03-31 18:55:59,449 DEBUG   HandlerThread:10053 [meta.py:probe():209] probe
+2023-03-31 18:55:59,455 DEBUG   HandlerThread:10053 [git.py:repo():29] git repository is invalid
+2023-03-31 18:55:59,456 DEBUG   HandlerThread:10053 [meta.py:_save_pip():53] save pip
+2023-03-31 18:55:59,456 DEBUG   HandlerThread:10053 [meta.py:_save_pip():67] save pip done
+2023-03-31 18:55:59,456 DEBUG   HandlerThread:10053 [meta.py:probe():247] probe done
+2023-03-31 18:55:59,459 DEBUG   SenderThread:10053 [sender.py:send():232] send: files
+2023-03-31 18:55:59,460 INFO    SenderThread:10053 [sender.py:_save_file():948] saving file wandb-metadata.json with policy now
+2023-03-31 18:55:59,469 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 18:55:59,470 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 18:55:59,820 DEBUG   SenderThread:10053 [sender.py:send():232] send: telemetry
+2023-03-31 18:55:59,820 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:55:59,820 DEBUG   SenderThread:10053 [sender.py:send():232] send: telemetry
+2023-03-31 18:55:59,822 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:55:59,822 WARNING SenderThread:10053 [sender.py:send_metric():904] Seen metric with glob (shouldn't happen)
+2023-03-31 18:55:59,823 DEBUG   SenderThread:10053 [sender.py:send():232] send: config
+2023-03-31 18:56:00,346 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_created():244] file/dir created: wandb_logs/wandb/run-20230331_185555-389baqq4/files/requirements.txt
+2023-03-31 18:56:00,348 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_created():244] file/dir created: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:56:00,348 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_created():244] file/dir created: wandb_logs/wandb/run-20230331_185555-389baqq4/files/wandb-metadata.json
+2023-03-31 18:56:00,446 INFO    Thread-11 :10053 [upload_job.py:push():132] Uploaded file /tmp/tmpwzz2h8v7wandb/14fkkrfb-wandb-metadata.json
+2023-03-31 18:56:02,347 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:56:04,348 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:56:14,821 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 18:56:14,822 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 18:56:28,296 DEBUG   SenderThread:10053 [sender.py:send():232] send: stats
+2023-03-31 18:56:28,356 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/config.yaml
+2023-03-31 18:56:30,180 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 18:56:30,180 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 18:56:32,358 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:56:34,359 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:56:36,359 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:56:38,360 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:56:40,361 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:56:42,362 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:56:45,524 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 18:56:45,525 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 18:56:59,087 DEBUG   SenderThread:10053 [sender.py:send():232] send: stats
+2023-03-31 18:57:00,369 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:57:00,528 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: partial_history
+2023-03-31 18:57:00,528 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:57:00,534 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: partial_history
+2023-03-31 18:57:00,534 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:57:00,537 WARNING SenderThread:10053 [sender.py:send_metric():904] Seen metric with glob (shouldn't happen)
+2023-03-31 18:57:00,537 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:57:00,537 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:57:00,537 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:57:00,537 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:57:00,538 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:57:00,538 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:57:00,538 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:57:00,538 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:57:00,538 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:57:00,538 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:57:00,539 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:57:00,539 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:57:00,539 DEBUG   SenderThread:10053 [sender.py:send():232] send: history
+2023-03-31 18:57:00,540 DEBUG   SenderThread:10053 [sender.py:send():232] send: summary
+2023-03-31 18:57:00,540 INFO    SenderThread:10053 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2023-03-31 18:57:00,541 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:57:00,541 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:57:00,541 WARNING SenderThread:10053 [sender.py:send_metric():904] Seen metric with glob (shouldn't happen)
+2023-03-31 18:57:00,541 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:57:00,541 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:57:00,542 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:57:00,542 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:57:00,542 DEBUG   SenderThread:10053 [sender.py:send():232] send: history
+2023-03-31 18:57:00,542 DEBUG   SenderThread:10053 [sender.py:send():232] send: summary
+2023-03-31 18:57:00,543 INFO    SenderThread:10053 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2023-03-31 18:57:00,895 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 18:57:00,896 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 18:57:01,369 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/wandb-summary.json
+2023-03-31 18:57:02,370 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:57:16,257 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 18:57:16,258 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 18:57:26,379 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:57:28,380 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:57:29,381 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/config.yaml
+2023-03-31 18:57:29,913 DEBUG   SenderThread:10053 [sender.py:send():232] send: stats
+2023-03-31 18:57:30,381 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:57:31,615 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 18:57:31,616 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 18:57:32,382 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:57:34,383 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:57:36,384 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:57:46,964 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 18:57:46,965 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 18:57:53,279 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: partial_history
+2023-03-31 18:57:53,280 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:57:53,282 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:57:53,282 WARNING SenderThread:10053 [sender.py:send_metric():904] Seen metric with glob (shouldn't happen)
+2023-03-31 18:57:53,282 DEBUG   SenderThread:10053 [sender.py:send():232] send: history
+2023-03-31 18:57:53,283 DEBUG   SenderThread:10053 [sender.py:send():232] send: summary
+2023-03-31 18:57:53,285 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: partial_history
+2023-03-31 18:57:53,287 INFO    SenderThread:10053 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2023-03-31 18:57:53,288 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:57:53,288 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:57:53,288 WARNING SenderThread:10053 [sender.py:send_metric():904] Seen metric with glob (shouldn't happen)
+2023-03-31 18:57:53,288 DEBUG   SenderThread:10053 [sender.py:send():232] send: history
+2023-03-31 18:57:53,289 DEBUG   SenderThread:10053 [sender.py:send():232] send: summary
+2023-03-31 18:57:53,289 INFO    SenderThread:10053 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2023-03-31 18:57:53,390 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/wandb-summary.json
+2023-03-31 18:57:54,391 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:58:00,394 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/config.yaml
+2023-03-31 18:58:00,744 DEBUG   SenderThread:10053 [sender.py:send():232] send: stats
+2023-03-31 18:58:02,317 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 18:58:02,317 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 18:58:17,660 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 18:58:17,660 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 18:58:18,400 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:58:20,401 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:58:22,402 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:58:24,403 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:58:26,404 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:58:28,404 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:58:31,556 DEBUG   SenderThread:10053 [sender.py:send():232] send: stats
+2023-03-31 18:58:32,999 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 18:58:32,999 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 18:58:44,411 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:58:45,408 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: partial_history
+2023-03-31 18:58:45,409 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:58:45,410 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:58:45,410 WARNING SenderThread:10053 [sender.py:send_metric():904] Seen metric with glob (shouldn't happen)
+2023-03-31 18:58:45,410 DEBUG   SenderThread:10053 [sender.py:send():232] send: history
+2023-03-31 18:58:45,410 DEBUG   SenderThread:10053 [sender.py:send():232] send: summary
+2023-03-31 18:58:45,411 INFO    SenderThread:10053 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2023-03-31 18:58:45,412 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/wandb-summary.json
+2023-03-31 18:58:45,415 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:58:45,415 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:58:45,415 WARNING SenderThread:10053 [sender.py:send_metric():904] Seen metric with glob (shouldn't happen)
+2023-03-31 18:58:45,416 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: partial_history
+2023-03-31 18:58:45,417 DEBUG   SenderThread:10053 [sender.py:send():232] send: history
+2023-03-31 18:58:45,417 DEBUG   SenderThread:10053 [sender.py:send():232] send: summary
+2023-03-31 18:58:45,418 INFO    SenderThread:10053 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2023-03-31 18:58:46,413 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/wandb-summary.json
+2023-03-31 18:58:46,413 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:58:48,346 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 18:58:48,346 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 18:59:01,423 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/config.yaml
+2023-03-31 18:59:02,454 DEBUG   SenderThread:10053 [sender.py:send():232] send: stats
+2023-03-31 18:59:03,699 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 18:59:03,700 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 18:59:08,425 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:59:10,426 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:59:12,427 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:59:14,428 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:59:16,429 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:59:18,430 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:59:19,056 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 18:59:19,056 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 18:59:33,203 DEBUG   SenderThread:10053 [sender.py:send():232] send: stats
+2023-03-31 18:59:34,405 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 18:59:34,405 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 18:59:36,437 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:59:36,511 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: partial_history
+2023-03-31 18:59:36,511 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:59:36,513 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:59:36,513 WARNING SenderThread:10053 [sender.py:send_metric():904] Seen metric with glob (shouldn't happen)
+2023-03-31 18:59:36,513 DEBUG   SenderThread:10053 [sender.py:send():232] send: history
+2023-03-31 18:59:36,513 DEBUG   SenderThread:10053 [sender.py:send():232] send: summary
+2023-03-31 18:59:36,514 INFO    SenderThread:10053 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2023-03-31 18:59:36,515 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:59:36,516 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 18:59:36,516 WARNING SenderThread:10053 [sender.py:send_metric():904] Seen metric with glob (shouldn't happen)
+2023-03-31 18:59:36,517 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: partial_history
+2023-03-31 18:59:36,518 DEBUG   SenderThread:10053 [sender.py:send():232] send: history
+2023-03-31 18:59:36,518 DEBUG   SenderThread:10053 [sender.py:send():232] send: summary
+2023-03-31 18:59:36,519 INFO    SenderThread:10053 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2023-03-31 18:59:37,437 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/wandb-summary.json
+2023-03-31 18:59:38,438 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 18:59:49,756 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 18:59:49,756 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 19:00:00,447 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:00:02,447 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:00:02,448 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/config.yaml
+2023-03-31 19:00:04,138 DEBUG   SenderThread:10053 [sender.py:send():232] send: stats
+2023-03-31 19:00:04,448 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:00:05,102 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 19:00:05,102 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 19:00:06,449 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:00:08,450 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:00:10,451 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:00:20,449 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 19:00:20,449 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 19:00:28,458 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:00:29,231 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 19:00:29,232 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 19:00:29,232 WARNING SenderThread:10053 [sender.py:send_metric():904] Seen metric with glob (shouldn't happen)
+2023-03-31 19:00:29,232 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: partial_history
+2023-03-31 19:00:29,234 DEBUG   SenderThread:10053 [sender.py:send():232] send: history
+2023-03-31 19:00:29,234 DEBUG   SenderThread:10053 [sender.py:send():232] send: summary
+2023-03-31 19:00:29,235 INFO    SenderThread:10053 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2023-03-31 19:00:29,237 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 19:00:29,239 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 19:00:29,239 WARNING SenderThread:10053 [sender.py:send_metric():904] Seen metric with glob (shouldn't happen)
+2023-03-31 19:00:29,239 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: partial_history
+2023-03-31 19:00:29,240 DEBUG   SenderThread:10053 [sender.py:send():232] send: history
+2023-03-31 19:00:29,240 DEBUG   SenderThread:10053 [sender.py:send():232] send: summary
+2023-03-31 19:00:29,241 INFO    SenderThread:10053 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2023-03-31 19:00:29,459 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/wandb-summary.json
+2023-03-31 19:00:30,459 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:00:33,460 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/config.yaml
+2023-03-31 19:00:34,977 DEBUG   SenderThread:10053 [sender.py:send():232] send: stats
+2023-03-31 19:00:35,797 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 19:00:35,798 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 19:00:51,158 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 19:00:51,158 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 19:00:52,468 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:00:54,469 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:00:56,470 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:00:58,471 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:01:00,472 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:01:02,473 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:01:05,761 DEBUG   SenderThread:10053 [sender.py:send():232] send: stats
+2023-03-31 19:01:06,509 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 19:01:06,509 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 19:01:20,245 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: partial_history
+2023-03-31 19:01:20,245 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 19:01:20,248 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 19:01:20,248 WARNING SenderThread:10053 [sender.py:send_metric():904] Seen metric with glob (shouldn't happen)
+2023-03-31 19:01:20,248 DEBUG   SenderThread:10053 [sender.py:send():232] send: history
+2023-03-31 19:01:20,248 DEBUG   SenderThread:10053 [sender.py:send():232] send: summary
+2023-03-31 19:01:20,249 INFO    SenderThread:10053 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2023-03-31 19:01:20,250 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 19:01:20,252 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 19:01:20,252 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: partial_history
+2023-03-31 19:01:20,252 WARNING SenderThread:10053 [sender.py:send_metric():904] Seen metric with glob (shouldn't happen)
+2023-03-31 19:01:20,254 DEBUG   SenderThread:10053 [sender.py:send():232] send: history
+2023-03-31 19:01:20,254 DEBUG   SenderThread:10053 [sender.py:send():232] send: summary
+2023-03-31 19:01:20,254 INFO    SenderThread:10053 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2023-03-31 19:01:20,480 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/wandb-summary.json
+2023-03-31 19:01:20,480 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:01:21,854 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 19:01:21,855 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 19:01:22,480 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:01:35,485 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/config.yaml
+2023-03-31 19:01:36,644 DEBUG   SenderThread:10053 [sender.py:send():232] send: stats
+2023-03-31 19:01:37,202 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 19:01:37,203 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 19:01:42,488 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:01:44,489 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:01:46,490 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:01:48,491 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:01:50,492 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:01:52,492 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:01:52,562 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 19:01:52,562 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 19:02:07,469 DEBUG   SenderThread:10053 [sender.py:send():232] send: stats
+2023-03-31 19:02:07,915 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 19:02:07,916 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 19:02:10,499 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:02:11,218 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 19:02:11,218 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: partial_history
+2023-03-31 19:02:11,218 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 19:02:11,220 WARNING SenderThread:10053 [sender.py:send_metric():904] Seen metric with glob (shouldn't happen)
+2023-03-31 19:02:11,220 DEBUG   SenderThread:10053 [sender.py:send():232] send: history
+2023-03-31 19:02:11,221 DEBUG   SenderThread:10053 [sender.py:send():232] send: summary
+2023-03-31 19:02:11,221 INFO    SenderThread:10053 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2023-03-31 19:02:11,224 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 19:02:11,225 DEBUG   SenderThread:10053 [sender.py:send():232] send: metric
+2023-03-31 19:02:11,226 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: partial_history
+2023-03-31 19:02:11,226 WARNING SenderThread:10053 [sender.py:send_metric():904] Seen metric with glob (shouldn't happen)
+2023-03-31 19:02:11,227 DEBUG   SenderThread:10053 [sender.py:send():232] send: history
+2023-03-31 19:02:11,227 DEBUG   SenderThread:10053 [sender.py:send():232] send: summary
+2023-03-31 19:02:11,228 INFO    SenderThread:10053 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2023-03-31 19:02:11,500 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/wandb-summary.json
+2023-03-31 19:02:12,500 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:02:23,252 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 19:02:23,252 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 19:02:36,509 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:02:36,510 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/config.yaml
+2023-03-31 19:02:38,297 DEBUG   SenderThread:10053 [sender.py:send():232] send: stats
+2023-03-31 19:02:38,510 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:02:38,597 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: stop_status
+2023-03-31 19:02:38,598 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: stop_status
+2023-03-31 19:02:38,695 WARNING MainThread:10053 [internal.py:wandb_internal():153] Internal process interrupt: 1
+2023-03-31 19:02:38,958 DEBUG   SenderThread:10053 [sender.py:send():232] send: telemetry
+2023-03-31 19:02:40,511 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:02:41,312 DEBUG   SenderThread:10053 [sender.py:send():232] send: exit
+2023-03-31 19:02:41,312 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 19:02:41,312 INFO    SenderThread:10053 [sender.py:send_exit():368] handling exit code: 0
+2023-03-31 19:02:41,314 INFO    SenderThread:10053 [sender.py:send_exit():370] handling runtime: 403
+2023-03-31 19:02:41,315 INFO    SenderThread:10053 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2023-03-31 19:02:41,315 INFO    SenderThread:10053 [sender.py:send_exit():376] send defer
+2023-03-31 19:02:41,316 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 19:02:41,316 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: defer
+2023-03-31 19:02:41,316 INFO    HandlerThread:10053 [handler.py:handle_request_defer():164] handle defer: 0
+2023-03-31 19:02:41,317 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: defer
+2023-03-31 19:02:41,317 INFO    SenderThread:10053 [sender.py:send_request_defer():385] handle sender defer: 0
+2023-03-31 19:02:41,317 INFO    SenderThread:10053 [sender.py:transition_state():389] send defer: 1
+2023-03-31 19:02:41,317 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: defer
+2023-03-31 19:02:41,317 INFO    HandlerThread:10053 [handler.py:handle_request_defer():164] handle defer: 1
+2023-03-31 19:02:41,386 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: defer
+2023-03-31 19:02:41,387 INFO    SenderThread:10053 [sender.py:send_request_defer():385] handle sender defer: 1
+2023-03-31 19:02:41,387 INFO    SenderThread:10053 [sender.py:transition_state():389] send defer: 2
+2023-03-31 19:02:41,387 DEBUG   SenderThread:10053 [sender.py:send():232] send: stats
+2023-03-31 19:02:41,388 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: defer
+2023-03-31 19:02:41,388 INFO    HandlerThread:10053 [handler.py:handle_request_defer():164] handle defer: 2
+2023-03-31 19:02:41,389 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: defer
+2023-03-31 19:02:41,389 INFO    SenderThread:10053 [sender.py:send_request_defer():385] handle sender defer: 2
+2023-03-31 19:02:41,389 INFO    SenderThread:10053 [sender.py:transition_state():389] send defer: 3
+2023-03-31 19:02:41,389 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: defer
+2023-03-31 19:02:41,389 INFO    HandlerThread:10053 [handler.py:handle_request_defer():164] handle defer: 3
+2023-03-31 19:02:41,390 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: defer
+2023-03-31 19:02:41,390 INFO    SenderThread:10053 [sender.py:send_request_defer():385] handle sender defer: 3
+2023-03-31 19:02:41,390 INFO    SenderThread:10053 [sender.py:transition_state():389] send defer: 4
+2023-03-31 19:02:41,390 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: defer
+2023-03-31 19:02:41,390 INFO    HandlerThread:10053 [handler.py:handle_request_defer():164] handle defer: 4
+2023-03-31 19:02:41,391 DEBUG   SenderThread:10053 [sender.py:send():232] send: summary
+2023-03-31 19:02:41,392 INFO    SenderThread:10053 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2023-03-31 19:02:41,392 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: defer
+2023-03-31 19:02:41,392 INFO    SenderThread:10053 [sender.py:send_request_defer():385] handle sender defer: 4
+2023-03-31 19:02:41,392 INFO    SenderThread:10053 [sender.py:transition_state():389] send defer: 5
+2023-03-31 19:02:41,392 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: defer
+2023-03-31 19:02:41,393 INFO    HandlerThread:10053 [handler.py:handle_request_defer():164] handle defer: 5
+2023-03-31 19:02:41,393 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: defer
+2023-03-31 19:02:41,393 INFO    SenderThread:10053 [sender.py:send_request_defer():385] handle sender defer: 5
+2023-03-31 19:02:41,417 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 19:02:41,512 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/wandb-summary.json
+2023-03-31 19:02:41,512 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:02:41,807 INFO    SenderThread:10053 [sender.py:transition_state():389] send defer: 6
+2023-03-31 19:02:41,808 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 19:02:41,808 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: defer
+2023-03-31 19:02:41,809 INFO    HandlerThread:10053 [handler.py:handle_request_defer():164] handle defer: 6
+2023-03-31 19:02:41,809 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: defer
+2023-03-31 19:02:41,809 INFO    SenderThread:10053 [sender.py:send_request_defer():385] handle sender defer: 6
+2023-03-31 19:02:41,809 INFO    SenderThread:10053 [dir_watcher.py:finish():312] shutting down directory watcher
+2023-03-31 19:02:41,910 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 19:02:42,512 INFO    Thread-7  :10053 [dir_watcher.py:_on_file_modified():257] file/dir modified: wandb_logs/wandb/run-20230331_185555-389baqq4/files/config.yaml
+2023-03-31 19:02:42,513 INFO    SenderThread:10053 [dir_watcher.py:finish():342] scan: wandb_logs/wandb/run-20230331_185555-389baqq4/files
+2023-03-31 19:02:42,513 INFO    SenderThread:10053 [dir_watcher.py:finish():356] scan save: wandb_logs/wandb/run-20230331_185555-389baqq4/files/config.yaml config.yaml
+2023-03-31 19:02:42,514 INFO    SenderThread:10053 [dir_watcher.py:finish():356] scan save: wandb_logs/wandb/run-20230331_185555-389baqq4/files/requirements.txt requirements.txt
+2023-03-31 19:02:42,520 INFO    SenderThread:10053 [dir_watcher.py:finish():356] scan save: wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log output.log
+2023-03-31 19:02:42,526 INFO    SenderThread:10053 [dir_watcher.py:finish():356] scan save: wandb_logs/wandb/run-20230331_185555-389baqq4/files/wandb-summary.json wandb-summary.json
+2023-03-31 19:02:42,534 INFO    SenderThread:10053 [dir_watcher.py:finish():356] scan save: wandb_logs/wandb/run-20230331_185555-389baqq4/files/wandb-metadata.json wandb-metadata.json
+2023-03-31 19:02:42,534 INFO    SenderThread:10053 [sender.py:transition_state():389] send defer: 7
+2023-03-31 19:02:42,534 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 19:02:42,540 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: defer
+2023-03-31 19:02:42,540 INFO    HandlerThread:10053 [handler.py:handle_request_defer():164] handle defer: 7
+2023-03-31 19:02:42,540 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: defer
+2023-03-31 19:02:42,541 INFO    SenderThread:10053 [sender.py:send_request_defer():385] handle sender defer: 7
+2023-03-31 19:02:42,541 INFO    SenderThread:10053 [file_pusher.py:finish():145] shutting down file pusher
+2023-03-31 19:02:42,636 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 19:02:42,637 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 19:02:42,738 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 19:02:42,739 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 19:02:42,841 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 19:02:42,841 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 19:02:42,943 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 19:02:42,943 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 19:02:43,045 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 19:02:43,046 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 19:02:43,148 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 19:02:43,148 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 19:02:43,250 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 19:02:43,250 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 19:02:43,352 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 19:02:43,352 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 19:02:43,407 INFO    Thread-13 :10053 [upload_job.py:push():132] Uploaded file wandb_logs/wandb/run-20230331_185555-389baqq4/files/requirements.txt
+2023-03-31 19:02:43,422 INFO    Thread-14 :10053 [upload_job.py:push():132] Uploaded file wandb_logs/wandb/run-20230331_185555-389baqq4/files/output.log
+2023-03-31 19:02:43,454 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 19:02:43,454 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 19:02:43,494 INFO    Thread-12 :10053 [upload_job.py:push():132] Uploaded file wandb_logs/wandb/run-20230331_185555-389baqq4/files/config.yaml
+2023-03-31 19:02:43,522 INFO    Thread-15 :10053 [upload_job.py:push():132] Uploaded file wandb_logs/wandb/run-20230331_185555-389baqq4/files/wandb-summary.json
+2023-03-31 19:02:43,556 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 19:02:43,556 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 19:02:43,658 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 19:02:43,658 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 19:02:43,723 INFO    Thread-6  :10053 [sender.py:transition_state():389] send defer: 8
+2023-03-31 19:02:43,724 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: defer
+2023-03-31 19:02:43,724 INFO    HandlerThread:10053 [handler.py:handle_request_defer():164] handle defer: 8
+2023-03-31 19:02:43,725 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: defer
+2023-03-31 19:02:43,725 INFO    SenderThread:10053 [sender.py:send_request_defer():385] handle sender defer: 8
+2023-03-31 19:02:43,760 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 19:02:44,330 INFO    SenderThread:10053 [sender.py:transition_state():389] send defer: 9
+2023-03-31 19:02:44,330 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 19:02:44,331 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: defer
+2023-03-31 19:02:44,331 INFO    HandlerThread:10053 [handler.py:handle_request_defer():164] handle defer: 9
+2023-03-31 19:02:44,332 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: defer
+2023-03-31 19:02:44,332 INFO    SenderThread:10053 [sender.py:send_request_defer():385] handle sender defer: 9
+2023-03-31 19:02:44,332 INFO    SenderThread:10053 [sender.py:transition_state():389] send defer: 10
+2023-03-31 19:02:44,333 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: defer
+2023-03-31 19:02:44,333 DEBUG   SenderThread:10053 [sender.py:send():232] send: final
+2023-03-31 19:02:44,333 INFO    HandlerThread:10053 [handler.py:handle_request_defer():164] handle defer: 10
+2023-03-31 19:02:44,333 DEBUG   SenderThread:10053 [sender.py:send():232] send: footer
+2023-03-31 19:02:44,333 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: defer
+2023-03-31 19:02:44,334 INFO    SenderThread:10053 [sender.py:send_request_defer():385] handle sender defer: 10
+2023-03-31 19:02:44,433 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: poll_exit
+2023-03-31 19:02:44,433 DEBUG   SenderThread:10053 [sender.py:send_request():246] send_request: poll_exit
+2023-03-31 19:02:44,433 INFO    SenderThread:10053 [file_pusher.py:join():150] waiting for file pusher
+2023-03-31 19:02:45,222 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: sampled_history
+2023-03-31 19:02:45,225 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: get_summary
+2023-03-31 19:02:45,227 DEBUG   HandlerThread:10053 [handler.py:handle_request():141] handle_request: shutdown
+2023-03-31 19:02:45,227 INFO    HandlerThread:10053 [handler.py:finish():806] shutting down handler
+2023-03-31 19:02:45,333 INFO    WriterThread:10053 [datastore.py:close():279] close: wandb_logs/wandb/run-20230331_185555-389baqq4/run-389baqq4.wandb
+2023-03-31 19:02:46,121 INFO    SenderThread:10053 [sender.py:finish():1110] shutting down sender
+2023-03-31 19:02:46,121 INFO    SenderThread:10053 [file_pusher.py:finish():145] shutting down file pusher
+2023-03-31 19:02:46,121 INFO    SenderThread:10053 [file_pusher.py:join():150] waiting for file pusher
+2023-03-31 19:02:46,123 INFO    MainThread:10053 [internal.py:handle_exit():80] Internal process exited

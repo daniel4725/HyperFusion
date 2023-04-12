@@ -1,0 +1,88 @@
+
+class weights:  tensor([1.3180, 0.5777, 1.9601])
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/connectors/checkpoint_connector.py:46: LightningDeprecationWarning: Setting `Trainer(resume_from_checkpoint=)` is deprecated in v1.5 and will be removed in v1.7. Please pass `Trainer.fit(ckpt_path=)` directly instead.
+  "Setting `Trainer(resume_from_checkpoint=)` is deprecated in v1.5 and"
+GPU available: True, used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/trainer.py:1906: LightningDeprecationWarning: `trainer.resume_from_checkpoint` is deprecated in v1.5 and will be removed in v1.7. Specify the fit checkpoint path with `trainer.fit(ckpt_path=)` instead.
+  "`trainer.resume_from_checkpoint` is deprecated in v1.5 and will be removed in v1.7."
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0,1,2,3]
+Epoch 0:   0% 0/12 [00:00<?, ?it/s] ----------------------------
+  | Name  | Type                                | Params
+--------------------------------------------------------------
+0 | model | age_noembd_lastblockHyp_FFT_fcHyp_2 | 4.1 M
+--------------------------------------------------------------
+4.1 M     Trainable params
+0         Non-trainable params
+4.1 M     Total params
+16.273    Total estimated model params size (MB)
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/data_loading.py:639: UserWarning: You requested to overfit but enabled training dataloader shuffling. We are turning off the training dataloader shuffling for you.
+  "You requested to overfit but enabled training dataloader shuffling."
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/data_loading.py:133: UserWarning: The dataloader, train_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 40 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  f"The dataloader, {name}, does not have many workers which may be a bottleneck."
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/data_loading.py:474: UserWarning: You requested to overfit but enabled val/test dataloader shuffling. We are turning it off for you.
+  "You requested to overfit but enabled val/test dataloader shuffling."
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/data_loading.py:133: UserWarning: The dataloader, val_dataloader 0, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 40 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  f"The dataloader, {name}, does not have many workers which may be a bottleneck."
+Python 3.6.9 (default, Jan 26 2021, 15:33:00)
+Type 'copyright', 'credits' or 'license' for more information
+IPython 6.0.0 -- An enhanced Interactive Python. Type '?' for help.
+PyDev console: using IPython 6.0.0
+b"\x93NUMPY\x01\x00v\x00{'descr': '<f4', 'fortran_orde"
+b''
+b''
+b''
+----------------------------
+Traceback (most recent call last):
+  File "/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/trainer.py", line 685, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/trainer.py", line 777, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/trainer.py", line 1199, in _run
+    self._dispatch()
+  File "/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/trainer.py", line 1279, in _dispatch
+    self.training_type_plugin.start_training(self)
+  File "/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/plugins/training_type/training_type_plugin.py", line 202, in start_training
+    self._results = trainer.run_stage()
+  File "/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/trainer.py", line 1289, in run_stage
+    return self._run_train()
+  File "/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/trainer.py", line 1319, in _run_train
+    self.fit_loop.run()
+  File "/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/loops/base.py", line 145, in run
+    self.advance(*args, **kwargs)
+  File "/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/loops/fit_loop.py", line 234, in advance
+    self.epoch_loop.run(data_fetcher)
+  File "/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/loops/base.py", line 140, in run
+    self.on_run_start(*args, **kwargs)
+  File "/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/loops/epoch/training_epoch_loop.py", line 141, in on_run_start
+    self._dataloader_iter = _update_dataloader_iter(data_fetcher, self.batch_idx + 1)
+  File "/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/loops/utilities.py", line 121, in _update_dataloader_iter
+    dataloader_iter = enumerate(data_fetcher, batch_idx)
+  File "/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/utilities/fetching.py", line 199, in __iter__
+    self.prefetching(self.prefetch_batches)
+  File "/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/utilities/fetching.py", line 258, in prefetching
+    self._fetch_next_batch()
+  File "/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/utilities/fetching.py", line 300, in _fetch_next_batch
+    batch = next(self.dataloader_iter)
+  File "/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/supporters.py", line 550, in __next__
+    return self.request_next_batch(self.loader_iters)
+  File "/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/supporters.py", line 562, in request_next_batch
+    return apply_to_collection(loader_iters, Iterator, next)
+  File "/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/utilities/apply_func.py", line 96, in apply_to_collection
+    return function(data, *args, **kwargs)
+  File "/usr/local/lib/python3.6/dist-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/local/lib/python3.6/dist-packages/torch/utils/data/dataloader.py", line 475, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "/usr/local/lib/python3.6/dist-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/local/lib/python3.6/dist-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/duenias/PycharmProjects/HyperNetworks/pyproj/data_handler.py", line 98, in __getitem__
+    img = load_image(os.path.join(self.adni_dir, self.metadata.loc[index, "IMAGE_PATH"]))
+  File "/home/duenias/PycharmProjects/HyperNetworks/pyproj/data_handler.py", line 19, in load_image
+    np.load(f)
+  File "/home/duenias/.local/lib/python3.6/site-packages/numpy/lib/npyio.py", line 444, in load
+    raise ValueError("Cannot load file containing pickled data "
+ValueError: Cannot load file containing pickled data when allow_pickle=False

@@ -1,0 +1,43 @@
+
+class weights:  tensor([1.3180, 0.5777, 1.9601])
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/connectors/checkpoint_connector.py:46: LightningDeprecationWarning: Setting `Trainer(resume_from_checkpoint=)` is deprecated in v1.5 and will be removed in v1.7. Please pass `Trainer.fit(ckpt_path=)` directly instead.
+  "Setting `Trainer(resume_from_checkpoint=)` is deprecated in v1.5 and"
+GPU available: True, used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/trainer.py:1906: LightningDeprecationWarning: `trainer.resume_from_checkpoint` is deprecated in v1.5 and will be removed in v1.7. Specify the fit checkpoint path with `trainer.fit(ckpt_path=)` instead.
+  "`trainer.resume_from_checkpoint` is deprecated in v1.5 and will be removed in v1.7."
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0,1,2,3]
+Epoch 0:   0% 0/12 [00:00<?, ?it/s] ----------------------------
+  | Name  | Type                                | Params
+--------------------------------------------------------------
+0 | model | age_noembd_lastblockHyp_FFT_fcHyp_2 | 4.1 M
+--------------------------------------------------------------
+4.1 M     Trainable params
+0         Non-trainable params
+4.1 M     Total params
+16.273    Total estimated model params size (MB)
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/data_loading.py:639: UserWarning: You requested to overfit but enabled training dataloader shuffling. We are turning off the training dataloader shuffling for you.
+  "You requested to overfit but enabled training dataloader shuffling."
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/data_loading.py:133: UserWarning: The dataloader, train_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 40 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  f"The dataloader, {name}, does not have many workers which may be a bottleneck."
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/data_loading.py:474: UserWarning: You requested to overfit but enabled val/test dataloader shuffling. We are turning it off for you.
+  "You requested to overfit but enabled val/test dataloader shuffling."
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/data_loading.py:133: UserWarning: The dataloader, val_dataloader 0, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 40 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  f"The dataloader, {name}, does not have many workers which may be a bottleneck."
+<lz4.frame.LZ4FrameFile object at 0x7fbad011b3c8>
+Python 3.6.9 (default, Jan 26 2021, 15:33:00)
+Type 'copyright', 'credits' or 'license' for more information
+IPython 6.0.0 -- An enhanced Interactive Python. Type '?' for help.
+PyDev console: using IPython 6.0.0
+Out[1]: <lz4.frame.LZ4FrameFile at 0x7fbad011b3c8>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/dist-packages/IPython/core/interactiveshell.py", line 2847, in run_code
+    exec(code_obj, self.user_global_ns, self.user_ns)
+  File "<ipython-input-2-bacd0e0f09a3>", line 1, in <module>
+    f.read()
+  File "/usr/local/lib/python3.6/dist-packages/IPython/core/displayhook.py", line 262, in __call__
+    self.write_format_data(format_dict, md_dict)
+  File "/usr/local/lib/python3.6/dist-packages/IPython/core/displayhook.py", line 191, in write_format_data
+    print(result_repr)
+KeyboardInterrupt

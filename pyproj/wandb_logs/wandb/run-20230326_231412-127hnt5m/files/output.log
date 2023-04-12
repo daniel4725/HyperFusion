@@ -1,0 +1,165 @@
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/connectors/checkpoint_connector.py:46: LightningDeprecationWarning: Setting `Trainer(resume_from_checkpoint=)` is deprecated in v1.5 and will be removed in v1.7. Please pass `Trainer.fit(ckpt_path=)` directly instead.
+  "Setting `Trainer(resume_from_checkpoint=)` is deprecated in v1.5 and"
+GPU available: True, used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/trainer.py:1906: LightningDeprecationWarning: `trainer.resume_from_checkpoint` is deprecated in v1.5 and will be removed in v1.7. Specify the fit checkpoint path with `trainer.fit(ckpt_path=)` instead.
+  "`trainer.resume_from_checkpoint` is deprecated in v1.5 and will be removed in v1.7."
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0,1,2,3]
+class weights:  tensor([0.8889, 0.6957, 2.2857])
+Epoch 0:  25% 3/12 [00:01<00:04,  2.24it/s, loss=1.19, v_num=nt5m]
+  | Name  | Type                                | Params
+--------------------------------------------------------------
+0 | model | age_noembd_lastblockHyp_FFT_fcHyp_2 | 3.6 M
+--------------------------------------------------------------
+3.6 M     Trainable params
+0         Non-trainable params
+3.6 M     Total params
+14.545    Total estimated model params size (MB)
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/data_loading.py:133: UserWarning: The dataloader, train_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 40 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  f"The dataloader, {name}, does not have many workers which may be a bottleneck."
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/data_loading.py:133: UserWarning: The dataloader, val_dataloader 0, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 40 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+Epoch 0:  92% 11/12 [00:03<00:00,  3.17it/s, loss=1.16, v_num=nt5m]
+Validating:  33% 1/3 [00:00<00:00,  2.22it/s]
+/home/duenias/.local/lib/python3.6/site-packages/torchmetrics/utilities/prints.py:36: UserWarning: No positive samples in targets, true positive value should be meaningless. Returning zero tensor in true positive score
+  warnings.warn(*args, **kwargs)
+mean epoch time: 3S
+time from start: 3S
+estimated time remain: 3M 4S
+Epoch 1:  75% 9/12 [00:02<00:00,  3.28it/s, loss=1.13, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.278, val/best_acc=0.278, train/acc=0.444]
+Validating:  33% 1/3 [00:00<00:00,  2.01it/s]
+/home/duenias/.local/lib/python3.6/site-packages/torchmetrics/utilities/prints.py:36: UserWarning: No negative samples in targets, false positive value should be meaningless. Returning zero tensor in false positive score
+  warnings.warn(*args, **kwargs)
+mean epoch time: 3S
+time from start: 7S
+estimated time remain: 2M 55S
+Epoch 2: 100% 12/12 [00:03<00:00,  3.46it/s, loss=1.15, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.278, val/best_acc=0.278, train/acc=0.361]
+mean epoch time: 3S
+time from start: 10S
+estimated time remain: 2M 48S
+
+Epoch 3: 100% 12/12 [00:03<00:00,  3.55it/s, loss=1.11, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.389, val/best_acc=0.389, train/acc=0.306]
+mean epoch time: 3S
+time from start: 14S
+estimated time remain: 2M 42S
+Epoch 4:  75% 9/12 [00:02<00:00,  3.44it/s, loss=1.2, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.389, val/best_acc=0.389, train/acc=0.306]
+Validating:  33% 1/3 [00:00<00:00,  2.38it/s]
+mean epoch time: 3S
+time from start: 17S
+estimated time remain: 2M 37S
+Epoch 5: 100% 12/12 [00:03<00:00,  3.66it/s, loss=1.23, v_num=nt5m, val/acc=0.333, val/best_balanced_acc=0.389, val/best_acc=0.389, train/acc=0.333]
+mean epoch time: 3S
+time from start: 20S
+estimated time remain: 2M 32S
+
+Epoch 6: 100% 12/12 [00:03<00:00,  3.28it/s, loss=1.17, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.389, val/best_acc=0.389, train/acc=0.361]
+mean epoch time: 3S
+time from start: 24S
+estimated time remain: 2M 29S
+Epoch 7:  75% 9/12 [00:02<00:00,  3.12it/s, loss=1.17, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.389, val/best_acc=0.389, train/acc=0.361]
+Validating:   0% 0/3 [00:00<?, ?it/s]
+mean epoch time: 3S
+time from start: 28S
+estimated time remain: 2M 27S
+Epoch 8:  75% 9/12 [00:02<00:00,  3.30it/s, loss=1.15, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.389, val/best_acc=0.389, train/acc=0.333]
+Validating:  33% 1/3 [00:00<00:00,  2.04it/s]
+mean epoch time: 3S
+time from start: 31S
+estimated time remain: 2M 23S
+Epoch 9: 100% 12/12 [00:03<00:00,  3.36it/s, loss=1.12, v_num=nt5m, val/acc=0.333, val/best_balanced_acc=0.389, val/best_acc=0.389, train/acc=0.500]
+mean epoch time: 3S
+time from start: 35S
+estimated time remain: 2M 20S
+
+Epoch 10: 100% 12/12 [00:03<00:00,  3.42it/s, loss=1.17, v_num=nt5m, val/acc=0.500, val/best_balanced_acc=0.389, val/best_acc=0.389, train/acc=0.361]
+mean epoch time: 3S
+time from start: 38S
+estimated time remain: 2M 16S
+Epoch 11:  75% 9/12 [00:02<00:00,  3.34it/s, loss=1.2, v_num=nt5m, val/acc=0.500, val/best_balanced_acc=0.389, val/best_acc=0.389, train/acc=0.417]
+Validating:   0% 0/3 [00:00<?, ?it/s]
+mean epoch time: 3S
+time from start: 42S
+estimated time remain: 2M 12S
+Epoch 12: 100% 12/12 [00:03<00:00,  3.56it/s, loss=1.16, v_num=nt5m, val/acc=0.333, val/best_balanced_acc=0.389, val/best_acc=0.389, train/acc=0.417]
+mean epoch time: 3S
+time from start: 45S
+estimated time remain: 2M 8S
+
+Epoch 13: 100% 12/12 [00:03<00:00,  3.48it/s, loss=1.02, v_num=nt5m, val/acc=0.333, val/best_balanced_acc=0.389, val/best_acc=0.389, train/acc=0.417]
+mean epoch time: 3S
+time from start: 48S
+estimated time remain: 2M 5S
+Epoch 14:  75% 9/12 [00:02<00:00,  3.39it/s, loss=1.06, v_num=nt5m, val/acc=0.333, val/best_balanced_acc=0.389, val/best_acc=0.389, train/acc=0.667]
+Validating:   0% 0/3 [00:00<?, ?it/s]
+mean epoch time: 3S
+time from start: 52S
+estimated time remain: 2M 2S
+Epoch 15:  75% 9/12 [00:02<00:00,  3.24it/s, loss=1.25, v_num=nt5m, val/acc=0.333, val/best_balanced_acc=0.389, val/best_acc=0.389, train/acc=0.361]
+Validating:  33% 1/3 [00:00<00:00,  2.14it/s]
+mean epoch time: 3S
+time from start: 55S
+estimated time remain: 1M 59S
+Epoch 16: 100% 12/12 [00:03<00:00,  3.49it/s, loss=1.25, v_num=nt5m, val/acc=0.333, val/best_balanced_acc=0.389, val/best_acc=0.389, train/acc=0.278]
+mean epoch time: 3S
+time from start: 59S
+estimated time remain: 1M 55S
+Epoch 17:  58% 7/12 [00:02<00:01,  2.96it/s, loss=1.14, v_num=nt5m, val/acc=0.333, val/best_balanced_acc=0.389, val/best_acc=0.389, train/acc=0.361]
+estimated time remain: 1M 51S0:00,  3.45it/s, loss=1.11, v_num=nt5m, val/acc=0.333, val/best_balanced_acc=0.389, val/best_acc=0.389, train/acc=0.361]
+Epoch 18:  17% 2/12 [00:00<00:04,  2.39it/s, loss=1.09, v_num=nt5m, val/acc=0.333, val/best_balanced_acc=0.389, val/best_acc=0.389, train/acc=0.500]
+estimated time remain: 1M 51S0:00,  3.45it/s, loss=1.11, v_num=nt5m, val/acc=0.333, val/best_balanced_acc=0.389, val/best_acc=0.389, train/acc=0.361]
+Epoch 19:  17% 2/12 [00:00<00:04,  2.44it/s, loss=1.11, v_num=nt5m, val/acc=0.333, val/best_balanced_acc=0.389, val/best_acc=0.389, train/acc=0.389]]
+Epoch 19:  75% 9/12 [00:02<00:00,  3.33it/s, loss=1.2, v_num=nt5m, val/acc=0.333, val/best_balanced_acc=0.389, val/best_acc=0.389, train/acc=0.389] ]
+estimated time remain: 1M 43S0:00,  3.52it/s, loss=1.2, v_num=nt5m, val/acc=0.333, val/best_balanced_acc=0.389, val/best_acc=0.389, train/acc=0.389]]
+Epoch 21:   0% 0/12 [00:00<?, ?it/s, loss=1.31, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.389, val/best_acc=0.389, train/acc=0.417]
+Epoch 21:  58% 7/12 [00:02<00:01,  3.08it/s, loss=1.27, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.389, val/best_acc=0.389, train/acc=0.417]
+estimated time remain: 1M 35S0:00,  3.60it/s, loss=1.28, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.389, val/best_acc=0.389, train/acc=0.417]
+estimated time remain: 1M 35S0:00,  3.60it/s, loss=1.28, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.389, val/best_acc=0.389, train/acc=0.417]
+Epoch 23:  42% 5/12 [00:01<00:02,  3.18it/s, loss=1.13, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.389, val/best_acc=0.389, train/acc=0.444]
+estimated time remain: 1M 28S0:00,  3.72it/s, loss=1.07, v_num=nt5m, val/acc=0.500, val/best_balanced_acc=0.389, val/best_acc=0.389, train/acc=0.444]
+estimated time remain: 1M 28S0:00,  3.72it/s, loss=1.07, v_num=nt5m, val/acc=0.500, val/best_balanced_acc=0.389, val/best_acc=0.389, train/acc=0.444]
+Epoch 25:  17% 2/12 [00:00<00:04,  2.43it/s, loss=1.13, v_num=nt5m, val/acc=0.500, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.361]
+Epoch 25:  75% 9/12 [00:02<00:00,  3.22it/s, loss=1.24, v_num=nt5m, val/acc=0.500, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.361]
+estimated time remain: 1M 21S0:00,  3.40it/s, loss=1.24, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.361]
+estimated time remain: 1M 21S0:00,  3.40it/s, loss=1.24, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.361]
+Epoch 27:  42% 5/12 [00:01<00:02,  2.76it/s, loss=1.2, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.389]
+estimated time remain: 1M 15S0:00,  3.33it/s, loss=1.15, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.389]
+estimated time remain: 1M 15S0:00,  3.33it/s, loss=1.15, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.389]
+Epoch 29:  17% 2/12 [00:00<00:04,  2.21it/s, loss=1.09, v_num=nt5m, val/acc=0.500, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.361]
+Epoch 29:  75% 9/12 [00:02<00:00,  3.27it/s, loss=1.11, v_num=nt5m, val/acc=0.500, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.361]
+estimated time remain: 1M 8S00:00,  3.38it/s, loss=1.11, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.361]
+Epoch 31:   0% 0/12 [00:00<?, ?it/s, loss=1.05, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.611]
+Epoch 31:  42% 5/12 [00:01<00:02,  2.74it/s, loss=1.03, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.611]
+estimated time remain: 1M 2S00:00,  3.36it/s, loss=1.02, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.611]
+estimated time remain: 1M 2S00:00,  3.36it/s, loss=1.02, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.611]
+Epoch 33:  17% 2/12 [00:00<00:04,  2.35it/s, loss=1.15, v_num=nt5m, val/acc=0.500, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.389]
+Epoch 33:  75% 9/12 [00:02<00:00,  3.21it/s, loss=1.25, v_num=nt5m, val/acc=0.500, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.389]
+estimated time remain: 56S3<00:00,  3.32it/s, loss=1.25, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.389]
+estimated time remain: 56S3<00:00,  3.32it/s, loss=1.25, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.389]
+Epoch 35:  33% 4/12 [00:01<00:03,  2.54it/s, loss=1.29, v_num=nt5m, val/acc=0.333, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.417]
+estimated time remain: 49S3<00:00,  3.36it/s, loss=1.27, v_num=nt5m, val/acc=0.333, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.417]
+estimated time remain: 49S3<00:00,  3.36it/s, loss=1.27, v_num=nt5m, val/acc=0.333, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.417]
+Epoch 37:  17% 2/12 [00:00<00:04,  2.30it/s, loss=1.25, v_num=nt5m, val/acc=0.500, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.333]
+Epoch 37:  75% 9/12 [00:02<00:00,  3.23it/s, loss=1.17, v_num=nt5m, val/acc=0.500, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.333]
+estimated time remain: 42S3<00:00,  3.39it/s, loss=1.17, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.333]
+Epoch 39:   0% 0/12 [00:00<?, ?it/s, loss=1.09, v_num=nt5m, val/acc=0.333, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.389]
+Epoch 39:  50% 6/12 [00:02<00:02,  2.92it/s, loss=1.13, v_num=nt5m, val/acc=0.333, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.389]
+estimated time remain: 35S3<00:00,  3.49it/s, loss=1.2, v_num=nt5m, val/acc=0.250, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.389]
+estimated time remain: 35S3<00:00,  3.49it/s, loss=1.2, v_num=nt5m, val/acc=0.250, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.389]
+Epoch 41:  17% 2/12 [00:00<00:04,  2.46it/s, loss=1.24, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.333]
+Epoch 41:  75% 9/12 [00:02<00:00,  3.21it/s, loss=1.19, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.333]
+estimated time remain: 28S3<00:00,  3.36it/s, loss=1.19, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.333]
+estimated time remain: 28S3<00:00,  3.36it/s, loss=1.19, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.333]
+Epoch 43:  42% 5/12 [00:01<00:02,  2.80it/s, loss=1.13, v_num=nt5m, val/acc=0.500, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.444]
+estimated time remain: 21S3<00:00,  3.49it/s, loss=1.07, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.444]
+estimated time remain: 21S3<00:00,  3.49it/s, loss=1.07, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.444]
+Epoch 45:   0% 0/12 [00:00<?, ?it/s, loss=1.1, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.472]         ]
+Epoch 45:  58% 7/12 [00:02<00:01,  3.03it/s, loss=1.08, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.472]]
+estimated time remain: 13S3<00:00,  3.58it/s, loss=1.07, v_num=nt5m, val/acc=0.500, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.472]
+estimated time remain: 13S3<00:00,  3.58it/s, loss=1.07, v_num=nt5m, val/acc=0.500, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.472]
+Epoch 47:  42% 5/12 [00:01<00:02,  2.87it/s, loss=1.08, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.389]
+estimated time remain: 6S03<00:00,  3.41it/s, loss=1.08, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.389]
+estimated time remain: 6S03<00:00,  3.41it/s, loss=1.08, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.389]
+Epoch 49:  17% 2/12 [00:00<00:04,  2.25it/s, loss=1.1, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.528] ]
+Epoch 49:  75% 9/12 [00:02<00:00,  3.27it/s, loss=1.13, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.528]]
+estimated time remain: 0S03<00:00,  3.49it/s, loss=1.13, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.528]
+estimated time remain: 0S03<00:00,  3.49it/s, loss=1.13, v_num=nt5m, val/acc=0.417, val/best_balanced_acc=0.472, val/best_acc=0.472, train/acc=0.528]

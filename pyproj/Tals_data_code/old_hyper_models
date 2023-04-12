@@ -1,0 +1,204 @@
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+class HyperConv3D(nn.Module):
+    def __init__(self, in_features, in_channels, out_channels, kernel_size, bias=False, stride=1):
+        super(HyperConv3D, self).__init__()
+        self.stride = stride
+        self.in_channels = in_channels
+        self.out_channels = out_channels
+        self.kernel_size = kernel_size
+        self.num_weights = in_channels * out_channels * (kernel_size ** 3)
+        self.num_biases = out_channels
+        self.weights_shape = (out_channels, in_channels, kernel_size, kernel_size, kernel_size)
+        num_parameters = self.num_biases + self.num_weights
+        self.fc_parameters = nn.Linear(in_features=in_features, out_features=num_parameters, bias=bias)
+        nn.init.kaiming_normal_(self.fc_parameters.weight, mode='fan_out', nonlinearity='relu')
+        if bias:
+            self.fc_parameters.bias.data = (torch.randn(num_parameters))/100
+
+    def forward(self, x):
+        x, features = x[0], x[1]
+
+        parameters = self.fc_parameters(features)
+        weights = parameters[: self.num_weights].reshape(self.weights_shape)
+        biases = parameters[self.num_weights:]
+
+        # print(f"conv.weight- mean: {weights.mean()}, std: {weights.std()}")
+        # print(f"conv.bias- mean:{biases.mean()}, std: {biases.std()}")
+
+        out = F.conv3d(x, weight=weights, bias=biases, stride=self.stride)
+        return out
+
+
+class HyperFc(nn.Module):
+    def __init__(self, in_features, in_data_size, out_size, bias=False):
+        super(HyperFc, self).__init__()
+        self.num_weights = in_data_size * out_size
+        self.num_biases = out_size
+        self.weights_shape = (out_size, in_data_size)
+        num_parameters = self.num_biases + self.num_weights
+        self.fc_parameters = nn.Linear(in_features=in_features, out_features=num_parameters, bias=bias)
+        nn.init.kaiming_normal_(self.fc_parameters.weight, mode='fan_out', nonlinearity='relu')
+        if bias:
+            self.fc_parameters.bias.data = (torch.randn(num_parameters))/100
+
+
+    def forward(self, x):
+        x, features = x[0], x[1]
+
+        parameters = self.fc_parameters(features)
+        weights = parameters[: self.num_weights].reshape(self.weights_shape)
+        biases = parameters[self.num_weights:]
+
+        # print(f"linear.weight- mean: {weights.mean()}, std: {weights.std()}")
+        # print(f"linear.bias- mean:{biases.mean()}, std: {biases.std()}")
+
+        out = F.linear(input=x, weight=weights, bias=biases)
+        return out
+
+
+
+class AgePredModel_HyperEnding(nn.Module):
+    def __init__(self, device, choose_hyper_layers=(1, 1, 1, 1), embedding=(2, 5, 1), name="age_prediction", dropout=0.2):
+        super(AgePredModel_HyperEnding, self).__init__()
+        self.device = device
+        self.model_name = name
+
+        n_ftrs = embedding[-1]
+        self.embedding = nn.ModuleList()
+        for i in range(4):
+            if len(embedding) <= 1:
+                self.embedding.append(nn.Identity())
+            elif len(embedding) == 2:  # the embedding is 2-1
+                layer = nn.Linear(in_features=2, out_features=1)
+                layer.weight.data.fill_(1)
+                layer.bias.data.fill_(0)
+                self.embedding.append(layer)
+            else:
+                self.embedding.append(nn.Sequential())
+                for features in range(len(embedding) - 1):
+                    out_feat = embedding[features + 1]
+                    in_feat = embedding[features]
+                    layer = nn.Linear(in_features=in_feat, out_features=out_feat)
+                    layer.weight.data = (torch.randn((out_feat, in_feat)))/100 + 1/out_feat
+                    layer.bias.data = (torch.randn((out_feat)))/100
+                    self.embedding[i].add_module(str(features), layer)
+
+        self.conv1_a = nn.Conv3d(in_channels=1, out_channels=16, kernel_size=3, stride=1)
+        self.conv1_b = nn.Conv3d(in_channels=16, out_channels=16, kernel_size=3, stride=1)
+        # MaxPool3d(kernel_size=2, stride=1)
+        self.batchnorm1 = nn.BatchNorm3d(16)
+
+        self.conv2_a = nn.Conv3d(in_channels=16, out_channels=32, kernel_size=3, stride=1)
+        self.conv2_b = nn.Conv3d(in_channels=32, out_channels=32, kernel_size=3, stride=1)
+        # MaxPool3d(kernel_size=2, stride=1)
+        self.batchnorm2 = nn.BatchNorm3d(32)
+
+        self.conv3_a = nn.Conv3d(in_channels=32, out_channels=64, kernel_size=3, stride=1)
+        self.conv3_b = nn.Conv3d(in_channels=64, out_channels=64, kernel_size=3, stride=1)
+        # MaxPool3d(kernel_size=2, stride=1)
+        self.batchnorm3 = nn.BatchNorm3d(64)
+
+        self.dropout1 = nn.Dropout3d(dropout)
+        if choose_hyper_layers[0]:
+            self.linear1 = HyperFc(in_features=n_ftrs, in_data_size=39424, out_size=16, bias=True)
+        else:
+            self.linear1 = nn.Linear(in_features=39424, out_features=16)
+        # relu
+        if choose_hyper_layers[1]:
+            self.linear2 = HyperFc(in_features=n_ftrs, in_data_size=16, out_size=32, bias=True)
+        else:
+            self.linear2 = nn.Linear(in_features=16, out_features=32)
+        # relu
+        if choose_hyper_layers[2]:
+            self.linear3 = HyperFc(in_features=n_ftrs, in_data_size=32, out_size=64, bias=True)
+        else:
+            self.linear3 = nn.Linear(in_features=32, out_features=64)
+        # relu
+        if choose_hyper_layers[3]:
+            self.final_layer = HyperFc(in_features=n_ftrs, in_data_size=64, out_size=1, bias=True)
+        else:
+            self.final_layer = nn.Linear(in_features=64, out_features=1)
+        # relu
+
+        self.embedding_struct = embedding
+        self.choose_hyper_layers = choose_hyper_layers
+        self.f = torch.tensor([0, 1], dtype=torch.float, device=device)
+        self.m = torch.tensor([1, 0], dtype=torch.float, device=device)
+        self.to(device)
+
+    def forward(self, x):
+        # input shape = [batch size, channels, image shape]
+        x, gender = x[0], x[1]
+        out = torch.tensor([0] * x.shape[0], dtype=torch.float, device=self.device)
+        if (gender == 'F').sum() == 0:  # if there are no females
+            return self.feedforward(x, self.m)
+        if (gender == 'M').sum() == 0:  # if there are no males
+            return self.feedforward(x, self.f)
+
+        F_out = self.feedforward(x[gender == 'F'], self.f)
+        M_out = self.feedforward(x[gender == 'M'], self.m)
+        out[gender == 'F'] = F_out
+        out[gender == 'M'] = M_out
+        return out
+
+    def feedforward(self, x, gender):
+        # layers = ["conv1_a", "conv1_b", "conv2_a", "conv2_b", "conv3_a", "conv3_b"]
+        # layers += ["Linear1", "Linear2", "Linear3", "final"]
+        # for embd, layer in zip(self.embedding, layers):
+        #     print(f"\n{layer}:\n1:", embd(1 - gender).item())
+        #     print("2:", embd(gender).item())
+        #     if layer == "conv1_a":
+        #         plt.hist(np.array(self.conv1_a.fc_parameters(embd(1 - gender)).cpu().flatten()), 100)
+        #         plt.show()
+        #         plt.hist(np.array(self.conv1_a.fc_parameters(embd(gender)).cpu().flatten()), 100)
+        #         plt.show()
+        x = self.conv1_a(x)
+        x = F.relu(x)
+        x = self.conv1_b(x)
+        x = F.relu(x)
+        x = F.max_pool3d(x, kernel_size=2, stride=2)
+        x = self.batchnorm1(x)
+
+        x = self.conv2_a(x)
+        x = F.relu(x)
+        x = self.conv2_b(x)
+        x = F.relu(x)
+        x = F.max_pool3d(x, kernel_size=2, stride=2)
+        x = self.batchnorm2(x)
+
+        x = self.conv3_a(x)
+        x = F.relu(x)
+        x = self.conv3_b(x)
+        x = F.relu(x)
+        x = F.max_pool3d(x, kernel_size=2, stride=2)
+        x = self.batchnorm3(x)
+
+        x = self.dropout1(x)
+        x = torch.flatten(x, start_dim=1)
+        if self.choose_hyper_layers[0]:
+            x = self.linear1((x, self.embedding[0](gender)))
+        else:
+            x = self.linear1(x)
+        x = F.relu(x)
+
+        if self.choose_hyper_layers[1]:
+            x = self.linear2((x, self.embedding[1](gender)))
+        else:
+            x = self.linear2(x)
+        x = F.relu(x)
+
+        if self.choose_hyper_layers[2]:
+            x = self.linear3((x, self.embedding[2](gender)))
+        else:
+            x = self.linear3(x)
+        x = F.relu(x)
+
+        if self.choose_hyper_layers[3]:
+            x = self.final_layer((x, self.embedding[0](gender)))
+        else:
+            x = self.final_layer(x)
+
+        return x[:, 0]

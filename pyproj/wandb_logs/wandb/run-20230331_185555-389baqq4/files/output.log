@@ -1,0 +1,103 @@
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/connectors/checkpoint_connector.py:46: LightningDeprecationWarning: Setting `Trainer(resume_from_checkpoint=)` is deprecated in v1.5 and will be removed in v1.7. Please pass `Trainer.fit(ckpt_path=)` directly instead.
+  "Setting `Trainer(resume_from_checkpoint=)` is deprecated in v1.5 and"
+GPU available: True, used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/trainer.py:1906: LightningDeprecationWarning: `trainer.resume_from_checkpoint` is deprecated in v1.5 and will be removed in v1.7. Specify the fit checkpoint path with `trainer.fit(ckpt_path=)` instead.
+  "`trainer.resume_from_checkpoint` is deprecated in v1.5 and will be removed in v1.7."
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0,1,2,3]
+class weights:  tensor([0.9537, 0.6977, 1.9299])
+  | Name  | Type                                | Params
+--------------------------------------------------------------
+0 | model | age_noembd_lastblockHyp_FFT_fcHyp_2 | 3.6 M
+--------------------------------------------------------------
+3.6 M     Trainable params
+0         Non-trainable params
+3.6 M     Total params
+14.545    Total estimated model params size (MB)
+
+
+
+
+
+Epoch 0:  64%|██████████████████████████████████████████████████████▋                              | 18/28 [00:36<00:20,  2.02s/it, loss=nan, v_num=aqq4]
+/home/duenias/.local/lib/python3.6/site-packages/torchmetrics/utilities/prints.py:36: UserWarning: No positive samples in targets, true positive value should be meaningless. Returning zero tensor in true positive score
+  warnings.warn(*args, **kwargs)
+/home/duenias/.local/lib/python3.6/site-packages/torchmetrics/utilities/prints.py:36: UserWarning: No negative samples in targets, false positive value should be meaningless. Returning zero tensor in false positive score
+Epoch 0:  75%|███████████████████████████████████████████████████████████████▊                     | 21/28 [00:37<00:12,  1.79s/it, loss=nan, v_num=aqq4]
+
+Validating:  29%|██████████████████████████████▎                                                                           | 2/7 [00:18<00:39,  7.83s/it]
+mean epoch time: 57S
+time from start: 57S
+estimated time remain: 5H 37M 19S
+
+
+
+
+
+Epoch 1:  75%|███ | 21/28 [00:32<00:10,  1.56s/it, loss=nan, v_num=aqq4, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+Validating:   0%|                                                                                                                  | 0/7 [00:00<?, ?it/s]
+mean epoch time: 55S
+time from start: 1M 50S
+estimated time remain: 5H 21M 9S
+
+
+
+
+
+Epoch 2:  75%|███ | 21/28 [00:32<00:10,  1.55s/it, loss=nan, v_num=aqq4, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+
+Validating:  14%|███████████████▏                                                                                          | 1/7 [00:17<01:46, 17.77s/it]
+mean epoch time: 54S
+time from start: 2M 42S
+estimated time remain: 5H 13M 58S
+
+
+
+
+
+Epoch 3:  75%|███ | 21/28 [00:31<00:10,  1.48s/it, loss=nan, v_num=aqq4, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.376]
+
+Validating:  57%|████████████████████████████████████████████████████████████▌                                             | 4/7 [00:19<00:08,  2.72s/it]
+mean epoch time: 53S
+time from start: 3M 33S
+estimated time remain: 5H 8M 28S
+
+
+
+
+
+Epoch 4:  75%|███ | 21/28 [00:32<00:10,  1.56s/it, loss=nan, v_num=aqq4, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.376]
+
+Validating:  14%|███████████████▏                                                                                          | 1/7 [00:17<01:47, 17.99s/it]
+mean epoch time: 53S
+time from start: 4M 26S
+estimated time remain: 5H 6M 41S
+
+
+
+
+
+Epoch 5:  75%|███ | 21/28 [00:31<00:10,  1.49s/it, loss=nan, v_num=aqq4, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.376]
+
+Validating:  71%|███████████████████████████████████████████████████████████████████████████▋                              | 5/7 [00:19<00:03,  1.81s/it]
+mean epoch time: 52S
+time from start: 5M 17S
+estimated time remain: 5H 3M 34S
+
+
+
+
+
+Epoch 6:  75%|███ | 21/28 [00:31<00:10,  1.49s/it, loss=nan, v_num=aqq4, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.330]
+
+Validating:  29%|██████████████████████████████▎                                                                           | 2/7 [00:18<00:37,  7.50s/it]
+mean epoch time: 52S
+time from start: 6M 8S
+estimated time remain: 5H 1M 4S
+
+
+Epoch 7:  29%|█▍   | 8/28 [00:26<01:06,  3.34s/it, loss=nan, v_num=aqq4, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.376]
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/trainer.py:688: UserWarning: Detected KeyboardInterrupt, attempting graceful shutdown...
+
+Epoch 7:  32%|█▌   | 9/28 [00:27<00:57,  3.02s/it, loss=nan, v_num=aqq4, val/acc=0.360, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.376]

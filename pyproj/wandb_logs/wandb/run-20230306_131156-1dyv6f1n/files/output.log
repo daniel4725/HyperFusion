@@ -1,0 +1,87 @@
+
+class weights:  tensor([1.3180, 0.5777, 1.9601])
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/connectors/checkpoint_connector.py:46: LightningDeprecationWarning: Setting `Trainer(resume_from_checkpoint=)` is deprecated in v1.5 and will be removed in v1.7. Please pass `Trainer.fit(ckpt_path=)` directly instead.
+  "Setting `Trainer(resume_from_checkpoint=)` is deprecated in v1.5 and"
+GPU available: True, used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/trainer.py:1906: LightningDeprecationWarning: `trainer.resume_from_checkpoint` is deprecated in v1.5 and will be removed in v1.7. Specify the fit checkpoint path with `trainer.fit(ckpt_path=)` instead.
+  "`trainer.resume_from_checkpoint` is deprecated in v1.5 and will be removed in v1.7."
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0,1,2,3]
+  | Name  | Type                                | Params
+--------------------------------------------------------------
+0 | model | age_noembd_lastblockHyp_FFT_fcHyp_2 | 4.1 M
+--------------------------------------------------------------
+4.1 M     Trainable params
+0         Non-trainable params
+4.1 M     Total params
+16.273    Total estimated model params size (MB)
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/data_loading.py:639: UserWarning: You requested to overfit but enabled training dataloader shuffling. We are turning off the training dataloader shuffling for you.
+  "You requested to overfit but enabled training dataloader shuffling."
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/data_loading.py:133: UserWarning: The dataloader, train_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 40 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  f"The dataloader, {name}, does not have many workers which may be a bottleneck."
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/data_loading.py:474: UserWarning: You requested to overfit but enabled val/test dataloader shuffling. We are turning it off for you.
+  "You requested to overfit but enabled val/test dataloader shuffling."
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/data_loading.py:133: UserWarning: The dataloader, val_dataloader 0, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 40 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  f"The dataloader, {name}, does not have many workers which may be a bottleneck."
+Epoch 0:   8% 1/12 [00:01<00:19,  1.79s/it, loss=1.91, v_num=6f1n]
+/home/duenias/.local/lib/python3.6/site-packages/torchmetrics/utilities/prints.py:36: UserWarning: No positive samples in targets, true positive value should be meaningless. Returning zero tensor in true positive score
+  warnings.warn(*args, **kwargs)
+/home/duenias/.local/lib/python3.6/site-packages/torchmetrics/utilities/prints.py:36: UserWarning: No negative samples in targets, false positive value should be meaningless. Returning zero tensor in false positive score
+
+
+
+Epoch 0:  67% 8/12 [00:08<00:04,  1.11s/it, loss=1.37, v_num=6f1n]
+
+Validating:  67% 4/6 [00:03<00:01,  1.29it/s]
+mean epoch time: 12S
+time from start: 12S
+estimated time remain: 5M 50S
+
+Epoch 1:  50% 6/12 [00:04<00:04,  1.24it/s, loss=1.23, v_num=6f1n, val/acc=0.208, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.333]
+
+
+Validating:  67% 4/6 [00:06<00:02,  1.10s/it]
+mean epoch time: 12S
+time from start: 24S
+estimated time remain: 5M 38S
+
+
+Epoch 2:  50% 6/12 [00:06<00:06,  1.12s/it, loss=1.23, v_num=6f1n, val/acc=0.167, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.667]
+
+
+
+Validating:  67% 4/6 [00:08<00:04,  2.12s/it]
+mean epoch time: 13S
+time from start: 40S
+estimated time remain: 6M 5S
+
+
+Epoch 3:  67% 8/12 [00:06<00:03,  1.15it/s, loss=1.19, v_num=6f1n, val/acc=0.208, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.542]
+
+Validating:  50% 3/6 [00:04<00:04,  1.58s/it]
+mean epoch time: 13S
+time from start: 55S
+estimated time remain: 5M 59S
+
+
+Epoch 4:  50% 6/12 [00:05<00:05,  1.06it/s, loss=1.23, v_num=6f1n, val/acc=0.625, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.625]
+
+
+Validating:  83% 5/6 [00:04<00:00,  1.40it/s]
+mean epoch time: 13S
+time from start: 1M 9S
+estimated time remain: 5M 45S
+
+
+
+Epoch 5:  50% 6/12 [00:08<00:08,  1.45s/it, loss=1.24, v_num=6f1n, val/acc=0.708, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.542]
+
+
+Validating:  67% 4/6 [00:05<00:02,  1.04s/it]
+/home/duenias/.local/lib/python3.6/site-packages/pytorch_lightning/trainer/trainer.py:688: UserWarning: Detected KeyboardInterrupt, attempting graceful shutdown...
+  rank_zero_warn("Detected KeyboardInterrupt, attempting graceful shutdown...")
+mean epoch time: 14S
+time from start: 1M 24S
+estimated time remain: 5M 37S
+Epoch 6:   0% 0/12 [00:00<?, ?it/s, loss=1.24, v_num=6f1n, val/acc=0.708, val/best_balanced_acc=0.333, val/best_acc=0.333, train/acc=0.583]

@@ -1,0 +1,14 @@
+Loading train data to ram: : 0it [00:00, ?it/s]
+Loading valid data to ram: : 0it [00:00, ?it/s]
+Traceback (most recent call last):
+  File "model_trainer.py", line 235, in <module>
+    main(args)
+  File "model_trainer.py", line 27, in main
+    with_skull=args.with_skull, simple_prepro_img=args.simple_prepro_img)
+  File "/home/duenias/PycharmProjects/HyperNetworks/pyproj/data_handler.py", line 131, in get_dataloaders
+    train_loader = DataLoader(dataset=train_ds, batch_size=batch_size, shuffle=True, num_workers=num_workers)
+  File "/usr/local/lib/python3.6/dist-packages/torch/utils/data/dataloader.py", line 262, in __init__
+    sampler = RandomSampler(dataset, generator=generator)  # type: ignore
+  File "/usr/local/lib/python3.6/dist-packages/torch/utils/data/sampler.py", line 104, in __init__
+    "value, but got num_samples={}".format(self.num_samples))
+ValueError: num_samples should be a positive integer value, but got num_samples=0

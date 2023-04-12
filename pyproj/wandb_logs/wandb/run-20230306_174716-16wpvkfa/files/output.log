@@ -1,0 +1,22 @@
+
+
+
+Loading train data to ram:  18%|███████████████▌                                                                        | 91/516 [00:07<00:33, 12.82it/s]
+Traceback (most recent call last):
+  File "model_trainer.py", line 232, in <module>
+    main(args)
+  File "model_trainer.py", line 26, in main
+    transform_valid=tform_dict['hippo_crop_2sides'], load2ram=args.load2ram, classes=args.class_names)
+  File "/home/duenias/PycharmProjects/HyperNetworks/pyproj/data_handler.py", line 155, in get_dataloaders
+    transform=transform_train, load2ram=load2ram, classes=classes)
+  File "/home/duenias/PycharmProjects/HyperNetworks/pyproj/data_handler.py", line 113, in __init__
+    self.load_data2ram()
+  File "/home/duenias/PycharmProjects/HyperNetworks/pyproj/data_handler.py", line 119, in load_data2ram
+    img = load_image(os.path.join(self.adni_dir, self.metadata.loc[i, "IMAGE_PATH"]))
+  File "/home/duenias/PycharmProjects/HyperNetworks/pyproj/data_handler.py", line 18, in load_image
+    return np.load(path)
+  File "/home/duenias/.local/lib/python3.6/site-packages/numpy/lib/npyio.py", line 440, in load
+    pickle_kwargs=pickle_kwargs)
+  File "/home/duenias/.local/lib/python3.6/site-packages/numpy/lib/format.py", line 741, in read_array
+    array = numpy.fromfile(fp, dtype=dtype, count=count)
+KeyboardInterrupt

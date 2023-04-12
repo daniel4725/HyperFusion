@@ -1,0 +1,82 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Loading train data to ram:  18% 234/1281 [02:19<10:22,  1.68it/s]
+Traceback (most recent call last):
+  File "/home/duenias/PycharmProjects/HyperNetworks/pyproj/model_trainer.py", line 236, in <module>
+    main(args)
+  File "/home/duenias/PycharmProjects/HyperNetworks/pyproj/model_trainer.py", line 27, in main
+    with_skull=args.with_skull, simple_prepro_img=args.simple_prepro_img)
+  File "/home/duenias/PycharmProjects/HyperNetworks/pyproj/data_handler.py", line 132, in get_dataloaders
+    with_skull=with_skull, simple_prepro_img=simple_prepro_img)
+  File "/home/duenias/PycharmProjects/HyperNetworks/pyproj/data_handler.py", line 72, in __init__
+    self.load_data2ram()
+  File "/home/duenias/PycharmProjects/HyperNetworks/pyproj/data_handler.py", line 101, in load_data2ram
+    img = self.load_image(subject)
+  File "/home/duenias/PycharmProjects/HyperNetworks/pyproj/data_handler.py", line 83, in load_image
+    img = img * nib.load(mask_path).get_fdata()  # apply the brain mask
+KeyboardInterrupt
