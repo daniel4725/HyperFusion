@@ -119,7 +119,7 @@ set_num = 5
 features_sets[set_num] = {}
 features_sets[set_num]["features"] = ["AGE"]
 features_sets[set_num]["preprocess_dict"] = {
-    "AGE": ["norm std-mean"]
+    "AGE": ["fill NaN with median", "norm std-mean"]
 }
 # --------------- features_set 6 ------------------
 set_num = 6
@@ -143,7 +143,7 @@ features_sets[set_num]["features"] = ["AGE", "PTGENDER", "PTEDUCAT", "APOE4",] #
                                     # "FDG", "AV45"]   #  PET measures 
 
 features_sets[set_num]["preprocess_dict"] = {
-    "AGE": ["norm std-mean"],
+    "AGE": ["fill NaN with median", "norm std-mean"],
     "PTGENDER": ["one_hot without_na"],
     "PTEDUCAT": ["norm std-mean"],
     "APOE4": ["norm std-mean", "add NaN col", "fill NaN with median"],

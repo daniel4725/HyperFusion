@@ -14,32 +14,36 @@ from pytorch_lightning.loggers import WandbLogger
 import wandb
 from costum_callbacks import TimeEstimatorCallback, CheckpointCallback
 
-torch.backends.cuda.matmul.allow_tf32 = True
-torch.backends.cudnn.allow_tf32 = True
+
+# torch.backends.cuda.matmul.allow_tf32 = True
+# torch.backends.cudnn.allow_tf32 = True
 
 def main(args):
+    # torch.manual_seed(0)
     logger, args = wandb_interface(args)  # this line must be first
 
     # Create the data loaders:
     loaders = get_dataloaders(batch_size=args.batch_size, metadata_path=args.metadata_path, adni_dir=args.adni_dir,
-                                fold=args.data_fold, num_workers=args.num_workers, transform_train=tform_dict[args.transform],
-                                transform_valid=tform_dict['hippo_crop_2sides'], load2ram=args.load2ram, classes=args.class_names,
+                              fold=args.data_fold, num_workers=args.num_workers,
+                              transform_train=tform_dict[args.transform],
+                              transform_valid=tform_dict[args.transform_valid], load2ram=args.load2ram,
+                              classes=args.class_names,
                               with_skull=args.with_skull, no_bias_field_correct=args.no_bias_field_correct)
     train_loader, valid_loader = loaders
 
-
     # Create the model:
     args.class_weights = get_class_weight(train_loader, valid_loader)
+    # args.class_weights = args.class_weights * 0 + 1
     print("class weights: ", args.class_weights)
-
 
     kwargs = args.__dict__
     kwargs["n_tabular_features"] = train_loader.dataset.num_tabular_features
     kwargs['n_outputs'] = len(args.class_weights)
     kwargs["cnn_mlp_shapes"][-1] = len(args.class_weights)
-    
+
     # mlp_layers_shapes = [n_tabular_features, hidden_shapes, num_classes]
-    kwargs["mlp_layers_shapes"] = [kwargs["n_tabular_features"]] + kwargs["hidden_shapes"] + [len(kwargs["class_weights"])]
+    kwargs["mlp_layers_shapes"] = [kwargs["n_tabular_features"]] + kwargs["hidden_shapes"] + [
+        len(kwargs["class_weights"])]
 
     model = globals()[args.model](**kwargs)
     kwargs["model"] = model
@@ -74,7 +78,7 @@ def main(args):
 
         enable_checkpointing=args.enable_checkpointing,
         resume_from_checkpoint=args.continue_from_checkpoint
-        )
+    )
 
     if not args.continue_from_checkpoint:
         trainer.fit(pl_model, train_dataloaders=train_loader, val_dataloaders=valid_loader)
@@ -82,7 +86,6 @@ def main(args):
         PATH = "checkpoints/cp.ckpt"
         pl_model = PlModelWrap.load_from_checkpoint(PATH)
         trainer.fit(pl_model, ckpt_path=PATH, train_dataloaders=train_loader, val_dataloaders=valid_loader)
-
 
     # if args.wandb_sweeping or args.wandb_log:
     #     wandb.finish()
@@ -96,11 +99,11 @@ def wandb_interface(args):
             # taking the relevant args from the sweep's parameters
             args_dict = args.__dict__
             for key in wandb.config.keys():
-                if wandb.config[key] == "None": # convert the string Nones
+                if wandb.config[key] == "None":  # convert the string Nones
                     args_dict[key] = None
                 else:
                     args_dict[key] = wandb.config[key]
-            if type(args_dict["hidden_shapes"]) == str: # "[16, 16, 3]" also works
+            if type(args_dict["hidden_shapes"]) == str:  # "[16, 16, 3]" also works
                 args_dict["hidden_shapes"] = eval(args_dict["hidden_shapes"])
             args = Namespace(**args_dict)
 
@@ -109,17 +112,18 @@ def wandb_interface(args):
 
         # run_id = datetime.datetime.now().strftime("%d-%m-%Y %Hh%Mm%Ss - ") + args.experiment_name
         logger = WandbLogger(project=args.project_name,
-                            name=args.experiment_name + f"-f{args.data_fold}",
-                            save_dir=args.logs_dir)
-                            # id=run_id)
+                             name=args.experiment_name + f"-f{args.data_fold}",
+                             save_dir=args.logs_dir)
+        # id=run_id)
 
         # exclude_lst = []
         # config_args = exclude_wandb_parameters(exclude_lst, args)
         logger.experiment.config.update(args)
-        
+
     else:
         logger = False
     return logger, args
+
 
 def exclude_wandb_parameters(exclude_lst, args):
     args_dict = args.__dict__
@@ -151,31 +155,32 @@ if __name__ == '__main__':
     parser.add_argument("--model", default="ResNet")
     parser.add_argument("--init_features", type=int, default=4)
     parser.add_argument("--dropout", type=float, default=0.0)
-    parser.add_argument("--bn_momentum",  type=float, default=0.05)
+    parser.add_argument("--bn_momentum", type=float, default=0.05)
     # parser.add_argument("-cw", "--class_weights",  nargs="+", type=float, default=[0])  # [0] is auto weight calc
 
     # MLP
-    parser.add_argument("--hidden_shapes",  nargs="+", type=int, default=[1])  # MLP hidden layers shapes
+    parser.add_argument("--hidden_shapes", nargs="+", type=int, default=[1])  # MLP hidden layers shapes
 
     # CNN
-    parser.add_argument("--cnn_mlp_shapes",  nargs="+", type=int, default=[3])  # end of cnn hidden layers shapes
-    parser.add_argument("--cnn_mlp_dropout",  type=float, default=0.0)
-    parser.add_argument("--cnn_dropout",  type=float, default=0.0)
+    parser.add_argument("--cnn_mlp_shapes", nargs="+", type=int, default=[3])  # end of cnn hidden layers shapes
+    parser.add_argument("--cnn_mlp_dropout", type=float, default=0.0)
+    parser.add_argument("--cnn_dropout", type=float, default=0.0)
 
     # data
     parser.add_argument("--metadata_path", default="metadata_by_features_sets/set-5.csv")
     parser.add_argument("--adni_dir", default="/home/duenias/PycharmProjects/HyperNetworks/ADNI_2023/ADNI")
     parser.add_argument("--data_fold", type=int, choices=[0, 1, 2, 3, 4], default=0)
     parser.add_argument('-tform', "--transform", default="normalize")
+    parser.add_argument('-tform_valid', "--transform_valid", default="hippo_crop_2sides")
     parser.add_argument('-l2r', '--load2ram', action='store_true')
     parser.add_argument('-ws', '--with_skull', action='store_true')
     parser.add_argument('-nbfc', '--no_bias_field_correct', action='store_true')
     parser.add_argument('--overfit_batches', type=float, default=0.0)
-    parser.add_argument("--class_names",  nargs="+", type=str, default=["CN", "MCI", "AD"])  
+    parser.add_argument("--class_names", nargs="+", type=str, default=["CN", "MCI", "AD"])
 
     # checkpoints save dir
     parser.add_argument("-cp_dir", "--checkpoint_dir", default="checkpoints")
-    parser.add_argument("-cp_en", "--enable_checkpointing",  action='store_true')
+    parser.add_argument("-cp_en", "--enable_checkpointing", action='store_true')
 
     # resume learning from checkpoint option
     parser.add_argument("-cp_cont", "--continue_from_checkpoint", action='store_true')
@@ -191,42 +196,74 @@ if __name__ == '__main__':
 
     if not args.runfromshell:
         print("Running from IDE")
-        # env
-        args.GPU = [1]
-        args.num_workers = 24
+        # # env
+        # args.GPU = [0]
+        # args.num_workers = 0
+        #
+        # # logging and checkpointing
+        # args.wandb_log = True
+        # args.experiment_name = "tst"
+        # args.enable_checkpointing = False
+        #
+        # # model
+        # args.model = "ResNet"  #"PreactivResNet_instN"  'ResNet' 'MLP4Tabular' 'ResNetHyperEnd'
+        # args.init_features = 32
+        # args.hidden_shapes = [24, 32, 5]
+        # # args.dropout = 0.2
+        # # args.bn_momentum = 0.05
+        # # args.cnn_mlp_shapes = [8, 3]
+        # # args.cnn_mlp_dropout = 0.1
+        # args.cnn_dropout = 0.1
+        #
+        # # training
+        # args.epochs = 300
+        # args.lr = 0.0001
+        # args.batch_size = 4
+        # args.L2 = 0.00001
+        # args.overfit_batches = 0.02  # 0.0 for regular training or comment this line
+        #
+        # # data
+        # # args.adni_dir = "/usr/local/faststorage/adni_class_pred_1x1x1_v1"
+        # # args.metadata_path = "metadata_by_features_sets/set-1.csv"
+        # args.load2ram = False
+        # args.transform = "hippo_crop_lNr"  # basic_aug  normalize  hippo_crop  hippo_crop_lNr
+        # args.data_fold = 0
+        # args.class_names = ["CN", "MCI", "AD"]
+        # args.with_skull = True
+        # args.no_bias_field_correct = True
 
-        # logging and checkpointing
-        args.wandb_log = True
-        args.experiment_name = "tst"
-        args.enable_checkpointing = False
+        # --------------------------------------------------------------------------------
+        # ----------------------------- input arguments ----------------------------------
+        GPU = "0"
 
-        # model
-        args.model = "age_noembd_lastblockHyp_FFT_fcHyp_2"  #"PreactivResNet_instN"  'ResNet' 'MLP4Tabular' 'ResNetHyperEnd'
-        args.init_features = 32
-        args.hidden_shapes = [24, 32, 5]
-        # args.dropout = 0.2
-        # args.bn_momentum = 0.05
-        # args.cnn_mlp_shapes = [8, 3]
-        # args.cnn_mlp_dropout = 0.1
-        args.cnn_dropout = 0.1
+        exname = "tst-nlLoss"
+        metadata_path = "metadata_by_features_sets/set-5.csv"  # set 4 is norm minmax (0 to 1), set 5 is std-mean
+        model = "PreactivResNet_bn_4blks_incDrop_mlpend"
+        cnn_dropout = "0.1"
+        init_features = "32"
+        lr = "0.0001"
+        L2 = "0.00001"
+        epochs = "180"
+        batch_size = "64"
+        tform = "hippo_crop_lNr_l2r"  # hippo_crop  hippo_crop_lNr  normalize hippo_crop_lNr_noise hippo_crop_lNr_scale
+        tform_valid = "None"  # hippo_crop_2sides hippo_crop  hippo_crop_lNr  normalize hippo_crop_lNr_noise hippo_crop_lNr_scaletform_valid="hippo_crop_2sides"   # hippo_crop  hippo_crop_lNr  normalize hippo_crop_lNr_noise hippo_crop_lNr_scale
+        num_workers = "1"
 
-        # training
-        args.epochs = 300
-        args.lr = 0.0001
-        args.batch_size = 4
-        args.L2 = 0.00001
-        # args.overfit_batches = 0.05  # 0.0 for regular training or comment this line
+        # flags:
+        with_skull = ""  # "--with_skull"  or ""
+        no_bias_field_correct = "--no_bias_field_correct"  # "--no_bias_field_correct" or ""
+        load2ram = "-l2r"  # "-l2r" or ""
+        wandb_logging = "-wandb"  # "-wandb" or ""
 
-        # data
-        # args.adni_dir = "/usr/local/faststorage/adni_class_pred_1x1x1_v1"
-        # args.metadata_path = "metadata_by_features_sets/set-1.csv"
-        args.load2ram = False
-        args.transform = "hippo_crop_lNr"  # basic_aug  normalize  hippo_crop  hippo_crop_lNr
-        args.data_fold = 0
-        args.class_names = ["CN", "MCI", "AD"]
-        args.with_skull = True
-        args.no_bias_field_correct = True
+        adni_dir = "/home/duenias/PycharmProjects/HyperNetworks/ADNI_2023/ADNI"
+        # --------------------------------------------------------------------------------------------------
+        # only for running from here:
+        overfit_batches = ""  # "overfit_batches 0.02"
+        data_fold = "0"
+        # --------------------------------------------------------------------------------------------------
 
+        args_string = f"-exname {exname} --model {model}  --cnn_dropout {cnn_dropout} --init_features {init_features}  -lr {lr} --L2 {L2}  --epochs {epochs} --batch_size {batch_size} --data_fold {data_fold} -tform {tform} --metadata_path {metadata_path} --GPU {GPU} {wandb_logging} --adni_dir {adni_dir} -cp_dir checkpoints -nw {num_workers} {with_skull} {no_bias_field_correct} {load2ram} {overfit_batches}"
+        args = parser.parse_args(args_string.split())
 
     else:
         print("Running from Shell")

@@ -51,13 +51,23 @@ class PlModelWrap(pl.LightningModule):
         pass
 
     def validation_step(self, batch, batch_idx):
+        # --------------------------------------------------------
+        # TODO delete section
+        # workaround for the validation evaluating unexplained bug
+        # if self.collected_all_valid:
+        #     batch = self.valid_batches[batch_idx]
+        # else:
+        #     self.valid_batches.append(batch)
+        # --------------------------------------------------------
+
         imgs, tabular, y = batch
 
         # the validation is both hippocampuses so we need to split them and flip the right one
         mid_x = imgs.shape[4]//2
-        y_hat1 = self((imgs[...,mid_x:], tabular))
-        y_hat2 = self((imgs[...,:mid_x].flip(dims=(4,)), tabular))
-        y_hat = (y_hat1 + y_hat2)/2
+        y_hat1 = self((imgs[..., mid_x:], tabular))
+        y_hat2 = self((imgs[..., :mid_x].flip(dims=(4,)), tabular))
+        y_hat = (y_hat1.softmax(dim=1) + y_hat2.softmax(dim=1))/2
+        # y_hat = self((imgs, tabular))
         loss = F.cross_entropy(y_hat, y, weight=self.class_weights.to(self.device))
         acc = torchmetrics.functional.accuracy(y_hat, y)
 
@@ -73,6 +83,8 @@ class PlModelWrap(pl.LightningModule):
             y_hat = torch.cat((y_hat, element[0]))
             y = torch.cat((y, element[1]))
 
+        AUC = torchmetrics.functional.auroc(y_hat.softmax(dim=-1), y, num_classes=self.num_classes)
+
         balanced_acc = torchmetrics.functional.accuracy(y_hat, y, num_classes=self.num_classes, average='macro')
         f1_macro = torchmetrics.functional.f1_score(y_hat, y, num_classes=self.num_classes, average='macro')
         f1_micro = torchmetrics.functional.f1_score(y_hat, y, num_classes=self.num_classes, average='micro')
@@ -85,18 +97,32 @@ class PlModelWrap(pl.LightningModule):
         self.log('val/AD_acc', AD_acc, prog_bar=False, on_step=False, on_epoch=True, batch_size=self.batch_size)
         self.log('val/f1_macro', f1_macro, prog_bar=False, on_step=False, on_epoch=True, batch_size=self.batch_size)
         self.log('val/f1_micro', f1_micro, prog_bar=False, on_step=False, on_epoch=True, batch_size=self.batch_size)
+
+        self.log('val/AUC', AUC, prog_bar=False, on_step=False, on_epoch=True, batch_size=self.batch_size)
+        self.log('val/balanced_acc', balanced_acc, prog_bar=False, on_step=False, on_epoch=True, batch_size=self.batch_size)
+
         # wandb.log({"val/conf_mat" : wandb.plot.confusion_matrix(
         #             y_true=np.array(y.cpu()), preds=np.array(y_hat.argmax(1).cpu()),
         #             class_names=self.class_names)})
+
+        # logging the best balance acc and the other metrics at this point
         if self.best_val_balanced_acc < balanced_acc:
             self.best_val_balanced_acc = balanced_acc
+            self.CN_acc_at_best_point = CN_acc
+            self.MCI_acc_at_best_point = MCI_acc
+            self.AD_acc_at_best_point = AD_acc
+            self.f1_macro_at_best_point = f1_macro
+            self.f1_micro_acc_at_best_point = f1_micro
+            # TODO evaluate test set and log it
         self.log('val/best_balanced_acc', self.best_val_balanced_acc, prog_bar=True, on_step=False, on_epoch=True, batch_size=self.batch_size)
 
-        AUC = torchmetrics.functional.auroc(y_hat.softmax(dim=-1), y, num_classes=self.num_classes)       
+        self.log('val/CN_acc_at_best_point', self.CN_acc_at_best_point, prog_bar=False, on_step=False, on_epoch=True, batch_size=self.batch_size)
+        self.log('val/MCI_acc_at_best_point', self.MCI_acc_at_best_point, prog_bar=False, on_step=False, on_epoch=True, batch_size=self.batch_size)
+        self.log('val/AD_acc_at_best_point', self.AD_acc_at_best_point, prog_bar=False, on_step=False, on_epoch=True, batch_size=self.batch_size)
+        self.log('val/f1_macro_at_best_point', self.f1_macro_at_best_point, prog_bar=False, on_step=False, on_epoch=True, batch_size=self.batch_size)
+        self.log('val/f1_micro_at_best_point', self.f1_micro_acc_at_best_point, prog_bar=False, on_step=False, on_epoch=True, batch_size=self.batch_size)
 
-        self.log('val/best_acc', self.best_val_balanced_acc, prog_bar=True, on_step=False, on_epoch=True, batch_size=self.batch_size)
-        self.log('val/AUC', AUC, prog_bar=False, on_step=False, on_epoch=True, batch_size=self.batch_size)
-        self.log('val/balanced_acc', balanced_acc, prog_bar=False, on_step=False, on_epoch=True, batch_size=self.batch_size)
+
 
     def configure_optimizers(self):
         return torch.optim.Adam(self.parameters(), lr=self.lr, weight_decay=self.L2)

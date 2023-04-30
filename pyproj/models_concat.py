@@ -33,7 +33,7 @@ class RES_Tab_concat1(nn.Module):
         out = self.adaptive_avg_pool3d(out)
         out = out.view(out.size(0), -1)
         out = self.linear_drop1(out)
-        out = torch.concat((out, tabular), dim=1)
+        out = torch.cat((out, tabular), dim=1)
         out = self.fc1(out)
         out = self.relu(out)
         out = self.linear_drop2(out)
@@ -74,7 +74,7 @@ class RES_Tab_concat2(nn.Module):
         out = self.fc1(out)
         out = self.relu(out)
         out = self.linear_drop2(out)
-        out = torch.concat((out, tabular), dim=1)
+        out = torch.cat((out, tabular), dim=1)
         out = self.fc2(out)
 
         return out
@@ -110,11 +110,11 @@ class RES_Tab_concat_both(nn.Module):
         out = self.adaptive_avg_pool3d(out)
         out = out.view(out.size(0), -1)
         out = self.linear_drop1(out)
-        out = torch.concat((out, tabular), dim=1)
+        out = torch.cat((out, tabular), dim=1)
         out = self.fc1(out)
         out = self.relu(out)
         out = self.linear_drop2(out)
-        out = torch.concat((out, tabular), dim=1)
+        out = torch.cat((out, tabular), dim=1)
         out = self.fc2(out)
 
         return out

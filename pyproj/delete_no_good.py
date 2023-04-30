@@ -6,7 +6,7 @@ from tqdm import tqdm
 import nibabel as nib
 import threading
 import time
-
+import pandas as pd
 
 class ThreadPoolEexecuter:
     def __init__(self, num_workers):
@@ -23,13 +23,25 @@ class ThreadPoolEexecuter:
 
 
 
-def scanshow(img):
-    normalized_img = (255 * (img - np.min(img)) / np.ptp(img)).astype("uint8")
-    for img_slice in tqdm(normalized_img):
-        cv2.imshow("scan show", cv2.resize(img_slice, (0, 0), fx=3, fy=3))
-        if cv2.waitKey(70) != -1:
-            print("Stopped!")
-            cv2.waitKey(0)
+base_dir = "/media/rrtammyfs/labDatabase/ADNI/ADNI_2023"
+# base_dir = "/home/duenias/PycharmProjects/HyperNetworks/ADNI_2023"
+adni_dir = base_dir + "/ADNI"
+metadata_path = base_dir + "/my_adnimerege.csv"
+metadata = pd.read_csv(metadata_path)
+
+# metadata = metadata[metadata["Subject"].isin(os.listdir(adni_dir))]  # take only the ones that are in the adni_dir
+# bad_images = [2028, 1664, 1562, 1500, 1365, 1364, 1363, 701, 449, 359, 277, 438, 450, 1317, 1465, 1782]
+# metadata = metadata.drop(index=bad_images)  # dropping unprocessed data
+# metadata.reset_index(drop=True, inplace=True)
+# metadata.to_csv(metadata_path, index=False)
+
+a = 0
+for subj in os.listdir(adni_dir):
+    if subj not in list(metadata["Subject"]):
+        subj_path = adni_dir + '/' + subj
+        shutil.rmtree(subj_path)
+        a += 1
+        print(a)
 
 # # copy the .nii.gz files to DGX server
 # src = "/media/rrtammyfs/labDatabase/ADNI/ADNI_2023/zipped_processed_data/ADNI"
@@ -39,13 +51,12 @@ def scanshow(img):
 
 
 
-thread_pool_executer = ThreadPoolEexecuter(num_workers=20)
-
-# iterate over all the data
-adni_dir = "/media/rrtammyfs/labDatabase/ADNI/ADNI_2023/ADNI"
-subjects = os.listdir(adni_dir)
-for subj in tqdm(subjects):
-    path = os.path.join(adni_dir, subj)
+# thread_pool_executer = ThreadPoolEexecuter(num_workers=20)
+# # iterate over all the data
+# adni_dir = "/media/rrtammyfs/labDatabase/ADNI/ADNI_2023/ADNI"
+# subjects = os.listdir(adni_dir)
+# for subj in tqdm(subjects):
+#     path = os.path.join(adni_dir, subj)
 
     # # threading copy data to DGX server
     # src = os.path.join("/media/rrtammyfs/labDatabase/ADNI/ADNI_2023/zipped_processed_data/ADNI", subj)
