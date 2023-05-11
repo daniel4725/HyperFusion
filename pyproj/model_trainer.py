@@ -7,7 +7,9 @@ from models_hyper import *
 from models_concat import *
 from models_img_hyper import *
 from Film_DAFT.models_film_daft import *
-from Film_DAFT_preactive_block.models_film_daft import *
+from Film_DAFT_preactive.models_film_daft import *
+from models_hyperMIX import *
+from models_hyperDAFT import *
 from tformNaugment import tform_dict
 from argparse import ArgumentParser, Namespace
 from pytorch_lightning.loggers import WandbLogger
@@ -27,12 +29,16 @@ def main(args):
                               fold=args.data_fold, num_workers=args.num_workers,
                               transform_train=tform_dict[args.transform],
                               transform_valid=tform_dict[args.transform_valid], load2ram=args.load2ram,
-                              classes=args.class_names,
+                              classes=args.class_names, only_tabular=args.only_tabular,
                               with_skull=args.with_skull, no_bias_field_correct=args.no_bias_field_correct)
     train_loader, valid_loader = loaders
 
     # Create the model:
-    args.class_weights = get_class_weight(train_loader, valid_loader)
+    if args.class_weights == [0]:
+        args.class_weights = get_class_weight(train_loader, valid_loader)
+    else:
+        args.class_weights = torch.Tensor(args.class_weights)
+
     # args.class_weights = args.class_weights * 0 + 1
     print("class weights: ", args.class_weights)
 
@@ -77,15 +83,13 @@ def main(args):
         overfit_batches=args.overfit_batches,
 
         enable_checkpointing=args.enable_checkpointing,
-        resume_from_checkpoint=args.continue_from_checkpoint
     )
-
-    if not args.continue_from_checkpoint:
+    if args.continue_from_checkpoint_path == "":
         trainer.fit(pl_model, train_dataloaders=train_loader, val_dataloaders=valid_loader)
     else:  # TODO - resume from ckpt not ready
-        PATH = "checkpoints/cp.ckpt"
-        pl_model = PlModelWrap.load_from_checkpoint(PATH)
-        trainer.fit(pl_model, ckpt_path=PATH, train_dataloaders=train_loader, val_dataloaders=valid_loader)
+        ckpt_path = args.continue_from_checkpoint_path
+        pl_model = PlModelWrap.load_from_checkpoint(ckpt_path, **kwargs)
+        trainer.fit(pl_model, ckpt_path=ckpt_path, train_dataloaders=train_loader, val_dataloaders=valid_loader)
 
     # if args.wandb_sweeping or args.wandb_log:
     #     wandb.finish()
@@ -156,10 +160,10 @@ if __name__ == '__main__':
     parser.add_argument("--init_features", type=int, default=4)
     parser.add_argument("--dropout", type=float, default=0.0)
     parser.add_argument("--bn_momentum", type=float, default=0.05)
-    # parser.add_argument("-cw", "--class_weights",  nargs="+", type=float, default=[0])  # [0] is auto weight calc
+    parser.add_argument("-cw", "--class_weights",  nargs="+", type=float, default=[0])  # [0] is auto weight calc
 
     # MLP
-    parser.add_argument("--hidden_shapes", nargs="+", type=int, default=[1])  # MLP hidden layers shapes
+    parser.add_argument("--hidden_shapes", nargs="+", type=int, default=[])  # MLP hidden layers shapes
 
     # CNN
     parser.add_argument("--cnn_mlp_shapes", nargs="+", type=int, default=[3])  # end of cnn hidden layers shapes
@@ -177,14 +181,14 @@ if __name__ == '__main__':
     parser.add_argument('-nbfc', '--no_bias_field_correct', action='store_true')
     parser.add_argument('--overfit_batches', type=float, default=0.0)
     parser.add_argument("--class_names", nargs="+", type=str, default=["CN", "MCI", "AD"])
+    parser.add_argument("--only_tabular", action='store_true')
 
     # checkpoints save dir
-    parser.add_argument("-cp_dir", "--checkpoint_dir", default="checkpoints")
-    parser.add_argument("-cp_en", "--enable_checkpointing", action='store_true')
+    parser.add_argument("-cp_dir", "--checkpoint_dir", default="/media/rrtammyfs/Users/daniel/HyperProj_checkpoints")
+    parser.add_argument("-ckpt_en", "--enable_checkpointing", action='store_true')
 
     # resume learning from checkpoint option
-    parser.add_argument("-cp_cont", "--continue_from_checkpoint", action='store_true')
-    parser.add_argument("--cp_cont_epoch", type=int, default=1)
+    parser.add_argument("-cp_cont_path", "--continue_from_checkpoint_path", default="")
 
     # project name dont change!
     parser.add_argument("--project_name", default="HyperNets_imgNtabular")
@@ -196,64 +200,29 @@ if __name__ == '__main__':
 
     if not args.runfromshell:
         print("Running from IDE")
-        # # env
-        # args.GPU = [0]
-        # args.num_workers = 0
-        #
-        # # logging and checkpointing
-        # args.wandb_log = True
-        # args.experiment_name = "tst"
-        # args.enable_checkpointing = False
-        #
-        # # model
-        # args.model = "ResNet"  #"PreactivResNet_instN"  'ResNet' 'MLP4Tabular' 'ResNetHyperEnd'
-        # args.init_features = 32
-        # args.hidden_shapes = [24, 32, 5]
-        # # args.dropout = 0.2
-        # # args.bn_momentum = 0.05
-        # # args.cnn_mlp_shapes = [8, 3]
-        # # args.cnn_mlp_dropout = 0.1
-        # args.cnn_dropout = 0.1
-        #
-        # # training
-        # args.epochs = 300
-        # args.lr = 0.0001
-        # args.batch_size = 4
-        # args.L2 = 0.00001
-        # args.overfit_batches = 0.02  # 0.0 for regular training or comment this line
-        #
-        # # data
-        # # args.adni_dir = "/usr/local/faststorage/adni_class_pred_1x1x1_v1"
-        # # args.metadata_path = "metadata_by_features_sets/set-1.csv"
-        # args.load2ram = False
-        # args.transform = "hippo_crop_lNr"  # basic_aug  normalize  hippo_crop  hippo_crop_lNr
-        # args.data_fold = 0
-        # args.class_names = ["CN", "MCI", "AD"]
-        # args.with_skull = True
-        # args.no_bias_field_correct = True
-
         # --------------------------------------------------------------------------------
         # ----------------------------- input arguments ----------------------------------
         GPU = "0"
 
-        exname = "tst-nlLoss"
-        metadata_path = "metadata_by_features_sets/set-5.csv"  # set 4 is norm minmax (0 to 1), set 5 is std-mean
-        model = "PreactivResNet_bn_4blks_incDrop_mlpend"
+        exname = "tst-daft"
+        metadata_path = "metadata_by_features_sets/set-8.csv"  # set 4 is norm minmax (0 to 1), set 5 is std-mean
+        model = "MLP4Tabular"
         cnn_dropout = "0.1"
         init_features = "32"
         lr = "0.0001"
         L2 = "0.00001"
         epochs = "180"
-        batch_size = "64"
-        tform = "hippo_crop_lNr_l2r"  # hippo_crop  hippo_crop_lNr  normalize hippo_crop_lNr_noise hippo_crop_lNr_scale
-        tform_valid = "None"  # hippo_crop_2sides hippo_crop  hippo_crop_lNr  normalize hippo_crop_lNr_noise hippo_crop_lNr_scaletform_valid="hippo_crop_2sides"   # hippo_crop  hippo_crop_lNr  normalize hippo_crop_lNr_noise hippo_crop_lNr_scale
+        batch_size = "4"
+        tform = "hippo_crop_lNr"  # hippo_crop  hippo_crop_lNr  normalize hippo_crop_lNr_noise hippo_crop_lNr_scale
+        tform_valid = "hippo_crop_2sides"  # hippo_crop_2sides hippo_crop  hippo_crop_lNr  normalize hippo_crop_lNr_noise hippo_crop_lNr_scaletform_valid="hippo_crop_2sides"   # hippo_crop  hippo_crop_lNr  normalize hippo_crop_lNr_noise hippo_crop_lNr_scale
         num_workers = "1"
 
         # flags:
         with_skull = ""  # "--with_skull"  or ""
         no_bias_field_correct = "--no_bias_field_correct"  # "--no_bias_field_correct" or ""
-        load2ram = "-l2r"  # "-l2r" or ""
-        wandb_logging = "-wandb"  # "-wandb" or ""
+        load2ram = ""  # "-l2r" or ""
+        wandb_logging = ""  # "-wandb" or ""
+        ckpt_en = "-ckpt_en"
 
         adni_dir = "/home/duenias/PycharmProjects/HyperNetworks/ADNI_2023/ADNI"
         # --------------------------------------------------------------------------------------------------
@@ -262,7 +231,7 @@ if __name__ == '__main__':
         data_fold = "0"
         # --------------------------------------------------------------------------------------------------
 
-        args_string = f"-exname {exname} --model {model}  --cnn_dropout {cnn_dropout} --init_features {init_features}  -lr {lr} --L2 {L2}  --epochs {epochs} --batch_size {batch_size} --data_fold {data_fold} -tform {tform} --metadata_path {metadata_path} --GPU {GPU} {wandb_logging} --adni_dir {adni_dir} -cp_dir checkpoints -nw {num_workers} {with_skull} {no_bias_field_correct} {load2ram} {overfit_batches}"
+        args_string = f"-exname {exname} --model {model}  --cnn_dropout {cnn_dropout} --init_features {init_features}  -lr {lr} --L2 {L2}  --epochs {epochs} --batch_size {batch_size} --data_fold {data_fold} -tform {tform} --metadata_path {metadata_path} --GPU {GPU} {wandb_logging} --adni_dir {adni_dir} -nw {num_workers} {with_skull} {no_bias_field_correct} {load2ram} {overfit_batches} {ckpt_en}"
         args = parser.parse_args(args_string.split())
 
     else:

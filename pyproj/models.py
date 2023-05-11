@@ -18,49 +18,6 @@ def conv3d_instn3d_relu(in_channels, out_channels, bn_momentum=0.05, kernel_size
         return nn.Sequential(conv3d, instn3d, relu)
 
 
-class BasicCNN(nn.Module):
-    def __init__(self, in_channels=1, n_outputs=3, bn_momentum=0.1, init_features=4, **kwargs):
-        super().__init__()
-
-        self.Layer1_a = conv3d_bn3d_relu(in_channels, init_features, bn_momentum=bn_momentum)
-        self.Layer1_b = conv3d_bn3d_relu(init_features, init_features * 2, bn_momentum=bn_momentum)
-        self.max_pool3d_1 = nn.MaxPool3d(kernel_size=2, stride=2) 
-        self.Layer2_a = conv3d_bn3d_relu(init_features * 2, init_features * 2, bn_momentum=bn_momentum)
-        self.Layer2_b = conv3d_bn3d_relu(init_features * 2, init_features * 4, bn_momentum=bn_momentum)
-        self.max_pool3d_2 = nn.MaxPool3d(kernel_size=2, stride=2)
-        self.Layer3_a = conv3d_bn3d_relu(init_features * 4, init_features * 4, bn_momentum=bn_momentum)
-        self.Layer3_b = conv3d_bn3d_relu(init_features * 4, init_features * 8, bn_momentum=bn_momentum)
-        self.max_pool3d_3 = nn.MaxPool3d(kernel_size=2, stride=2)
-        self.Layer4_a = conv3d_bn3d_relu(init_features * 8, init_features * 8, bn_momentum=bn_momentum)
-        self.Layer4_b = conv3d_bn3d_relu(init_features * 8, init_features * 16, bn_momentum=bn_momentum)
-        self.adaptive_avg_pool3d = nn.AdaptiveAvgPool3d(1)
-        self.fc = nn.Linear(16 * init_features, n_outputs)
-
-    def forward(self, x):
-        image, tabular = x
-        out = self.Layer1_a(image)
-        out = self.Layer1_b(out)
-        out = self.max_pool3d_1(out)
-
-        out = self.Layer2_a(out)
-        out = self.Layer2_b(out)
-        out = self.max_pool3d_2(out)
-
-        out = self.Layer3_a(out)
-        out = self.Layer3_b(out)
-        out = self.max_pool3d_3(out)
-
-        out = self.Layer4_a(out)
-        out = self.Layer4_b(out)
-
-        out = self.adaptive_avg_pool3d(out)
-        out = out.view(out.size(0), -1)
-        out = self.fc(out)
-
-        return out
-    
-
-
 class ResBlock(nn.Module):
     def __init__(self, in_channels, out_channels, bn_momentum=0.05, stride=1, conv_bias=True):
         super().__init__()

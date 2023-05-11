@@ -31,12 +31,13 @@ class ADNI_Dataset(Dataset):  # good rand seeds by order: [2341, 704, 795, 1557,
     def __init__(self, tr_val_tst, fold=0, metadata_path="metadata_by_features_sets/set-5.csv",
                  adni_dir='/home/duenias/PycharmProjects/HyperNetworks/ADNI_2023/ADNI',
                  transform=None, load2ram=False, rand_seed=2341, classes=("CN", "MCI", "AD"), with_skull=False,
-                 no_bias_field_correct=False):
+                 no_bias_field_correct=False, only_tabular=False):
         self.tr_val_tst = tr_val_tst
         self.transform = transform
         self.metadata = pd.read_csv(metadata_path)
         self.with_skull = with_skull
         self.no_bias_field_correct = no_bias_field_correct
+        self.only_tabular = only_tabular
 
         self.num_tabular_features = len(self.metadata.columns) - 2  # the features excluding the Group and the Subject
         self.adni_dir = adni_dir
@@ -158,10 +159,15 @@ class ADNI_Dataset(Dataset):  # good rand seeds by order: [2341, 704, 795, 1557,
 
         else:  # we need to load the data from the data dir
             subject = self.metadata.loc[index, "Subject"]
-            img = self.load_image(subject)
+            if self.only_tabular:
+                img = np.zeros((4,4,4,4))
+            else:
+                img = self.load_image(subject)
 
         features = self.metadata.drop(['Subject', 'Group'], axis=1).loc[index]
         label = self.metadata.loc[index, "Group"]
+        if self.only_tabular:
+            return img, np.array(features, dtype=np.float32), label
 
         img = img[None, ...]  # add channel dimention
         if not (self.transform is None):
@@ -173,13 +179,13 @@ class ADNI_Dataset(Dataset):  # good rand seeds by order: [2341, 704, 795, 1557,
 def get_dataloaders(batch_size, metadata_path="metadata_by_features_sets/set-1.csv",
                     adni_dir='/usr/local/faststorage/adni_class_pred_2x2x2_v1', fold=0, num_workers=0,
                     transform_train=None, transform_valid=None, load2ram=False, sample=1, classes=("CN", "MCI", "AD"),
-                    with_skull=False, no_bias_field_correct=False):
+                    with_skull=False, no_bias_field_correct=False, only_tabular=False):
     """ creates the train and validation data sets and creates their data loaders"""
     train_ds = ADNI_Dataset(tr_val_tst="train", fold=fold, metadata_path=metadata_path, adni_dir=adni_dir,
-                            transform=transform_train, load2ram=load2ram, classes=classes,
+                            transform=transform_train, load2ram=load2ram, classes=classes, only_tabular=only_tabular,
                             with_skull=with_skull, no_bias_field_correct=no_bias_field_correct)
     valid_ds = ADNI_Dataset(tr_val_tst="valid", fold=fold, metadata_path=metadata_path, adni_dir=adni_dir,
-                            transform=transform_valid, load2ram=load2ram, classes=classes,
+                            transform=transform_valid, load2ram=load2ram, classes=classes, only_tabular=only_tabular,
                             with_skull=with_skull, no_bias_field_correct=no_bias_field_correct)
 
     if sample < 1 and sample > 0:  # take a portion of the data (for debuggind the model)
@@ -218,58 +224,58 @@ if __name__ == "__main__":
     tform = "hippo_crop_lNr_l2r_tst"  # center_crop  hippo_crop_lNr  hippo_crop_lNr_l2r
 
 
-    loaders = get_dataloaders(batch_size=64, adni_dir=ADNI_dir, load2ram=load2ram,
-                              metadata_path=metadata_path, fold=data_fold,
-                              transform_train=tform_dict["hippo_crop_lNr_l2r"],
-                              transform_valid=tform_dict["None"],
-                              with_skull=False, no_bias_field_correct=True, num_workers=num_workers)
-    train_loader0, valid_loader0 = loaders
-    start = time.time()
+    # loaders = get_dataloaders(batch_size=64, adni_dir=ADNI_dir, load2ram=load2ram,
+    #                           metadata_path=metadata_path, fold=data_fold,
+    #                           transform_train=tform_dict["hippo_crop_lNr_l2r"],
+    #                           transform_valid=tform_dict["None"],
+    #                           with_skull=False, no_bias_field_correct=True, num_workers=num_workers)
+    # train_loader0, valid_loader0 = loaders
+    # start = time.time()
+    #
+    # for batch in tqdm(train_loader0):
+    #     a = 5
+    # for batch in tqdm(valid_loader0):
+    #     a = 5
+    #
+    # print(time.time() - start)
+    # exit(0)
+    #
+    # valid_ds = ADNI_Dataset(tr_val_tst="valid", fold=0, metadata_path=metadata_path, adni_dir=ADNI_dir,
+    #                         transform=tform_dict["None"], load2ram=True,
+    #                         with_skull=False, no_bias_field_correct=True)
+    #
+    # valid_ds2 = ADNI_Dataset(tr_val_tst="valid", fold=0, metadata_path=metadata_path, adni_dir=ADNI_dir,
+    #                          transform=tform_dict["hippo_crop_2sides"], load2ram=False,
+    #                          with_skull=False, no_bias_field_correct=True)
+    #
+    # for i in tqdm(range(len(valid_ds))):
+    #     d0 = valid_ds.__getitem__(i)
+    #     d = valid_ds2.__getitem__(i)
+    #     if not ((d0[0] == d[0]).all() and (d0[1] == d[1]).all() and (d0[2] == d[2])):
+    #         print("valid error in ", i)
 
-    for batch in tqdm(train_loader0):
-        a = 5
-    for batch in tqdm(valid_loader0):
-        a = 5
-
-    print(time.time() - start)
-    exit(0)
-
-    valid_ds = ADNI_Dataset(tr_val_tst="valid", fold=0, metadata_path=metadata_path, adni_dir=ADNI_dir,
-                            transform=tform_dict["None"], load2ram=True,
-                            with_skull=False, no_bias_field_correct=True)
-
-    valid_ds2 = ADNI_Dataset(tr_val_tst="valid", fold=0, metadata_path=metadata_path, adni_dir=ADNI_dir,
-                             transform=tform_dict["hippo_crop_2sides"], load2ram=False,
-                             with_skull=False, no_bias_field_correct=True)
-
-    for i in tqdm(range(len(valid_ds))):
-        d0 = valid_ds.__getitem__(i)
-        d = valid_ds2.__getitem__(i)
-        if not ((d0[0] == d[0]).all() and (d0[1] == d[1]).all() and (d0[2] == d[2])):
-            print("valid error in ", i)
 
 
-
-    loaders = get_dataloaders(batch_size=64, adni_dir=ADNI_dir, load2ram=load2ram,
-                              metadata_path=metadata_path, fold=data_fold, transform_train=tform_dict[tform],
-                              with_skull=False, no_bias_field_correct=True, num_workers=num_workers)
+    # loaders = get_dataloaders(batch_size=64, adni_dir=ADNI_dir, load2ram=load2ram,
+    #                           metadata_path=metadata_path, fold=data_fold, transform_train=tform_dict[tform],
+    #                           with_skull=False, no_bias_field_correct=True, num_workers=num_workers)
 
     # ----------------------------------------------------------------------------------
     # -------------------------   check if l2r works good    ---------------------------
     # ----------------------------------------------------------------------------------
-    loaders = get_dataloaders(batch_size=64, adni_dir=ADNI_dir, load2ram=False,
-                              metadata_path=metadata_path, fold=data_fold,
-                              transform_train=tform_dict["hippo_crop_lNr_tst"],
-                              transform_valid=tform_dict["hippo_crop_2sides"],
-                              with_skull=False, no_bias_field_correct=True, num_workers=num_workers)
-    train_loader0, valid_loader0 = loaders
-
-    loaders = get_dataloaders(batch_size=64, adni_dir=ADNI_dir, load2ram=True,
-                              metadata_path=metadata_path, fold=data_fold,
-                              transform_train=tform_dict["hippo_crop_lNr_l2r_tst"],
-                              transform_valid=tform_dict["normalize"],
-                              with_skull=False, no_bias_field_correct=True, num_workers=num_workers)
-    train_loader, valid_loader = loaders
+    # loaders = get_dataloaders(batch_size=64, adni_dir=ADNI_dir, load2ram=False,
+    #                           metadata_path=metadata_path, fold=data_fold,
+    #                           transform_train=tform_dict["hippo_crop_lNr_tst"],
+    #                           transform_valid=tform_dict["hippo_crop_2sides"],
+    #                           with_skull=False, no_bias_field_correct=True, num_workers=num_workers)
+    # train_loader0, valid_loader0 = loaders
+    #
+    # loaders = get_dataloaders(batch_size=64, adni_dir=ADNI_dir, load2ram=True,
+    #                           metadata_path=metadata_path, fold=data_fold,
+    #                           transform_train=tform_dict["hippo_crop_lNr_l2r_tst"],
+    #                           transform_valid=tform_dict["normalize"],
+    #                           with_skull=False, no_bias_field_correct=True, num_workers=num_workers)
+    # train_loader, valid_loader = loaders
 
     # for i in tqdm(range(len(train_loader.dataset))):
     #     d0 = train_loader0.dataset.__getitem__(i)
@@ -277,11 +283,11 @@ if __name__ == "__main__":
     #     if not((d0[0] == d[0]).all() and (d0[1] == d[1]).all() and (d0[2] == d[2]).all()):
     #         print("train error in ", i)
 
-    for i in tqdm(range(len(valid_loader.dataset))):
-        d0 = valid_loader0.dataset.__getitem__(i)
-        d = valid_loader.dataset.__getitem__(i)
-        if not ((d0[0] == d[0]).all() and (d0[1] == d[1]).all() and (d0[2] == d[2])):
-            print("valid error in ", i)
+    # for i in tqdm(range(len(valid_loader.dataset))):
+    #     d0 = valid_loader0.dataset.__getitem__(i)
+    #     d = valid_loader.dataset.__getitem__(i)
+    #     if not ((d0[0] == d[0]).all() and (d0[1] == d[1]).all() and (d0[2] == d[2])):
+    #         print("valid error in ", i)
 
     # train:
     # error in 636
@@ -367,8 +373,9 @@ if __name__ == "__main__":
     #
     #
 
-    # %%
-    # find the best random seed for good target distribution:
+    # ----------------------------------------------------------------------------------
+    # ------------------------- find a good data split     ---------------------------
+    # ----------------------------------------------------------------------------------    # find the best random seed for good target distribution:
     # good seeds (by order, better is right): [2341, 704, 795, 1557, 1977, 864, 2211, 2322, 13, 1991]
     # the best seed is 2341 with std=0.516
     # fold 0: train-[35. 48. 18.], valid-[36. 48. 16.]
@@ -378,41 +385,45 @@ if __name__ == "__main__":
     # fold 4: train-[35. 48. 17.], valid-[34. 48. 17.]
     # valid std=[0.8   0.    0.748]
 
-    # times = 2400
-    # seeds_valid_std = []
-    # for rand_seed in tqdm(range(times)):
-    #     valid_histograms = []
-    #     for fold in range(5):
-    #         train_ds = ADNI_Dataset(tr_val_tst="train", fold=fold, adni_dir=ADNI_dir, metadata_path=metadata_path, rand_seed=rand_seed).metadata
-    #         valid_ds = ADNI_Dataset(tr_val_tst="valid", fold=fold, adni_dir=ADNI_dir, metadata_path=metadata_path, rand_seed=rand_seed).metadata
-    #
-    #         train_target_hist = np.histogram(train_ds.Group, bins=3)[0]
-    #         train_target_hist = np.round(train_target_hist/train_target_hist.sum(), 2) * 100
-    #         valid_target_hist = np.histogram(valid_ds.Group, bins=3)[0]
-    #         valid_target_hist = np.round(valid_target_hist/valid_target_hist.sum(), 2) * 100
-    #         valid_histograms.append(valid_target_hist)
-    #         #print(f"fold {fold}: train-{train_target_hist}, valid-{valid_target_hist}")
-    #     #print(f"valid std={np.round(np.std(valid_histograms, axis=0), 3)}")
-    #     seeds_valid_std.append(np.round(np.std(valid_histograms, axis=0), 3))
-    # weighted_seeds_valid_std = np.mean(seeds_valid_std, axis=1)
-    # best_seed = weighted_seeds_valid_std.argmin()
-    # print(f"the best seed is {best_seed} with std={weighted_seeds_valid_std.min():.3f}")
-    # k = 10
-    # res = sorted(range(len(weighted_seeds_valid_std)), key=lambda sub: weighted_seeds_valid_std[sub])[:k]
-    # print(f"the best {k} seeds by order are: {res}")
-    #
-    # valid_histograms = []
-    # for fold in range(5):
-    #     train_ds = ADNI_Dataset(tr_val_tst="train", fold=fold, adni_dir=ADNI_dir, metadata_path=metadata_path, rand_seed=best_seed).metadata
-    #     valid_ds = ADNI_Dataset(tr_val_tst="valid", fold=fold, adni_dir=ADNI_dir, metadata_path=metadata_path, rand_seed=best_seed).metadata
-    #
-    #     train_target_hist = np.histogram(train_ds.Group, bins=3)[0]
-    #     train_target_hist = np.round(train_target_hist/train_target_hist.sum(), 2) * 100
-    #     valid_target_hist = np.histogram(valid_ds.Group, bins=3)[0]
-    #     valid_target_hist = np.round(valid_target_hist/valid_target_hist.sum(), 2) * 100
-    #     valid_histograms.append(valid_target_hist)
-    #     print(f"fold {fold}: train-{train_target_hist}, valid-{valid_target_hist}")
-    # print(f"valid std={np.round(np.std(valid_histograms, axis=0), 3)}")
+    times = 2400
+    seeds_valid_std = []
+    for rand_seed in tqdm(range(times)):
+        valid_histograms = []
+        for fold in range(5):
+            train_ds = ADNI_Dataset(tr_val_tst="train", fold=fold, adni_dir=ADNI_dir, metadata_path=metadata_path, rand_seed=rand_seed).metadata
+            valid_ds = ADNI_Dataset(tr_val_tst="valid", fold=fold, adni_dir=ADNI_dir, metadata_path=metadata_path, rand_seed=rand_seed).metadata
+
+            train_ds
+            # train_ds[~(train_ds.APOE4.isna() | train_ds.FDG.isna())]
+
+
+            train_target_hist = np.histogram(train_ds.Group, bins=3)[0]
+            train_target_hist = np.round(train_target_hist/train_target_hist.sum(), 2) * 100
+            valid_target_hist = np.histogram(valid_ds.Group, bins=3)[0]
+            valid_target_hist = np.round(valid_target_hist/valid_target_hist.sum(), 2) * 100
+            valid_histograms.append(valid_target_hist)
+            #print(f"fold {fold}: train-{train_target_hist}, valid-{valid_target_hist}")
+        #print(f"valid std={np.round(np.std(valid_histograms, axis=0), 3)}")
+        seeds_valid_std.append(np.round(np.std(valid_histograms, axis=0), 3))
+    weighted_seeds_valid_std = np.mean(seeds_valid_std, axis=1)
+    best_seed = weighted_seeds_valid_std.argmin()
+    print(f"the best seed is {best_seed} with std={weighted_seeds_valid_std.min():.3f}")
+    k = 10
+    res = sorted(range(len(weighted_seeds_valid_std)), key=lambda sub: weighted_seeds_valid_std[sub])[:k]
+    print(f"the best {k} seeds by order are: {res}")
+
+    valid_histograms = []
+    for fold in range(5):
+        train_ds = ADNI_Dataset(tr_val_tst="train", fold=fold, adni_dir=ADNI_dir, metadata_path=metadata_path, rand_seed=best_seed).metadata
+        valid_ds = ADNI_Dataset(tr_val_tst="valid", fold=fold, adni_dir=ADNI_dir, metadata_path=metadata_path, rand_seed=best_seed).metadata
+
+        train_target_hist = np.histogram(train_ds.Group, bins=3)[0]
+        train_target_hist = np.round(train_target_hist/train_target_hist.sum(), 2) * 100
+        valid_target_hist = np.histogram(valid_ds.Group, bins=3)[0]
+        valid_target_hist = np.round(valid_target_hist/valid_target_hist.sum(), 2) * 100
+        valid_histograms.append(valid_target_hist)
+        print(f"fold {fold}: train-{train_target_hist}, valid-{valid_target_hist}")
+    print(f"valid std={np.round(np.std(valid_histograms, axis=0), 3)}")
 
     # ----------------------------------------------------------------------------------
     # ------------------------- check if the images are good---------------------------

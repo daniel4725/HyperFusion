@@ -21,8 +21,8 @@ def Hyper4Fc(embedding_mlp_shapes=[10, 16, 8], in_features=1, out_features=256,
             # hypernet.add_module(f"bn_{i}", nn.BatchNorm1d(in_size, momentum=bn_momentum))
             hypernet.add_module(f"fc_{i}", nn.Linear(in_features=in_size, out_features=out_size)) 
             # TODO add dropout properly (place relative to bn and other layers)
+            hypernet.add_module(f"activation_{i}", nn.ReLU())
             # hypernet.add_module(f"dropout_{i}",nn.Dropout(dropout))
-            hypernet.add_module(f"activation_{i}", nn.PReLU())
     else:  # there is NO embedding
         embd_out_size = embedding_mlp_shapes[0]
 
@@ -31,7 +31,7 @@ def Hyper4Fc(embedding_mlp_shapes=[10, 16, 8], in_features=1, out_features=256,
     num_biases = out_features
     num_parameters = num_weights + num_biases
     hypernet.add_module("weights_gen", nn.Linear(in_features=embd_out_size, out_features=num_parameters))
-    
+
     # TODO weights initialization
     # hypernet.weights_gen.weight.data.fill_(1)
     # hypernet.weights_gen.bias.data.fill_(0)
@@ -39,7 +39,7 @@ def Hyper4Fc(embedding_mlp_shapes=[10, 16, 8], in_features=1, out_features=256,
     # layer.bias.data = (torch.randn((out_feat)))/100
 
     # nn.init.kaiming_normal_(hypernet.weights_gen.weight, mode='fan_out', nonlinearity='relu')
-    # hypernet.weights_gen.bias.data = (torch.randn(n_weights_out))/100
+    # hypernet.weights_gen.bias.data /= num_parameters
 
     stdv = 1. / np.sqrt(in_features)
     hypernet.weights_gen.weight.data.uniform_(-stdv, stdv) # the initialization of weights and biases of linear layer
@@ -107,7 +107,7 @@ def Hyper4Conv3D(embedding_mlp_shapes=[10, 16, 8], in_channels=16, out_channels=
             hypernet.add_module(f"fc_{i}", nn.Linear(in_features=in_size, out_features=out_size)) 
             # TODO add dropout properly (place relative to bn and other layers)
             # hypernet.add_module(f"dropout_{i}",nn.Dropout(dropout))
-            hypernet.add_module(f"activation_{i}", nn.PReLU())
+            hypernet.add_module(f"activation_{i}", nn.ReLU())
     else:  # there is NO embedding
         embd_out_size = embedding_mlp_shapes[0]
 
@@ -813,7 +813,7 @@ class age_noembd_lastblockHyp_FFT_fcHyp_both(nn.Module):
 
     def forward(self, x):
         image, tabular = x
-        tabular = tabular + 1
+        # tabular = tabular + 1
 
         out = self.conv_bn_relu(image)
         out = self.max_pool3d_1(out)
@@ -958,6 +958,90 @@ class age_noembd_lastblockHyp_TTF_fcHyp_2(nn.Module):
         return out
 
 
+# -----------------------------------------------------------------------------------------
+# -------------------------------- 9.5.23 --------------------------------------
+# -----------------------------------------------------------------------------------------
+
+class HE_RSNT_lastHyp_noembd(nn.Module):
+    def __init__(self, in_channels=1, n_outputs=3, bn_momentum=0.1, init_features=4, n_tabular_features=1, **kwargs):
+        super().__init__()
+
+        self.conv_bn_relu = conv3d_bn3d_relu(in_channels, init_features, bn_momentum=bn_momentum)
+        self.max_pool3d_1 = nn.MaxPool3d(kernel_size=2, stride=2)
+        self.block1 = PreactivResBlock_bn(init_features, init_features, bn_momentum=bn_momentum, dropout=0.1)
+        self.block2 = PreactivResBlock_bn(init_features, 2 * init_features, bn_momentum=bn_momentum, stride=2, dropout=0.2)
+        self.block3 = PreactivResBlock_bn(2 * init_features, 4 * init_features, bn_momentum=bn_momentum, stride=2, dropout=0.2)
+        self.block4 = PreactivResBlock_bn(4 * init_features, 8 * init_features, bn_momentum=bn_momentum, stride=2, dropout=0.3)
+        self.adaptive_avg_pool3d = nn.AdaptiveAvgPool3d(1)
+        self.linear_drop1 = nn.Dropout(0.6)
+        self.fc1 = LinearLayer(8*init_features, 2*init_features)
+        self.linear_drop2 = nn.Dropout(0.5)
+        self.fc2 = LinearLayer(2*init_features, n_outputs, hyper=True,
+                    embedding_mlp_shapes=[n_tabular_features])
+
+        self.relu = nn.ReLU()
+
+
+    def forward(self, x):
+        image, tabular = x
+        tabular = tabular + 1
+
+        out = self.conv_bn_relu(image)
+        out = self.max_pool3d_1(out)
+        out = self.block1(out)
+        out = self.block2(out)
+        out = self.block3(out)
+        out = self.block4(out)
+        out = self.adaptive_avg_pool3d(out)
+        out = out.view(out.size(0), -1)
+        out = self.linear_drop1(out)
+        out = self.fc1((out, tabular))
+        out = self.relu(out)
+        out = self.linear_drop2(out)
+        out = self.fc2((out, tabular))
+
+        return out
+
+
+class noembd_FFT(nn.Module):
+    def __init__(self, in_channels=1, n_outputs=3, bn_momentum=0.1, init_features=4, n_tabular_features=1, **kwargs):
+        super().__init__()
+
+        self.conv_bn_relu = conv3d_bn3d_relu(in_channels, init_features, bn_momentum=bn_momentum)
+        self.max_pool3d_1 = nn.MaxPool3d(kernel_size=2, stride=2)
+        self.block1 = PreactivResBlock_bn(init_features, init_features, bn_momentum=bn_momentum, dropout=0.1)
+        self.block2 = PreactivResBlock_bn(init_features, 2 * init_features, bn_momentum=bn_momentum, stride=2, dropout=0.2)
+        self.block3 = PreactivResBlock_bn(2 * init_features, 4 * init_features, bn_momentum=bn_momentum, stride=2, dropout=0.2)
+        self.block4 = PreactivResBlock_bn_hyper_FFT(4 * init_features, 8 * init_features, bn_momentum=bn_momentum, stride=2, dropout=0.3,
+                        embedding_mlp_shapes=[n_tabular_features])
+        self.adaptive_avg_pool3d = nn.AdaptiveAvgPool3d(1)
+        self.linear_drop1 = nn.Dropout(0.6)
+        self.fc1 = LinearLayer(8*init_features, 2*init_features)
+        self.linear_drop2 = nn.Dropout(0.5)
+        self.fc2 = LinearLayer(2*init_features, n_outputs)
+
+        self.relu = nn.ReLU()
+
+
+    def forward(self, x):
+        image, tabular = x
+        tabular = tabular + 1
+
+        out = self.conv_bn_relu(image)
+        out = self.max_pool3d_1(out)
+        out = self.block1(out)
+        out = self.block2(out)
+        out = self.block3(out)
+        out = self.block4((out, tabular))
+        out = self.adaptive_avg_pool3d(out)
+        out = out.view(out.size(0), -1)
+        out = self.linear_drop1(out)
+        out = self.fc1((out, tabular))
+        out = self.relu(out)
+        out = self.linear_drop2(out)
+        out = self.fc2((out, tabular))
+
+        return out
 
 if __name__ == '__main__':
     from data_handler import get_dataloaders

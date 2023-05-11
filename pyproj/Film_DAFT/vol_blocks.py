@@ -115,7 +115,8 @@ class FilmBase(nn.Module, metaclass=ABCMeta):
         self.bn1 = nn.BatchNorm3d(out_channels, momentum=bn_momentum, affine=(location != 3))
         self.conv2 = conv3d(out_channels, out_channels)
         self.bn2 = nn.BatchNorm3d(out_channels, momentum=bn_momentum)
-        self.relu = nn.ReLU(inplace=True)
+        self.relu = nn.ReLU()
+        # self.relu = nn.ReLU(inplace=True)
         self.global_pool = nn.AdaptiveAvgPool3d(1)
         if stride != 1 or in_channels != out_channels:
             self.downsample = nn.Sequential(
@@ -169,8 +170,10 @@ class FilmBase(nn.Module, metaclass=ABCMeta):
         out = self.bn2(out)
         if self.downsample is not None:
             residual = self.downsample(residual)
-        out += residual
+
         out = self.relu(out)
+        out += residual
+        # out = self.relu(out)
 
         return out
 
@@ -180,7 +183,7 @@ class FilmBlock(FilmBase):
         self,
         in_channels: int,
         out_channels: int,
-        bn_momentum: float = 0.1,
+        bn_momentum: float = 0.05,
         stride: int = 2,
         ndim_non_img: int = 15,
         location: int = 2,
@@ -262,7 +265,7 @@ class DAFTBlock(FilmBase):
         self,
         in_channels: int,
         out_channels: int,
-        bn_momentum: float = 0.1,
+        bn_momentum: float = 0.05,
         stride: int = 2,
         ndim_non_img: int = 15,
         location: int = 2,

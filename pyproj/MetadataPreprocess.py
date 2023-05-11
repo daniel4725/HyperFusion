@@ -3,6 +3,10 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+from sklearn.impute import SimpleImputer
+from sklearn.experimental import enable_iterative_imputer
+from sklearn.impute import IterativeImputer
+
 """
 CHALLANGE SUGGEST:
 The main measures to be predicted: DX, ADAS13, Ventricles
@@ -139,20 +143,72 @@ features_sets[set_num]["preprocess_dict"] = {
 set_num = 8
 features_sets[set_num] = {}
 features_sets[set_num]["features"] = ["AGE", "PTGENDER", "PTEDUCAT", "APOE4",] # demographics and genetic Risk factors
-                                    # "ABETA", "PTAU", "TAU",  # CSF measures
-                                    # "FDG", "AV45"]   #  PET measures 
-
 features_sets[set_num]["preprocess_dict"] = {
     "AGE": ["fill NaN with median", "norm std-mean"],
     "PTGENDER": ["one_hot without_na"],
     "PTEDUCAT": ["norm std-mean"],
     "APOE4": ["norm std-mean", "add NaN col", "fill NaN with median"],
-    # "ABETA": ["remove><", "add NaN col", "fill NaN with median", "norm std-mean"],
-    # "PTAU": ["remove><", "add NaN col", "fill NaN with median", "norm std-mean"],
-    # "TAU": ["remove><", "add NaN col", "fill NaN with median", "norm std-mean"],
-    # "AV45": [],   451 missing values out of 864
-    # "FDG": ["add NaN col", "fill NaN with median", "norm std-mean"]
     }
+# --------------- features_set 9 ------------------
+set_num = 9
+features_sets[set_num] = {}
+features_sets[set_num]["features"] = ["AGE", "PTGENDER", "PTEDUCAT", "APOE4", # demographics and genetic Risk factors
+                                      "ABETA", "PTAU", "TAU",  # CSF measures
+                                      "FDG", "AV45"]   #  PET measures
+
+features_sets[set_num]["preprocess_dict"] = {
+    "AGE": ["fill NaN with median", "norm std-mean"],
+    "PTGENDER": ["one_hot without_na"],
+    "PTEDUCAT": ["norm std-mean"],
+    "APOE4": ["add NaN col", "fill NaN with median", "norm std-mean"],
+    "ABETA": ["remove><", "add NaN col", "fill NaN with median", "norm std-mean"],
+    "PTAU": ["remove><", "add NaN col", "fill NaN with median", "norm std-mean"],
+    "TAU": ["remove><", "add NaN col", "fill NaN with median", "norm std-mean"],
+    "AV45": ["add NaN col", "fill NaN with median", "norm std-mean"],
+    "FDG": ["add NaN col", "fill NaN with median", "norm std-mean"]
+    }
+# --------------- features_set 10 ------------------
+set_num = 10
+features_sets[set_num] = {}
+features_sets[set_num]["features"] = ["AGE", "PTGENDER", "PTEDUCAT", "APOE4", # demographics and genetic Risk factors
+                                      "ABETA", "PTAU", "TAU",  # CSF measures
+                                      "FDG", "AV45"]   #  PET measures
+
+features_sets[set_num]["preprocess_dict"] = {
+    "AGE": ["fill NaN with median"],
+    "PTGENDER": ["one_hot without_na"],
+    "PTEDUCAT": [],
+    "APOE4": [],
+    "ABETA": ["remove><"],
+    "PTAU": ["remove><"],
+    "TAU": ["remove><"],
+    "AV45": [],
+    "FDG": [],
+    "all_together": ["impute_all Nan_col", "normalize_all"]
+    }
+# --------------- features_set 11 ------------------
+set_num = 11
+features_sets[set_num] = {}
+features_sets[set_num]["features"] = ["AGE", "PTGENDER", "PTEDUCAT", "APOE4", # demographics and genetic Risk factors
+                                      "ABETA", "PTAU", "TAU",  # CSF measures
+                                      "FDG", "AV45"]   #  PET measures
+
+features_sets[set_num]["preprocess_dict"] = {
+    "AGE": ["fill NaN with median"],
+    "PTGENDER": ["one_hot without_na"],
+    "PTEDUCAT": [],
+    "APOE4": [],
+    "ABETA": ["remove><"],
+    "PTAU": ["remove><"],
+    "TAU": ["remove><"],
+    "AV45": [],
+    "FDG": [],
+    "all_together": ["impute_all", "normalize_all"]
+    }
+# 185 nan in APOE4 and they intersect with all the rest of the Nans
+# 1091 nan in ABETA:  all the same as PTAU, TAU.  789 with AV45, 636 with FDG
+# 1119 nan in AV45:  789 PTAU, TAU, ABETA.  651 with FDG
+# 807 nan in FDG:  636 PTAU, TAU, ABETA.  651 with AV45
 # --------------------------------------------------
 
 def gauss_1d(n=10,sigma=1, mu=None):
@@ -201,6 +257,10 @@ def preprocess_df_columns(csv, col_namesNoperations_dict: dict):
             
             elif operation == "fill NaN with median":
                 csv[col_name].fillna(csv[col_name].median(), inplace=True)
+            elif operation == "fill NaN with median w.r.t labels":
+                for label in csv["Group"].unique():
+                    labels_median = csv[col_name][csv["Group"] == label].median()
+                    csv[col_name][csv[col_name].isna() & (csv["Group"] == label)] = labels_median
             elif operation == "fill NaN with mean":
                 csv[col_name].fillna(csv[col_name].mean(), inplace=True)
 
@@ -212,9 +272,32 @@ def preprocess_df_columns(csv, col_namesNoperations_dict: dict):
                     if csv[col_name][i] is not np.nan:
                         csv[col_name][i] = float(csv[col_name][i])
 
+            elif ("impute_all" in operation) and col_name == "all_together":
+                add_indicator = True if "Nan_col" in operation else False
+                imp = IterativeImputer(max_iter=100, random_state=0, add_indicator=add_indicator)
+                cols = list(csv.columns)
+                cols.remove("Subject")
+                cols.remove("Group")
+                imputed_csv = imp.fit_transform(csv[cols])
+                new_cols = [col for col in cols]
+                if add_indicator:
+                    for col in cols:
+                        if csv[col].isna().sum() > 0:
+                            new_cols.append(f"{col}_Na")
+                df = pd.DataFrame(data=imputed_csv, columns=new_cols)
+                df[["Group", "Subject"]] = csv[["Group", "Subject"]]
+                csv = df
+
+
+            elif operation == "normalize_all" and col_name == "all_together":
+                cols = list(csv.columns)
+                cols.remove("Subject")
+                cols.remove("Group")
+                (csv[cols] - csv[cols].mean()) / csv[cols].std()
+
             
             else:
-                raise ValueError(f"operation '{operation}' for column '{col_name}' in preprocess_columns function is'nt from the optional actions")
+                raise AssertionError(f"operation '{operation}' for column '{col_name}' in preprocess_columns function is'nt from the optional actions")
     return csv
 
 
@@ -262,7 +345,7 @@ def feature_properties(df_col):
 
 if __name__ == "__main__":
     
-    features_set_idx = 5
+    features_set_idx = 11
 
     ADNI_dir = f"/home/duenias/PycharmProjects/HyperNetworks/ADNI_2023"
     metadata_dir = "metadata_by_features_sets"

@@ -4,7 +4,7 @@ import pytorch_lightning as pl
 import torch.nn.functional as F
 
 
-def MLP(mlp_layers_shapes=[10, 64, 64, 3], activation=nn.PReLU,
+def MLP(mlp_layers_shapes=[10, 64, 64, 3], activation=nn.ReLU,
         dropout=0, bn_momentum=0.1, **kwargs):
     """
     layers_shapes = [input shape, hidden1, hidden2 ..., output shape]
@@ -29,13 +29,15 @@ class MLP4Tabular(nn.Module):
         self.mlp = MLP(mlp_layers_shapes=mlp_layers_shapes, activation=activation,
                         dropout=dropout, bn_momentum=bn_momentum)
 
+        print(self)
+
     def forward(self, x):
         image, tabular = x        
         return self.mlp(tabular)
 
 if __name__ == "__main__":
     batch_size = 12
-    in_features = 10
+    in_features = 4
     out_features = 3
 
     # model = MLP4Tabular(
@@ -50,14 +52,14 @@ if __name__ == "__main__":
     # data = ("", torch.randn(13, in_features))
     # print(model(data))
 
-    model = MLP(
+    model = MLP4Tabular(
         mlp_layers_shapes=[in_features, out_features],
         activation=nn.PReLU,
         dropout=0.3,
         bn_momentum=0.1
     )
+    # print(model)
+    # data = torch.randn(batch_size, in_features)
 
-    data = torch.randn(batch_size, in_features)
-
-    print(model(data))
+    # print(model(data))
 

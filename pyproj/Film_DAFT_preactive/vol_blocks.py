@@ -21,65 +21,6 @@ import torch.nn.parallel
 import torch.utils.data
 
 
-def conv3d(in_channels, out_channels, kernel_size=3, stride=1):
-    if kernel_size != 1:
-        padding = 1
-    else:
-        padding = 0
-    return nn.Conv3d(in_channels, out_channels, kernel_size, stride=stride, padding=padding, bias=False)
-
-
-class ConvBnReLU(nn.Module):
-    def __init__(
-        self, in_channels, out_channels, bn_momentum=0.05, kernel_size=3, stride=1, padding=1,
-    ):
-        super().__init__()
-        self.conv = nn.Conv3d(in_channels, out_channels, kernel_size, stride=stride, padding=padding, bias=False)
-        self.bn = nn.BatchNorm3d(out_channels, momentum=bn_momentum)
-        self.relu = nn.ReLU(inplace=True)
-
-    def forward(self, x):
-        out = self.conv(x)
-        out = self.bn(out)
-        out = self.relu(out)
-        return out
-
-
-class ResBlock(nn.Module):
-    def __init__(self, in_channels, out_channels, bn_momentum=0.05, stride=1):
-        super().__init__()
-        self.conv1 = conv3d(in_channels, out_channels, stride=stride)
-        self.bn1 = nn.BatchNorm3d(out_channels, momentum=bn_momentum)
-        self.conv2 = conv3d(out_channels, out_channels)
-        self.bn2 = nn.BatchNorm3d(out_channels, momentum=bn_momentum)
-        self.relu = nn.ReLU(inplace=True)
-
-        if stride != 1 or in_channels != out_channels:
-            self.downsample = nn.Sequential(
-                conv3d(in_channels, out_channels, kernel_size=1, stride=stride),
-                nn.BatchNorm3d(out_channels, momentum=bn_momentum),
-            )
-        else:
-            self.downsample = None
-
-    def forward(self, x):
-        residual = x
-
-        out = self.conv1(x)
-        out = self.bn1(out)
-
-        out = self.relu(out)
-
-        out = self.conv2(out)
-        out = self.bn2(out)
-
-        if self.downsample is not None:
-            residual = self.downsample(x)
-
-        out += residual
-        out = self.relu(out)
-
-        return out
 
 
 class FilmBase(nn.Module, metaclass=ABCMeta):
@@ -96,7 +37,6 @@ class FilmBase(nn.Module, metaclass=ABCMeta):
         activation: str,
         scale: bool,
         shift: bool,
-        dropout=0.3
     ) -> None:
 
         super().__init__()
@@ -112,21 +52,25 @@ class FilmBase(nn.Module, metaclass=ABCMeta):
                 "scale type {type(scale)}\n    -> shift value: {shift}, shift type: {type(shift)}"
             )
         # ResBlock
-        self.bn1 = nn.BatchNorm3d(in_channels, momentum=bn_momentum, affine=(location != 3))
-        self.conv1 = conv3d(in_channels, out_channels, stride=stride)
-        self.bn2 = nn.BatchNorm3d(out_channels, momentum=bn_momentum)
-        self.conv2 = conv3d(out_channels, out_channels)
 
-        self.relu = nn.ReLU(inplace=True)
-        self.global_pool = nn.AdaptiveAvgPool3d(1)
+        self.bn1 = nn.BatchNorm3d(in_channels, momentum=bn_momentum)
+        self.conv1 = nn.Conv3d(in_channels, out_channels, kernel_size=3, stride=stride, padding=1, bias=True)
+        self.bn2 = nn.BatchNorm3d(out_channels, momentum=bn_momentum)
+        self.conv2 = nn.Conv3d(out_channels, out_channels, kernel_size=3, stride=1, padding=1, bias=True)
+
+        self.relu = nn.ReLU()
+        self.dropout = nn.Dropout3d(p=0.3)
+
         if stride != 1 or in_channels != out_channels:
             self.downsample = nn.Sequential(
-                conv3d(in_channels, out_channels, kernel_size=1, stride=stride),
-                nn.BatchNorm3d(out_channels, momentum=bn_momentum),
+                nn.BatchNorm3d(in_channels, momentum=bn_momentum),
+                nn.Conv3d(in_channels, out_channels, kernel_size=1, stride=stride, padding=0, bias=True),
             )
         else:
             self.downsample = None
-        self.dropout = nn.Dropout3d(p=dropout)
+
+        self.global_pool = nn.AdaptiveAvgPool3d(1)
+
 
         # Film-specific variables
         self.location = location
@@ -151,33 +95,23 @@ class FilmBase(nn.Module, metaclass=ABCMeta):
 
     def forward(self, feature_map, x_aux):
 
-        if self.location == 0:
-            feature_map = self.rescale_features(feature_map, x_aux)
         if not (self.downsample is None):
             identity = self.downsample(feature_map)
         else:
             identity = feature_map
 
-        if self.location == 1:
-            identity = self.rescale_features(identity, x_aux)
-
-        if self.location == 2:
-            feature_map = self.rescale_features(feature_map, x_aux)
-        out = feature_map
+        out = self.rescale_features(feature_map, x_aux)
         out = self.bn1(out)
         out = self.relu(out)
         out = self.dropout(out)
         out = self.conv1(out)
 
-        if self.location == 3:
-            out = self.rescale_features(out, x_aux)
         out = self.bn2(out)
         out = self.relu(out)
         out = self.dropout(out)
         out = self.conv2(out)
 
         out += identity
-
         return out
 
 
@@ -186,7 +120,7 @@ class FilmBlock(FilmBase):
         self,
         in_channels: int,
         out_channels: int,
-        bn_momentum: float = 0.1,
+        bn_momentum: float = 0.05,
         stride: int = 2,
         ndim_non_img: int = 15,
         location: int = 2,
@@ -261,14 +195,13 @@ class FilmBlock(FilmBase):
 
         return (v_scale * feature_map) + v_shift
 
-
 class DAFTBlock(FilmBase):
     # Block for ZeCatNet
     def __init__(
         self,
         in_channels: int,
         out_channels: int,
-        bn_momentum: float = 0.1,
+        bn_momentum: float = 0.05,
         stride: int = 2,
         ndim_non_img: int = 15,
         location: int = 2,
