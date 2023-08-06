@@ -1,6 +1,6 @@
 # HyperNetworks4imgNtabular
 **Presenting initial findings with ongoing work. Updates will follow as progress continues.**
-## Into
+## Intro
 The integration of multi-modal data has emerged as a promising approach in various fields, enabling a more comprehensive understanding of 
 complex phenomena by leveraging the complementary information from different sources. In the realm of medical research, the integration of 
 multi-modal data has emerged as a powerful approach for enhancing our understanding of complex diseases and conditions. The fusion of different 
@@ -50,5 +50,8 @@ Evaluation on the test set with varying numbers of tabular features:
 
 <img src="https://github.com/daniel4725/HyperNetworks4imgNtabular/assets/95569050/e48b5e3f-1c1f-492d-bbc0-1d40b947d78f" width=80% height=80%>
 
+
+
+*This work was inspired by the great work of Shai Aharon et al. https://arxiv.org/pdf/2206.05970.pdf
 
 
