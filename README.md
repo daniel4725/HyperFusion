@@ -48,8 +48,7 @@ Evaluation on the test set with varying numbers of tabular features:
 
 9 features: Sex, Age, Education, Genetic risk factor, 3 cerebrospinal fluid biomarkers, 2 measures derived from PET scan
 
-![image](https://github.com/daniel4725/HyperNetworks4imgNtabular/assets/95569050/0deb7649-fa06-4099-b5dc-7269d2cc35ff)
-![image](https://github.com/daniel4725/HyperNetworks4imgNtabular/assets/95569050/1d9209d5-34c9-49f8-b33a-6a572966440c)
-![image](https://github.com/daniel4725/HyperNetworks4imgNtabular/assets/95569050/2b051358-af15-4bfd-aa39-6e16f3eca14e)
+<img src="https://github.com/daniel4725/HyperNetworks4imgNtabular/assets/95569050/e48b5e3f-1c1f-492d-bbc0-1d40b947d78f" width=80% height=80%>
+
 
 
