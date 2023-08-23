@@ -6,6 +6,9 @@ import pandas as pd
 from sklearn.impute import SimpleImputer
 from sklearn.experimental import enable_iterative_imputer
 from sklearn.impute import IterativeImputer
+from sklearn.model_selection import StratifiedKFold
+from sklearn.linear_model import LinearRegression
+
 
 """
 CHALLANGE SUGGEST:
@@ -63,54 +66,41 @@ All relevant features:
 # adni_csv.describe()
 
 features_sets = {}
-
+# --------------- features_set 0 ------------------
+set_num = 0
+features_sets[set_num] = {}
+features_sets[set_num]["features"] = ["AGE", "PTGENDER",] # demographics and genetic Risk factors
+features_sets[set_num]["preprocess_dict"] = {
+    "AGE": ["fill NaN with median", "norm std-mean"],
+    "PTGENDER": ["one_hot without_na"],
+    }
 # --------------- features_set 1 ------------------
 set_num = 1
 features_sets[set_num] = {}
-features_sets[set_num]["features"] = ["AGE", "PTGENDER", "PTEDUCAT", "APOE4", # demographics and genetic Risk factors
-                            "CDRSB", "ADAS13", "ADAS11", "MMSE", "RAVLT_immediate"]  # Cognitive tests
+features_sets[set_num]["features"] = ["PTGENDER",] # demographics and genetic Risk factors
 features_sets[set_num]["preprocess_dict"] = {
-    "AGE": ["norm min-max"],
     "PTGENDER": ["one_hot without_na"],
-    "PTEDUCAT": ["norm min-max"],
-    "APOE4": ["add NaN col", "fill NaN with median", "norm min-max"],
-    "CDRSB": ["norm min-max"],
-    "ADAS13": ["add NaN col", "fill NaN with median", "norm min-max"],
-    "ADAS11": ["add NaN col", "fill NaN with median", "norm min-max"],
-    "MMSE": ["norm min-max"],
-    "RAVLT_immediate": ["add NaN col", "fill NaN with median", "norm min-max"]
-}
+    }
 
 # --------------- features_set 2 ------------------
 set_num = 2
 features_sets[set_num] = {}
-features_sets[set_num]["features"] = ["AGE", "PTGENDER", "PTEDUCAT", "APOE4"] # demographics and genetic Risk factors
+features_sets[set_num]["features"] = ["AGE", "PTEDUCAT", "APOE4",] # demographics and genetic Risk factors
 features_sets[set_num]["preprocess_dict"] = {
-    "AGE": ["norm min-max"],
-    "PTGENDER": ["one_hot without_na"],
-    "PTEDUCAT": ["norm min-max"],
-    "APOE4": ["add NaN col", "fill NaN with median", "norm min-max"]
-}
-
+    "AGE": ["fill NaN with median", "norm std-mean"],
+    "PTEDUCAT": ["norm std-mean"],
+    "APOE4": ["norm std-mean", "add NaN col", "fill NaN with median"],
+    }
 # --------------- features_set 3 ------------------
 set_num = 3
 features_sets[set_num] = {}
-features_sets[set_num]["features"] = ["AGE", "PTGENDER", "PTEDUCAT", "APOE4"] # demographics and genetic Risk factors
+features_sets[set_num]["features"] = ["AGE", "PTGENDER", "PTEDUCAT", "APOE4",] # demographics and genetic Risk factors
 features_sets[set_num]["preprocess_dict"] = {
-    "AGE": ["norm min-max"],
+    "AGE": ["fill NaN with median", "norm std-mean"],
     "PTGENDER": ["one_hot without_na"],
-    "PTEDUCAT": ["norm min-max"],
-    "APOE4": ["add NaN col", "fill NaN with median", "norm min-max"],
-    "ABETA": ["add NaN col", "fill NaN with median", "norm min-max"],
-    "PTAU": ["add NaN col", "fill NaN with median", "norm min-max"],
-    "TAU": ["add NaN col", "fill NaN with median", "norm min-max"],
-    # "APOE4": ["add NaN col", "fill NaN with median", "norm min-max"],
-    # "APOE4": ["add NaN col", "fill NaN with median", "norm min-max"]
-
-# and two summary measures derived
-# from 18F-fluorodeoxyglucose (FDG) and florbetapir (AV45) PET scans.
-
-}
+    "PTEDUCAT": ["norm std-mean"],
+    "APOE4": ["one_hot with_na"],
+    }
 # --------------- features_set 4 ------------------
 set_num = 4
 features_sets[set_num] = {}
@@ -205,11 +195,111 @@ features_sets[set_num]["preprocess_dict"] = {
     "FDG": [],
     "all_together": ["impute_all", "normalize_all"]
     }
+# --------------- features_set 12 ------------------
+set_num = 12
+features_sets[set_num] = {}
+features_sets[set_num]["features"] = ["AGE", "PTGENDER", "PTEDUCAT", "APOE4", # demographics and genetic Risk factors
+                                      "ABETA", "PTAU", "TAU",  # CSF measures
+                                      "FDG", "AV45"]   #  PET measures
+features_sets[set_num]["preprocess_dict"] = {
+    "AGE": ["fill NaN with median"],
+    "PTGENDER": ["one_hot without_na"],
+    "PTEDUCAT": [],
+    "APOE4": [],
+    "ABETA": ["remove><"],
+    "PTAU": ["remove><"],
+    "TAU": ["remove><"],
+    "AV45": [],
+    "FDG": [],
+    "all_together": ["impute_all Nan_col", "normalize_all_but_Na"]
+    }
+# --------------- features_set 13 ------------------
+set_num = 13
+features_sets[set_num] = {}
+features_sets[set_num]["features"] = ["AGE", "PTGENDER", "PTEDUCAT", "APOE4", # demographics and genetic Risk factors
+                                      "ABETA", "PTAU", "TAU",  # CSF measures
+                                      "FDG", "AV45"]   #  PET measures
+features_sets[set_num]["preprocess_dict"] = {
+    "AGE": ["fill NaN with median"],
+    "PTGENDER": ["one_hot without_na"],
+    "PTEDUCAT": [],
+    "APOE4": [],
+    "ABETA": ["remove><"],
+    "PTAU": ["remove><"],
+    "TAU": ["remove><"],
+    "AV45": [],
+    "FDG": [],
+    "all_together": ["impute_all", "normalize_all_but_Na"]
+    }
+# --------------- features_set 14 ------------------
+set_num = 14
+features_sets[set_num] = {}
+features_sets[set_num]["features"] = ["AGE", "PTGENDER", "PTEDUCAT", "APOE4", # demographics and genetic Risk factors
+                                      "ABETA", "PTAU", "TAU",  # CSF measures
+                                      "FDG", "AV45"]   #  PET measures
+features_sets[set_num]["preprocess_dict"] = {
+    "AGE": ["fill NaN with median", "norm std-mean"],
+    "PTGENDER": ["one_hot without_na"],
+    "PTEDUCAT": ["norm std-mean"],
+    "APOE4": ["fill NaN with median", "norm std-mean"],
+    "ABETA": ["remove><", "norm std-mean"],
+    "PTAU": ["remove><", "norm std-mean"],
+    "TAU": ["remove><", "norm std-mean"],
+    "AV45": ["norm std-mean"],
+    "FDG": ["norm std-mean"],
+    "all_together": ["fill_NaN_by_group"]
+    }
+# --------------- features_set 15 ------------------
+set_num = 15
+features_sets[set_num] = {}
+features_sets[set_num]["features"] = ["AGE", "PTGENDER", "PTEDUCAT", "APOE4", # demographics and genetic Risk factors
+                                      "ABETA", "PTAU", "TAU",  # CSF measures
+                                      "FDG", "AV45"]   #  PET measures
+features_sets[set_num]["preprocess_dict"] = {
+    "AGE": ["fill NaN with median"],
+    "PTGENDER": ["one_hot without_na"],
+    "PTEDUCAT": [],
+    "APOE4": [],
+    "ABETA": ["remove><"],
+    "PTAU": ["remove><"],
+    "TAU": ["remove><"],
+    "AV45": [],
+    "FDG": [],
+    "all_together": ["impute_all Nan_col", "normalize_all_but_Na&Gender"]
+    }
+
+# def preprocess_14(csv, split_seed=0, fold=0):
+#     skf = StratifiedKFold(n_splits=5, random_state=split_seed, shuffle=True)
+#     X = csv.drop(['Subject', 'Group'], axis=1)
+#     y = csv["Group"]
+#     list_of_splits = list(skf.split(X, y))
+#     _, val_idxs = list_of_splits[fold]
+#     _, test_idxs = list_of_splits[4]
+#     train_idxs = list(np.where(~csv.index.isin(list(val_idxs) + list(test_idxs)))[0])
+#
+#     tmp_df = csv.copy()
+#     tmp_df = pd.get_dummies(tmp_df, dummy_na=False, columns=["PTGENDER", "Group"])
+#     imp = IterativeImputer(max_iter=200, initial_strategy="median", random_state=0, add_indicator=False)
+#
+#     cols = []
+#     pd.DataFrame(data=imp.fit_transform(csv[["AGE"]]), columns=["AGE"])[csv.AGE.isna()]
+#     pd.DataFrame(data=imp.fit_transform(csv[["APOE4", "AGE", "Group_CN", "Group_MCI", "Group_AD"]]),
+#                  columns=["APOE4", "AGE", "Group_CN", "Group_MCI", "Group_AD"])[csv.APOE4.isna()]["APOE4"].round()
+#     col_name = "Age"
+#     csv.loc[:, col_name] = (csv[col_name] - csv[col_name].mean()) / csv[col_name].std()
+#
+#     cols = list(csv.columns)
+#     cols.remove("Subject")
+#     cols.remove("Group")
+#     imputed_csv = imp.fit_transform(csv[cols])
+
+
 # 185 nan in APOE4 and they intersect with all the rest of the Nans
 # 1091 nan in ABETA:  all the same as PTAU, TAU.  789 with AV45, 636 with FDG
 # 1119 nan in AV45:  789 PTAU, TAU, ABETA.  651 with FDG
 # 807 nan in FDG:  636 PTAU, TAU, ABETA.  651 with AV45
-# --------------------------------------------------
+# adni_csv["APOE4"].value_counts(dropna=False)
+
 
 def gauss_1d(n=10,sigma=1, mu=None):
     if mu is None:
@@ -220,7 +310,7 @@ def gauss_1d(n=10,sigma=1, mu=None):
     gaussian /= gaussian.sum()  # normalize to sum to 1
     return gaussian
 
-def preprocess_df_columns(csv, col_namesNoperations_dict: dict):
+def preprocess_df_columns(csv, col_namesNoperations_dict: dict, split_seed=0, fold=0):
     """ col_namesNoperations_dict is an ordered dict of operations
     to do at each column in the following form:
     {col_name1:[op1,op2,op3..] , col_name2:[op1, ...]} """
@@ -268,13 +358,13 @@ def preprocess_df_columns(csv, col_namesNoperations_dict: dict):
                 for i in range(len(csv[col_name])):
                     if csv[col_name][i] is not np.nan:
                         if (csv[col_name][i][0] == '<') or (csv[col_name][i][0] == '>'):
-                            csv[col_name][i] = csv[col_name][i][1:]
+                            csv.loc[i, col_name] = csv[col_name][i][1:]
                     if csv[col_name][i] is not np.nan:
-                        csv[col_name][i] = float(csv[col_name][i])
+                        csv.loc[i, col_name] = float(csv[col_name][i])
 
             elif ("impute_all" in operation) and col_name == "all_together":
                 add_indicator = True if "Nan_col" in operation else False
-                imp = IterativeImputer(max_iter=100, random_state=0, add_indicator=add_indicator)
+                imp = IterativeImputer(max_iter=200, initial_strategy="median", random_state=0, add_indicator=add_indicator)
                 cols = list(csv.columns)
                 cols.remove("Subject")
                 cols.remove("Group")
@@ -293,15 +383,71 @@ def preprocess_df_columns(csv, col_namesNoperations_dict: dict):
                 cols = list(csv.columns)
                 cols.remove("Subject")
                 cols.remove("Group")
-                (csv[cols] - csv[cols].mean()) / csv[cols].std()
+                csv[cols] = (csv[cols] - csv[cols].mean()) / csv[cols].std()
 
-            
+            elif operation == "normalize_all_but_Na" and col_name == "all_together":
+                cols = [c for c in csv.columns if "Na" not in c]
+                cols.remove("Subject")
+                cols.remove("Group")
+                csv[cols] = (csv[cols] - csv[cols].mean()) / csv[cols].std()
+
+            elif operation == "normalize_all_but_Na&Gender" and col_name == "all_together":
+                cols = [c for c in csv.columns if "Na" not in c]
+                cols.remove("Subject")
+                cols.remove("Group")
+                cols.remove("PTGENDER_Male")
+                cols.remove("PTGENDER_Female")
+                csv[cols] = (csv[cols] - csv[cols].mean()) / csv[cols].std()
+
+
+
+            elif operation == "delete_nan":
+                csv = csv[~csv[col_name].isna()]
+                csv.reset_index(drop=True, inplace=True)
+
+            elif operation == "fill_NaN_by_group":
+                skf = StratifiedKFold(n_splits=5, random_state=split_seed, shuffle=True)
+                X = csv.drop(['Subject', 'Group'], axis=1)
+                y = csv["Group"]
+                list_of_splits = list(skf.split(X, y))
+                _, val_idxs = list_of_splits[fold]
+                _, test_idxs = list_of_splits[4]
+                train_idxs = list(np.where(~csv.index.isin(list(val_idxs) + list(test_idxs)))[0])
+
+                # impute the training set with the help of all the values (including the group)
+                tmp = csv.copy()
+                tmp = pd.get_dummies(tmp, dummy_na=False, columns=["Group"])
+                cols =list(tmp.columns)
+                cols.remove("Subject")
+                imp = IterativeImputer(max_iter=200, initial_strategy="median", random_state=0, add_indicator=False)
+                tmp.loc[train_idxs, cols] = pd.DataFrame(data=imp.fit_transform(tmp.loc[train_idxs, cols]), columns=cols, index=train_idxs)
+                cols =list(csv.columns)
+                cols.remove("Group")
+                cols.remove("Subject")
+                csv.loc[train_idxs, cols] = tmp.loc[train_idxs, cols]
+
+                # impute the test and validation set without the group column
+                cols =list(csv.columns)
+                cols.remove("Group")
+                cols.remove("Subject")
+                imp = IterativeImputer(max_iter=200, initial_strategy="median", random_state=0, add_indicator=False)
+                csv.loc[val_idxs, cols] = pd.DataFrame(data=imp.fit_transform(csv.loc[val_idxs, cols]), columns=cols, index=val_idxs)
+                imp = IterativeImputer(max_iter=200, initial_strategy="median", random_state=0, add_indicator=False)
+                csv.loc[test_idxs, cols] = pd.DataFrame(data=imp.fit_transform(csv.loc[test_idxs, cols]), columns=cols, index=test_idxs)
+
+                # idx = csv.loc[val_idxs, col_name][csv[col_name].isna()].index
+                # csv.iloc[idx] = 0
+                # idx = csv.loc[test_idxs, col_name][csv[col_name].isna()].index
+                # csv.iloc[idx] = 0
+
+
             else:
                 raise AssertionError(f"operation '{operation}' for column '{col_name}' in preprocess_columns function is'nt from the optional actions")
     return csv
 
 
-def create_metadata_csv(ADNI_dir, save_path, features_set_idx):
+def create_metadata_csv(features_set_idx, csv_path="/home/duenias/PycharmProjects/HyperNetworks/ADNI_2023/my_adnimerege.csv",
+                        split_seed=0, fold=0):
     global features_sets
 
     ########################################################################
@@ -317,19 +463,13 @@ def create_metadata_csv(ADNI_dir, save_path, features_set_idx):
     features_lst = features_sets[features_set_idx]["features"]
     features_preprocess_dict = features_sets[features_set_idx]["preprocess_dict"]
 
-    adni_csv = pd.read_csv(os.path.join(ADNI_dir, "my_adnimerege.csv"))
+    adni_csv = pd.read_csv(csv_path)
 
     features_lst = features_lst + ['Subject', 'Group']  # add the target and the Subject id
     adni_csv = adni_csv.loc[:, features_lst]
-    adni_csv.loc[adni_csv["Group"] == "CN", "Group"] = 0
-    adni_csv.loc[adni_csv["Group"] == "LMCI", "Group"] = 1
-    adni_csv.loc[adni_csv["Group"] == "EMCI", "Group"] = 1
-    adni_csv.loc[adni_csv["Group"] == "MCI", "Group"] = 1
-    adni_csv.loc[adni_csv["Group"] == "AD", "Group"] = 2
 
-    adni_csv = preprocess_df_columns(adni_csv, features_preprocess_dict) 
+    adni_csv = preprocess_df_columns(adni_csv, features_preprocess_dict, split_seed, fold)
 
-    adni_csv.to_csv(save_path, index=False)
     return adni_csv
   
 def feature_properties(df_col):
@@ -342,13 +482,32 @@ def feature_properties(df_col):
     df_col.hist()
     plt.show()
 
+def linreg_fill_na(df, y_coll, x_colls):
+    # Split the DataFrame into two subsets: one with complete data and one with missing values
+    df_complete = df.dropna(subset=[y_coll])
+    df_missing = df[df[y_coll].isnull()]
+
+    # Train a linear regression model using 'b' and 'c' as predictors and 'a' as the target variable
+    X_train = df_complete[x_colls]
+    y_train = df_complete[y_coll]
+    model = LinearRegression()
+    model.fit(X_train, y_train)
+
+    # Use the trained model to predict the missing values in column 'a' from 'b' and 'c'
+    X_missing = df_missing[x_colls]
+    predicted_values = model.predict(X_missing)
+
+    # Fill the missing values in the original DataFrame with the predicted values
+    df.loc[df[y_coll].isnull(), y_coll] = predicted_values
+
 
 if __name__ == "__main__":
     
-    features_set_idx = 11
+    features_set_idx = 2
 
     ADNI_dir = f"/home/duenias/PycharmProjects/HyperNetworks/ADNI_2023"
     metadata_dir = "metadata_by_features_sets"
     save_metadata_path = os.path.join(metadata_dir, f"set-{features_set_idx}.csv")
 
-    create_metadata_csv(ADNI_dir=ADNI_dir, save_path=save_metadata_path, features_set_idx=features_set_idx)
+    create_metadata_csv(features_set_idx=features_set_idx)
+

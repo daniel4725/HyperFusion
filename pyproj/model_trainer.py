@@ -1,21 +1,23 @@
 from data_handler import *
 from models import *
 from pl_wrap import *
+from pl_wrap4regression import *
+from pl_wrap2losses import *
 from utils import *
 from MLP_models import *
-from models_hyper import *
 from models_concat import *
-from models_img_hyper import *
+from models_regression import *
 from Film_DAFT.models_film_daft import *
 from Film_DAFT_preactive.models_film_daft import *
-from models_hyperMIX import *
-from models_hyperDAFT import *
+# from models_hyperMIX import *
+# from models_hyperDAFT import *
 from tformNaugment import tform_dict
 from argparse import ArgumentParser, Namespace
 from pytorch_lightning.loggers import WandbLogger
 import wandb
-from costum_callbacks import TimeEstimatorCallback, CheckpointCallback
-
+from costum_callbacks import *
+from models_TabularAsHyper import *
+from models_ImageAsHyper import *
 
 # torch.backends.cuda.matmul.allow_tf32 = True
 # torch.backends.cudnn.allow_tf32 = True
@@ -23,43 +25,69 @@ from costum_callbacks import TimeEstimatorCallback, CheckpointCallback
 def main(args):
     # torch.manual_seed(0)
     logger, args = wandb_interface(args)  # this line must be first
+    model_name = args.model
+    if "regression" in model_name:
+        args.dataset_class = "BrainAgeDataset"
 
     # Create the data loaders:
-    loaders = get_dataloaders(batch_size=args.batch_size, metadata_path=args.metadata_path, adni_dir=args.adni_dir,
+    loaders = get_dataloaders(batch_size=args.batch_size, features_set=args.features_set, adni_dir=args.adni_dir,
                               fold=args.data_fold, num_workers=args.num_workers,
                               transform_train=tform_dict[args.transform],
                               transform_valid=tform_dict[args.transform_valid], load2ram=args.load2ram,
-                              classes=args.class_names, only_tabular=args.only_tabular,
-                              with_skull=args.with_skull, no_bias_field_correct=args.no_bias_field_correct)
+                              only_tabular=args.only_tabular, num_classes=args.num_classes,
+                              with_skull=args.with_skull, no_bias_field_correct=args.no_bias_field_correct,
+                              dataset_class=globals()[args.dataset_class], split_seed=args.split_seed)
     train_loader, valid_loader = loaders
 
-    # Create the model:
-    if args.class_weights == [0]:
-        args.class_weights = get_class_weight(train_loader, valid_loader)
+    if args.dataset_class != "BrainAgeDataset":
+        # Create the model:
+        if args.class_weights == [0]:
+            args.class_weights = get_class_weight(train_loader, valid_loader)
+        else:
+            args.class_weights = torch.Tensor(args.class_weights)
+
+        # args.class_weights = args.class_weights * 0 + 1
+        print("class weights: ", args.class_weights)
+
+        kwargs = args.__dict__
+        kwargs["n_tabular_features"] = train_loader.dataset.num_tabular_features
+        kwargs['n_outputs'] = len(args.class_weights)
+        kwargs["cnn_mlp_shapes"][-1] = len(args.class_weights)
+        kwargs["train_loader"] = train_loader
+
+        # mlp_layers_shapes = [n_tabular_features, hidden_shapes, num_classes]
+        kwargs["mlp_layers_shapes"] = [kwargs["n_tabular_features"]] + kwargs["hidden_shapes"] + [
+            len(kwargs["class_weights"])]
+
+        model = globals()[args.model](**kwargs)
+        kwargs["model"] = model
+        kwargs["class_names"] = list(train_loader.dataset.labels_dict.keys())
+
+        if "2losses" in model_name:
+            pl_model = PlModelWrap2losses(**kwargs)
+        else:
+            pl_model = PlModelWrap(**kwargs)
+
+        # Callbacks:
+        callbacks = [TimeEstimatorCallback(**kwargs)]
+        if kwargs["enable_checkpointing"]:
+            callbacks += [CheckpointCallback(**kwargs)]
+
     else:
-        args.class_weights = torch.Tensor(args.class_weights)
+        kwargs = args.__dict__
+        kwargs["n_tabular_features"] = train_loader.dataset.num_tabular_features
+        kwargs["train_loader"] = train_loader
+        model = globals()[args.model](**kwargs)
+        kwargs["model"] = model
+        pl_model = PlModelWrap4Regression(**kwargs)
 
-    # args.class_weights = args.class_weights * 0 + 1
-    print("class weights: ", args.class_weights)
+        # Callbacks:
+        callbacks = [TimeEstimatorCallback(**kwargs)]
+        if kwargs["enable_checkpointing"]:
+            callbacks += [CheckpointCallback4regression(**kwargs)]
 
-    kwargs = args.__dict__
-    kwargs["n_tabular_features"] = train_loader.dataset.num_tabular_features
-    kwargs['n_outputs'] = len(args.class_weights)
-    kwargs["cnn_mlp_shapes"][-1] = len(args.class_weights)
 
-    # mlp_layers_shapes = [n_tabular_features, hidden_shapes, num_classes]
-    kwargs["mlp_layers_shapes"] = [kwargs["n_tabular_features"]] + kwargs["hidden_shapes"] + [
-        len(kwargs["class_weights"])]
 
-    model = globals()[args.model](**kwargs)
-    kwargs["model"] = model
-
-    pl_model = PlModelWrap(**kwargs)
-
-    # Callbacks:
-    callbacks = [TimeEstimatorCallback(**kwargs)]
-    if kwargs["enable_checkpointing"]:
-        callbacks += [CheckpointCallback(**kwargs)]
 
     if len(args.GPU) > 1:
         strategy = "dp"
@@ -171,9 +199,12 @@ if __name__ == '__main__':
     parser.add_argument("--cnn_dropout", type=float, default=0.0)
 
     # data
-    parser.add_argument("--metadata_path", default="metadata_by_features_sets/set-5.csv")
+    parser.add_argument("--dataset_class", default="ADNI_Dataset")
+    parser.add_argument("--features_set", type=int, default=5)
+    parser.add_argument("--split_seed", type=int, default=0)
     parser.add_argument("--adni_dir", default="/home/duenias/PycharmProjects/HyperNetworks/ADNI_2023/ADNI")
     parser.add_argument("--data_fold", type=int, choices=[0, 1, 2, 3, 4], default=0)
+    parser.add_argument("--num_classes", type=int, choices=[3, 5], default=3)
     parser.add_argument('-tform', "--transform", default="normalize")
     parser.add_argument('-tform_valid', "--transform_valid", default="hippo_crop_2sides")
     parser.add_argument('-l2r', '--load2ram', action='store_true')
@@ -202,36 +233,38 @@ if __name__ == '__main__':
         print("Running from IDE")
         # --------------------------------------------------------------------------------
         # ----------------------------- input arguments ----------------------------------
-        GPU = "0"
+        GPU = "2"
 
-        exname = "tst-daft"
-        metadata_path = "metadata_by_features_sets/set-8.csv"  # set 4 is norm minmax (0 to 1), set 5 is std-mean
-        model = "MLP4Tabular"
+        exname = "tst"
+        features_set = "15"  # set 4 is norm minmax (0 to 1), set 5 is std-mean
+        num_classes = "3"
+        model = "ImageAsHyper_Hembd16_TF"
+        split_seed = "1"
         cnn_dropout = "0.1"
-        init_features = "32"
+        init_features = "16"
         lr = "0.0001"
         L2 = "0.00001"
         epochs = "180"
         batch_size = "4"
-        tform = "hippo_crop_lNr"  # hippo_crop  hippo_crop_lNr  normalize hippo_crop_lNr_noise hippo_crop_lNr_scale
-        tform_valid = "hippo_crop_2sides"  # hippo_crop_2sides hippo_crop  hippo_crop_lNr  normalize hippo_crop_lNr_noise hippo_crop_lNr_scaletform_valid="hippo_crop_2sides"   # hippo_crop  hippo_crop_lNr  normalize hippo_crop_lNr_noise hippo_crop_lNr_scale
-        num_workers = "1"
+        tform = "hippo_crop_lNr"  # hippo_crop_lNr_l2r  hippo_crop_lNr       normalize hippo_crop_lNr_noise hippo_crop_lNr_scale
+        tform_valid = "hippo_crop_2sides"      # None  hippo_crop_2sides              hippo_crop  hippo_crop_lNr  normalize hippo_crop_lNr_noise hippo_crop_lNr_scaletform_valid="hippo_crop_2sides"   # hippo_crop  hippo_crop_lNr  normalize hippo_crop_lNr_noise hippo_crop_lNr_scale
+        num_workers = "0"
 
         # flags:
         with_skull = ""  # "--with_skull"  or ""
         no_bias_field_correct = "--no_bias_field_correct"  # "--no_bias_field_correct" or ""
         load2ram = ""  # "-l2r" or ""
         wandb_logging = ""  # "-wandb" or ""
-        ckpt_en = "-ckpt_en"
+        ckpt_en = ""  # -ckpt_en
 
         adni_dir = "/home/duenias/PycharmProjects/HyperNetworks/ADNI_2023/ADNI"
         # --------------------------------------------------------------------------------------------------
         # only for running from here:
-        overfit_batches = ""  # "overfit_batches 0.02"
+        overfit_batches = "--overfit_batches 0.01"  # "--overfit_batches 0.02"
         data_fold = "0"
         # --------------------------------------------------------------------------------------------------
 
-        args_string = f"-exname {exname} --model {model}  --cnn_dropout {cnn_dropout} --init_features {init_features}  -lr {lr} --L2 {L2}  --epochs {epochs} --batch_size {batch_size} --data_fold {data_fold} -tform {tform} --metadata_path {metadata_path} --GPU {GPU} {wandb_logging} --adni_dir {adni_dir} -nw {num_workers} {with_skull} {no_bias_field_correct} {load2ram} {overfit_batches} {ckpt_en}"
+        args_string = f"-exname {exname} --model {model}  --cnn_dropout {cnn_dropout} --init_features {init_features}  -lr {lr} --L2 {L2}  --epochs {epochs} --batch_size {batch_size} --data_fold {data_fold} -tform {tform} --features_set {features_set} --GPU {GPU} {wandb_logging} --adni_dir {adni_dir} -nw {num_workers} {with_skull} {no_bias_field_correct} {load2ram} {overfit_batches} {ckpt_en} --num_classes {num_classes} --split_seed {split_seed}"
         args = parser.parse_args(args_string.split())
 
     else:

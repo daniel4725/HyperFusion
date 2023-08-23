@@ -22,7 +22,7 @@ class_weights=""  # "-cw 0.9454 0.85 1.9906"  "-cw 0.9454 0.6945 1.9906"
 with_skull=""             # "--with_skull"  or ""
 no_bias_field_correct="--no_bias_field_correct"   # "--no_bias_field_correct" or ""
 load2ram="-l2r"            # "-l2r" or ""
-ckpt_en="-ckpt_en"         # "-ckpt_en" or ""
+ckpt_en=""         # "-ckpt_en" or ""
 
 adni_dir="/home/duenias/PycharmProjects/HyperNetworks/ADNI_2023/ADNI"
 

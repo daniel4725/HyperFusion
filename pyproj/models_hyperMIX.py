@@ -139,6 +139,21 @@ class HyperMIX_TFF_noembd_FF_noembd(HyperMIX):
         super().__init__(in_channels=in_channels, n_outputs=n_outputs, bn_momentum=bn_momentum,
                          init_features=init_features, n_tabular_features=n_tabular_features, **kwargs)
 
+
+class HyperMIX_TTF_noembd_FF_noembd(HyperMIX):
+    def __init__(self, in_channels=1, n_outputs=3, bn_momentum=0.1, init_features=4, n_tabular_features=1,**kwargs):
+        kwargs.update({
+            "hypers_bool4hyperMIX_block": (True, True, False),
+            "hiddenMLP4hyperMIX_block": [],
+            "hypers_bool4fc1": False,
+            "hiddenMLP4fc1": [],
+            "hypers_bool4fc2": False,
+            "hiddenMLP4fc2": []
+
+        })
+        super().__init__(in_channels=in_channels, n_outputs=n_outputs, bn_momentum=bn_momentum,
+                         init_features=init_features, n_tabular_features=n_tabular_features, **kwargs)
+
 if __name__ == '__main__':
     from data_handler import get_dataloaders
     from tformNaugment import tform_dict
@@ -159,7 +174,7 @@ if __name__ == '__main__':
                               with_skull=False, no_bias_field_correct=True, num_workers=num_workers)
 
     train_loader, valid_loader = loaders
-    model = HyperMIX_FFF_noembd_hypfc12_noembd(in_channels=1, n_outputs=3, init_features=32, n_tabular_features=6)
+    model = HyperMIX_TFF_noembd_FF_noembd(in_channels=1, n_outputs=3, init_features=32, n_tabular_features=6)
 
 
     img, tabular, y = next(iter(train_loader))

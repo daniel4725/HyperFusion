@@ -11,6 +11,10 @@ import time
 import cv2
 import nibabel as nib
 from tformNaugment import tform_dict
+from sklearn.model_selection import StratifiedKFold
+from scipy.stats import entropy
+from MetadataPreprocess import *
+from skmultilearn.model_selection import IterativeStratification
 
 
 def imshow(img):
@@ -27,52 +31,97 @@ def scanshow(img):
             cv2.waitKey(0)
 
 
-class ADNI_Dataset(Dataset):  # good rand seeds by order: [2341, 704, 795, 1557, 1977, 864, 2211, 2322, 13, 1991]
-    def __init__(self, tr_val_tst, fold=0, metadata_path="metadata_by_features_sets/set-5.csv",
+class BrainAgeDataset(Dataset):
+    def __init__(self, tr_val_tst, fold=0, features_set=5,
                  adni_dir='/home/duenias/PycharmProjects/HyperNetworks/ADNI_2023/ADNI',
-                 transform=None, load2ram=False, rand_seed=2341, classes=("CN", "MCI", "AD"), with_skull=False,
-                 no_bias_field_correct=False, only_tabular=False):
+                 transform=None, load2ram=False, rand_seed=2341, with_skull=False,
+                 no_bias_field_correct=False, only_tabular=False, num_classes=3):
         self.tr_val_tst = tr_val_tst
         self.transform = transform
-        self.metadata = pd.read_csv(metadata_path)
+        self.dataset_path = "/home/duenias/PycharmProjects/HyperNetworks/BrainAgeDataset"
+        self.metadata = pd.read_csv(os.path.join(self.dataset_path, "metadata.csv"))
+        self.metadata = pd.get_dummies(self.metadata, dummy_na=False, columns=["Gender"])
+
+        self.num_tabular_features = 2  # the features excluding the Group and the Subject
+        assert fold in [0, 1, 2, 3]
+        if tr_val_tst not in ['valid', 'train', 'test']:
+            raise ValueError("tr_val_tst error: must be in ['valid', 'train', 'test']!!")
+
+        idxs_dict = self.get_folds_split(fold)
+        self.metadata = self.metadata.loc[idxs_dict[tr_val_tst], :]  # tr_val_tst is valid, train or test
+        self.metadata.reset_index(drop=True, inplace=True)
+        self.metadata["Age"] = (self.metadata["Age"] / 100)
+
+
+    def get_folds_split(self, fold, rand_seed=0):
+        np.random.seed(0)
+        skf = StratifiedKFold(n_splits=5, random_state=rand_seed, shuffle=True)  # 1060 is good seed for joint distribution
+        X = self.metadata.drop(['Subject', 'Age'], axis=1)
+
+        y = self.metadata["Age"].round().astype(int)
+
+        list_of_splits = list(skf.split(X, y))
+        _, val_idxs = list_of_splits[fold]
+        _, test_idxs = list_of_splits[4]
+
+        train_idxs = list(np.where(~self.metadata.index.isin(list(val_idxs) + list(test_idxs)))[0])
+        np.random.shuffle(train_idxs)
+        idxs_dict = {'valid': val_idxs, 'train': train_idxs, 'test': test_idxs}
+        return idxs_dict
+
+    def __len__(self):
+        return len(self.metadata)
+
+    def __getitem__(self, index):
+        subject = self.metadata.loc[index, "Subject"]
+        img = np.load(os.path.join(self.dataset_path, "brain_scans", subject, "brain_scan.npy"))
+
+        features = self.metadata.drop(['Subject', 'Age'], axis=1).loc[index]
+        label = self.metadata.loc[index, "Age"]
+
+        img = img[None, ...]  # add channel dimention
+        if not (self.transform is None):
+            img = self.transform(img)
+
+        return img, np.array(features, dtype=np.float32), label
+
+
+class ADNI_Dataset(Dataset):
+    def __init__(self, tr_val_tst, fold=0, features_set=5,
+                 adni_dir='/home/duenias/PycharmProjects/HyperNetworks/ADNI_2023/ADNI',
+                 transform=None, load2ram=False, rand_seed=2341, with_skull=False,
+                 no_bias_field_correct=False, only_tabular=False, num_classes=3, split_seed=0):
+        self.tr_val_tst = tr_val_tst
+        self.transform = transform
+        self.metadata = create_metadata_csv(features_set_idx=features_set, split_seed=split_seed, fold=fold)
+        self.labels_dict = {3: {"CN": 0, 'MCI': 1, "AD": 2, 'EMCI': 1, "LMCI": 1},
+                            5: {"CN": 0, 'MCI': 1, "AD": 2, 'EMCI': 3, "LMCI": 4}}
+        self.labels_dict = self.labels_dict[num_classes]
         self.with_skull = with_skull
         self.no_bias_field_correct = no_bias_field_correct
         self.only_tabular = only_tabular
 
         self.num_tabular_features = len(self.metadata.columns) - 2  # the features excluding the Group and the Subject
         self.adni_dir = adni_dir
+        assert fold in [0, 1, 2, 3]
 
-        # self.metadata = self.metadata[self.metadata["Subject"].isin(os.listdir(self.adni_dir))]  # take only the ones that are in the adni_dir
-        # bad_images = [2028, 1664, 1562, 1500, 1365, 1364, 1363, 701, 449, 359, 277, 438, 450, 1317, 1465, 1782]
-        # self.metadata = self.metadata.drop(index=bad_images)  # dropping unprocessed data
-        # self.metadata.reset_index(drop=True, inplace=True)
-
-        # to repeat the same data splits
-        # default 'rand_seed' gives uniform distribution for both train and validation
-        np.random.seed(rand_seed)
-        indexes = [i for i in range(len(self.metadata))]
-        np.random.shuffle(indexes)
-
-        # split the data to the relevant fold
-        assert fold in [0, 1, 2, 3, 4]
-        fold_size = len(self.metadata) // 5  # fold size = 20%
-        val_idxs = indexes[fold * fold_size:(fold + 1) * fold_size]
-        test_idxs = indexes[4 * fold_size:]
-        train_idxs = list(np.where(~self.metadata.index.isin(val_idxs + test_idxs))[0])
-        idxs_dict = {'valid': val_idxs, 'train': train_idxs, 'test': test_idxs}
-
+        idxs_dict = self.get_folds_split(fold, split_seed)
         if tr_val_tst not in ['valid', 'train', 'test']:
             raise ValueError("tr_val_tst error: must be in ['valid', 'train', 'test']!!")
         self.metadata = self.metadata.loc[idxs_dict[tr_val_tst], :]  # tr_val_tst is valid, train or test
 
-        self.classes = classes
-        if len(classes) == 2:  # if only CN - AD classes
-            class_dict = {"CN": 0, "MCI": 1, "AD": 2}
-            classes_idxs = (self.metadata.DX_bl == class_dict[classes[0]]) | (
-                        self.metadata.DX_bl == class_dict[classes[1]])
-            self.metadata = self.metadata[classes_idxs]
-            self.metadata.DX_bl.iloc[self.metadata.DX_bl == class_dict[classes[0]]] = 0
-            self.metadata.DX_bl.iloc[self.metadata.DX_bl == class_dict[classes[1]]] = 1
+        # --------- for missing values evaluation: ---------
+        # csv = pd.read_csv("/home/duenias/PycharmProjects/HyperNetworks/ADNI_2023/my_adnimerege.csv")
+        # csv = csv.loc[idxs_dict[tr_val_tst], :]
+        # missing_csf = csv.TAU.isna()
+        # missing_PET = (csv.FDG.isna()) | (csv.AV45.isna())
+        #
+        # missing_mask = missing_csf
+        # # missing_mask = missing_PET
+        # # missing_mask = missing_PET | missing_csf
+        # self.metadata = self.metadata[missing_mask]
+        # # self.metadata = self.metadata[~missing_mask]
+        # ---------------------------------------------------
 
         self.metadata.reset_index(drop=True, inplace=True)
 
@@ -81,6 +130,57 @@ class ADNI_Dataset(Dataset):  # good rand seeds by order: [2341, 704, 795, 1557,
         if load2ram:
             self.load_data2ram()
             self.data_in_ram = True
+
+    def get_folds_split(self, fold, split_seed=0):
+        # to repeat the same data splits
+
+        # ----------- split w.r.t the label distribution alone -----------------
+        # np.random.seed(0)
+        # # print(f"splitting the data with split seed {split_seed}")
+        # skf = StratifiedKFold(n_splits=5, random_state=split_seed, shuffle=True)
+        # X = self.metadata.drop(['Subject', 'Group'], axis=1)
+        # y = self.metadata["Group"]
+        # list_of_splits = list(skf.split(X, y))
+        # _, val_idxs = list_of_splits[fold]
+        # _, test_idxs = list_of_splits[4]
+
+        # ----------- split w.r.t the joint distribution of the label, sex & age -----------------
+        df = self.metadata.copy()
+        df = df.sample(frac=1, random_state=split_seed)
+        df = df.replace(self.labels_dict)
+        bins = 20
+        df["AGE"] = pd.cut(df["AGE"], bins=bins, labels=[i for i in range(bins)])
+        folds = [[], [], [], [], []]
+        folds_idx = 0
+        for sex in df["PTGENDER_Male"].unique():
+            for label in df["Group"].unique():
+                for age in np.sort(df["AGE"].unique()):
+                    sub_df = df[(df["PTGENDER_Male"] == sex) & (df["Group"] == label) & (df["AGE"] == age)]
+                    for idx in sub_df.index:
+                        folds[folds_idx].append(idx)
+                        folds_idx = (folds_idx + 1) % 5
+        val_idxs = folds[fold]
+        test_idxs = folds[4]
+
+        #  ------------  check if the splits distribution   ----------------------
+        # for fold in range(5):
+        #     df = self.metadata.loc[folds[fold], ["Group", "AGE", "PTGENDER_Male"]].copy()
+        #     df = df.replace(self.labels_dict)
+        #     print(df["Group"].value_counts(normalize=True))
+        #     print(df["PTGENDER_Male"].value_counts(normalize=True))
+        #     df.AGE.hist(bins=10, density=True)
+        #     plt.xlim(-3.2, 3.2)
+        #     plt.show()
+        # self.metadata.AGE.hist(bins=10, density=True)
+        # plt.xlim(-3.2, 3.2)
+        # plt.show()
+        #  -------------------------------------------------------------------
+
+
+        train_idxs = list(np.where(~self.metadata.index.isin(list(val_idxs) + list(test_idxs)))[0])
+        np.random.shuffle(train_idxs)
+        idxs_dict = {'valid': val_idxs, 'train': train_idxs, 'test': test_idxs}
+        return idxs_dict
 
     def load_image(self, subject):
         if self.no_bias_field_correct:
@@ -107,7 +207,7 @@ class ADNI_Dataset(Dataset):  # good rand seeds by order: [2341, 704, 795, 1557,
     def load_data2ram(self):
         save_tform = self.transform  # save the regolar tform in this temp variable
 
-        if self.tr_val_tst == "valid":
+        if self.tr_val_tst in ["valid", "test"]:
             self.transform = tform_dict["hippo_crop_2sides"]
             loader = DataLoader(dataset=self, batch_size=1, shuffle=False, num_workers=5)
             for batch in tqdm(loader, f'Loading {self.tr_val_tst} data to ram: '):
@@ -126,8 +226,6 @@ class ADNI_Dataset(Dataset):  # good rand seeds by order: [2341, 704, 795, 1557,
         # for img, _, _ in tqdm(loader, f'Loading {self.tr_val_tst} data to ram: '):
         #     self.imgs_ram_lst.append(img[0, 0].type(torch.float32))
 
-        if self.tr_val_tst == "test":
-            raise ValueError("test l2r func not implemented yet!!")
 
         self.transform = save_tform
 
@@ -150,7 +248,7 @@ class ADNI_Dataset(Dataset):  # good rand seeds by order: [2341, 704, 795, 1557,
 
     def __getitem__(self, index):
         if self.data_in_ram:  # the data is a list alredy
-            if self.tr_val_tst == "valid":
+            if self.tr_val_tst in ["valid", "test"]:
                 img, features, label = self.imgs_ram_lst[index]
                 return img.type(torch.float32), features, label
                 # img = self.imgs_ram_lst[index]
@@ -167,26 +265,27 @@ class ADNI_Dataset(Dataset):  # good rand seeds by order: [2341, 704, 795, 1557,
         features = self.metadata.drop(['Subject', 'Group'], axis=1).loc[index]
         label = self.metadata.loc[index, "Group"]
         if self.only_tabular:
-            return img, np.array(features, dtype=np.float32), label
+            return img, np.array(features, dtype=np.float32), self.labels_dict[label]
 
         img = img[None, ...]  # add channel dimention
         if not (self.transform is None):
             img = self.transform(img)
 
-        return img, np.array(features, dtype=np.float32), label
+        return img, np.array(features, dtype=np.float32), self.labels_dict[label]
 
 
-def get_dataloaders(batch_size, metadata_path="metadata_by_features_sets/set-1.csv",
+def get_dataloaders(batch_size, features_set=5,
                     adni_dir='/usr/local/faststorage/adni_class_pred_2x2x2_v1', fold=0, num_workers=0,
-                    transform_train=None, transform_valid=None, load2ram=False, sample=1, classes=("CN", "MCI", "AD"),
-                    with_skull=False, no_bias_field_correct=False, only_tabular=False):
+                    transform_train=None, transform_valid=None, load2ram=False, sample=1,
+                    with_skull=False, no_bias_field_correct=True, only_tabular=False, num_classes=3,
+                    dataset_class=ADNI_Dataset, split_seed=0):
     """ creates the train and validation data sets and creates their data loaders"""
-    train_ds = ADNI_Dataset(tr_val_tst="train", fold=fold, metadata_path=metadata_path, adni_dir=adni_dir,
-                            transform=transform_train, load2ram=load2ram, classes=classes, only_tabular=only_tabular,
-                            with_skull=with_skull, no_bias_field_correct=no_bias_field_correct)
-    valid_ds = ADNI_Dataset(tr_val_tst="valid", fold=fold, metadata_path=metadata_path, adni_dir=adni_dir,
-                            transform=transform_valid, load2ram=load2ram, classes=classes, only_tabular=only_tabular,
-                            with_skull=with_skull, no_bias_field_correct=no_bias_field_correct)
+    train_ds = dataset_class(tr_val_tst="train", fold=fold, features_set=features_set, adni_dir=adni_dir,
+                            transform=transform_train, load2ram=load2ram, only_tabular=only_tabular, split_seed=split_seed,
+                            with_skull=with_skull, no_bias_field_correct=no_bias_field_correct, num_classes=num_classes)
+    valid_ds = dataset_class(tr_val_tst="valid", fold=fold, features_set=features_set, adni_dir=adni_dir,
+                            transform=transform_valid, load2ram=load2ram, only_tabular=only_tabular, split_seed=split_seed,
+                            with_skull=with_skull, no_bias_field_correct=no_bias_field_correct, num_classes=num_classes)
 
     if sample < 1 and sample > 0:  # take a portion of the data (for debuggind the model)
         num_train_samples = int(len(train_ds) * sample)
@@ -199,19 +298,110 @@ def get_dataloaders(batch_size, metadata_path="metadata_by_features_sets/set-1.c
     return train_loader, valid_loader
 
 
-def get_test_loader(batch_size, metadata_path="metadata_features_set_1.csv",
-                    num_workers=0, load2ram=False, transform=None, classes=("CN", "MCI", "AD"),
-                    with_skull=False, no_bias_field_correct=False):
+def get_test_loader(batch_size, features_set=5,
+                    adni_dir='/usr/local/faststorage/adni_class_pred_2x2x2_v1', fold=0, num_workers=0,
+                    transform=None, load2ram=False, num_classes=3,
+                    with_skull=False, no_bias_field_correct=False, only_tabular=False,
+                    dataset_class=ADNI_Dataset, split_seed=0):
     """ creates the test data set and creates its data loader"""
-    test_ds = ADNI_Dataset(tr_val_tst="test", metadata_path=metadata_path,
-                           transform=transform, load2ram=load2ram, classes=classes,
-                           with_skull=with_skull, no_bias_field_correct=no_bias_field_correct)
+    test_ds = dataset_class(tr_val_tst="test", fold=fold, features_set=features_set, adni_dir=adni_dir,
+                            transform=transform, load2ram=load2ram, only_tabular=only_tabular, split_seed=split_seed,
+                            with_skull=with_skull, no_bias_field_correct=no_bias_field_correct, num_classes=num_classes)
     test_loader = DataLoader(dataset=test_ds, batch_size=batch_size, shuffle=False, num_workers=num_workers)
     return test_loader
 
 
+def find_good_split():
+    def get_joint_distribution(dataframe, col_names):
+        histogram = dataframe.groupby(col_names).size().reset_index()[0]
+        return histogram / histogram.sum()
+
+    def get_distribution(dataframe, col_names):
+        histogram = dataframe.groupby(col_names).size().reset_index()[0]
+        return histogram / histogram.sum()
+
+    def bhattacharyya(p, q):
+        bhattacharyya_coeff = np.sum(np.sqrt(p * q))
+        return -np.log(bhattacharyya_coeff)
+
+    def hight_dist(p, q):
+        diff = abs(p - q)
+        return np.mean(diff)
+
+    # csv_path = "/home/duenias/PycharmProjects/HyperNetworks/ADNI_2023/my_adnimerege.csv"
+    # csv = pd.read_csv(csv_path)
+
+    basecsv = create_metadata_csv(features_set_idx=10)
+    csv = create_metadata_csv(features_set_idx=10)
+
+    csv['AGE'] = pd.cut(csv['AGE'], bins=5)
+    cols = ["AGE", "PTGENDER_Female", "APOE4", "PTEDUCAT", "Group"]
+
+    # ps = []
+    # for col in cols:
+    #     ps.append(get_distribution(csv, [col]))
+
+    ps = get_joint_distribution(csv, cols)
+
+    X, y = csv[cols], csv["Group"]
+
+    lowest = {"val": 100, "seed": 0, "indexes": []}
+    highest = {"val": 0, "seed": 0, "indexes": []}
+    for seed in tqdm(range(300)):
+        skf = StratifiedKFold(n_splits=5, random_state=seed, shuffle=True)
+        entrpies = []
+        indexes = []
+        for _, (train_index, test_index) in enumerate(skf.split(X, y)):
+            # fold_distances = []
+            # for col, p in zip(cols, ps):
+            #     q = get_distribution(csv.iloc[test_index], [col])
+            #     # dist = entropy(p, q + 1e-100)
+            #     # dist = bhattacharyya(p, q) / len(p)
+            #     dist = hight_dist(p, q)
+            #     fold_distances.append(dist)
+            # entrpies.append(np.mean(fold_distances))
+
+            q = get_distribution(csv.iloc[test_index], cols)
+            # dist = hight_dist(ps, q)
+            dist = bhattacharyya(ps, q)
+            entrpies.append(dist)
+
+            indexes.append(test_index)
+        if lowest["val"] > np.mean(entrpies):
+            lowest["val"] = np.mean(entrpies)
+            lowest["seed"] = seed
+            lowest["indexes"] = indexes
+            print(f"\nnew lowest: value={np.mean(entrpies):.3f}, seed={seed}")
+        if highest["val"] < np.mean(entrpies):
+            highest["val"] = np.mean(entrpies)
+            highest["seed"] = seed
+            highest["indexes"] = indexes
+            print(f"\nnew higest: value={np.mean(entrpies):.3f}, seed={seed}")
+
+        # print(f"{seed} - D(p||q): mean={np.mean(entrpies)}, std={np.std(entrpies)}, list={entrpies}")
+
+    for idxs in lowest["indexes"]:
+        # basecsv.loc[idxs, "AGE"].hist()
+        # plt.ylim(0, 100)
+        # plt.xlim(-3, 3)
+        # basecsv.loc[idxs, "PTGENDER_Female"].hist()
+        # plt.ylim(0, 250)
+        basecsv.loc[idxs, "APOE4"].hist()
+        plt.ylim(0, 270)
+        plt.show()
+    for idxs in highest["indexes"]:
+        # basecsv.loc[idxs, "AGE"].hist()
+        # plt.ylim(0, 100)
+        # plt.xlim(-3, 3)
+        basecsv.loc[idxs, "PTGENDER_Female"].hist()
+        plt.ylim(0, 250)
+        plt.show()
+
+
 if __name__ == "__main__":
     from tformNaugment import tform_dict
+
+    find_good_split()
 
     torch.manual_seed(0)
     ADNI_dir = "/home/duenias/PycharmProjects/HyperNetworks/ADNI_2023/ADNI"
@@ -223,6 +413,19 @@ if __name__ == "__main__":
     data_fold = 1
     tform = "hippo_crop_lNr_l2r_tst"  # center_crop  hippo_crop_lNr  hippo_crop_lNr_l2r
 
+    for f in [0, 1, 2, 3]:
+        metadata_path = "/home/duenias/PycharmProjects/HyperNetworks/pyproj/metadata_by_features_sets/set-8.csv"
+        valid_ds = ADNI_Dataset(tr_val_tst="train", fold=f, metadata_path=metadata_path, adni_dir=ADNI_dir,
+                                transform=tform_dict["None"], load2ram=False,
+                                with_skull=False, no_bias_field_correct=True)
+        # valid_ds.metadata["AGE"].hist()
+        # plt.ylim(0, 100)
+        # plt.xlim(-3, 3)
+        # valid_ds.metadata["PTGENDER_Female"].hist()
+        # plt.ylim(0, 250)
+        valid_ds.metadata["APOE4"].hist()
+        plt.ylim(0, 270)
+        plt.show()
 
     # loaders = get_dataloaders(batch_size=64, adni_dir=ADNI_dir, load2ram=load2ram,
     #                           metadata_path=metadata_path, fold=data_fold,
@@ -384,6 +587,22 @@ if __name__ == "__main__":
     # fold 3: train-[35. 48. 17.], valid-[35. 48. 18.]
     # fold 4: train-[35. 48. 17.], valid-[34. 48. 17.]
     # valid std=[0.8   0.    0.748]
+
+
+    for f in [0, 1, 2, 3]:
+        metadata_path = "/home/duenias/PycharmProjects/HyperNetworks/pyproj/metadata_by_features_sets/set-8.csv"
+        valid_ds = ADNI_Dataset(tr_val_tst="valid", fold=f, metadata_path=metadata_path, adni_dir=ADNI_dir,
+                                transform=tform_dict["None"], load2ram=False,
+                                with_skull=False, no_bias_field_correct=True)
+        # valid_ds.metadata["AGE"].hist()
+        # plt.ylim(0, 100)
+        # plt.xlim(-3, 3)
+        # valid_ds.metadata["PTGENDER_Female"].hist()
+        # plt.ylim(0, 250)
+        valid_ds.metadata["APOE4"].hist()
+        plt.ylim(0, 270)
+        plt.show()
+
 
     times = 2400
     seeds_valid_std = []

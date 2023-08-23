@@ -35,6 +35,73 @@ class MLP4Tabular(nn.Module):
         image, tabular = x        
         return self.mlp(tabular)
 
+class MLP_16_bn_prl(nn.Module):
+    def __init__(self, mlp_layers_shapes, **kwargs):
+        super().__init__()
+        self.mlp = nn.Sequential(
+            nn.Linear(in_features=mlp_layers_shapes[0], out_features=16),
+            nn.BatchNorm1d(16),
+            nn.PReLU(),
+            nn.Linear(in_features=16, out_features=mlp_layers_shapes[-1]),
+        )
+
+        print(self)
+
+    def forward(self, x):
+        image, tabular = x
+        return self.mlp(tabular)
+
+class MLP_32_bn_prl(nn.Module):
+    def __init__(self, mlp_layers_shapes, **kwargs):
+        super().__init__()
+        self.mlp = nn.Sequential(
+            nn.Linear(in_features=mlp_layers_shapes[0], out_features=32),
+            nn.BatchNorm1d(32),
+            nn.PReLU(),
+            nn.Linear(in_features=32, out_features=mlp_layers_shapes[-1]),
+        )
+
+        print(self)
+
+    def forward(self, x):
+        image, tabular = x
+        return self.mlp(tabular)
+
+
+class MLP_8_bn_prl(nn.Module):
+    def __init__(self, mlp_layers_shapes, **kwargs):
+        super().__init__()
+        self.mlp = nn.Sequential(
+            nn.Linear(in_features=mlp_layers_shapes[0], out_features=8),
+            nn.BatchNorm1d(8),
+            nn.PReLU(),
+            nn.Linear(in_features=8, out_features=mlp_layers_shapes[-1]),
+        )
+
+        print(self)
+
+    def forward(self, x):
+        image, tabular = x
+        return self.mlp(tabular)
+
+
+class MLP_4_bn_prl(nn.Module):
+    def __init__(self, mlp_layers_shapes, **kwargs):
+        super().__init__()
+        self.mlp = nn.Sequential(
+            nn.Linear(in_features=mlp_layers_shapes[0], out_features=4),
+            nn.BatchNorm1d(4),
+            nn.PReLU(),
+            nn.Linear(in_features=4, out_features=mlp_layers_shapes[-1]),
+        )
+
+        print(self)
+
+    def forward(self, x):
+        image, tabular = x
+        return self.mlp(tabular)
+
+
 if __name__ == "__main__":
     batch_size = 12
     in_features = 4

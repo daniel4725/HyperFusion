@@ -5,9 +5,9 @@ cd $PYPROJ
 #sh experiments/tst-MLP4tabular.sh
 
 # args:
-GPU="2"
+GPU="0"
 
-exname="tst-mlp4tabular[16]_arch-set8"  # the experiment name is the file name
+exname="tst-mlp4tabular[16]_arch-set8_v2"  # the experiment name is the file name
 metadata_path="metadata_by_features_sets/set-8.csv"  # set 4 is norm minmax (0 to 1), set 5 is std-mean
 model="MLP4Tabular"
 #------ MLP -------
@@ -23,9 +23,9 @@ lr="0.0001"
 L2="0.00001"
 epochs="300"
 batch_size="64"
-tform="hippo_crop_lNr_l2r"  # hippo_crop  hippo_crop_lNr  normalize hippo_crop_lNr_noise hippo_crop_lNr_scale
-tform_valid="None"  # hippo_crop_2sides hippo_crop  hippo_crop_lNr  normalize hippo_crop_lNr_noise hippo_crop_lNr_scaletform_valid="hippo_crop_2sides"   # hippo_crop  hippo_crop_lNr  normalize hippo_crop_lNr_noise hippo_crop_lNr_scale
-num_workers="1"
+tform="hippo_crop_lNr"  # hippo_crop  hippo_crop_lNr  normalize hippo_crop_lNr_noise hippo_crop_lNr_scale
+tform_valid="hippo_crop_2sides"  # hippo_crop_2sides hippo_crop  hippo_crop_lNr  normalize hippo_crop_lNr_noise hippo_crop_lNr_scaletform_valid="hippo_crop_2sides"   # hippo_crop  hippo_crop_lNr  normalize hippo_crop_lNr_noise hippo_crop_lNr_scale
+num_workers="5"
 class_weights=""  # "-cw 1.2 1.2 1.99"  "-cw 0.9454 0.6945 1.9906"
 
 # flags:

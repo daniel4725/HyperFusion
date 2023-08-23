@@ -5,6 +5,30 @@ import os
 from pytorch_lightning.callbacks import Callback, ModelCheckpoint
 from datetime import datetime
 
+def CheckpointCallback4regression(**kwargs):
+    now = datetime.now()
+    dt_string = now.strftime("%dd%mm%yy-%Hh%Mm%Ss")
+    # print("date and time =", dt_string)
+
+    checkpoint_dir = kwargs["checkpoint_dir"]
+    experiment_name = kwargs["experiment_name"]
+
+    checkpoint_callback = ModelCheckpoint(
+        dirpath=os.path.join(checkpoint_dir, experiment_name, f"fold_{kwargs['data_fold']}"),
+        # dirpath=os.path.join(checkpoint_dir, experiment_name +"_" + dt_string, f"fold_{kwargs['data_fold']}"),
+        filename='best_val',
+        # filename=experiment_name + '-epoch={epoch}-val_balanced_acc={val/balanced_acc:.3f}',
+        save_top_k=1,
+        save_last=True,
+        auto_insert_metric_name=False,
+        monitor="val/MAE",
+        mode="min"
+        )
+    checkpoint_callback.CHECKPOINT_NAME_LAST = "last"
+    # checkpoint_callback.CHECKPOINT_NAME_LAST = experiment_name + "-epoch={epoch}-last"
+    return checkpoint_callback
+
+
 def CheckpointCallback(**kwargs):
     now = datetime.now()
     dt_string = now.strftime("%dd%mm%yy-%Hh%Mm%Ss")
@@ -14,15 +38,18 @@ def CheckpointCallback(**kwargs):
     experiment_name = kwargs["experiment_name"]
 
     checkpoint_callback = ModelCheckpoint(
-        dirpath=os.path.join(checkpoint_dir, experiment_name +"_" + dt_string, f"fold_{kwargs['data_fold']}"),
-        filename=experiment_name + '-epoch={epoch}-val_balanced_acc={val/balanced_acc:.3f}',
+        dirpath=os.path.join(checkpoint_dir, experiment_name, f"fold_{kwargs['data_fold']}"),
+        # dirpath=os.path.join(checkpoint_dir, experiment_name +"_" + dt_string, f"fold_{kwargs['data_fold']}"),
+        filename='best_val',
+        # filename=experiment_name + '-epoch={epoch}-val_balanced_acc={val/balanced_acc:.3f}',
         save_top_k=1,
         save_last=True,
         auto_insert_metric_name=False,
         monitor="val/balanced_acc",
         mode="max"
         )
-    checkpoint_callback.CHECKPOINT_NAME_LAST = experiment_name + "-epoch={epoch}-last"
+    checkpoint_callback.CHECKPOINT_NAME_LAST = "last"
+    # checkpoint_callback.CHECKPOINT_NAME_LAST = experiment_name + "-epoch={epoch}-last"
     return checkpoint_callback
 
 
