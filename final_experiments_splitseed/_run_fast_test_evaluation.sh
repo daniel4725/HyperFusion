@@ -5,18 +5,20 @@
 # Film-fs0
 # concat-fs0
 
-#project_name="HyperNetworks_final_splitseed_test"
-project_name="HyperNetworks_final_splitseed"
+project_name="HyperNetworks_final_splitseed_test"
+#project_name="HyperNetworks_final_splitseed"
 #project_name="HyperNets_imgNtabular"
 
-GPU="3"
-split_seed="0"
-version="_v1"   # the base experiment
-#versions="_v1"
-versions="_v1,_v2,_v3"   # the ensemble experiments
+GPU="0"
+split_seed="2"
+version="_v3"   # the base experiment
+versions=$version
+#versions="_v1,_v2,_v3"   # the ensemble experiments
 features_set="15"
 # TabularAsHyper_R_R_R_FFT_FF_embd8_cw1  DAFT_BalancCw  Film_cw  baseline-concat1_cw1  baseline-tabular_embd8
-#experiment_base_name="TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw085"
+#experiment_base_name="Film_cw11d14"
+#experiment_base_name="baseline-concat1_cw11_08_14"
+experiment_base_name="baseline-resnet_cw1"
 #experiment_base_name="T_AsHyper_R_R_FFT_FFF_FF_embd_trainedTabular8_cw085"
 #experiment_base_name="TabularAsHyper_scaled_R_R_R_FFT_FF_embd_trainedTabular_cw085"
 #experiment_base_name="ImageAsHyper_Hembd16_FT"
@@ -25,7 +27,7 @@ features_set="15"
 #experiment_base_name="TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw109085"
 #experiment_base_name="TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw104085"
 #experiment_base_name="TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw09"
-experiment_base_name="TabularAsHyper_embd_trainedTabular8_cwdd17"
+#experiment_base_name="TabularAsHyper_embd_trainedTabular8_cwdd17"
 #experiment_base_name="DAFT_BalancCw"
 #experiment_base_name="DAFT_cw085"
 #experiment_base_name="DAFT_cwdd17"

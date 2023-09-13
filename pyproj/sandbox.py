@@ -17,23 +17,27 @@ import pytorch_lightning as pl
 from sklearn.manifold import TSNE
 from utils import *
 
-df = pd.read_csv('/media/rrtammyfs/Users/daniel/hyper_table_val_aranged.csv', index_col=0)
-df = df.head()
+df = pd.read_csv("/media/rrtammyfs/labDatabase/BrainAge/Healthy_subjects_divided_pipe_v2.csv", low_memory=False)
+projects = df.ProjTitle.unique()
 
-title = "Title"
-metrics = ['balanced_acc', 'precision', 'f1_macro', 'AUC', 'CN_acc', 'MCI_acc', 'AD_acc']
-metrics = ['balanced_acc', 'precision', 'f1_macro']
-colors = []
-colors += ['tab:blue']
-colors += ['tab:cyan']
-colors += ['tab:olive']
-colors += ['tab:red']
-colors += ['tab:purple']
-colors += ['tab:orange']
-colors += ['tab:green']
-colors += ['tab:brown']
-colors += ['tab:pink']
-colors += ['tab:grey']
+for proj in projects:
+    subset = df[df.ProjTitle == proj]
+    if "Oasis" in proj:
+        subset = df[(df.ProjTitle == "OasisCross") | (df.ProjTitle == "OasisLong")]
+    if "ADNI" in proj:
+        subset = df[(df.ProjTitle == "ADNIDOD") | (df.ProjTitle == "ADNI")]
 
+    subset = subset[~(subset.Age.isna() | subset.Gender.isna())]
+    N = len(subset)
+    age = subset.Age
+    males = (subset.Gender == "M").sum()
+    females = (subset.Gender == "F").sum()
+    print(f"{proj} & {N} & {age.mean():.1f} (±{age.std():.1f}) & {males}:{females} \\\\ \\hline")
 
-results_df2bars_graph(df, title, metrics, colors)
+subset = df[~(df.Age.isna() | df.Gender.isna())]
+N = len(subset)
+age = subset.Age
+males = (subset.Gender == "M").sum()
+females = (subset.Gender == "F").sum()
+print(f"over all & {N} & {age.mean():.1f} (±{age.std():.1f}) & {males}:{females} \\\\ \\hline")
+

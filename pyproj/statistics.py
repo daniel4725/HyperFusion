@@ -6,6 +6,8 @@ import json
 import wandb
 import pandas as pd
 import matplotlib.pyplot as plt
+import itertools
+
 # Initialize the API
 api = wandb.Api()
 
@@ -145,8 +147,8 @@ def get_experiment_metrics(project_name, experiment_name, eval_type, metrics_nam
     for metric in metrics_names:
         m = get_runs_test_metrics(runs=runs, eval_type=eval_type, metric=metric)
         metrics_dict[metric] = f"{np.mean(m):.4f}"
-        metrics_dict[metric + "_std"] = f"{np.std(m):.4f}"
-        metrics_dict[metric + "_mean_N_std"] = f"{np.mean(m):.4f} +- {np.std(m):.4f}"
+        # metrics_dict[metric + "_std"] = f"{np.std(m):.4f}"
+        # metrics_dict[metric + "_mean_N_std"] = f"{np.mean(m):.4f} +- {np.std(m):.4f}"
 
     return metrics_dict
 
@@ -441,373 +443,40 @@ if __name__ == "__main__":
     project_name += "_test"
 
     experiments_names = [
-        # experiments_names_dict["resnet"],
-        #
-        # experiments_names_dict["tabular_fs12"],
-        # experiments_names_dict["concat1_fs12"],
-        # experiments_names_dict["Film_fs12"],
-        # experiments_names_dict["DAFT_fs12"],
-        # experiments_names_dict["hyper_fs12"],
-        #
-        # experiments_names_dict["tabular_fs8"],
-        # experiments_names_dict["concat1_fs8"],
-        # experiments_names_dict["Film_fs8"],
-        # experiments_names_dict["DAFT_fs8"],
-        # experiments_names_dict["hyper_fs8"],
-        # #
-        # # experiments_names_dict["tabular_fs0"],
-        # # # - experiments_names_dict["concat1_fs0"],
-        # # # - experiments_names_dict["Film_fs0"],
-        # # # - experiments_names_dict["DAFT_fs0"],
-        # # experiments_names_dict["hyper_fs0"],
-        # #
-        # experiments_names_dict["tabular_fs5"],
-        # experiments_names_dict["concat1_fs5"],
-        # experiments_names_dict["Film_fs5"],
-        # experiments_names_dict["DAFT_fs5"],
-        # experiments_names_dict["hyper_fs5"],
-        #
-
-
-        # [
-        # "TabularAsHyper_R_R_R_FFT_FF_embd8_cw1v1-seed0-fs5",
-        # "TabularAsHyper_R_R_R_FFT_FF_embd8_cw1v2-seed0-fs5",
-        # "TabularAsHyper_R_R_R_FFT_FF_embd8_cw1v1-seed1-fs5",
-        # "TabularAsHyper_R_R_R_FFT_FF_embd8_cw1v2-seed1-fs5",
-        # ],
-        # [
-        # "DAFT_BalancCw_v1-seed0-fs12",
-        # "DAFT_BalancCw_v2-seed0-fs12",
-        # "DAFT_BalancCw_v1-seed1-fs12",
-        # "DAFT_BalancCw_v2-seed1-fs12",
-        # "DAFT_BalancCw_v1-seed2-fs12",
-        # "DAFT_BalancCw_v2-seed2-fs12",
-        # "DAFT_BalancCw_v1-seed3-fs12",
-        # "DAFT_BalancCw_v2-seed3-fs12",
-        # ],
-        # [],
-
-
-
-
-        # experiments_names_dict["DAFT_fs12"],
-        # experiments_names_dict["hyper_fs12"],
-
-        # [
-
-        # [],
-        # # "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw085_v3-seed0-fs12",
-        # "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw085_v1-seed1-fs12",
-        # "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw085_v2-seed1-fs12",
-        # # "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw085_v3-seed1-fs12",
-        # # "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw085_v1-seed2-fs12",
-        # "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw085_v2-seed2-fs12",
-        # # "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw085_v3-seed2-fs12",
-        # "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw085_v1-seed3-fs12",
-        # "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw085_v2-seed3-fs12",
-        # # "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw085_v1-seed4-fs12",
-        # # "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw085_v2-seed4-fs12",
-        # ],
-        #
-        # [],
-        # "DAFT_cw09_v1-seed0-fs12",
-        # "DAFT_cw09_v2-seed0-fs12",
-        # "DAFT_cw09_v3-seed0-fs12",
-        # "DAFT_cw09_v1-seed1-fs12",
-        # "DAFT_cw09_v2-seed1-fs12",
-        # "DAFT_cw09_v3-seed1-fs12",
-        # "DAFT_cw09_v1-seed2-fs12",
-        # "DAFT_cw09_v2-seed2-fs12",
-        # "DAFT_cw09_v3-seed2-fs12",
-        # [
-        #     "DAFT_cw09_v1-seed0-fs12",
-        #     "DAFT_cw09_v2-seed0-fs12",
-        #     "DAFT_cw09_v3-seed0-fs12",
-        #     "DAFT_cw09_v1-seed1-fs12",
-        #     "DAFT_cw09_v2-seed1-fs12",
-        #     "DAFT_cw09_v3-seed1-fs12",
-        #     "DAFT_cw09_v1-seed2-fs12",
-        #     "DAFT_cw09_v2-seed2-fs12",
-        #     "DAFT_cw09_v3-seed2-fs12",
-        # ],
-        # [],
-        # "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw09_v1-seed0-fs12",
-        # "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw09_v2-seed0-fs12",
-        # "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw09_v3-seed0-fs12",
-        # "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw09_v1-seed1-fs12",
-        # "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw09_v2-seed1-fs12",
-        # "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw09_v3-seed1-fs12",
-        # "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw09_v1-seed2-fs12",
-        # "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw09_v2-seed2-fs12",
-        # "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw09_v3-seed2-fs12",
-        # [
-        #     "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw09_v1-seed0-fs12",
-        #     "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw09_v2-seed0-fs12",
-        #     "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw09_v3-seed0-fs12",
-        #     "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw09_v1-seed1-fs12",
-        #     "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw09_v2-seed1-fs12",
-        #     "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw09_v3-seed1-fs12",
-        #     "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw09_v1-seed2-fs12",
-        #     "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw09_v2-seed2-fs12",
-        #     "TabularAsHyper_R_R_R_FFT_FF_embd_trainedTabular_cw09_v3-seed2-fs12",
-        # ],
-        # [],
-        # "DAFT_cwdd17_v1-seed0-fs15",
-        # "DAFT_cwdd17_v2-seed0-fs15",
-        # "DAFT_cwdd17_v3-seed0-fs15",
-        # "DAFT_cwdd17_v1-seed1-fs15",
-        # "DAFT_cwdd17_v2-seed1-fs15",
-        # "DAFT_cwdd17_v3-seed1-fs15",
-        # "DAFT_cwdd17_v1-seed2-fs15",
-        # "DAFT_cwdd17_v2-seed2-fs15",
-        # "DAFT_cwdd17_v3-seed2-fs15",
-        # [
-        #     "DAFT_cwdd17_v1-seed0-fs15",
-        #     "DAFT_cwdd17_v2-seed0-fs15",
-        #     "DAFT_cwdd17_v3-seed0-fs15",
-        #     "DAFT_cwdd17_v1-seed1-fs15",
-        #     "DAFT_cwdd17_v2-seed1-fs15",
-        #     "DAFT_cwdd17_v3-seed1-fs15",
-        #     "DAFT_cwdd17_v1-seed2-fs15",
-        #     "DAFT_cwdd17_v2-seed2-fs15",
-        #     "DAFT_cwdd17_v3-seed2-fs15",
-        # ],
-        # [],
-        # "TabularAsHyper_embd_trainedTabular8_cwdd17_v1-seed0-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cwdd17_v2-seed0-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cwdd17_v3-seed0-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cwdd17_v1-seed1-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cwdd17_v2-seed1-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cwdd17_v3-seed1-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cwdd17_v1-seed2-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cwdd17_v2-seed2-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cwdd17_v3-seed2-fs15",
-        # [
-        #     "TabularAsHyper_embd_trainedTabular8_cwdd17_v1-seed0-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cwdd17_v2-seed0-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cwdd17_v3-seed0-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cwdd17_v1-seed1-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cwdd17_v2-seed1-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cwdd17_v3-seed1-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cwdd17_v1-seed2-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cwdd17_v2-seed2-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cwdd17_v3-seed2-fs15",
-        # ],
-        # [],
-        # "DAFT_cwdd14_v1-seed0-fs15",
-        # "DAFT_cwdd14_v2-seed0-fs15",
-        # "DAFT_cwdd14_v1-seed1-fs15",
-        # "DAFT_cwdd14_v2-seed1-fs15",
-        # "DAFT_cwdd14_v1-seed2-fs15",
-        # "DAFT_cwdd14_v2-seed2-fs15",
-        # [
-        #     "DAFT_cwdd14_v1-seed0-fs15",
-        #     "DAFT_cwdd14_v2-seed0-fs15",
-        #     "DAFT_cwdd14_v1-seed1-fs15",
-        #     "DAFT_cwdd14_v2-seed1-fs15",
-        #     "DAFT_cwdd14_v1-seed2-fs15",
-        #     "DAFT_cwdd14_v2-seed2-fs15",
-        # ],
-        # [],
-        # "TabularAsHyper_embd_trainedTabular8_cwdd14_v1-seed0-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cwdd14_v2-seed0-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cwdd14_v1-seed1-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cwdd14_v2-seed1-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cwdd14_v1-seed2-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cwdd14_v2-seed2-fs15",
-        # [
-        #     "TabularAsHyper_embd_trainedTabular8_cwdd14_v1-seed0-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cwdd14_v2-seed0-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cwdd14_v1-seed1-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cwdd14_v2-seed1-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cwdd14_v1-seed2-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cwdd14_v2-seed2-fs15",
-        # ],
-        # [],
-        # "DAFT_cwdd11_v1-seed0-fs15",
-        # "DAFT_cwdd11_v2-seed0-fs15",
-        # "DAFT_cwdd11_v3-seed0-fs15",
-        # "DAFT_cwdd11_v1-seed1-fs15",
-        # "DAFT_cwdd11_v2-seed1-fs15",
-        # "DAFT_cwdd11_v3-seed1-fs15",
-        # "DAFT_cwdd11_v1-seed2-fs15",
-        # "DAFT_cwdd11_v2-seed2-fs15",
-        # "DAFT_cwdd11_v3-seed2-fs15",
-        # [
-        #     "DAFT_cwdd11_v1-seed0-fs15",
-        #     "DAFT_cwdd11_v2-seed0-fs15",
-        #     "DAFT_cwdd11_v3-seed0-fs15",
-        #     "DAFT_cwdd11_v1-seed1-fs15",
-        #     "DAFT_cwdd11_v2-seed1-fs15",
-        #     "DAFT_cwdd11_v3-seed1-fs15",
-        #     "DAFT_cwdd11_v1-seed2-fs15",
-        #     "DAFT_cwdd11_v2-seed2-fs15",
-        #     "DAFT_cwdd11_v3-seed2-fs15",
-        # ],
-        # [],
-        # "DAFT_cw11d09_v1-seed0-fs15",
-        # "DAFT_cw11d09_v2-seed0-fs15",
-        # "DAFT_cw11d09_v3-seed0-fs15",
-        # "DAFT_cw11d09_v1-seed1-fs15",
-        # "DAFT_cw11d09_v2-seed1-fs15",
-        # "DAFT_cw11d09_v3-seed1-fs15",
-        # "DAFT_cw11d09_v1-seed2-fs15",
-        # "DAFT_cw11d09_v2-seed2-fs15",
-        # "DAFT_cw11d09_v3-seed2-fs15",
-        # [
-        #     "DAFT_cw11d09_v1-seed0-fs15",
-        #     "DAFT_cw11d09_v2-seed0-fs15",
-        #     "DAFT_cw11d09_v3-seed0-fs15",
-        #     "DAFT_cw11d09_v1-seed1-fs15",
-        #     "DAFT_cw11d09_v2-seed1-fs15",
-        #     "DAFT_cw11d09_v3-seed1-fs15",
-        #     "DAFT_cw11d09_v1-seed2-fs15",
-        #     "DAFT_cw11d09_v2-seed2-fs15",
-        #     "DAFT_cw11d09_v3-seed2-fs15",
-        # ],
-        # [],
-        # "TabularAsHyper_embd_trainedTabular8_cw105d12_v1-seed0-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw105d12_v2-seed0-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw105d12_v3-seed0-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw105d12_v1-seed1-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw105d12_v2-seed1-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw105d12_v3-seed1-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw105d12_v1-seed2-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw105d12_v2-seed2-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw105d12_v3-seed2-fs15",
-        # [
-        #     "TabularAsHyper_embd_trainedTabular8_cw105d12_v1-seed0-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw105d12_v2-seed0-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw105d12_v3-seed0-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw105d12_v1-seed1-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw105d12_v2-seed1-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw105d12_v3-seed1-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw105d12_v1-seed2-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw105d12_v2-seed2-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw105d12_v3-seed2-fs15",
-        # ],
-        # [],
-        # "TabularAsHyper_embd_trainedTabular8_cw11d10_v1-seed0-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw11d10_v2-seed0-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw11d10_v3-seed0-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw11d10_v1-seed1-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw11d10_v2-seed1-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw11d10_v3-seed1-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw11d10_v1-seed2-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw11d10_v2-seed2-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw11d10_v3-seed2-fs15",
-        # [
-        #     "TabularAsHyper_embd_trainedTabular8_cw11d10_v1-seed0-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw11d10_v2-seed0-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw11d10_v3-seed0-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw11d10_v1-seed1-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw11d10_v2-seed1-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw11d10_v3-seed1-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw11d10_v1-seed2-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw11d10_v2-seed2-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw11d10_v3-seed2-fs15",
-        # ],
-        # [],
-        # "DAFT_cw11d12_v1-seed0-fs15",
-        # "DAFT_cw11d12_v2-seed0-fs15",
-        # "DAFT_cw11d12_v3-seed0-fs15",
-        # "DAFT_cw11d12_v1-seed1-fs15",
-        # "DAFT_cw11d12_v2-seed1-fs15",
-        # "DAFT_cw11d12_v3-seed1-fs15",
-        # "DAFT_cw11d12_v1-seed2-fs15",
-        # "DAFT_cw11d12_v2-seed2-fs15",
-        # "DAFT_cw11d12_v3-seed2-fs15",
-        # [
-        #     "DAFT_cw11d12_v1-seed0-fs15",
-        #     "DAFT_cw11d12_v2-seed0-fs15",
-        #     "DAFT_cw11d12_v3-seed0-fs15",
-        #     "DAFT_cw11d12_v1-seed1-fs15",
-        #     "DAFT_cw11d12_v2-seed1-fs15",
-        #     "DAFT_cw11d12_v3-seed1-fs15",
-        #     "DAFT_cw11d12_v1-seed2-fs15",
-        #     "DAFT_cw11d12_v2-seed2-fs15",
-        #     "DAFT_cw11d12_v3-seed2-fs15",
-        # ],
-        # [],
-        # "TabularAsHyper_embd_trainedTabular8_cw11d12_v1-seed0-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw11d12_v2-seed0-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw11d12_v3-seed0-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw11d12_v1-seed1-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw11d12_v2-seed1-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw11d12_v3-seed1-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw11d12_v1-seed2-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw11d12_v2-seed2-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw11d12_v3-seed2-fs15",
-        # [
-        #     "TabularAsHyper_embd_trainedTabular8_cw11d12_v1-seed0-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw11d12_v2-seed0-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw11d12_v3-seed0-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw11d12_v1-seed1-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw11d12_v2-seed1-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw11d12_v3-seed1-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw11d12_v1-seed2-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw11d12_v2-seed2-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw11d12_v3-seed2-fs15",
-        # ],
-        #
-        # "DAFT_cw11d14_v1-seed0-fs15",
-        # "DAFT_cw11d14_v2-seed0-fs15",
-        # "DAFT_cw11d14_v3-seed0-fs15",
-        # "DAFT_cw11d14_v1-seed1-fs15",
-        # "DAFT_cw11d14_v2-seed1-fs15",
-        # "DAFT_cw11d14_v3-seed1-fs15",
-        # "DAFT_cw11d14_v1-seed2-fs15",
-        # "DAFT_cw11d14_v2-seed2-fs15",
-        # "DAFT_cw11d14_v3-seed2-fs15",
-        # [
-        #     "DAFT_cw11d14_v1-seed0-fs15",
-        #     "DAFT_cw11d14_v2-seed0-fs15",
-        #     "DAFT_cw11d14_v3-seed0-fs15",
-        #     "DAFT_cw11d14_v1-seed1-fs15",
-        #     "DAFT_cw11d14_v2-seed1-fs15",
-        #     "DAFT_cw11d14_v3-seed1-fs15",
-        #     "DAFT_cw11d14_v1-seed2-fs15",
-        #     "DAFT_cw11d14_v2-seed2-fs15",
-        #     "DAFT_cw11d14_v3-seed2-fs15",
-        # ],
-        # [],
-        # "TabularAsHyper_embd_trainedTabular8_cw11d14_v1-seed0-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw11d14_v2-seed0-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw11d14_v3-seed0-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw11d14_v1-seed1-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw11d14_v2-seed1-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw11d14_v3-seed1-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw11d14_v1-seed2-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw11d14_v2-seed2-fs15",
-        # "TabularAsHyper_embd_trainedTabular8_cw11d14_v3-seed2-fs15",
-        # [
-        #     "TabularAsHyper_embd_trainedTabular8_cw11d14_v1-seed0-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw11d14_v2-seed0-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw11d14_v3-seed0-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw11d14_v1-seed1-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw11d14_v2-seed1-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw11d14_v3-seed1-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw11d14_v1-seed2-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw11d14_v2-seed2-fs15",
-        #     "TabularAsHyper_embd_trainedTabular8_cw11d14_v3-seed2-fs15",
-        # ],
 
     ]
-    import itertools
-    versions_seeds_1 = list(itertools.product([0, 1, 2], [1, 2, 3, 4, 5, 6]))
-    versions_seeds_2 = list(itertools.product([3, 4], [1, 2, 3]))
-    hyper11d14 = [f"TabularAsHyper_embd_trainedTabular8_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds_1]
-    hyper11d14 += [f"TabularAsHyper_embd_trainedTabular8_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds_2]
-    daft11d14 = [f"DAFT_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds_1]
-    daft11d14 += [f"DAFT_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds_2]
 
-    experiments_names += hyper11d14
-    experiments_names += [[]]
-    experiments_names += daft11d14
-    experiments_names += [[]]
-    experiments_names += [hyper11d14]
-    experiments_names += [[]]
-    experiments_names += [daft11d14]
+    versions_seeds = np.array(list(itertools.product([0, 1, 2], [1, 2, 3, 4, 5, 6])) + list(itertools.product([3, 4], [1, 2, 3])))
+    hyper_idxs = [23,  7,  5,  4,  3,  1, 12, 13, 14, 15,  2, 17, 18, 19, 20, 21, 22, 0]
+    daft_idxs = [17, 11,  2, 22, 21,  5,  6,  7,  8,  9, 10, 20, 12, 13, 19, 18, 16, 23]
+    hyper11d14 = [f"TabularAsHyper_embd_trainedTabular8_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds[hyper_idxs]]
+    daft11d14 = [f"DAFT_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds[daft_idxs]]
+    # hyper11d14 = [f"TabularAsHyper_embd_trainedTabular8_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds]
+    # daft11d14 = [f"DAFT_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds]
+
+    versions_seeds = list(itertools.product([0, 1, 2], [1, 2, 3]))
+    film11d14 = [f"Film_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds]
+    concat11_08_14 = [f"baseline-concat1_cw11_08_14_v{v}-seed{s}-fs15" for s, v in versions_seeds]
+    baseline_image = [f"baseline-tabular_embd8_v{v}-seed{s}-fs15" for s, v in versions_seeds]
+    baseline_tabular = [f"baseline-resnet_cw1_v{v}-seed{s}-fs15" for s, v in versions_seeds]
+
+
+    experiments_names += hyper11d14 + [[]]
+    experiments_names += daft11d14 + [[]]
+    experiments_names += film11d14 + [[]]
+    experiments_names += concat11_08_14 + [[]]
+    experiments_names += baseline_image + [[]]
+    experiments_names += baseline_tabular + [[]]
+    # experiments_names += concat11d14
+    # experiments_names += [[]]
+
+    # experiments_names += [hyper11d14]
+    # experiments_names += [[]]
+    # experiments_names += [daft11d14]
+    # experiments_names += [[]]
+    # experiments_names += [film11d14]
+    # experiments_names += [[]]
+    # experiments_names += [concat11d14]
 
     # ----------------------------------------------------------------------------------------------
     # ------------------------------- all metrics inclusive table ----------------------------------
@@ -832,7 +501,7 @@ if __name__ == "__main__":
 
         all_metrics = arange_results_csv(all_metrics)
         print(all_metrics[["balanced_acc", "precision", "CN_acc", "MCI_acc", "AD_acc"]])
-        all_metrics.to_csv(f"/media/rrtammyfs/Users/daniel/hyper_table_{eval_type}_aranged.csv")
+        all_metrics.to_csv(f"/media/rrtammyfs/Users/daniel/full_results_{eval_type}.csv")
 
     # ----------------------------------------------------------------------------------------------
     # ----------------------- statistical significance, mean and std values -------------------------
