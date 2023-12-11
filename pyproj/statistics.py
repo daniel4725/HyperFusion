@@ -31,8 +31,8 @@ def get_precision_from_confmat(run, eval_type, project_name="HyperNetworks_final
     precision = np.nan_to_num((np.diag(confusion_matrix) / confusion_matrix.sum(axis=0)), nan=0).mean()
     return precision
 
-def get_confusion_matrix(run, eval_type, project_name="HyperNetworks_final_splitseed"):
-    artif = api.artifact(f'{project_name}/run-{run.id}-{eval_type}_confmatraw_confmat:latest')
+def get_confusion_matrix(run, eval_type):
+    artif = api.artifact(f'{run.project}/run-{run.id}-{eval_type}_confmatraw_confmat:latest')
     path = artif.download()
     with open(path + f'/{eval_type}_confmat/raw_confmat.table.json', 'rb') as f:
         confusion_matrix = json.load(f)["data"]
@@ -207,7 +207,8 @@ def get_experiment_confmat(project_name, experiment_name, eval_type, save_path, 
     # ax.set_title(f'prediction', loc='center')
     # ax.set_title(f'Confusion Matrix (Mean ± Std) - {os.path.basename(save_path).split(".")[0]}', loc='center')
     ax.text(0.5, 1.07, 'prediction', transform=ax.transAxes, ha='center')
-    ax.text(0.5, 1.11, f'Confusion Matrix (Mean ± Std) - {os.path.basename(save_path).split(".")[0]}', transform=ax.transAxes, ha='center', fontsize=11)
+    # ax.text(0.5, 1.11, f'Confusion Matrix (Mean ± Std) - {os.path.basename(save_path).split(".")[0]}', transform=ax.transAxes, ha='center', fontsize=11)
+    ax.text(0.5, 1.11, f'Confusion Matrix - {os.path.basename(save_path).split(".")[0].split("_")[0]}', transform=ax.transAxes, ha='center', fontsize=11)
 
     # Add secondary title
 
@@ -446,20 +447,50 @@ if __name__ == "__main__":
 
     ]
 
-    versions_seeds = np.array(list(itertools.product([0, 1, 2], [1, 2, 3, 4, 5, 6])) + list(itertools.product([3, 4], [1, 2, 3])))
-    hyper_idxs = [23,  7,  5,  4,  3,  1, 12, 13, 14, 15,  2, 17, 18, 19, 20, 21, 22, 0]
-    daft_idxs = [17, 11,  2, 22, 21,  5,  6,  7,  8,  9, 10, 20, 12, 13, 19, 18, 16, 23]
-    hyper11d14 = [f"TabularAsHyper_embd_trainedTabular8_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds[hyper_idxs]]
-    daft11d14 = [f"DAFT_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds[daft_idxs]]
-    # hyper11d14 = [f"TabularAsHyper_embd_trainedTabular8_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds]
-    # daft11d14 = [f"DAFT_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds]
+    # --------------  features set 15 -----------------------
+    # fs = "15"
+    #
+    # versions_seeds = np.array(list(itertools.product([0, 1, 2], [1, 2, 3, 4, 5, 6])) + list(itertools.product([3, 4], [1, 2, 3])))
+    # hyper_idxs = [23,  7,  5,  4,  3,  1, 12, 13, 14, 15,  2, 17, 18, 19, 20, 21, 22, 0]
+    # daft_idxs = [17, 11,  2, 22, 21,  5,  6,  7,  8,  9, 10, 20, 12, 13, 19, 18, 16, 23]
+    # hyper11d14 = [f"TabularAsHyper_embd_trainedTabular8_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds[hyper_idxs]]
+    # daft11d14 = [f"DAFT_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds[daft_idxs]]
+    # # hyper11d14 = [f"TabularAsHyper_embd_trainedTabular8_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds]
+    # # daft11d14 = [f"DAFT_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds]
+    #
+    # versions_seeds = list(itertools.product([0, 1, 2], [1, 2, 3]))
+    # film11d14 = [f"Film_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds]
+    # concat11_08_14 = [f"baseline-concat1_cw11_08_14_v{v}-seed{s}-fs15" for s, v in versions_seeds]
+    # baseline_image = [f"baseline-resnet_cw1_v{v}-seed{s}-fs15" for s, v in versions_seeds]
+    # baseline_tabular = [f"baseline-tabular_embd8_v{v}-seed{s}-fs15" for s, v in versions_seeds]
+    #
+    # experiments_names += hyper11d14 + [[]]
+    # experiments_names += daft11d14 + [[]]
+    # experiments_names += film11d14 + [[]]
+    # experiments_names += concat11_08_14 + [[]]
+    # experiments_names += baseline_image + [[]]
+    # experiments_names += baseline_tabular + [[]]
 
+
+    # experiments_names_dict = {
+    #     "Hypernetwork": hyper11d14,
+    #     "DAFT": daft11d14,
+    #     "FiLM": film11d14,
+    #     "Concatenation": concat11_08_14,
+    #     "Image only": baseline_image,
+    #     "Tabular only": baseline_tabular,
+    # }
+
+    # --------------  features set 16/17/18 -----------------------
+    fs = "16"
     versions_seeds = list(itertools.product([0, 1, 2], [1, 2, 3]))
-    film11d14 = [f"Film_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds]
-    concat11_08_14 = [f"baseline-concat1_cw11_08_14_v{v}-seed{s}-fs15" for s, v in versions_seeds]
-    baseline_image = [f"baseline-tabular_embd8_v{v}-seed{s}-fs15" for s, v in versions_seeds]
-    baseline_tabular = [f"baseline-resnet_cw1_v{v}-seed{s}-fs15" for s, v in versions_seeds]
 
+    hyper11d14 = [f"TabularAsHyper_embd_trainedTabular8_cw11d14_v{v}-seed{s}-fs{fs}" for s, v in versions_seeds]
+    daft11d14 = [f"DAFT_cw11d14_v{v}-seed{s}-fs{fs}" for s, v in versions_seeds]
+    film11d14 = [f"Film_cw11d14_v{v}-seed{s}-fs{fs}" for s, v in versions_seeds]
+    concat11_08_14 = [f"baseline-concat1_cw11_08_14_v{v}-seed{s}-fs{fs}" for s, v in versions_seeds]
+    baseline_image = [f"baseline-resnet_cw1_v{v}-seed{s}-fs15" for s, v in list(itertools.product([0, 1, 2], [1, 2, 3]))]
+    baseline_tabular = [f"baseline-tabular_embd8_v{v}-seed{s}-fs{fs}" for s, v in versions_seeds]
 
     experiments_names += hyper11d14 + [[]]
     experiments_names += daft11d14 + [[]]
@@ -467,16 +498,30 @@ if __name__ == "__main__":
     experiments_names += concat11_08_14 + [[]]
     experiments_names += baseline_image + [[]]
     experiments_names += baseline_tabular + [[]]
-    # experiments_names += concat11d14
-    # experiments_names += [[]]
 
-    # experiments_names += [hyper11d14]
-    # experiments_names += [[]]
-    # experiments_names += [daft11d14]
-    # experiments_names += [[]]
-    # experiments_names += [film11d14]
-    # experiments_names += [[]]
-    # experiments_names += [concat11d14]
+
+    # ------------------- location ablation - feature set 12 ----------------
+    # fs = "12"
+    # experiments_names = []
+    # hyper11d14 = [f"TabularAsHyper_embd_trainedTabular8_cw11d14_v{v}-seed{s}-fs{fs}" for s, v in versions_seeds]
+    # daft11d14 = [f"DAFT_cw11d14_v{v}-seed{s}-fs{fs}" for s, v in versions_seeds]
+    # film11d14 = [f"Film_cw11d14_v{v}-seed{s}-fs{fs}" for s, v in versions_seeds]
+    # concat11_08_14 = [f"baseline-concat1_cw11_08_14_v{v}-seed{s}-fs{fs}" for s, v in versions_seeds]
+    # baseline_image = [f"baseline-resnet_cw1_v{v}-seed{s}-fs15" for s, v in list(itertools.product([0, 1, 2], [1, 2, 3]))]
+    # baseline_tabular = [f"baseline-tabular_embd8_v{v}-seed{s}-fs{fs}" for s, v in versions_seeds]
+    #
+    # R_R_FFT_FFT_FF = [
+    #     "T_AsHyper_R_R_FFT_FFT_FF_embd_trainedTabular8_cw085_v2-seed0-fs12",
+    #     "T_AsHyper_R_R_FFT_FFT_FF_cw075085_embd_trainedTabular8_v2-seed0-fs12"
+    #     ]
+    #
+    # experiments_names += hyper11d14 + [[]]
+    # experiments_names += daft11d14 + [[]]
+    # experiments_names += film11d14 + [[]]
+    # experiments_names += concat11_08_14 + [[]]
+    # experiments_names += baseline_image + [[]]
+    # experiments_names += baseline_tabular + [[]]
+
 
     # ----------------------------------------------------------------------------------------------
     # ------------------------------- all metrics inclusive table ----------------------------------
@@ -501,7 +546,7 @@ if __name__ == "__main__":
 
         all_metrics = arange_results_csv(all_metrics)
         print(all_metrics[["balanced_acc", "precision", "CN_acc", "MCI_acc", "AD_acc"]])
-        all_metrics.to_csv(f"/media/rrtammyfs/Users/daniel/full_results_{eval_type}.csv")
+        all_metrics.to_csv(f"/media/rrtammyfs/Users/daniel/full_results_{eval_type}_fs{fs}.csv")
 
     # ----------------------------------------------------------------------------------------------
     # ----------------------- statistical significance, mean and std values -------------------------
@@ -577,12 +622,7 @@ if __name__ == "__main__":
     # ------------------------------------- confusion matrix ---------------------------------------
     # ----------------------------------------------------------------------------------------------
     if False:
-        experiments_names = [
-            "resnet",
-            "tabular_fs12",
-            "hyper_fs12",
-        ]
-        for experiment_name in experiments_names:
+        for experiment_name in experiments_names_dict.keys():
             save_path = f"/media/rrtammyfs/Users/daniel/research results/confusion_mat/{experiment_name}_{eval_type}.png"
             conf_mat = get_experiment_confmat(
                 project_name=project_name,

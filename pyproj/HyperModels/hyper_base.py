@@ -3,7 +3,6 @@ import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
 from .hyper_hist_init import hypernet_histloss_init
-import copy
 
 
 class HyperNetwork(nn.Module):

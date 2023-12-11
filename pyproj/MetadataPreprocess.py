@@ -267,6 +267,32 @@ features_sets[set_num]["preprocess_dict"] = {
     "FDG": [],
     "all_together": ["impute_all Nan_col", "normalize_all_but_Na&Gender"]
     }
+# --------------- features_set 16 ------------------
+set_num = 16
+features_sets[set_num] = {}
+features_sets[set_num]["features"] = ["AGE"]
+features_sets[set_num]["preprocess_dict"] = {
+    "AGE": ["fill NaN with median"],
+    }
+# --------------- features_set 17 ------------------
+set_num = 17
+features_sets[set_num] = {}
+features_sets[set_num]["features"] = ["AGE", "PTGENDER"]
+features_sets[set_num]["preprocess_dict"] = {
+    "AGE": ["fill NaN with median"],
+    "PTGENDER": ["one_hot without_na"],
+    }
+# --------------- features_set 18 ------------------
+set_num = 18
+features_sets[set_num] = {}
+features_sets[set_num]["features"] = ["AGE", "PTGENDER", "PTEDUCAT", "APOE4"]
+features_sets[set_num]["preprocess_dict"] = {
+    "AGE": ["fill NaN with median"],
+    "PTGENDER": ["one_hot without_na"],
+    "PTEDUCAT": [],
+    "APOE4": [],
+    "all_together": ["impute_all Nan_col", "normalize_all_but_Na&Gender"]
+    }
 
 # def preprocess_14(csv, split_seed=0, fold=0):
 #     skf = StratifiedKFold(n_splits=5, random_state=split_seed, shuffle=True)

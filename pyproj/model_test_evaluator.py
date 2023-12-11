@@ -11,10 +11,11 @@ class ModelsEnsemble(nn.Module):
         self.models.append(model)
 
     def forward(self, x):
-        # return self.average_softmax_prediction(x)
-        return self.confidence_weighted_average_softmax_prediction(x)
-        # return self.confidence_weighted_majority_voting_prediction(x)
-        # return self.most_confidence_prediction(x)
+        # out = self.average_softmax_prediction(x)
+        out = self.confidence_weighted_average_softmax_prediction(x)
+        # out = self.confidence_weighted_majority_voting_prediction(x)
+        # out = self.most_confidence_prediction(x)
+        return out
 
     def average_softmax_prediction(self, x):
         # self.models.train()
@@ -25,12 +26,6 @@ class ModelsEnsemble(nn.Module):
             # out += model(x)
         # entropy(model(x).softmax(dim=-1).cpu().detach(), axis=1)
         out = out / len(self.models)
-
-        # TODO delete:
-        # w = torch.Tensor([[1, 1, 0.8]])
-        # w = w.to(out.device)
-        # out = out * w
-
         return out
 
     def confidence_weighted_average_softmax_prediction(self, x):  # weighted (by entropy) average softmax
@@ -48,11 +43,6 @@ class ModelsEnsemble(nn.Module):
         out = probs[0] * weights[:, 0].view(-1, 1)
         for i in range(len(probs)-1):
             out += probs[i + 1] * weights[:, i + 1].view(-1, 1)
-
-        # TODO delete:
-        # w = torch.Tensor([[0.5, 1, 1]])
-        # w = w.to(out.device)
-        # out = out * w
 
         return out
 
@@ -128,8 +118,6 @@ class ModelsEnsemble2losses(nn.Module):
         # return out
 
 
-# torch.backends.cuda.matmul.allow_tf32 = True
-# torch.backends.cudnn.allow_tf32 = True
 
 def main(args):
     # torch.manual_seed(0)
@@ -238,7 +226,7 @@ def wandb_interface(args):
 
         # run_id = datetime.datetime.now().strftime("%d-%m-%Y %Hh%Mm%Ss - ") + args.experiment_name
         logger = WandbLogger(project=args.project_name,
-                             name=args.experiment_name + f"-{args.versions}_EvalTest-fset_{args.features_set}-classes{args.num_classes}",
+                             name=args.experiment_name + f"-{args.versions}_W_EvalTest-fset_{args.features_set}-classes{args.num_classes}",
                              save_dir=args.logs_dir)
         # id=run_id)
 
@@ -335,8 +323,6 @@ if __name__ == '__main__':
         num_classes = "3"
         split_seed = "0"
 
-
-
         model = "MLP4Tabular"
         cnn_dropout = "0.1"
         init_features = "4"
@@ -367,6 +353,10 @@ if __name__ == '__main__':
 
     else:
         print("Running from Shell")
+
+    # w = torch.Tensor([[0.9, 0.9, 1]])
+    # w = w.to(out.device)
+    # out = out * w
 
     # print(args)
     # raise ValueError("------------ end program ----------------")

@@ -114,7 +114,7 @@ def main(args):
     )
     if args.continue_from_checkpoint_path == "":
         trainer.fit(pl_model, train_dataloaders=train_loader, val_dataloaders=valid_loader)
-    else:  # TODO - resume from ckpt not ready
+    else:
         ckpt_path = args.continue_from_checkpoint_path
         pl_model = PlModelWrap.load_from_checkpoint(ckpt_path, **kwargs)
         trainer.fit(pl_model, ckpt_path=ckpt_path, train_dataloaders=train_loader, val_dataloaders=valid_loader)
@@ -236,9 +236,9 @@ if __name__ == '__main__':
         GPU = "2"
 
         exname = "tst"
-        features_set = "15"  # set 4 is norm minmax (0 to 1), set 5 is std-mean
+        features_set = "16"
         num_classes = "3"
-        model = "ImageAsHyper_Hembd16_TF"
+        model = "MLP_8_bn_prl"
         split_seed = "1"
         cnn_dropout = "0.1"
         init_features = "16"

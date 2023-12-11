@@ -240,12 +240,15 @@ def create_inclusive_csv(df_val_path, df_test_path, metrics, name):
 
 if __name__ == '__main__':
     # find_best_hyper()
-    name = "inclusive_results_2"
-    df_val_path = f"/media/rrtammyfs/Users/daniel/full_results_val.csv"
-    df_test_path = f"/media/rrtammyfs/Users/daniel/full_results_test.csv"
+    fs = 16
+    add="_a"
+    name = f"inclusive_results_fs{fs}"
+    df_val_path = f"/media/rrtammyfs/Users/daniel/full_results_val_fs{fs}.csv"
+    df_test_path = f"/media/rrtammyfs/Users/daniel/full_results_test_fs{fs}{add}.csv"
+    title = f"test-fs{fs}"
 
-    title = "test"
-    ylim = (0.3, 1)
+    # ylim = (0.3, 1)
+    ylim = (0.2, 1)
     metrics = ['balanced_acc', 'precision', 'f1_macro', 'AUC', 'CN_acc', 'MCI_acc', 'AD_acc']
     # metrics = ['balanced_acc', 'precision', 'CN_acc', 'MCI_acc', 'AD_acc']
     colors = []

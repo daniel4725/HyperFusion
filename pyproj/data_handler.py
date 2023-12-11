@@ -152,13 +152,25 @@ class ADNI_Dataset(Dataset):
         df["AGE"] = pd.cut(df["AGE"], bins=bins, labels=[i for i in range(bins)])
         folds = [[], [], [], [], []]
         folds_idx = 0
-        for sex in df["PTGENDER_Male"].unique():
+
+        if "PTGENDER_Male" in df.columns:  # if sex is a feature
+            for sex in df["PTGENDER_Male"].unique():
+                for label in df["Group"].unique():
+                    for age in np.sort(df["AGE"].unique()):
+                        sub_df = df[(df["PTGENDER_Male"] == sex) & (df["Group"] == label) & (df["AGE"] == age)]
+                        for idx in sub_df.index:
+                            folds[folds_idx].append(idx)
+                            folds_idx = (folds_idx + 1) % 5
+
+        else:   # if there is AGE without sex
             for label in df["Group"].unique():
                 for age in np.sort(df["AGE"].unique()):
-                    sub_df = df[(df["PTGENDER_Male"] == sex) & (df["Group"] == label) & (df["AGE"] == age)]
+                    sub_df = df[(df["Group"] == label) & (df["AGE"] == age)]
                     for idx in sub_df.index:
                         folds[folds_idx].append(idx)
                         folds_idx = (folds_idx + 1) % 5
+
+
         val_idxs = folds[fold]
         test_idxs = folds[4]
 
