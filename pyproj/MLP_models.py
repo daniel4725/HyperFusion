@@ -107,26 +107,3 @@ if __name__ == "__main__":
     in_features = 4
     out_features = 3
 
-    # model = MLP4Tabular(
-    #      in_features=10,
-    #      out_features=3,
-    #      hidden_shapes=[16, 32, 64, 16],
-    #     activation=nn.PReLU,
-    #     skip_connection=False,
-    #     dropout=0.3,
-    #     bn_momentum=0.1
-    # )
-    # data = ("", torch.randn(13, in_features))
-    # print(model(data))
-
-    model = MLP4Tabular(
-        mlp_layers_shapes=[in_features, out_features],
-        activation=nn.PReLU,
-        dropout=0.3,
-        bn_momentum=0.1
-    )
-    # print(model)
-    # data = torch.randn(batch_size, in_features)
-
-    # print(model(data))
-

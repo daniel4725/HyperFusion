@@ -14,7 +14,6 @@ features_sets = [15]
 seeds = [0, 1, 2]
 versions = ["_v1", "_v2", "_v3"]
 
-
 assert len(gpus) == 4
 for gpu, fold in zip(gpus, [0, 1, 2, 3]):
     print("")

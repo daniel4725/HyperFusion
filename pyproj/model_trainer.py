@@ -1,33 +1,22 @@
 from data_handler import *
 from models import *
 from pl_wrap import *
-from pl_wrap4regression import *
-from pl_wrap2losses import *
 from utils import *
 from MLP_models import *
 from models_concat import *
-from models_regression import *
-from Film_DAFT.models_film_daft import *
 from Film_DAFT_preactive.models_film_daft import *
-# from models_hyperMIX import *
-# from models_hyperDAFT import *
 from tformNaugment import tform_dict
 from argparse import ArgumentParser, Namespace
 from pytorch_lightning.loggers import WandbLogger
 import wandb
 from costum_callbacks import *
 from models_TabularAsHyper import *
-from models_ImageAsHyper import *
 
-# torch.backends.cuda.matmul.allow_tf32 = True
-# torch.backends.cudnn.allow_tf32 = True
 
 def main(args):
     # torch.manual_seed(0)
     logger, args = wandb_interface(args)  # this line must be first
     model_name = args.model
-    if "regression" in model_name:
-        args.dataset_class = "BrainAgeDataset"
 
     # Create the data loaders:
     loaders = get_dataloaders(batch_size=args.batch_size, features_set=args.features_set, adni_dir=args.adni_dir,
@@ -39,54 +28,35 @@ def main(args):
                               dataset_class=globals()[args.dataset_class], split_seed=args.split_seed)
     train_loader, valid_loader = loaders
 
-    if args.dataset_class != "BrainAgeDataset":
-        # Create the model:
-        if args.class_weights == [0]:
-            args.class_weights = get_class_weight(train_loader, valid_loader)
-        else:
-            args.class_weights = torch.Tensor(args.class_weights)
-
-        # args.class_weights = args.class_weights * 0 + 1
-        print("class weights: ", args.class_weights)
-
-        kwargs = args.__dict__
-        kwargs["n_tabular_features"] = train_loader.dataset.num_tabular_features
-        kwargs['n_outputs'] = len(args.class_weights)
-        kwargs["cnn_mlp_shapes"][-1] = len(args.class_weights)
-        kwargs["train_loader"] = train_loader
-
-        # mlp_layers_shapes = [n_tabular_features, hidden_shapes, num_classes]
-        kwargs["mlp_layers_shapes"] = [kwargs["n_tabular_features"]] + kwargs["hidden_shapes"] + [
-            len(kwargs["class_weights"])]
-
-        model = globals()[args.model](**kwargs)
-        kwargs["model"] = model
-        kwargs["class_names"] = list(train_loader.dataset.labels_dict.keys())
-
-        if "2losses" in model_name:
-            pl_model = PlModelWrap2losses(**kwargs)
-        else:
-            pl_model = PlModelWrap(**kwargs)
-
-        # Callbacks:
-        callbacks = [TimeEstimatorCallback(**kwargs)]
-        if kwargs["enable_checkpointing"]:
-            callbacks += [CheckpointCallback(**kwargs)]
-
+    # Create the model:
+    if args.class_weights == [0]:
+        args.class_weights = get_class_weight(train_loader, valid_loader)
     else:
-        kwargs = args.__dict__
-        kwargs["n_tabular_features"] = train_loader.dataset.num_tabular_features
-        kwargs["train_loader"] = train_loader
-        model = globals()[args.model](**kwargs)
-        kwargs["model"] = model
-        pl_model = PlModelWrap4Regression(**kwargs)
+        args.class_weights = torch.Tensor(args.class_weights)
 
-        # Callbacks:
-        callbacks = [TimeEstimatorCallback(**kwargs)]
-        if kwargs["enable_checkpointing"]:
-            callbacks += [CheckpointCallback4regression(**kwargs)]
+    # args.class_weights = args.class_weights * 0 + 1
+    print("class weights: ", args.class_weights)
 
+    kwargs = args.__dict__
+    kwargs["n_tabular_features"] = train_loader.dataset.num_tabular_features
+    kwargs['n_outputs'] = len(args.class_weights)
+    kwargs["cnn_mlp_shapes"][-1] = len(args.class_weights)
+    kwargs["train_loader"] = train_loader
 
+    # mlp_layers_shapes = [n_tabular_features, hidden_shapes, num_classes]
+    kwargs["mlp_layers_shapes"] = [kwargs["n_tabular_features"]] + kwargs["hidden_shapes"] + [
+        len(kwargs["class_weights"])]
+
+    model = globals()[args.model](**kwargs)
+    kwargs["model"] = model
+    kwargs["class_names"] = list(train_loader.dataset.labels_dict.keys())
+
+    pl_model = PlModelWrap(**kwargs)
+
+    # Callbacks:
+    callbacks = [TimeEstimatorCallback(**kwargs)]
+    if kwargs["enable_checkpointing"]:
+        callbacks += [CheckpointCallback(**kwargs)]
 
 
     if len(args.GPU) > 1:
@@ -119,8 +89,6 @@ def main(args):
         pl_model = PlModelWrap.load_from_checkpoint(ckpt_path, **kwargs)
         trainer.fit(pl_model, ckpt_path=ckpt_path, train_dataloaders=train_loader, val_dataloaders=valid_loader)
 
-    # if args.wandb_sweeping or args.wandb_log:
-    #     wandb.finish()
 
 
 def wandb_interface(args):
@@ -246,8 +214,8 @@ if __name__ == '__main__':
         L2 = "0.00001"
         epochs = "180"
         batch_size = "4"
-        tform = "hippo_crop_lNr"  # hippo_crop_lNr_l2r  hippo_crop_lNr       normalize hippo_crop_lNr_noise hippo_crop_lNr_scale
-        tform_valid = "hippo_crop_2sides"      # None  hippo_crop_2sides              hippo_crop  hippo_crop_lNr  normalize hippo_crop_lNr_noise hippo_crop_lNr_scaletform_valid="hippo_crop_2sides"   # hippo_crop  hippo_crop_lNr  normalize hippo_crop_lNr_noise hippo_crop_lNr_scale
+        tform = "hippo_crop_lNr"
+        tform_valid = "hippo_crop_2sides"
         num_workers = "0"
 
         # flags:
@@ -270,7 +238,5 @@ if __name__ == '__main__':
     else:
         print("Running from Shell")
 
-    # print(args)
-    # raise ValueError("------------ end program ----------------")
     main(args)
 

@@ -144,7 +144,12 @@ def get_latex_table_content(df, metrics):
         if models[i] != "Hyper":
             print(" \\\\")
             for j in range(values.shape[1]):
-                print(f" & p = {p_values[i, j]:.3f}", end='')
+                if p_values[i, j] > 0.009:
+                    print(f" & p = {p_values[i, j]:.3f}", end='')
+                elif p_values[i, j] < 1e-10:
+                    print(f" & p = {0}", end='')
+                else:
+                    print(f" & p = {p_values[i, j]:.2e}", end='')
         print(" \\\\ \\hline")
 
 
@@ -240,8 +245,8 @@ def create_inclusive_csv(df_val_path, df_test_path, metrics, name):
 
 if __name__ == '__main__':
     # find_best_hyper()
-    fs = 16
-    add="_a"
+    fs = 15
+    add=""
     name = f"inclusive_results_fs{fs}"
     df_val_path = f"/media/rrtammyfs/Users/daniel/full_results_val_fs{fs}.csv"
     df_test_path = f"/media/rrtammyfs/Users/daniel/full_results_test_fs{fs}{add}.csv"

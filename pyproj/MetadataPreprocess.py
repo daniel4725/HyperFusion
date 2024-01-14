@@ -1,69 +1,11 @@
-#%%
 import os
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-from sklearn.impute import SimpleImputer
 from sklearn.experimental import enable_iterative_imputer
 from sklearn.impute import IterativeImputer
 from sklearn.model_selection import StratifiedKFold
 from sklearn.linear_model import LinearRegression
-
-
-"""
-CHALLANGE SUGGEST:
-The main measures to be predicted: DX, ADAS13, Ventricles
-Cognitive tests: CDRSB, ADAS11, MMSE, RAVLT_immediate
-MRI measures: Hippocampus, WholeBrain, Entorhinal, MidTemp
-PET measures: FDG, AV45
-CSF measures: ABETA  (amyloid-beta level in CSF), TAU (tau level T-tau), PTAU (phosphorylated tau level P-tau181)
-Risk factors: APOE4, AGE
-
-Kirill using:
-So in my case, I used brain volume measures (Hippocampus, WholeBrain, Entorhinal, MidTemp, Ventricles),
-cognitive test scores (CDRSB, ADAS13, ADAS11, MMSE, RAVLT_immediate) and APOE4, along with disease 
-stage diagnosis at baseline (DX_bl)
-
-DAFT using:
-Tabular data comprises 9 variables: age (AGE), gender (PTGENDER), education (PTEDUCAT), ApoE4 (APOE4), cerebrospinal
-fluid biomarkers Aβ42 (ABETA), P-tau181 (PTAU) and T-tau (TAU), and two summary measures derived
-from 18F-fluorodeoxyglucose (FDG) and florbetapir (AV45) PET scans.
-
-"""
-
-"""
-All relevant features:
-        ["AGE", "PTGENDER", "PTEDUCAT", "APOE4",  # demographics and genetic Risk factors
-        PTETHCAT - Ethnicity
-        PTRACCAT - Race
-        PTMARRY - ['Married', 'Divorced', 'Widowed', 'Never married', 'Unknown']
-         "ABETA", "PTAU", "TAU",   # CSF measures
-         "FDG", "AV45",  # PET measures
-         "Hippocampus", "WholeBrain", "Entorhinal", "MidTemp", "Ventricles",  # MRI measures
-         "CDRSB", "ADAS13", "ADAS11", "MMSE", "RAVLT_immediate",  # Cognitive tests
-         "DX_bl",  # Target
-         'IMAGEUID']  # the image id
-
-    "AGE":"norm min-max",
-    "PTGENDER":"one_hot with_na",
-    "PTEDUCAT":"",
-    "APOE4":"",
-    "ABETA":"",
-    "PTAU":"",
-    "TAU":"",
-    "Hippocampus":"",
-    "WholeBrain":"",
-    "Entorhinal":"",
-    "MidTemp":"",
-    "Ventricles":"",
-    "CDRSB":"",
-    "ADAS13":"",
-    "ADAS11":"",
-    "MMSE":"",
-    "RAVLT_immediate":"",
-
-"""
-# adni_csv.describe()
 
 features_sets = {}
 # --------------- features_set 0 ------------------
@@ -294,38 +236,6 @@ features_sets[set_num]["preprocess_dict"] = {
     "all_together": ["impute_all Nan_col", "normalize_all_but_Na&Gender"]
     }
 
-# def preprocess_14(csv, split_seed=0, fold=0):
-#     skf = StratifiedKFold(n_splits=5, random_state=split_seed, shuffle=True)
-#     X = csv.drop(['Subject', 'Group'], axis=1)
-#     y = csv["Group"]
-#     list_of_splits = list(skf.split(X, y))
-#     _, val_idxs = list_of_splits[fold]
-#     _, test_idxs = list_of_splits[4]
-#     train_idxs = list(np.where(~csv.index.isin(list(val_idxs) + list(test_idxs)))[0])
-#
-#     tmp_df = csv.copy()
-#     tmp_df = pd.get_dummies(tmp_df, dummy_na=False, columns=["PTGENDER", "Group"])
-#     imp = IterativeImputer(max_iter=200, initial_strategy="median", random_state=0, add_indicator=False)
-#
-#     cols = []
-#     pd.DataFrame(data=imp.fit_transform(csv[["AGE"]]), columns=["AGE"])[csv.AGE.isna()]
-#     pd.DataFrame(data=imp.fit_transform(csv[["APOE4", "AGE", "Group_CN", "Group_MCI", "Group_AD"]]),
-#                  columns=["APOE4", "AGE", "Group_CN", "Group_MCI", "Group_AD"])[csv.APOE4.isna()]["APOE4"].round()
-#     col_name = "Age"
-#     csv.loc[:, col_name] = (csv[col_name] - csv[col_name].mean()) / csv[col_name].std()
-#
-#     cols = list(csv.columns)
-#     cols.remove("Subject")
-#     cols.remove("Group")
-#     imputed_csv = imp.fit_transform(csv[cols])
-
-
-# 185 nan in APOE4 and they intersect with all the rest of the Nans
-# 1091 nan in ABETA:  all the same as PTAU, TAU.  789 with AV45, 636 with FDG
-# 1119 nan in AV45:  789 PTAU, TAU, ABETA.  651 with FDG
-# 807 nan in FDG:  636 PTAU, TAU, ABETA.  651 with AV45
-# adni_csv["APOE4"].value_counts(dropna=False)
-
 
 def gauss_1d(n=10,sigma=1, mu=None):
     if mu is None:
@@ -461,12 +371,6 @@ def preprocess_df_columns(csv, col_namesNoperations_dict: dict, split_seed=0, fo
                 imp = IterativeImputer(max_iter=200, initial_strategy="median", random_state=0, add_indicator=False)
                 csv.loc[test_idxs, cols] = pd.DataFrame(data=imp.fit_transform(csv.loc[test_idxs, cols]), columns=cols, index=test_idxs)
 
-                # idx = csv.loc[val_idxs, col_name][csv[col_name].isna()].index
-                # csv.iloc[idx] = 0
-                # idx = csv.loc[test_idxs, col_name][csv[col_name].isna()].index
-                # csv.iloc[idx] = 0
-
-
             else:
                 raise AssertionError(f"operation '{operation}' for column '{col_name}' in preprocess_columns function is'nt from the optional actions")
     return csv
@@ -475,16 +379,6 @@ def preprocess_df_columns(csv, col_namesNoperations_dict: dict, split_seed=0, fo
 def create_metadata_csv(features_set_idx, csv_path="/home/duenias/PycharmProjects/HyperNetworks/ADNI_2023/my_adnimerege.csv",
                         split_seed=0, fold=0):
     global features_sets
-
-    ########################################################################
-    # csv = pd.read_csv("/media/rrtammyfs/labDatabase/ADNI/ADNI_2023/my_adnimerege.csv")
-    # for img_id in csv["Image Data ID"]:
-    #     print(img_id + ",", end="")
-
-    # dates_diff_threshold = 50  # naximum days differances between the scan and the other tabular data collection
-    # dates_diff_mask = ((csv["dates_diff_mergecsv_mri_scan"] < dates_diff_threshold) & (csv["dates_diff_demogcsv_mri_scan"] < dates_diff_threshold))
-    # csv = csv[dates_diff_mask]
-    ########################################################################
 
     features_lst = features_sets[features_set_idx]["features"]
     features_preprocess_dict = features_sets[features_set_idx]["preprocess_dict"]
@@ -507,24 +401,6 @@ def feature_properties(df_col):
     print(f"num nan: {df_col.isna().sum()}")
     df_col.hist()
     plt.show()
-
-def linreg_fill_na(df, y_coll, x_colls):
-    # Split the DataFrame into two subsets: one with complete data and one with missing values
-    df_complete = df.dropna(subset=[y_coll])
-    df_missing = df[df[y_coll].isnull()]
-
-    # Train a linear regression model using 'b' and 'c' as predictors and 'a' as the target variable
-    X_train = df_complete[x_colls]
-    y_train = df_complete[y_coll]
-    model = LinearRegression()
-    model.fit(X_train, y_train)
-
-    # Use the trained model to predict the missing values in column 'a' from 'b' and 'c'
-    X_missing = df_missing[x_colls]
-    predicted_values = model.predict(X_missing)
-
-    # Fill the missing values in the original DataFrame with the predicted values
-    df.loc[df[y_coll].isnull(), y_coll] = predicted_values
 
 
 if __name__ == "__main__":

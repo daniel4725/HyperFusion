@@ -93,31 +93,6 @@ def entropy(probabilities):
     entropy_values = torch.sum(probabilities * negative_log_probs, dim=-1)
     return entropy_values
 
-class ModelsEnsemble2losses(nn.Module):
-    """ ensemble model class"""
-    def __init__(self):
-        super().__init__()
-        self.models = nn.ModuleList()
-
-    def append(self, model):
-        self.models.append(model)
-
-
-    def forward(self, x):
-        # self.models.train()
-        out, _ = self.models[0](x)
-        out = out.softmax(dim=-1)
-        # out = self.models[0](x)
-        for model in self.models[1:]:
-            tmp, _ = model(x)
-            out += tmp.softmax(dim=-1)
-            # out += model(x)
-        # entropy(model(x).softmax(dim=-1).cpu().detach(), axis=1)
-
-        return out / len(self.models), _
-        # return out
-
-
 
 def main(args):
     # torch.manual_seed(0)
@@ -132,16 +107,9 @@ def main(args):
                                   split_seed=args.split_seed)
 
 
-    # test_loader.dataset.metadata = test_loader.dataset.metadata.iloc[:40]
     kwargs = args.__dict__
 
-    if "2losses" in args.experiment_name:
-        model = ModelsEnsemble2losses()
-    else:
-        model = ModelsEnsemble()
-
-    # versions = None
-    # versions = ["_v1", "_v2", "_v3"]
+    model = ModelsEnsemble()
 
     if args.versions is None:
         print(f"loading experiment: {args.experiment_name}")
@@ -162,17 +130,11 @@ def main(args):
                 model.append(m)
 
 
-
-
-
     kwargs["class_weights"] = torch.Tensor([1 for _ in list(model.models[0].parameters())[-1]])
     kwargs["model"] = model
     kwargs["class_names"] = list(test_loader.dataset.labels_dict.keys())
 
-    if "2losses" in args.experiment_name:
-        pl_model = PlModelWrap4test2losses(**kwargs)
-    else:
-        pl_model = PlModelWrap4test(**kwargs)
+    pl_model = PlModelWrap4test(**kwargs)
 
     # Callbacks:
     callbacks = [TimeEstimatorCallback(**kwargs)]
@@ -354,11 +316,10 @@ if __name__ == '__main__':
     else:
         print("Running from Shell")
 
+    main(args)
+
     # w = torch.Tensor([[0.9, 0.9, 1]])
     # w = w.to(out.device)
     # out = out * w
 
-    # print(args)
-    # raise ValueError("------------ end program ----------------")
-    main(args)
 

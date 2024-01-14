@@ -204,7 +204,6 @@ if deterministic:
         if key != 'None' and not(key is None):
             tform_dict[key].set_random_state(0)
 
-#%%
 if __name__=="__main__":
     from data_handler import get_dataloaders
     import matplotlib.pyplot as plt
