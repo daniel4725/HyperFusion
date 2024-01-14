@@ -10,7 +10,8 @@ high-resolution imaging modalities like MRI scans, has unlocked new avenues for 
 In this work, we propose a novel approach that harnesses the power of hypernetworks to fuse tabular data and MRI brain scans.
 
 ## Graphical Abstract
-<img src="https://github.com/daniel4725/HyperNetworks4imgNtabular/assets/95569050/dc8e21de-7c0e-42a2-8489-24baa47bc59c" width=90% height=90%>
+<img src="https://github.com/daniel4725/HyperNetworks4imgNtabular/assets/95569050/d773b0d9-f610-4a0d-bbf3-ce9e76f94abf" width=90% height=90%>
+
 
 
 ## Hyper Networks
