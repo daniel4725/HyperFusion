@@ -9,15 +9,24 @@ high-resolution imaging modalities like MRI scans, has unlocked new avenues for 
 
 In this work, we propose a novel approach that harnesses the power of hypernetworks to fuse tabular data and MRI brain scans.
 
+## Graphical Abstract
+<img src="https://github.com/daniel4725/HyperNetworks4imgNtabular/assets/95569050/dc8e21de-7c0e-42a2-8489-24baa47bc59c" width=90% height=90%>
+
+
 ## Hyper Networks
-Training a network, $𝑓(𝑧)$, to create the weights, $𝜃$, of the main network, $𝑔_𝜃 (𝑥)$  .
-$𝑜𝑢𝑡𝑝𝑢𝑡=𝑔_{𝑓(𝑧)} (𝑥)$
+Training a network, $\mathcal{F}$, to create the weights, $𝜃_\mathcal{H}$, of the main network, $\mathcal{P}_𝜃$. 
 
-<img src="https://github.com/daniel4725/HyperNetworks4imgNtabular/assets/95569050/2347479b-e1e3-4f1f-aa21-720f903a5fa3" width=35% height=35%>
 
-We use the tabular information as an input to the Hyper Network (z) and the Primary network is an image processing CNN:
+<img src="https://github.com/daniel4725/HyperNetworks4imgNtabular/assets/95569050/2415287c-09fb-4532-8ea1-58b63d39fa37" width=35% height=35%>
 
-<img src="https://github.com/daniel4725/HyperNetworks4imgNtabular/assets/95569050/f3fec655-9549-4c7f-87d9-0af6dc0a59d1" width=80% height=80%>
+
+We use the tabular information as an input to the Hypernetwork ($T$) and the Primary network is an image processing CNN:
+
+
+<img src="https://github.com/daniel4725/HyperNetworks4imgNtabular/assets/95569050/213185b3-9d12-481c-8b0b-faf34f782408" width=40% height=40%>
+
+## Demonstrating our methodology
+We demonstrate the versatility and efficacy of the proposed hypernetwork framework, named HyperFusion, through two distinct brain MRI analysis tasks: brain age prediction conditioned by the subject's sex and classification of subjects into Alzheimer's disease (AD), Mild Cognitive Impairment (MCI), and Cognitively Normal (CN) groups conditioned by their tabular data, which includes clinical measurements, as well as demographic and genetic information.
 
 ## The Data
 The ADNI dataset, ADNI 1, ADNI 2 and ADNI GO, baseline visits       
@@ -36,22 +45,23 @@ The Tabular features used (9):
 - cerebrospinal fluid biomarkers : Abeta42, P-tau181, T-tau
 - measures derived from PET scan: 18 F-fluorodeoxyglucose (FDG) florbetapir (AV)
 
-## The Architecture
-<img src="https://github.com/daniel4725/HyperNetworks4imgNtabular/assets/95569050/1b38e0f6-13b9-42d5-93d9-34bf626c36e9" width=80% height=80%>
+## The Architectures
+### Brain Age Prediction conditioned by sex
+<img src="https://github.com/daniel4725/HyperNetworks4imgNtabular/assets/95569050/4a2669ee-e503-406d-b7a3-f7fe14bf2fb9" width=40% height=40%>
+
+### AD classification
+<img src="https://github.com/daniel4725/HyperNetworks4imgNtabular/assets/95569050/c5f083ca-0b71-41fe-801a-01226a22fbb9" width=40% height=40%>
 
 ## Results
-Evaluation on the test set with varying numbers of tabular features:
 
-1 feature: Age
+### Brain Age Prediction conditioned by sex
+<img src="https://github.com/daniel4725/HyperNetworks4imgNtabular/assets/95569050/c5d7fdd4-4145-4fa9-8372-09e493481535" width=30% height=30%>
 
-4 features: Sex, Age, Education, Genetic risk factor
 
-9 features: Sex, Age, Education, Genetic risk factor, 3 cerebrospinal fluid biomarkers, 2 measures derived from PET scan
-
-<img src="https://github.com/daniel4725/HyperNetworks4imgNtabular/assets/95569050/e48b5e3f-1c1f-492d-bbc0-1d40b947d78f" width=80% height=80%>
+### AD classification
+<img src="https://github.com/daniel4725/HyperNetworks4imgNtabular/assets/95569050/75b0d4c5-cd37-4491-80a7-0e0727d8b068" width=70% height=70%>
 
 
 
-*This work was inspired by the great work of Shai Aharon et al. https://arxiv.org/pdf/2206.05970.pdf
 
 
