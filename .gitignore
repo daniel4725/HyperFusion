@@ -1,8 +1,6 @@
 # ignore the logs and the full data
-/wandb_logs/*
-!/wandb_logs/
-/Datasets/BrainAgeDataset/data/
-#!/Datasets/BrainAgeDataset/data/
+/wandb_logs/wandb/
+/Datasets/BrainAgeDataset/data/*
 /Datasets/ADNI_2023/ADNI/*
 !/Datasets/ADNI_2023/ADNI/
 
