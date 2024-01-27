@@ -60,8 +60,7 @@ The Tabular features used (9):
 
 
 ### AD classification
-<img src="https://github.com/daniel4725/HyperNetworks4imgNtabular/assets/95569050/75b0d4c5-cd37-4491-80a7-0e0727d8b068" width=70% height=70%>
-
+<img src="https://github.com/daniel4725/HyperFusion/assets/95569050/085c5384-c335-4fa2-89e0-139552a514fb" width=70% height=70%>
 
 
 
