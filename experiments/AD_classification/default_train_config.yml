@@ -1,0 +1,57 @@
+experiment_name: "test"
+task: "AD_classification"
+
+model:
+  model_name: "TabularAsHyper_R_R_R_FFT_FF_embd_untrainedTabular8"
+  hidden_shapes: [8]
+  init_features: 16
+  bn_momentum: 0.05
+
+trainer:
+  epochs: 50
+  gpu: [1]
+  overfit_batches: 0.0  # number between 0 to 1
+
+checkpointing:
+  enable: false
+  ckpt_dir: "/media/rrtammyfs/Users/daniel/HyperProj_checkpoints"
+  continue_train_from_ckpt: false  # either false or the ckpt path
+
+
+wandb:
+  logs_dir: "/home/duenias/PycharmProjects/HyperFusion/wandb_logs"
+  project_name: "testing"
+  enable: true
+  sweep: false
+
+
+lightning_wrapper:
+  wrapper_name: "PlModelWrapADcls"
+
+  loss:
+    class_weights: [1.1, 0.6962, 1.4]  # 'default' or a list of the class weights
+
+  optimizer:
+    lr: 0.0001
+    weight_decay: 0.00001
+
+data_module:
+  data_module_name: "ADNIDataModule"
+  stage: "train"    # train or test
+  sample: 1   # ranges from 0 to 1. 1 is the full dataset
+  batch_size: 32
+  num_workers: 1
+  class_names: ["CN", "MCI", "AD"]
+  dataset_cfg:
+    adni_dir: "/home/duenias/PycharmProjects/HyperNetworks/ADNI_2023/ADNI"
+    transform_train: "hippo_crop_lNr_l2r"
+    transform_valid: "None"
+    fold: 0
+    features_set: 15
+    load2ram: false
+    only_tabular: false
+    split_seed: 0
+    with_skull: false
+    no_bias_field_correct: true
+    num_classes: 3
+
