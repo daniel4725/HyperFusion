@@ -204,9 +204,9 @@ if __name__ == '__main__':
         GPU = "2"
 
         exname = "tst"
-        features_set = "16"
+        features_set = "15"
         num_classes = "3"
-        model = "MLP_8_bn_prl"
+        model = "PreactivResNet_bn_4blks_diff_start_incDrop_mlpend"
         split_seed = "1"
         cnn_dropout = "0.1"
         init_features = "16"

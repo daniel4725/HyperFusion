@@ -448,28 +448,29 @@ if __name__ == "__main__":
     ]
 
     # --------------  features set 15 -----------------------
-    # fs = "15"
-    #
-    # versions_seeds = np.array(list(itertools.product([0, 1, 2], [1, 2, 3, 4, 5, 6])) + list(itertools.product([3, 4], [1, 2, 3])))
-    # hyper_idxs = [23,  7,  5,  4,  3,  1, 12, 13, 14, 15,  2, 17, 18, 19, 20, 21, 22, 0]
-    # daft_idxs = [17, 11,  2, 22, 21,  5,  6,  7,  8,  9, 10, 20, 12, 13, 19, 18, 16, 23]
-    # hyper11d14 = [f"TabularAsHyper_embd_trainedTabular8_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds[hyper_idxs]]
-    # daft11d14 = [f"DAFT_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds[daft_idxs]]
-    # # hyper11d14 = [f"TabularAsHyper_embd_trainedTabular8_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds]
-    # # daft11d14 = [f"DAFT_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds]
-    #
-    # versions_seeds = list(itertools.product([0, 1, 2], [1, 2, 3]))
-    # film11d14 = [f"Film_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds]
-    # concat11_08_14 = [f"baseline-concat1_cw11_08_14_v{v}-seed{s}-fs15" for s, v in versions_seeds]
-    # baseline_image = [f"baseline-resnet_cw1_v{v}-seed{s}-fs15" for s, v in versions_seeds]
-    # baseline_tabular = [f"baseline-tabular_embd8_v{v}-seed{s}-fs15" for s, v in versions_seeds]
-    #
-    # experiments_names += hyper11d14 + [[]]
-    # experiments_names += daft11d14 + [[]]
-    # experiments_names += film11d14 + [[]]
-    # experiments_names += concat11_08_14 + [[]]
-    # experiments_names += baseline_image + [[]]
-    # experiments_names += baseline_tabular + [[]]
+    fs = "15"
+
+    versions_seeds = np.array(list(itertools.product([0, 1, 2], [1, 2, 3, 4, 5, 6])) + list(itertools.product([3, 4], [1, 2, 3])))
+    hyper_idxs = [23,  7,  5,  4,  3,  1, 12, 13, 14, 15,  2, 17, 18, 19, 20, 21, 22, 0]
+    daft_idxs = [17, 11,  2, 22, 21,  5,  6,  7,  8,  9, 10, 20, 12, 13, 19, 18, 16, 23]
+    hyper11d14 = [f"TabularAsHyper_embd_trainedTabular8_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds[hyper_idxs]]
+    daft11d14 = [f"DAFT_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds[daft_idxs]]
+    # versions_seeds = np.array(list(itertools.product([0, 1, 2, 3, 4], [1, 2, 3])))
+    # hyper11d14 = [f"TabularAsHyper_embd_trainedTabular8_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds]
+    # daft11d14 = [f"DAFT_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds]
+
+    versions_seeds = list(itertools.product([0, 1, 2], [1, 2, 3]))
+    film11d14 = [f"Film_cw11d14_v{v}-seed{s}-fs15" for s, v in versions_seeds]
+    concat11_08_14 = [f"baseline-concat1_cw11_08_14_v{v}-seed{s}-fs15" for s, v in versions_seeds]
+    baseline_image = [f"baseline-resnet_cw1_v{v}-seed{s}-fs15" for s, v in versions_seeds]
+    baseline_tabular = [f"baseline-tabular_embd8_v{v}-seed{s}-fs15" for s, v in versions_seeds]
+
+    experiments_names += hyper11d14 + [[]]
+    experiments_names += daft11d14 + [[]]
+    experiments_names += film11d14 + [[]]
+    experiments_names += concat11_08_14 + [[]]
+    experiments_names += baseline_image + [[]]
+    experiments_names += baseline_tabular + [[]]
 
 
     # experiments_names_dict = {
@@ -482,22 +483,22 @@ if __name__ == "__main__":
     # }
 
     # --------------  features set 16/17/18 -----------------------
-    fs = "16"
-    versions_seeds = list(itertools.product([0, 1, 2], [1, 2, 3]))
-
-    hyper11d14 = [f"TabularAsHyper_embd_trainedTabular8_cw11d14_v{v}-seed{s}-fs{fs}" for s, v in versions_seeds]
-    daft11d14 = [f"DAFT_cw11d14_v{v}-seed{s}-fs{fs}" for s, v in versions_seeds]
-    film11d14 = [f"Film_cw11d14_v{v}-seed{s}-fs{fs}" for s, v in versions_seeds]
-    concat11_08_14 = [f"baseline-concat1_cw11_08_14_v{v}-seed{s}-fs{fs}" for s, v in versions_seeds]
-    baseline_image = [f"baseline-resnet_cw1_v{v}-seed{s}-fs15" for s, v in list(itertools.product([0, 1, 2], [1, 2, 3]))]
-    baseline_tabular = [f"baseline-tabular_embd8_v{v}-seed{s}-fs{fs}" for s, v in versions_seeds]
-
-    experiments_names += hyper11d14 + [[]]
-    experiments_names += daft11d14 + [[]]
-    experiments_names += film11d14 + [[]]
-    experiments_names += concat11_08_14 + [[]]
-    experiments_names += baseline_image + [[]]
-    experiments_names += baseline_tabular + [[]]
+    # fs = "16"
+    # versions_seeds = list(itertools.product([0, 1, 2], [1, 2, 3]))
+    #
+    # hyper11d14 = [f"TabularAsHyper_embd_trainedTabular8_cw11d14_v{v}-seed{s}-fs{fs}" for s, v in versions_seeds]
+    # daft11d14 = [f"DAFT_cw11d14_v{v}-seed{s}-fs{fs}" for s, v in versions_seeds]
+    # film11d14 = [f"Film_cw11d14_v{v}-seed{s}-fs{fs}" for s, v in versions_seeds]
+    # concat11_08_14 = [f"baseline-concat1_cw11_08_14_v{v}-seed{s}-fs{fs}" for s, v in versions_seeds]
+    # baseline_image = [f"baseline-resnet_cw1_v{v}-seed{s}-fs15" for s, v in list(itertools.product([0, 1, 2], [1, 2, 3]))]
+    # baseline_tabular = [f"baseline-tabular_embd8_v{v}-seed{s}-fs{fs}" for s, v in versions_seeds]
+    #
+    # experiments_names += hyper11d14 + [[]]
+    # experiments_names += daft11d14 + [[]]
+    # experiments_names += film11d14 + [[]]
+    # experiments_names += concat11_08_14 + [[]]
+    # experiments_names += baseline_image + [[]]
+    # experiments_names += baseline_tabular + [[]]
 
 
     # ------------------- location ablation - feature set 12 ----------------

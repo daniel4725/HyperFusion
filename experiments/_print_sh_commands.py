@@ -3,13 +3,13 @@ import os
 base_cmd = f"sh {os.getcwd()}"
 
 
-gpus = [0, 0, 0, 0]
+gpus = [2, 2, 2, 2]
 # experiment: baseline-concatenation  baseline-tabular  DAFT  Film  TabularAsHyper  baseline-resnet  TabularAsHyper_trainedhyper  TabularAsHyper_trainedhyper8_cw085
 # TabularAsHyper_cw085_2losses
 # experiments = []
 experiments = ["baseline-tabular", "TabularAsHyper_trainedhyper8_cw11d14",
                "baseline-concatenation_cw11_08_14", "DAFT_cw11d14", "Film_cw11d14"]
-# experiments = ["TabularAsHyper_trainedhyper8_cw1"]
+experiments = ["baseline-resnet"]
 features_sets = [15]
 seeds = [0, 1, 2]
 versions = ["_v1", "_v2", "_v3"]

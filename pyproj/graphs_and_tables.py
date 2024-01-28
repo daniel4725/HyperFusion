@@ -23,8 +23,10 @@ from scipy import stats
 
 def is_statistically_significant(sample1, sample2, alpha=0.05):
     # Perform independent samples t-test - the hypothessis is that the mean(sample1) > mean(sample2)
-    t_statistic, p_value = stats.ttest_ind(sample1, sample2)
-    p_value /= 2
+    # t_statistic, p_value = stats.ttest_ind(sample1, sample2, equal_var=False)
+
+    u_statistic, p_value = stats.mannwhitneyu(sample1, sample2, alternative='greater')
+
     # Check if p-value is less than significance level (alpha)
     # if p_value < alpha:
     #     print(f"There is statistical significance!  (p value={p_value:.4f})")
@@ -37,21 +39,21 @@ def change_metrics_names(metrics):
         'balanced_acc': "BAC",
         'precision': "PRC",
         'f1_macro': "f1 macro",
-        'AUC': "AUC",
-        'CN_acc': "CN",
-        'MCI_acc': "MCI",
-        'AD_acc': "AD",
+        'AUC': "AUC macro",
+        'CN_acc': "TP-CN",
+        'MCI_acc': "TP-MCI",
+        'AD_acc': "TP-AD",
     }
     return [metrics_names_dict[m] for m in metrics]
 
 def change_models_names(models):
     models_names_dict = {
-        'hyper': "Hyper",
-        'DAFT': "Our DAFT$^*$",
-        'Film': "Our Film$^*$",
-        'tabular_only': "tabular only",
-        'concat1': "concat",
-        'image_only': "image only",
+        'hyper': "HyperFusion",
+        'DAFT': "DAFT-like implementation$^*$",
+        'Film': "FiLM-like implementation$^*$",
+        'tabular_only': "Tabular only",
+        'concat1': "Concatenation",
+        'image_only': "Imaging only",
     }
     return [models_names_dict[m] for m in models]
 
@@ -144,12 +146,20 @@ def get_latex_table_content(df, metrics):
         if models[i] != "Hyper":
             print(" \\\\")
             for j in range(values.shape[1]):
-                if p_values[i, j] > 0.009:
+                p_cut_value = 0.01
+                if p_values[i, j] >= p_cut_value:
                     print(f" & p = {p_values[i, j]:.3f}", end='')
-                elif p_values[i, j] < 1e-10:
-                    print(f" & p = {0}", end='')
-                else:
-                    print(f" & p = {p_values[i, j]:.2e}", end='')
+                elif p_values[i, j] < p_cut_value:
+                    print(f" & p $<$ {p_cut_value}", end='')
+                # else:
+                #     print(f" & p = {p_values[i, j]:.2e}", end='')
+                # if p_values[i, j] > 0.009:
+                #     print(f" & p = {p_values[i, j]:.3f}", end='')
+                # elif p_values[i, j] < 1e-10:
+                #     print(f" & p = {0}", end='')
+                # else:
+                #     print(f" & p = {p_values[i, j]:.2e}", end='')
+
         print(" \\\\ \\hline")
 
 
@@ -246,7 +256,7 @@ def create_inclusive_csv(df_val_path, df_test_path, metrics, name):
 if __name__ == '__main__':
     # find_best_hyper()
     fs = 15
-    add=""
+    add = "_260124"
     name = f"inclusive_results_fs{fs}"
     df_val_path = f"/media/rrtammyfs/Users/daniel/full_results_val_fs{fs}.csv"
     df_test_path = f"/media/rrtammyfs/Users/daniel/full_results_test_fs{fs}{add}.csv"
