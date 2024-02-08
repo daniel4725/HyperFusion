@@ -1,0 +1,1 @@
+This directory holds the temp config .yaml files created during training

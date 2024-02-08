@@ -1,8 +1,79 @@
 import torch.nn as nn
 import torch.nn.functional as F
+import torch
 affine = True
+# -----------------------------------------------------------------------------
+# ---------------------- brain age prediction ---------------------------------
+# -----------------------------------------------------------------------------
+
+class Imaging_only_brainage(nn.Module):
+    def __init__(self):
+        super().__init__()
+
+        self.conv1_a = nn.Conv3d(in_channels=1, out_channels=16, kernel_size=3, stride=1)
+        self.conv1_b = nn.Conv3d(in_channels=16, out_channels=16, kernel_size=3, stride=1)
+        # MaxPool3d(kernel_size=2, stride=1)
+        self.batchnorm1 = nn.BatchNorm3d(16)
+
+        self.conv2_a = nn.Conv3d(in_channels=16, out_channels=32, kernel_size=3, stride=1)
+        self.conv2_b = nn.Conv3d(in_channels=32, out_channels=32, kernel_size=3, stride=1)
+        # MaxPool3d(kernel_size=2, stride=1)
+        self.batchnorm2 = nn.BatchNorm3d(32)
+
+        self.conv3_a = nn.Conv3d(in_channels=32, out_channels=64, kernel_size=3, stride=1)
+        self.conv3_b = nn.Conv3d(in_channels=64, out_channels=64, kernel_size=3, stride=1)
+        # MaxPool3d(kernel_size=2, stride=1)
+        self.batchnorm3 = nn.BatchNorm3d(64)
+
+        self.dropout1 = nn.Dropout3d(0.2)
+        self.linear1 = nn.Linear(in_features=39424, out_features=16)
+        # relu
+        self.linear2 = nn.Linear(in_features=16, out_features=32)
+        # relu
+        self.linear3 = nn.Linear(in_features=32, out_features=64)
+        # relu
+        self.final_layer = nn.Linear(in_features=64, out_features=1)
+
+    def forward(self, x):
+        # input shape = [batch size, channels, image shape]
+        img, tabular = x
+        x = self.conv1_a(img)
+        x = F.relu(x)
+        x = self.conv1_b(x)
+        x = F.relu(x)
+        x = F.max_pool3d(x, kernel_size=2, stride=2)
+        x = self.batchnorm1(x)
+
+        x = self.conv2_a(x)
+        x = F.relu(x)
+        x = self.conv2_b(x)
+        x = F.relu(x)
+        x = F.max_pool3d(x, kernel_size=2, stride=2)
+        x = self.batchnorm2(x)
+
+        x = self.conv3_a(x)
+        x = F.relu(x)
+        x = self.conv3_b(x)
+        x = F.relu(x)
+        x = F.max_pool3d(x, kernel_size=2, stride=2)
+        x = self.batchnorm3(x)
+
+        x = self.dropout1(x)
+        x = torch.flatten(x, start_dim=1)
+        x = self.linear1(x)
+        x = F.relu(x)
+        x = self.linear2(x)
+        x = F.relu(x)
+        x = self.linear3(x)
+        x = F.relu(x)
+        x = self.final_layer(x)
+
+        return x[:, 0]
 
 
+# -----------------------------------------------------------------------------
+# ------------------------ AD classification ----------------------------------
+# -----------------------------------------------------------------------------
 def conv3d_bn3d_relu(in_channels, out_channels, bn_momentum=0.05, kernel_size=3, stride=1, padding=1, conv_bias=True):
         conv3d = nn.Conv3d(in_channels, out_channels, kernel_size, stride=stride, padding=padding, bias=conv_bias)
         bn3d = nn.BatchNorm3d(out_channels, momentum=bn_momentum)

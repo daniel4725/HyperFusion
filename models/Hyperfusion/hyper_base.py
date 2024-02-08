@@ -24,27 +24,28 @@ class HyperNetwork(nn.Module):
 
 
     def calc_variance4init(self, main_net_in_size, train_dataloader, hyper_input_type,
-                           embd_vars=False, main_net_relu=True, main_net_biasses=True):
+                           embd_vars=False, main_net_relu=True, main_net_biasses=True, var_hypernet_input=None):
         # initialize the weights and biasses of the weights geneerator
-        # according to PRINCIPLED WEIGHT INITIALIZATION FOR HYPERNETWORKS
-        hyper_input_type_dict = {"image": 0, "tabular": 1}
-        if hyper_input_type == "tabular":
-            only_tabular = train_dataloader.dataset.only_tabular
-            train_dataloader.dataset.only_tabular = True
-        variances = []
-        for batch in iter(train_dataloader):
-            # to choose the input for the hyper network - (image or tabular)
-            values = batch[hyper_input_type_dict[hyper_input_type]]
-            if embd_vars:  # calculates tha variance after the embedding model
-                values = self.embedding_model(values)
-            for v in values:
-                variances += [np.array(v.view(-1).detach().cpu()).var()]
-        if hyper_input_type == "tabular":
-            train_dataloader.dataset.only_tabular = only_tabular
+        if var_hypernet_input is None:
+            # according to PRINCIPLED WEIGHT INITIALIZATION FOR HYPERNETWORKS
+            hyper_input_type_dict = {"image": 0, "tabular": 1}
+            if hyper_input_type == "tabular":
+                only_tabular = train_dataloader.dataset.only_tabular
+                train_dataloader.dataset.only_tabular = True
+            variances = []
+            for batch in iter(train_dataloader):
+                # to choose the input for the hyper network - (image or tabular)
+                values = batch[hyper_input_type_dict[hyper_input_type]]
+                if embd_vars:  # calculates tha variance after the embedding model
+                    values = self.embedding_model(values)
+                for v in values:
+                    variances += [np.array(v.view(-1).detach().cpu()).var()]
+            if hyper_input_type == "tabular":
+                train_dataloader.dataset.only_tabular = only_tabular
 
-        var_hypernet_input = np.mean(variances)
-        if var_hypernet_input == 0:
-            var_hypernet_input = 1
+            var_hypernet_input = np.mean(variances)
+            if var_hypernet_input == 0:
+                var_hypernet_input = 1
 
         # calculate the needed variance
         dk = self.parameters_generators_input_size  # both dk and dl
@@ -68,10 +69,11 @@ class HyperNetwork(nn.Module):
         nn.init.constant_(self.bias_gen.bias, 0)
 
     def initialize_parameters(self, weights_init_method, fan_in, hyper_input_type,
-                              for_conv=False, train_loader=None, GPU=None):
+                              for_conv=False, train_loader=None, GPU=None, var_hypernet_input=None):
         if weights_init_method == "input_variance":
             print("input_variance weights initialization")
-            var_w, var_b = self.calc_variance4init(fan_in, train_loader, hyper_input_type, embd_vars=False)
+            var_w, var_b = self.calc_variance4init(fan_in, train_loader, hyper_input_type, embd_vars=False,
+                                                   var_hypernet_input=var_hypernet_input)
             self.variance_uniform_init(var_w, var_b)
         elif weights_init_method == "embedding_variance":
             print("embedding_variance weights initialization")
@@ -104,7 +106,7 @@ class HyperNetwork(nn.Module):
 
 class HyperLinearLayer(nn.Module):
     def __init__(self, in_features, out_features, embedding_model, embedding_output_size,
-                 weights_init_method=None, train_loader=None, hyper_input_type=None, GPU=None):
+                 weights_init_method=None, train_loader=None, hyper_input_type=None, GPU=None, var_hypernet_input=None):
         super().__init__()
         num_weights = in_features * out_features
         num_biases = out_features
@@ -116,7 +118,8 @@ class HyperLinearLayer(nn.Module):
         # initialize the weights of the layer if there is weights_init_method value
         if not (weights_init_method is None):
             self.hyper_net.initialize_parameters(weights_init_method, in_features, hyper_input_type,
-                                                 for_conv=False, train_loader=train_loader, GPU=GPU)
+                                                 for_conv=False, train_loader=train_loader, GPU=GPU,
+                                                 var_hypernet_input=var_hypernet_input)
 
     def forward(self, x):
         x, features = x[0], x[1]
@@ -134,14 +137,15 @@ class HyperLinearLayer(nn.Module):
 
 class LinearLayer(nn.Module):
     def __init__(self, in_features, out_features, embedding_model=None, embedding_output_size=None,
-                 weights_init_method=None, train_loader=None, hyper_input_type=None, GPU=None):
+                 weights_init_method=None, train_loader=None, hyper_input_type=None, GPU=None,
+                 var_hypernet_input=None):
         super().__init__()
         self.hyper = not(embedding_model is None)  # if there is an embedding model that hyper is True
         if self.hyper:
             self.layer = HyperLinearLayer(in_features=in_features, out_features=out_features,
                                           embedding_model=embedding_model, embedding_output_size=embedding_output_size,
                                           weights_init_method=weights_init_method, train_loader=train_loader,
-                                          hyper_input_type=hyper_input_type, GPU=GPU)
+                                          hyper_input_type=hyper_input_type, GPU=GPU, var_hypernet_input=var_hypernet_input)
         else:
             self.layer = nn.Linear(in_features=in_features, out_features=out_features)
 
@@ -153,7 +157,7 @@ class LinearLayer(nn.Module):
 
 class HyperConv3dLayer(nn.Module):
     def __init__(self, in_channels, out_channels, kernel_size, embedding_model, embedding_output_size,
-                 weights_init_method=None, train_loader=None, hyper_input_type=None, GPU=None,
+                 weights_init_method=None, train_loader=None, hyper_input_type=None, GPU=None, var_hypernet_input=None,
                  stride=1, padding=1):
         super().__init__()
         num_weights = in_channels * out_channels * (kernel_size ** 3)  # num of weights and biases
@@ -170,7 +174,8 @@ class HyperConv3dLayer(nn.Module):
         if not (weights_init_method is None):
             fan_in = in_channels * (kernel_size ** 3)
             self.hyper_net.initialize_parameters(weights_init_method, fan_in, hyper_input_type,
-                                                 for_conv=True, train_loader=train_loader, GPU=GPU)
+                                                 for_conv=True, train_loader=train_loader, GPU=GPU,
+                                                 var_hypernet_input=var_hypernet_input)
 
     def forward(self, x):
         x, features = x[0], x[1]
@@ -196,7 +201,8 @@ class HyperConv3dLayer(nn.Module):
 class Conv3DLayer(nn.Module):
     def __init__(self,  in_channels, out_channels, kernel_size=3, stride=1, padding=1,
                  embedding_model=None, embedding_output_size=None,
-                 weights_init_method=None, train_loader=None, hyper_input_type=None, GPU=None):
+                 weights_init_method=None, train_loader=None, hyper_input_type=None, GPU=None,
+                 var_hypernet_input=None):
         super().__init__()
         self.hyper = not(embedding_model is None)  # if there is an embedding model that hyper is True
         if self.hyper:
@@ -204,7 +210,7 @@ class Conv3DLayer(nn.Module):
                                           kernel_size=kernel_size, stride=stride, padding=padding,
                                           embedding_model=embedding_model, embedding_output_size=embedding_output_size,
                                           weights_init_method=weights_init_method, train_loader=train_loader,
-                                          hyper_input_type=hyper_input_type, GPU=GPU)
+                                          hyper_input_type=hyper_input_type, GPU=GPU, var_hypernet_input=var_hypernet_input)
 
         else:
             self.layer = nn.Conv3d(in_channels, out_channels, kernel_size=kernel_size, stride=stride, padding=padding)

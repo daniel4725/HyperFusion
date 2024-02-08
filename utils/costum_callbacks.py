@@ -5,7 +5,7 @@ from pytorch_lightning.callbacks import Callback, ModelCheckpoint
 from datetime import datetime
 
 
-def CheckpointCallback(ckpt_dir, experiment_name, data_fold):
+def CheckpointCallbackAD(ckpt_dir, experiment_name, data_fold):
     now = datetime.now()
     dt_string = now.strftime("%dd%mm%yy-%Hh%Mm%Ss")
     # print("date and time =", dt_string)
@@ -20,6 +20,27 @@ def CheckpointCallback(ckpt_dir, experiment_name, data_fold):
         auto_insert_metric_name=False,
         monitor="val/balanced_acc",
         mode="max"
+        )
+    checkpoint_callback.CHECKPOINT_NAME_LAST = "last"
+    # checkpoint_callback.CHECKPOINT_NAME_LAST = experiment_name + "-epoch={epoch}-last"
+    return checkpoint_callback
+
+
+def CheckpointCallbackBrainage(ckpt_dir, experiment_name):
+    now = datetime.now()
+    dt_string = now.strftime("%dd%mm%yy-%Hh%Mm%Ss")
+    # print("date and time =", dt_string)
+
+    checkpoint_callback = ModelCheckpoint(
+        dirpath=os.path.join(ckpt_dir, experiment_name),
+        # dirpath=os.path.join(checkpoint_dir, experiment_name +"_" + dt_string, f"fold_{kwargs['data_fold']}"),
+        filename='best_val',
+        # filename=experiment_name + '-epoch={epoch}-val_balanced_acc={val/balanced_acc:.3f}',
+        save_top_k=1,
+        save_last=True,
+        auto_insert_metric_name=False,
+        monitor="val/MAE",
+        mode="min"
         )
     checkpoint_callback.CHECKPOINT_NAME_LAST = "last"
     # checkpoint_callback.CHECKPOINT_NAME_LAST = experiment_name + "-epoch={epoch}-last"

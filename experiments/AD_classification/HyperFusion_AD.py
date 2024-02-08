@@ -17,7 +17,7 @@ cfg.wandb.project_name = "HyperNetworks_final_splitseed"
 # cfg.wandb.project_name = "testing"
 
 cfg.experiment_name = f"HyperFusion{vers}-seed{seed}-fs{f_set}"
-cfg.model.model_name = "HyperFusion"
+cfg.model.model_name = "HyperFusion_AD"
 cfg.data_module.dataset_cfg.features_set = f_set
 cfg.trainer.epochs = 250
 cfg.lightning_wrapper.loss.class_weights = [1.1, 0.6962, 1.4]

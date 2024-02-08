@@ -5,8 +5,93 @@ import torchmetrics
 from utils.utils import nonsquared_conf_mat
 from easydict import EasyDict
 
-# pytorch_lightning:
-# https://pytorch-lightning.readthedocs.io/en/stable/common/lightning_module.html
+
+class PlModelWrapBrainAge(pl.LightningModule):
+    def __init__(self, **wrapper_kwargs):
+        super().__init__()
+        self.save_hyperparameters()
+        wrapper_kwargs = EasyDict(self.hparams)
+        self.model = wrapper_kwargs.model
+        self.batch_size = wrapper_kwargs.batch_size
+        self.lr = wrapper_kwargs.optimizer.lr
+        self.weight_decay = wrapper_kwargs.optimizer.weight_decay
+
+        self.best_val_MAE = torch.inf
+
+    def forward(self, x):
+        return self.model(x)
+
+    def training_step(self, batch, batch_idx):
+        # self.model.train()
+        imgs, tabular, y = batch
+        y_hat = self((imgs, tabular))
+
+        loss = F.mse_loss(y_hat, y)
+        MAE = torchmetrics.functional.mean_absolute_error(y_hat, y)
+
+        self.log('train/loss', loss, prog_bar=False, on_step=False, on_epoch=True, batch_size=self.batch_size)
+        self.log('train/MAE', MAE, prog_bar=True, on_step=False, on_epoch=True, batch_size=self.batch_size)
+
+        return loss
+
+    def training_epoch_end(self, training_step_outputs):
+        # all_preds = torch.stack(training_step_outputs)
+        pass
+
+    def _shared_eval_step(self, batch, batch_idx, evaluation_type="val"):
+        # self.model.eval()
+
+        imgs, tabular, y = batch
+        y_hat = self((imgs, tabular))
+
+        MSE = torchmetrics.functional.mean_squared_error(y_hat, y)
+        MAE = torchmetrics.functional.mean_absolute_error(y_hat, y)
+
+        self.log(f'{evaluation_type}/MSE', MSE, prog_bar=False, on_step=False, on_epoch=True, batch_size=self.batch_size)
+        self.log(f'{evaluation_type}/MAE', MAE, prog_bar=True, on_step=False, on_epoch=True, batch_size=self.batch_size)
+
+        return y_hat, y
+
+
+    def _shared_eval_epoch_end(self, step_outputs, type_evaluiation="val"):
+        y_hat = step_outputs[0][0]
+        y = step_outputs[0][1]
+        for element in step_outputs[1:]:
+            y_hat = torch.cat((y_hat, element[0]))
+            y = torch.cat((y, element[1]))
+
+
+        MSE = torchmetrics.functional.mean_squared_error(y_hat, y)
+        MAE = torchmetrics.functional.mean_absolute_error(y_hat, y)
+
+        self.log(f'{type_evaluiation}/MSE', MSE, prog_bar=False, on_step=False, on_epoch=True, batch_size=self.batch_size)
+        self.log(f'{type_evaluiation}/MAE', MAE, prog_bar=True, on_step=False, on_epoch=True, batch_size=self.batch_size)
+
+        # logging the best balance acc and the other metrics at this point
+        if self.best_val_MAE > MAE:
+            self.best_val_MAE = MAE
+            self.MSE_best_point = MSE
+
+
+        self.log(f'{type_evaluiation}/best_MAE', self.best_val_MAE, prog_bar=True, on_step=False, on_epoch=True, batch_size=self.batch_size)
+        self.log(f'{type_evaluiation}/best_MSE', self.MSE_best_point, prog_bar=True, on_step=False, on_epoch=True, batch_size=self.batch_size)
+
+
+    def validation_step(self, batch, batch_idx):
+        return self._shared_eval_step(batch, batch_idx, evaluation_type="val")
+
+    def validation_epoch_end(self, validation_step_outputs):
+        self._shared_eval_epoch_end(step_outputs=validation_step_outputs, type_evaluiation="val")
+
+    def test_step(self, batch, batch_idx):
+        return self._shared_eval_step(batch, batch_idx, evaluation_type="test")
+
+    def test_epoch_end(self, test_step_outputs):
+        self._shared_eval_epoch_end(step_outputs=test_step_outputs, type_evaluiation="test")
+
+    def configure_optimizers(self):
+        return torch.optim.Adam(self.parameters(), lr=self.lr, weight_decay=self.weight_decay)
+
 
 class PlModelWrapADcls(pl.LightningModule):
     def __init__(self, **wrapper_kwargs):
@@ -157,7 +242,7 @@ class PlModelWrapADcls(pl.LightningModule):
         return torch.optim.Adam(self.parameters(), lr=self.lr, weight_decay=self.weight_decay)
 
 
-class PlModelWrap4test(PlModelWrapADcls):
+class PlModelWrapADcls4test(PlModelWrapADcls):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 

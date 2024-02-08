@@ -1,4 +1,4 @@
-from utils.costum_callbacks import TimeEstimatorCallback, CheckpointCallback
+from utils.costum_callbacks import TimeEstimatorCallback
 import pytorch_lightning as pl
 from argparse import ArgumentParser
 from pytorch_lightning.loggers import WandbLogger
@@ -10,10 +10,13 @@ from easydict import EasyDict
 import sys
 
 # per model and data imports:
+from utils.costum_callbacks import CheckpointCallbackBrainage, CheckpointCallbackAD
 from utils.utils import get_class_weight
-from pl_wrap import PlModelWrapADcls
+from pl_wrap import PlModelWrapADcls, PlModelWrapBrainAge
 from data_utils.ADNI_data_handler import ADNIDataModule
+from data_utils.BrainAge_data_handler import BrainAgeDataModule
 from models.Hyperfusion.HyperFusion_AD_model import *
+from models.Hyperfusion.HyperFusion_brainage_model import *
 from models.Film_DAFT_preactive.models_film_daft import *
 from models.base_models import *
 from models.concat_models import *
@@ -43,7 +46,7 @@ def main(config: EasyDict):
     # Callbacks:
     callbacks = [TimeEstimatorCallback(config.trainer.epochs)]
     if config.checkpointing.enable:
-        callbacks += [CheckpointCallback(**config.checkpointing.callback_kwargs)]
+        callbacks += [config.checkpointing.CheckpointCallback(**config.checkpointing.callback_kwargs)]
 
     if len(config.trainer.gpu) > 1:
         strategy = "dp"
@@ -85,7 +88,6 @@ def arrange_config4task(config: EasyDict):
         train_dataset = config.data_module_instance.train_ds
         config.model.n_tabular_features = train_dataset.num_tabular_features
         config.model.n_outputs = train_dataset.num_classes
-        # config.model.cnn_mlp_shapes[-1] = train_dataset.num_classes
         config.model.train_loader = config.data_module_instance.train_dataloader()
         config.model.mlp_layers_shapes = [config.model.n_tabular_features] + config.model.hidden_shapes + [train_dataset.num_classes]
 
@@ -109,6 +111,7 @@ def arrange_config4task(config: EasyDict):
         config.lightning_wrapper.class_names = config.data_module.class_names
 
         # for checkpointing
+        config.checkpointing.CheckpointCallback = CheckpointCallbackAD
         config.checkpointing.callback_kwargs = dict(
             ckpt_dir=config.checkpointing.ckpt_dir,
             experiment_name=config.experiment_name,
@@ -116,7 +119,19 @@ def arrange_config4task(config: EasyDict):
         )
 
     elif config.task == "brain_age_prediction":
-        pass
+        config.model.train_loader = config.data_module_instance.train_dataloader()
+        config.model.GPU = config.trainer.gpu
+
+        config.lightning_wrapper.batch_size = config.data_module.batch_size
+
+        # for checkpointing
+
+        config.checkpointing.CheckpointCallback = CheckpointCallbackBrainage
+        config.checkpointing.callback_kwargs = dict(
+            ckpt_dir=config.checkpointing.ckpt_dir,
+            experiment_name=config.experiment_name,
+        )
+
 
 
 def wandb_interface(config: EasyDict):
@@ -134,8 +149,12 @@ def wandb_interface(config: EasyDict):
 
         # run_id = datetime.datetime.now().strftime("%d-%m-%Y %Hh%Mm%Ss - ") + args.experiment_name
         os.makedirs(wandb_args.logs_dir, exist_ok=True)
+        if config.task == "AD_classification":
+            exp_name = config.experiment_name + f"-f{config.data_module.dataset_cfg.fold}"
+        else:
+            exp_name = config.experiment_name
         logger = WandbLogger(project=wandb_args.project_name,
-                             name=config.experiment_name + f"-f{config.data_module.dataset_cfg.fold}",
+                             name=exp_name,
                              save_dir=wandb_args.logs_dir)
 
         def flatten_dict(d, parent_key='', sep='_'):
@@ -156,7 +175,8 @@ def wandb_interface(config: EasyDict):
 
 
 if __name__ == '__main__':
-    default_cfg_path = os.path.join(os.getcwd(), "experiments", "AD_classification", "default_train_config.yml")
+    # default_cfg_path = os.path.join(os.getcwd(), "experiments", "AD_classification", "default_train_config.yml")
+    default_cfg_path = os.path.join(os.getcwd(), "experiments", "brain_age_prediction", "default_train_config.yml")
 
     parser = ArgumentParser()
     parser.add_argument('-c', '--config_path', default=default_cfg_path, type=str, help="path to YAML config file")
@@ -171,29 +191,37 @@ if __name__ == '__main__':
     if args.debug or ide_debug_mode:
         print("debug mode activated!")
 
+        # # config_path = "/home/duenias/PycharmProjects/HyperFusion/experiments/brain_age_prediction/temp_configs/240202_090439_908357.yaml"
+        # config_path = "/home/duenias/PycharmProjects/HyperFusion/experiments/brain_age_prediction/temp_configs/240202_114422_681048.yaml"
+        # with open(config_path, 'r') as file:
+        #     config = EasyDict(yaml.safe_load(file))
+
+        config.data_module.num_workers = 0
+
         config.trainer.gpu = [2]
-        config.data_module.dataset_cfg.fold = 0
-        config.data_module.dataset_cfg.split_seed = 0
 
-        # config.wandb.project_name = "HyperNetworks_final_splitseed"
-        # config.wandb.project_name = "HyperNets_imgNtabular"
-        config.wandb.project_name = "testing"
-        config.experiment_name = f"test"
-
-        config.model.model_name = "HyperFusion"
-        # config.data_module.dataset_cfg.only_tabular = True
-        # config.model.model_name = "MLP_8_bn_prl"
-
-        config.data_module.dataset_cfg.features_set = 15
-        config.trainer.epochs = 10
-        config.lightning_wrapper.loss.class_weights = [1.1, 0.6962, 1.4]
-
-        config.data_module.dataset_cfg.transform_train = "hippo_crop_lNr"
-        config.data_module.dataset_cfg.transform_valid = "hippo_crop_2sides"
-
-        # flags:
-        config.data_module.dataset_cfg.load2ram = False
-        config.checkpointing.enable = False
+        # config.data_module.dataset_cfg.fold = 0
+        # config.data_module.dataset_cfg.split_seed = 0
+        #
+        # # config.wandb.project_name = "HyperNetworks_final_splitseed"
+        # # config.wandb.project_name = "HyperNets_imgNtabular"
+        # config.wandb.project_name = "testing"
+        # config.experiment_name = f"test"
+        #
+        # config.model.model_name = "HyperFusion"
+        # # config.data_module.dataset_cfg.only_tabular = True
+        # # config.model.model_name = "MLP_8_bn_prl"
+        #
+        # config.data_module.dataset_cfg.features_set = 15
+        # config.trainer.epochs = 10
+        # config.lightning_wrapper.loss.class_weights = [1.1, 0.6962, 1.4]
+        #
+        # config.data_module.dataset_cfg.transform_train = "hippo_crop_lNr"
+        # config.data_module.dataset_cfg.transform_valid = "hippo_crop_2sides"
+        #
+        # # flags:
+        # config.data_module.dataset_cfg.load2ram = True
+        # config.checkpointing.enable = False
         config.wandb.enable = False
 
     main(config)

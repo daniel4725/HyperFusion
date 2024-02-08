@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# --------------------- need to run ---------------------
-# DAFT-fs0
-# Film-fs0
-# concat-fs0
-
 project_name="HyperNetworks_final_splitseed_test"
 #project_name="HyperNetworks_final_splitseed"
 #project_name="HyperNets_imgNtabular"

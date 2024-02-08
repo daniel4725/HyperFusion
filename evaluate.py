@@ -23,13 +23,10 @@ class ModelsEnsemble(nn.Module):
         # out = self.models[0](x)
         for model in self.models[1:]:
             out += model(x).softmax(dim=-1)
-            # out += model(x)
-        # entropy(model(x).softmax(dim=-1).cpu().detach(), axis=1)
         out = out / len(self.models)
         return out
 
     def confidence_weighted_average_softmax_prediction(self, x):  # weighted (by entropy) average softmax
-        # self.models.train()
         probs = []
         for model in self.models:
             probs.append(model(x).softmax(dim=-1))
@@ -48,7 +45,6 @@ class ModelsEnsemble(nn.Module):
 
 
     def confidence_weighted_majority_voting_prediction(self, x):  # weighted (by entropy) voting
-        # self.models.train()
         probs = []
         for model in self.models:
             probs.append(model(x).softmax(dim=-1))
@@ -69,7 +65,6 @@ class ModelsEnsemble(nn.Module):
 
 
     def most_confidence_prediction(self, x): # most confident decides
-        # self.models.train()
         probs = []
         for model in self.models:
             probs.append(model(x).softmax(dim=-1))
@@ -89,7 +84,7 @@ class ModelsEnsemble(nn.Module):
 
 def entropy(probabilities):
     # Calculate the negative log probabilities (cross-entropy) and then multiply by probabilities
-    negative_log_probs = -torch.log(probabilities)
+    negative_log_probs = -torch.log(probabilities + 1e-14)
     entropy_values = torch.sum(probabilities * negative_log_probs, dim=-1)
     return entropy_values
 

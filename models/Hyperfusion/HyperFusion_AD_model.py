@@ -4,7 +4,7 @@ import os
 from pl_wrap import PlModelWrapADcls
 
 
-class HyperFusion(nn.Module):
+class HyperFusion_AD(nn.Module):
     def __init__(self, in_channels=1, n_outputs=3, bn_momentum=0.1, init_features=4, n_tabular_features=1, **kwargs):
         super().__init__()
 

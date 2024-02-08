@@ -2,13 +2,10 @@ import os
 
 gpus = [2, 2, 3, 3]
 
-experiments = ["baseline-tabular", "TabularAsHyper_trainedhyper8_cw11d14",
-               "baseline-concatenation_cw11_08_14", "DAFT_cw11d14", "Film_cw11d14"]
-
 # experiments = ["baseline-tabular"]
 experiments = ["baseline-imaging"]
 # experiments = ["baseline-concatenation"]
-# experiments = ["HyperFusion"]
+# experiments = ["HyperFusion_AD"]
 # experiments = ["DAFT"]
 # experiments = ["FiLM"]
 

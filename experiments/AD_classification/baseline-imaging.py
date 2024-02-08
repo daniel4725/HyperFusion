@@ -20,7 +20,7 @@ cfg.experiment_name = f"baseline-imaging{vers}-seed{seed}-fs{f_set}"
 cfg.model.model_name = "PreactivResNet"
 cfg.data_module.dataset_cfg.features_set = f_set
 cfg.trainer.epochs = 200
-cfg.lightning_wrapper.loss.class_weights = [9550, 1, 1.9361]
+cfg.lightning_wrapper.loss.class_weights = [0.9550, 1, 1.9361]
 
 # flags:
 cfg.data_module.dataset_cfg.load2ram = True
