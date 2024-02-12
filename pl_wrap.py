@@ -16,7 +16,7 @@ class PlModelWrapBrainAge(pl.LightningModule):
         self.lr = wrapper_kwargs.optimizer.lr
         self.weight_decay = wrapper_kwargs.optimizer.weight_decay
 
-        self.best_val_MAE = torch.inf
+        self.best_val_MAE = 1000
 
     def forward(self, x):
         return self.model(x)
