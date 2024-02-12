@@ -86,14 +86,6 @@ class BrainAge_Dataset(Dataset):
 
         return img[None, ...], gender, age  # add channel axis to the image
 
-    def get_path_and_subject(self, index):
-        subject = self.metadata.loc[index, "Subject"]
-        if self.data_in_storage_server:
-            img_path = os.path.join(self.data_dir, subject, "numpySave", f"{subject}.npy")
-        else:
-            img_path = os.path.join(self.data_dir, f"{subject}.npy")
-        return img_path, subject
-
 
 def create_MRI_metadata(csv_path, save_dir):
     csv = pd.read_csv(csv_path)
@@ -117,36 +109,25 @@ def create_MRI_metadata(csv_path, save_dir):
     test.to_csv(os.path.join(save_dir, "metadata_age_prediction_test.csv"), index=False)
 
 
-# def copy_data_to_server(metadata_path, dest_dir):
-#     os.makedirs(dest_dir, exist_ok=True)
-#     mri_ds = MRIDataset(data_in_storage_server=True)
-#     for i in tqdm(range(len(mri_ds))):
-#         img_path, subject = mri_ds.get_path_and_subject(i)
-#         dest_path = os.path.join(dest_dir, subject + ".npy")
-#         shutil.copyfile(img_path, dest_path)
+def copy_data_to_server(metadata_path, dest_dir):
+    metadata = pd.read_csv(metadata_path)
+    storage_server_data_dir = "/media/rrtammyfs/labDatabase/BrainAge/Healthy"
+    os.makedirs(dest_dir, exist_ok=True)
+    for i in tqdm(range(len(metadata))):
+        subject = metadata.loc[i, "Subject"]
+        img_path = os.path.join(storage_server_data_dir, subject, "numpySave_simple", f"{subject}.npy")
 
+        dest_path = os.path.join(dest_dir, subject + ".npy")
+        shutil.copyfile(img_path, dest_path)
 
 if __name__ == "__main__":
-    base_csv_path = "/media/rrtammyfs/labDatabase/BrainAge/Healthy_subjects_divided_pipe_v2.csv"
-    save_metadata_dir = os.path.join(os.path.dirname(os.getcwd()), "Datasets", "BrainAgeDataset")
-    create_MRI_metadata(base_csv_path, save_metadata_dir)
+    # base_csv_path = "/media/rrtammyfs/labDatabase/BrainAge/Healthy_subjects_divided_pipe_v2.csv"
+    # save_metadata_dir = os.path.join(os.path.dirname(os.getcwd()), "Datasets", "BrainAgeDataset")
+    # create_MRI_metadata(base_csv_path, save_metadata_dir)
 
-    # data_path = "/home/duenias/PycharmProjects/HyperFusion/Datasets/BrainAgeDataset/data"
-    # copy_data_to_server(data_path)
-
-
-    # shapes = []
-    # for i in tqdm(range(len(mri_ds))):
-    #     img, gender, age = mri_ds.__getitem__(i)
-    #     shapes.append(img.shape)
-
-    # with open('shapes', 'wb') as file:
-    #     pickle.dump(shapes, file)
-    #
-    # print(set(shapes), len(shapes))
-    #
-    # with open('shapes', 'rb') as file:
-    #     s = pickle.load(file)
+    data_dir = "/home/duenias/PycharmProjects/HyperFusion/Datasets/BrainAgeDataset/data"
+    metadata_path = "/home/duenias/PycharmProjects/HyperFusion/Datasets/BrainAgeDataset/metadata_age_prediction.csv"
+    copy_data_to_server(metadata_path, dest_dir=data_dir)
 
     pass
 
