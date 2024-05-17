@@ -242,7 +242,7 @@ class PlModelWrapADcls(pl.LightningModule):
         return torch.optim.Adam(self.parameters(), lr=self.lr, weight_decay=self.weight_decay)
 
 
-class PlModelWrapADcls4test(PlModelWrapADcls):
+class PlModelWrapADcls4Test(PlModelWrapADcls):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 

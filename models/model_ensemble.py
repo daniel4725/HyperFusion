@@ -3,18 +3,22 @@ from torch import nn
 
 class ModelsEnsemble(nn.Module):
     """ ensemble model class"""
-    def __init__(self):
+    def __init__(self, ensemble_method="confidence_weighted_average_softmax_prediction"):
         super().__init__()
         self.models = nn.ModuleList()
+        ensemble_methods = {
+            "average_softmax_prediction": self.average_softmax_prediction,
+            "confidence_weighted_average_softmax_prediction": self.confidence_weighted_average_softmax_prediction,
+            "confidence_weighted_majority_voting_prediction": self.confidence_weighted_majority_voting_prediction,
+            "most_confidence_prediction": self.most_confidence_prediction
+        }
+        self.ensemble_method = ensemble_methods[ensemble_method]
 
     def append(self, model):
         self.models.append(model)
 
     def forward(self, x):
-        # out = self.average_softmax_prediction(x)
-        out = self.confidence_weighted_average_softmax_prediction(x)
-        # out = self.confidence_weighted_majority_voting_prediction(x)
-        # out = self.most_confidence_prediction(x)
+        out = self.self.ensemble_method(x)
         return out
 
     def average_softmax_prediction(self, x):

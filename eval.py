@@ -1,6 +1,6 @@
 from train import *
 from models.model_ensemble import ModelsEnsemble
-
+import re
 
 def main(config: EasyDict):
     # wandb logger
@@ -15,13 +15,26 @@ def main(config: EasyDict):
     arrange_config4task(config)
 
     # build the model
-    model_name = config.model.pop("model_name")
-    model = globals()[model_name](**config.model)
+    model = ModelsEnsemble()
+    wrapper = globals()[config.lightning_wrapper.wrapper_name]
+
+    versions = config.versions.split(",")
+    experiment_base_name = re.sub(r"_v\d-", "{}-", config.experiment_name)
+    for v in versions:
+        experiment_name = experiment_base_name.format(v)
+        print(f"loading experiment: {experiment_name}")
+        experiment_dir = os.path.join(config.checkpointing.ckpt_dir, experiment_name)
+        for fold_directory in os.listdir(experiment_dir):
+            model_path = os.path.join(experiment_dir, fold_directory, "best_val.ckpt")
+            m = wrapper.load_from_checkpoint(model_path).model
+            model.append(m)
+
 
     # wrap the model with its relevant pytorch lightning model
     config.lightning_wrapper.model = model
-    lightning_wrapper_name = config.lightning_wrapper.pop("wrapper_name")
-    pl_model = globals()[lightning_wrapper_name](**config.lightning_wrapper)
+    test_lightning_wrapper_name = config.lightning_wrapper.pop("wrapper_name") + "4Test"
+    pl_model = globals()[test_lightning_wrapper_name](**config.lightning_wrapper)
+
 
     # Callbacks:
     callbacks = [TimeEstimatorCallback(config.trainer.epochs)]
