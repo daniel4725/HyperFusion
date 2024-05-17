@@ -1,25 +1,5 @@
-from utils.costum_callbacks import TimeEstimatorCallback
-import pytorch_lightning as pl
-from argparse import ArgumentParser
-from pytorch_lightning.loggers import WandbLogger
-import torch
-import wandb
-import os
-import yaml
-from easydict import EasyDict
-import sys
-
-# per model and data imports:
-from utils.costum_callbacks import CheckpointCallbackBrainage, CheckpointCallbackAD
-from utils.utils import get_class_weight
-from pl_wrap import PlModelWrapADcls, PlModelWrapBrainAge, PlModelWrapADcls2Classes
-from data_utils.ADNI_data_handler import ADNIDataModule
-from data_utils.BrainAge_data_handler import BrainAgeDataModule
-from models.Hyperfusion.HyperFusion_AD_model import *
-from models.Hyperfusion.HyperFusion_brainage_model import *
-from models.Film_DAFT_preactive.models_film_daft import *
-from models.base_models import *
-from models.concat_models import *
+from train import *
+from models.model_ensemble import ModelsEnsemble
 
 
 def main(config: EasyDict):

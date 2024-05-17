@@ -43,15 +43,13 @@ class BrainAgeDataModule(pl.LightningDataModule):
 
 
 class BrainAge_Dataset(Dataset):
-    def __init__(self, base_data_dir, gender=None, data_type=None,
+    def __init__(self, data_dir, metadata_dir, gender=None, data_type=None,
                  transform=None, partial_data=False, ages=None):
 
-        data_dir = os.path.join(base_data_dir, "data")
-
         if data_type is None:
-            metadata_path = os.path.join(base_data_dir, "metadata_age_prediction.csv")
+            metadata_path = os.path.join(metadata_dir, "metadata_age_prediction.csv")
         else:
-            metadata_path = os.path.join(base_data_dir, f"metadata_age_prediction_{data_type}.csv")
+            metadata_path = os.path.join(metadata_dir, f"metadata_age_prediction_{data_type}.csv")
 
         metadata = pd.read_csv(metadata_path)
         if partial_data:
@@ -115,7 +113,7 @@ def copy_data_to_server(metadata_path, dest_dir):
     os.makedirs(dest_dir, exist_ok=True)
     for i in tqdm(range(len(metadata))):
         subject = metadata.loc[i, "Subject"]
-        img_path = os.path.join(storage_server_data_dir, subject, "numpySave_simple", f"{subject}.npy")
+        img_path = os.path.join(storage_server_data_dir, subject, "numpySave", f"{subject}.npy")
 
         dest_path = os.path.join(dest_dir, subject + ".npy")
         shutil.copyfile(img_path, dest_path)

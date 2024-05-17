@@ -8,7 +8,7 @@
 !/experiments/brain_age_prediction/temp_configs/README.md
 
 /Datasets/ADNI_2023/ADNI/*
-/Datasets/ADNI_2023/ADNI/README.md
+!/Datasets/ADNI_2023/ADNI/README.md
 
 /experiments/AD_classification/temp_configs/*
 !/experiments/AD_classification/temp_configs/README.md

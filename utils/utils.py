@@ -68,7 +68,7 @@ def nonsquared_conf_mat(preds, targets ,labels, normalize=None, classes_3=False)
 
     if confusion_matrix.shape[0] == confusion_matrix.shape[1]:
         precision = (np.diag(confusion_matrix) / confusion_matrix.sum(axis=0)).mean()
-        balanced_acc = (np.diag(confusion_matrix) / confusion_matrix.sum(axis=1)).mean()  # == recall
+        balanced_acc = (np.diag(confusion_matrix) / confusion_matrix.sum(axis=1)).mean()
 
     if normalize == "true":
         for i in range(confusion_matrix.shape[0]):
@@ -78,12 +78,16 @@ def nonsquared_conf_mat(preds, targets ,labels, normalize=None, classes_3=False)
     if confusion_matrix.shape[0] == 5:
         confusion_matrix[[0, 1, 2, 3, 4]] = confusion_matrix[[0, 3, 1, 4, 2]]
         labels_y = ["CN", 'EMCI', 'MCI', "LMCI", "AD"]
+    elif confusion_matrix.shape[0] == 2:
+        labels_y = ["CN", "AD"]
     else:
         labels_y = ["CN", 'MCI', "AD"]
 
     if confusion_matrix.shape[1] == 5:
         confusion_matrix[:, [0, 1, 2, 3, 4]] = confusion_matrix[:, [0, 3, 1, 4, 2]]
         labels_x = ["CN", 'EMCI', 'MCI', "LMCI", "AD"]
+    elif confusion_matrix.shape[1] == 2:
+        labels_x = ["CN", "AD"]
     else:
         labels_x = ["CN", 'MCI', "AD"]
 

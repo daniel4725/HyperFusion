@@ -7,7 +7,7 @@ affine = True
 # -----------------------------------------------------------------------------
 
 class Imaging_only_brainage(nn.Module):
-    def __init__(self):
+    def __init__(self, **kwargs):
         super().__init__()
 
         self.conv1_a = nn.Conv3d(in_channels=1, out_channels=16, kernel_size=3, stride=1)

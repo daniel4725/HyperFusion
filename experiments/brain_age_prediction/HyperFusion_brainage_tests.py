@@ -14,9 +14,9 @@ cfg.trainer.gpu = [gpu]
 # cfg.wandb.project_name = "barainage"
 cfg.wandb.project_name = "testing_barainage"
 
-cfg.experiment_name = f"HyperFusion_Brainage1{vers}"
-cfg.model.model_name = "HyperFusion_Brainage1"
-cfg.trainer.epochs = 60
+cfg.experiment_name = f"HyperFusion_Brainage{vers}"
+cfg.model.model_name = "HyperFusion_Brainage"
+cfg.trainer.epochs = 80
 
 cfg.data_module.dataset_cfg.partial_data = None
 

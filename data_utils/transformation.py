@@ -58,6 +58,7 @@ tform_dict[tform_name] = lambda img: img[:, 25: 25 + 64, 55: 55 + 96, 85 - 64: 8
 #     lambda img: img[:, 25: 25 + 64, 55: 55 + 96, 85 - 64: 85 + 64]
 
 
+
 # ------------------------------------------
 tform_name = "hippo_crop_lNr_l2r"
 assert tform_name not in tform_dict.keys()
@@ -199,10 +200,31 @@ tform_dict[tform_name] = monai.transforms.Compose([
     monai.transforms.NormalizeIntensity(nonzero=True)
 ])
 
-if deterministic:
-    for key in tform_dict.keys():
-        if key != 'None' and not(key is None):
-            tform_dict[key].set_random_state(0)
+# ---------------------------------------------------------------------------------------------------
+# ------------------------------------  resize ablation transforms ----------------------------------
+# ---------------------------------------------------------------------------------------------------
+# ------------------------------------------
+tform_name = "brain_resize_2sides_for_load_2_ram_func_train"
+assert tform_name not in tform_dict.keys()
+tform_dict[tform_name] = monai.transforms.Resize((64, 96, 128))
+
+# ------------------------------------------
+tform_name = "brain_resize_2sides_for_load_2_ram_func_val"
+assert tform_name not in tform_dict.keys()
+tform_dict[tform_name] = monai.transforms.Compose([
+    monai.transforms.Resize((64, 96, 128)),
+    monai.transforms.NormalizeIntensity(nonzero=True)
+])
+
+# ------------------------------------------
+tform_name = "crop_lNr_after_l2r"
+assert tform_name not in tform_dict.keys()
+tform_dict[tform_name] = monai.transforms.Compose([
+    monai.transforms.RandFlip(prob=0.5, spatial_axis=2),  # left brain to right
+    lambda img: img[:, :, :, 64:],
+    monai.transforms.NormalizeIntensity(nonzero=True)
+])
+
 
 if __name__=="__main__":
     from data_handler import get_dataloaders

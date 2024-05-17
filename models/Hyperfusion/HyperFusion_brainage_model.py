@@ -92,8 +92,7 @@ class HyperFusion_Brainage(nn.Module):
         return out[:, 0]
 
 
-
-class HyperFusion_Brainage1(nn.Module):
+class HyperFusion_Brainage_nofill(nn.Module):
     def __init__(self, dropout=0.2, **kwargs):
         super().__init__()
 
@@ -181,7 +180,7 @@ class HyperFusion_Brainage1(nn.Module):
         return out[:, 0]
 
 
-class HyperFusion_Brainage_only_linear2(nn.Module):
+class HyperFusion_Brainage_only_linear2_nofill(nn.Module):
     def __init__(self, dropout=0.2, **kwargs):
         super().__init__()
 
@@ -269,12 +268,12 @@ class HyperFusion_Brainage_only_linear2(nn.Module):
         return out[:, 0]
 
 
-class HyperFusion_Brainage_only_linear2_embd2(nn.Module):
+class HyperFusion_Brainage_only_linear2_2to2(nn.Module):
     def __init__(self, dropout=0.2, **kwargs):
         super().__init__()
 
         weights_init_method = "input_variance"  # input_variance  embedding_variance  histogram  None
-        embd_tab_out_size = 1
+        embd_tab_out_size = 2
 
         hyper_embeddings = []
         for i in range(4):
@@ -355,16 +354,18 @@ class HyperFusion_Brainage_only_linear2_embd2(nn.Module):
         return out[:, 0]
 
 
-class HyperFusion_Brainage_embd2(nn.Module):
+class HyperFusion_Brainage_2to2(nn.Module):
     def __init__(self, dropout=0.2, **kwargs):
         super().__init__()
 
         weights_init_method = "input_variance"  # input_variance  embedding_variance  histogram  None
-        embd_tab_out_size = 1
+        embd_tab_out_size = 2
 
         hyper_embeddings = []
         for i in range(4):
             layer = nn.Linear(in_features=2, out_features=2)
+            layer.weight.data.fill_(1)
+            layer.bias.data.fill_(0)
             hyper_embeddings.append(layer)
 
         fc1_hyper_kwargs = dict(embedding_model=hyper_embeddings[0])
@@ -439,7 +440,6 @@ class HyperFusion_Brainage_embd2(nn.Module):
         out = self.final_layer((out, tabular))
 
         return out[:, 0]
-
 
 
 class HyperFusion_Brainage_conv3_b(nn.Module):

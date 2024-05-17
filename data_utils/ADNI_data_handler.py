@@ -13,15 +13,19 @@ class ADNIDataModule(pl.LightningDataModule):
     def __init__(self, config):
         super().__init__()
         transform_train = config.dataset_cfg.pop("transform_train")
+        l2r_tform_train = config.dataset_cfg.pop("l2r_tform_train")
         transform_valid = config.dataset_cfg.pop("transform_valid")
+        l2r_tform_valid = config.dataset_cfg.pop("l2r_tform_valid")
         stage = config.stage
         self.batch_size = config.batch_size
         self.num_workers = config.num_workers
 
         self.train_ds = self.valid_ds = self.test_ds = None
         if stage == "train":
-            self.train_ds = ADNI_Dataset(tr_val_tst="train", transform=transform_train, **config.dataset_cfg)
-            self.valid_ds = ADNI_Dataset(tr_val_tst="valid", transform=transform_valid, **config.dataset_cfg)
+            self.train_ds = ADNI_Dataset(tr_val_tst="train", transform=transform_train,
+                                         l2r_tform=l2r_tform_train, **config.dataset_cfg)
+            self.valid_ds = ADNI_Dataset(tr_val_tst="valid", transform=transform_valid,
+                                         l2r_tform=l2r_tform_valid, **config.dataset_cfg)
 
             if 1 > config.sample > 0:  # take a portion of the data (for debuggind the model)
                 num_train_samples = int(len(self.train_ds) * config.sample)
@@ -60,12 +64,19 @@ class ADNI_Dataset(Dataset):
     def __init__(self, tr_val_tst, fold=0, features_set=5,
                  adni_dir='/home/duenias/PycharmProjects/HyperNetworks/ADNI_2023/ADNI',
                  transform=None, load2ram=False, rand_seed=2341, with_skull=False,
-                 no_bias_field_correct=False, only_tabular=False, num_classes=3, split_seed=0):
+                 no_bias_field_correct=False, only_tabular=False, num_classes=3, split_seed=0,
+                 l2r_tform=None, ADvsCN=False):
         self.tr_val_tst = tr_val_tst
         self.transform = tform_dict[transform]
         self.metadata = create_metadata_csv(features_set_idx=features_set, split_seed=split_seed, fold=fold)
-        self.labels_dict = {3: {"CN": 0, 'MCI': 1, "AD": 2, 'EMCI': 1, "LMCI": 1},
-                            5: {"CN": 0, 'MCI': 1, "AD": 2, 'EMCI': 3, "LMCI": 4}}
+        self.labels_dict = {
+            2: {"CN": 0, 'AD': 1},
+            3: {"CN": 0, 'MCI': 1, "AD": 2, 'EMCI': 1, "LMCI": 1},
+            5: {"CN": 0, 'MCI': 1, "AD": 2, 'EMCI': 3, "LMCI": 4}
+            }
+        if num_classes == 2:  # keep AD and CN
+            self.metadata = self.metadata[(self.metadata["Group"] == "CN") | (self.metadata["Group"] == "AD")]
+            self.metadata.reset_index(inplace=True)
         self.num_classes = num_classes
         self.labels_dict = self.labels_dict[num_classes]
         self.with_skull = with_skull
@@ -80,6 +91,7 @@ class ADNI_Dataset(Dataset):
         if tr_val_tst not in ['valid', 'train', 'test']:
             raise ValueError("tr_val_tst error: must be in ['valid', 'train', 'test']!!")
         self.metadata = self.metadata.loc[idxs_dict[tr_val_tst], :]  # tr_val_tst is valid, train or test
+
 
         # --------- for missing values evaluation: ---------
         # csv = pd.read_csv("/home/duenias/PycharmProjects/HyperNetworks/ADNI_2023/my_adnimerege.csv")
@@ -99,7 +111,7 @@ class ADNI_Dataset(Dataset):
         self.data_in_ram = False
         self.imgs_ram_lst = []
         if load2ram:
-            self.load_data2ram()
+            self.load_data2ram(l2r_tform)
             self.data_in_ram = True
 
     def get_folds_split(self, fold, split_seed=0):
@@ -172,11 +184,11 @@ class ADNI_Dataset(Dataset):
             img = img * np.load(mask_path)  # apply the brain mask
         return img
 
-    def load_data2ram(self):
+    def load_data2ram(self, l2r_tform):
+        assert l2r_tform is not None, "Used load to ram flag without specifying the relevant l2r_tform!"
         save_tform = self.transform  # save the regolar tform in this temp variable
-
+        self.transform = tform_dict[l2r_tform]
         if self.tr_val_tst in ["valid", "test"]:
-            self.transform = tform_dict["hippo_crop_2sides"]
             loader = DataLoader(dataset=self, batch_size=1, shuffle=False, num_workers=5)
             for batch in tqdm(loader, f'Loading {self.tr_val_tst} data to ram: '):
                 self.imgs_ram_lst.append((batch[0][0].type(torch.float32), batch[1][0], batch[2][0]))
@@ -184,7 +196,6 @@ class ADNI_Dataset(Dataset):
             #     self.imgs_ram_lst.append(np.array(img[0, 0]))
 
         if self.tr_val_tst == "train":
-            self.transform = tform_dict["hippo_crop_2sides_for_load_2_ram_func"]
             loader = DataLoader(dataset=self, batch_size=1, shuffle=False, num_workers=20)
             # for batch in tqdm(loader, f'Loading {self.tr_val_tst} data to ram: '):
             #     self.imgs_ram_lst.append((batch[0][0], batch[1][0], batch[2][0]))
@@ -213,7 +224,7 @@ class ADNI_Dataset(Dataset):
         else:  # we need to load the data from the data dir
             subject = self.metadata.loc[index, "Subject"]
             if self.only_tabular:
-                img = np.zeros((4,4,4,4))
+                img = np.zeros((4, 4, 4, 4))
             else:
                 img = self.load_image(subject)
 
