@@ -97,10 +97,6 @@ class HyperNetwork(nn.Module):
         emb_out = self.embedding_model(x)
         weights = self.weights_gen(emb_out)
         biases = self.bias_gen(emb_out)
-        # if self.scale_weights:
-        #     scale_factors = self.scale_factor_net(x)
-        #     weights = scale_factors[:, 0].unsqueeze(1) * weights
-        #     biases = scale_factors[:, 1].unsqueeze(1) * biases
         return weights, biases
 
 

@@ -15,7 +15,8 @@ trainer:
 
 checkpointing:
   enable: false
-  ckpt_dir: "/media/rrtammyfs/Users/daniel/HyperProj_checkpoints"
+#  ckpt_dir: "/media/rrtammyfs/Users/daniel/HyperProj_checkpoints"
+  ckpt_dir: "/home/duenias/PycharmProjects/tmp_ckpts"
   continue_train_from_ckpt: false  # either false or the ckpt path
 
 
@@ -38,15 +39,15 @@ lightning_wrapper:
 
 data_module:
   data_module_name: "ADNIDataModule"
-  stage: "train"    # train or test
+  stage: "test"    # train or test
   sample: 1   # ranges from 0 to 1. 1 is the full dataset
-  batch_size: 32
-  num_workers: 1
+  batch_size: 16
+  num_workers: 14
   class_names: ["CN", "MCI", "AD"]
   dataset_cfg:
     adni_dir: "/home/duenias/PycharmProjects/HyperFusion/Datasets/ADNI_2023/ADNI"
     transform_train: "hippo_crop_lNr_l2r"
-    transform_valid: "None"
+    transform_valid: "hippo_crop_2sides"
     l2r_tform_train: "hippo_crop_2sides_for_load_2_ram_func"
     l2r_tform_valid: "hippo_crop_2sides"
     fold: 0

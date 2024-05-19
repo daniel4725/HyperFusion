@@ -187,9 +187,9 @@ if __name__ == '__main__':
     if args.debug or ide_debug_mode:
         print("debug mode activated!")
 
-        # config_path = "/home/duenias/PycharmProjects/HyperFusion/experiments/AD_classification/temp_configs/240404_193308_364999.yaml"
-        # with open(config_path, 'r') as file:
-        #     config = EasyDict(yaml.safe_load(file))
+        config_path = "/home/duenias/PycharmProjects/HyperFusion/experiments/AD_classification/temp_configs/240505_012321_861541.yaml"
+        with open(config_path, 'r') as file:
+            config = EasyDict(yaml.safe_load(file))
 
         config.data_module.num_workers = 0
 

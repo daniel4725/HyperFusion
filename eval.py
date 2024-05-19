@@ -1,4 +1,5 @@
 from train import *
+from pl_wrap import *
 from models.model_ensemble import ModelsEnsemble
 import re
 
@@ -38,8 +39,6 @@ def main(config: EasyDict):
 
     # Callbacks:
     callbacks = [TimeEstimatorCallback(config.trainer.epochs)]
-    if config.checkpointing.enable:
-        callbacks += [config.checkpointing.CheckpointCallback(**config.checkpointing.callback_kwargs)]
 
     if len(config.trainer.gpu) > 1:
         strategy = "dp"
@@ -62,29 +61,27 @@ def main(config: EasyDict):
         log_every_n_steps=1,
         overfit_batches=config.trainer.overfit_batches,
 
-        enable_checkpointing=config.checkpointing.enable,
+        enable_checkpointing=False,
     )
-
-    if not config.checkpointing.continue_train_from_ckpt:
-        trainer.fit(pl_model, datamodule=data_module)
+    trainer.test(pl_model, datamodule=data_module)
 
 
 def arrange_config4task(config: EasyDict):
     if config.task == "AD_classification":
 
         # for the model
-        train_dataset = config.data_module_instance.train_ds
-        config.model.n_tabular_features = train_dataset.num_tabular_features
-        config.model.n_outputs = train_dataset.num_classes
-        config.model.train_loader = config.data_module_instance.train_dataloader()
-        config.model.mlp_layers_shapes = [config.model.n_tabular_features] + config.model.hidden_shapes + [train_dataset.num_classes]
+        # train_dataset = config.data_module_instance.train_ds
+        # config.model.n_tabular_features = train_dataset.num_tabular_features
+        # config.model.n_outputs = train_dataset.num_classes
+        # config.model.train_loader = config.data_module_instance.train_dataloader()
+        # config.model.mlp_layers_shapes = [config.model.n_tabular_features] + config.model.hidden_shapes + [train_dataset.num_classes]
 
-        config.model.split_seed = config.data_module.dataset_cfg.split_seed
-        config.model.features_set = config.data_module.dataset_cfg.features_set
-        config.model.data_fold = config.data_module.dataset_cfg.fold
-        config.model.checkpoint_dir = config.checkpointing.ckpt_dir
+        # config.model.split_seed = config.data_module.dataset_cfg.split_seed
+        # config.model.features_set = config.data_module.dataset_cfg.features_set
+        # config.model.data_fold = config.data_module.dataset_cfg.fold
+        # config.model.checkpoint_dir = config.checkpointing.ckpt_dir
 
-        config.model.GPU = config.trainer.gpu
+        # config.model.GPU = config.trainer.gpu
 
         # for the Pl wrapper
         if config.lightning_wrapper.loss.class_weights == 'default':
@@ -180,13 +177,13 @@ if __name__ == '__main__':
     if args.debug or ide_debug_mode:
         print("debug mode activated!")
 
-        # config_path = "/home/duenias/PycharmProjects/HyperFusion/experiments/AD_classification/temp_configs/240404_193308_364999.yaml"
+        # config_path = "/home/duenias/PycharmProjects/HyperFusion/experiments/AD_classification/temp_configs/240505_222320_468866.yaml"
         # with open(config_path, 'r') as file:
         #     config = EasyDict(yaml.safe_load(file))
 
         config.data_module.num_workers = 0
 
-        config.trainer.gpu = [0]
+        config.trainer.gpu = [2]
 
         # config.data_module.dataset_cfg.fold = 0
         # config.data_module.dataset_cfg.split_seed = 0

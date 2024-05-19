@@ -145,8 +145,6 @@ class PlModelWrapADcls(pl.LightningModule):
             y_hat = (y_hat1.softmax(dim=1) + y_hat2.softmax(dim=1))/2
         elif evaluation_type == 'test':
             y_hat = (y_hat1 + y_hat2) / 2
-            # y_hat = get_results(y_hat1 + y_hat2)
-        # y_hat = self((imgs, tabular))
         if evaluation_type == "val":
             loss = F.cross_entropy(y_hat, y, weight=self.class_weights.to(self.device))
             acc = torchmetrics.functional.accuracy(y_hat, y)
@@ -250,13 +248,6 @@ class PlModelWrapADcls4Test(PlModelWrapADcls):
         return [1]
 
 
-def get_results(list_of_softmax_outputs):
-    # find each model prediction (good for majority vote)
-    torch.stack(list_of_softmax_outputs).argmax(dim=2)
-
-    # mean over each sample prediction
-    torch.stack(list_of_softmax_outputs).mean(dim=0)
-
 class PlModelWrapADcls2Classes(pl.LightningModule):
     def __init__(self, **wrapper_kwargs):
         super().__init__()
@@ -276,7 +267,6 @@ class PlModelWrapADcls2Classes(pl.LightningModule):
         return self.model(x)
 
     def training_step(self, batch, batch_idx):
-        # self.model.train()
         imgs, tabular, y = batch
         y_hat = self((imgs, tabular))
 
@@ -309,7 +299,6 @@ class PlModelWrapADcls2Classes(pl.LightningModule):
             y_hat = (y_hat1.softmax(dim=1) + y_hat2.softmax(dim=1))/2
         elif evaluation_type == 'test':
             y_hat = (y_hat1 + y_hat2) / 2
-            # y_hat = get_results(y_hat1 + y_hat2)
         # y_hat = self((imgs, tabular))
         if evaluation_type == "val":
             loss = F.cross_entropy(y_hat, y, weight=self.class_weights.to(self.device))
@@ -401,3 +390,11 @@ class PlModelWrapADcls2Classes(pl.LightningModule):
 
     def configure_optimizers(self):
         return torch.optim.Adam(self.parameters(), lr=self.lr, weight_decay=self.weight_decay)
+
+
+class PlModelWrapADcls2Classes4Test(PlModelWrapADcls2Classes):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    def train_dataloader(self):
+        return [1]

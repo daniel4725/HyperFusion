@@ -14,7 +14,8 @@ trainer:
 
 checkpointing:
   enable: false
-  ckpt_dir: "/media/rrtammyfs/Users/daniel/HyperProj_checkpoints"
+#  ckpt_dir: "/media/rrtammyfs/Users/daniel/HyperProj_checkpoints"
+  ckpt_dir: "/home/duenias/PycharmProjects/tmp_ckpts"
   continue_train_from_ckpt: false  # either false or the ckpt path
 
 

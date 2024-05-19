@@ -18,8 +18,9 @@ def change_cwd():
     os.chdir(script_dir)
 
 
-def get_default_config():
-    default_cfg_path = "/home/duenias/PycharmProjects/HyperFusion/experiments/AD_classification/default_train_config.yml"
+def get_default_config(eval=False):
+    type = "eval" if eval else "train"
+    default_cfg_path = f"/home/duenias/PycharmProjects/HyperFusion/experiments/AD_classification/default_{type}_config.yml"
     with open(default_cfg_path, 'r') as file:
         config = EasyDict(yaml.safe_load(file))
     return config

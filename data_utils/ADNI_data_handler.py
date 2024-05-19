@@ -34,12 +34,9 @@ class ADNIDataModule(pl.LightningDataModule):
                 self.valid_ds = torch.utils.data.Subset(self.valid_ds, np.arange(num_val_samples))
 
 
-        # elif stage == "test":
-        #     self.test_ds = ADNI_Dataset(tr_val_tst="test", fold=fold, features_set=features_set, adni_dir=adni_dir,
-        #                             transform=transform, load2ram=load2ram, only_tabular=only_tabular,
-        #                             split_seed=split_seed,
-        #                             with_skull=with_skull, no_bias_field_correct=no_bias_field_correct,
-        #                             num_classes=num_classes)
+        elif stage == "test":
+            self.test_ds = ADNI_Dataset(tr_val_tst="test", transform=transform_valid,
+                                         l2r_tform=l2r_tform_valid, **config.dataset_cfg)
 
     # def prepare_data(self):
     #     return
@@ -76,7 +73,7 @@ class ADNI_Dataset(Dataset):
             }
         if num_classes == 2:  # keep AD and CN
             self.metadata = self.metadata[(self.metadata["Group"] == "CN") | (self.metadata["Group"] == "AD")]
-            self.metadata.reset_index(inplace=True)
+            self.metadata.reset_index(inplace=True, drop=True)
         self.num_classes = num_classes
         self.labels_dict = self.labels_dict[num_classes]
         self.with_skull = with_skull

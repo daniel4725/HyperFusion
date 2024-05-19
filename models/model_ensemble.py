@@ -18,7 +18,9 @@ class ModelsEnsemble(nn.Module):
         self.models.append(model)
 
     def forward(self, x):
-        out = self.self.ensemble_method(x)
+        img, tabular = x
+        img = img.to(torch.float)
+        out = self.ensemble_method((img, tabular))
         return out
 
     def average_softmax_prediction(self, x):
@@ -31,7 +33,9 @@ class ModelsEnsemble(nn.Module):
     def confidence_weighted_average_softmax_prediction(self, x):  # weighted (by entropy) average softmax
         probs = []
         for model in self.models:
-            probs.append(model(x).softmax(dim=-1))
+            p = model(x).softmax(dim=-1)
+            p[p==0] += 10e-8
+            probs.append(p)
 
         entropies = []
         for prob in probs:
