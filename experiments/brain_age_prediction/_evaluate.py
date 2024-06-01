@@ -17,12 +17,6 @@ cfg.experiment_name = f"{experiment}{vers}-seed{seed}-fs{f_set}"
 cfg.data_module.dataset_cfg.features_set = f_set
 
 
-# # evaluation for two classes
-# cfg.lightning_wrapper.wrapper_name = "PlModelWrapADcls2Classes"
-# cfg.lightning_wrapper.loss.class_weights = [0.34, 0.66]
-# cfg.data_module.dataset_cfg.num_classes = 2
-# cfg.data_module.class_names = ["CN", "AD"]
-
 cfg.checkpointing.ckpt_dir = "/home/duenias/PycharmProjects/tmp_ckpts"
 
 # flags:

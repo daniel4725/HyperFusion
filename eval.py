@@ -1,6 +1,6 @@
 from train import *
 from pl_wrap import *
-from models.model_ensemble import ModelsEnsemble
+from models.model_ensemble import ModelsEnsembleClassification, ModelsEnsembleRegression
 import re
 
 def main(config: EasyDict):
@@ -16,26 +16,12 @@ def main(config: EasyDict):
     arrange_config4task(config)
 
     # build the model
-    model = ModelsEnsemble()
-    wrapper = globals()[config.lightning_wrapper.wrapper_name]
-
-    versions = config.versions.split(",")
-    experiment_base_name = re.sub(r"_v\d-", "{}-", config.experiment_name)
-    for v in versions:
-        experiment_name = experiment_base_name.format(v)
-        print(f"loading experiment: {experiment_name}")
-        experiment_dir = os.path.join(config.checkpointing.ckpt_dir, experiment_name)
-        for fold_directory in os.listdir(experiment_dir):
-            model_path = os.path.join(experiment_dir, fold_directory, "best_val.ckpt")
-            m = wrapper.load_from_checkpoint(model_path).model
-            model.append(m)
-
+    model = get_ensemble_model(config)
 
     # wrap the model with its relevant pytorch lightning model
     config.lightning_wrapper.model = model
     test_lightning_wrapper_name = config.lightning_wrapper.pop("wrapper_name") + "4Test"
     pl_model = globals()[test_lightning_wrapper_name](**config.lightning_wrapper)
-
 
     # Callbacks:
     callbacks = [TimeEstimatorCallback(config.trainer.epochs)]
@@ -65,23 +51,35 @@ def main(config: EasyDict):
     )
     trainer.test(pl_model, datamodule=data_module)
 
+def get_ensemble_model(config):
+    wrapper = globals()[config.lightning_wrapper.wrapper_name]
+    versions = config.versions.split(",")
+    experiment_base_name = re.sub(r"_v\d-", "{}-", config.experiment_name)
+
+    if config.task == "AD_classification":
+        model = ModelsEnsembleClassification()
+        for v in versions:
+            experiment_name = experiment_base_name.format(v)
+            print(f"loading experiment: {experiment_name}")
+            experiment_dir = os.path.join(config.checkpointing.ckpt_dir, experiment_name)
+            for fold_directory in os.listdir(experiment_dir):
+                model_path = os.path.join(experiment_dir, fold_directory, "best_val.ckpt")
+                m = wrapper.load_from_checkpoint(model_path).model
+                model.append(m)
+
+    elif config.task == "brain_age_prediction":
+        model = ModelsEnsembleRegression()
+        for v in versions:
+            experiment_name = experiment_base_name.format(v)
+            print(f"loading experiment: {experiment_name}")
+            experiment_dir = os.path.join(config.checkpointing.ckpt_dir, experiment_name)
+            for fold_directory in os.listdir(experiment_dir):
+                model_path = os.path.join(experiment_dir, fold_directory, "best_val.ckpt")
+                m = wrapper.load_from_checkpoint(model_path).model
+                model.append(m)
 
 def arrange_config4task(config: EasyDict):
     if config.task == "AD_classification":
-
-        # for the model
-        # train_dataset = config.data_module_instance.train_ds
-        # config.model.n_tabular_features = train_dataset.num_tabular_features
-        # config.model.n_outputs = train_dataset.num_classes
-        # config.model.train_loader = config.data_module_instance.train_dataloader()
-        # config.model.mlp_layers_shapes = [config.model.n_tabular_features] + config.model.hidden_shapes + [train_dataset.num_classes]
-
-        # config.model.split_seed = config.data_module.dataset_cfg.split_seed
-        # config.model.features_set = config.data_module.dataset_cfg.features_set
-        # config.model.data_fold = config.data_module.dataset_cfg.fold
-        # config.model.checkpoint_dir = config.checkpointing.ckpt_dir
-
-        # config.model.GPU = config.trainer.gpu
 
         # for the Pl wrapper
         if config.lightning_wrapper.loss.class_weights == 'default':
@@ -104,19 +102,15 @@ def arrange_config4task(config: EasyDict):
         )
 
     elif config.task == "brain_age_prediction":
-        config.model.train_loader = config.data_module_instance.train_dataloader()
-        config.model.GPU = config.trainer.gpu
 
         config.lightning_wrapper.batch_size = config.data_module.batch_size
 
         # for checkpointing
-
         config.checkpointing.CheckpointCallback = CheckpointCallbackBrainage
         config.checkpointing.callback_kwargs = dict(
             ckpt_dir=config.checkpointing.ckpt_dir,
             experiment_name=config.experiment_name,
         )
-
 
 
 def wandb_interface(config: EasyDict):

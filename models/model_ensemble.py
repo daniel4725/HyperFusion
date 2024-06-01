@@ -1,7 +1,25 @@
 import torch
 from torch import nn
 
-class ModelsEnsemble(nn.Module):
+
+class ModelsEnsembleRegression(nn.Module):
+    """ ensemble model class"""
+    def __init__(self):
+        super().__init__()
+        self.models = nn.ModuleList()
+
+    def append(self, model):
+        self.models.append(model)
+
+    def forward(self, x):
+        out = self.models[0](x)
+        for model in self.models[1:]:
+            out += model(x)
+        out = out / len(self.models)
+        return out
+
+
+class ModelsEnsembleClassification(nn.Module):
     """ ensemble model class"""
     def __init__(self, ensemble_method="confidence_weighted_average_softmax_prediction"):
         super().__init__()

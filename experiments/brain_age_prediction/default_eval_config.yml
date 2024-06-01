@@ -1,6 +1,6 @@
 experiment_name: "test"
 versions: "_v1"
-task: "brain_age_prediction"
+task: "AD_classification"
 
 model:
   model_name: "Imaging_only_brainage"
@@ -12,7 +12,8 @@ trainer:
 
 checkpointing:
   enable: false
-  ckpt_dir: "/media/rrtammyfs/Users/daniel/HyperProj_checkpoints"
+#  ckpt_dir: "/media/rrtammyfs/Users/daniel/HyperProj_checkpoints"
+  ckpt_dir: "/home/duenias/PycharmProjects/tmp_ckpts"
   continue_train_from_ckpt: false  # either false or the ckpt path
 
 
@@ -32,6 +33,7 @@ lightning_wrapper:
     lr: 0.00015
     weight_decay: 0.05
 
+
 data_module:
   data_module_name: "BrainAgeDataModule"
   batch_size: 16
@@ -43,6 +45,4 @@ data_module:
     transform_valid:
     gender:
     partial_data: 0.01
-
-
 
