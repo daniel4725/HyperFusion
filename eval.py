@@ -54,10 +54,10 @@ def main(config: EasyDict):
 def get_ensemble_model(config):
     wrapper = globals()[config.lightning_wrapper.wrapper_name]
     versions = config.versions.split(",")
-    experiment_base_name = re.sub(r"_v\d-", "{}-", config.experiment_name)
-
+    model = None
     if config.task == "AD_classification":
         model = ModelsEnsembleClassification()
+        experiment_base_name = re.sub(r"_v\d-", "{}-", config.experiment_name)
         for v in versions:
             experiment_name = experiment_base_name.format(v)
             print(f"loading experiment: {experiment_name}")
@@ -69,14 +69,16 @@ def get_ensemble_model(config):
 
     elif config.task == "brain_age_prediction":
         model = ModelsEnsembleRegression()
+        experiment_base_name = re.sub(r"_v\d", "{}", config.experiment_name)
         for v in versions:
             experiment_name = experiment_base_name.format(v)
             print(f"loading experiment: {experiment_name}")
             experiment_dir = os.path.join(config.checkpointing.ckpt_dir, experiment_name)
-            for fold_directory in os.listdir(experiment_dir):
-                model_path = os.path.join(experiment_dir, fold_directory, "best_val.ckpt")
-                m = wrapper.load_from_checkpoint(model_path).model
-                model.append(m)
+            model_path = os.path.join(experiment_dir, "best_val.ckpt")
+            m = wrapper.load_from_checkpoint(model_path).model
+            model.append(m)
+
+    return model
 
 def arrange_config4task(config: EasyDict):
     if config.task == "AD_classification":
@@ -171,13 +173,13 @@ if __name__ == '__main__':
     if args.debug or ide_debug_mode:
         print("debug mode activated!")
 
-        # config_path = "/home/duenias/PycharmProjects/HyperFusion/experiments/AD_classification/temp_configs/240505_222320_468866.yaml"
-        # with open(config_path, 'r') as file:
-        #     config = EasyDict(yaml.safe_load(file))
+        config_path = "/home/duenias/PycharmProjects/HyperFusion/experiments/AD_classification/temp_configs/240707_141244_065070.yaml"
+        with open(config_path, 'r') as file:
+            config = EasyDict(yaml.safe_load(file))
 
         config.data_module.num_workers = 0
 
-        config.trainer.gpu = [2]
+        config.trainer.gpu = [1]
 
         # config.data_module.dataset_cfg.fold = 0
         # config.data_module.dataset_cfg.split_seed = 0

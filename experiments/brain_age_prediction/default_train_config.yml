@@ -34,7 +34,7 @@ lightning_wrapper:
 
 data_module:
   data_module_name: "BrainAgeDataModule"
-  batch_size: 16
+  batch_size: 64
   num_workers: 16
   dataset_cfg:
     data_dir: "/data/users/doronser/brain_age"

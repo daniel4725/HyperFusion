@@ -1,21 +1,25 @@
 import os
 
-gpus = [2, 2, 3, 3]
+gpus = [3, 3, 3, 3]
 
 # experiments = ["baseline-tabular"]
 # experiments = ["baseline-imaging"]
 # experiments = ["baseline-concatenation"]
-# experiments = ["HyperFusion_AD"]
+experiments = ["HyperFusion_AD"]
 # experiments = ["DAFT"]
 # experiments = ["FiLM"]
 # experiments = ["HyperFusion_ablation_ADvsCN"]
+# experiments = ["HyperFusion_ablation_ADvsCN_binary"]
+# experiments = ["image_only_ablation_ADvsCN"]
+# experiments = ["tabular_only_ablation_ADvsCN"]
 # experiments = ["HyperFusion_AD_hyper_first_block"]
 # experiments = ["HyperFusion_AD_hyper_sec_block"]
-experiments = ["HyperFusion_AD_hyper_3rd_block"]
+# experiments = ["HyperFusion_AD_hyper_3rd_block"]
 # experiments = ["HyperFusion_AD_hyper_2fc"]
 # experiments = ["HyperFusion_AD_hyper_TFF", "HyperFusion_AD_hyper_2fc", "HyperFusion_AD_hyper_sec_block"]
 
 features_sets = [15]
+# features_sets = [15]
 seeds = [0, 1]
 versions = ["_v1", "_v2"]
 

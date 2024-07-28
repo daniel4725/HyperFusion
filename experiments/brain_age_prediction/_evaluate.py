@@ -2,25 +2,22 @@ from exp_utils import *
 change_cwd()
 cfg = get_default_config(eval=True)
 args = sys.argv
-gpu, vers, seed, f_set, experiment = args[1:]
-gpu, seed, f_set = int(gpu), int(seed), int(f_set)
+gpu, vers, experiment = args[1:]
+gpu = int(gpu)
 # -------------------------------------------------
 # ------ update default config below --------------
 
-
 cfg.trainer.gpu = [gpu]
-cfg.data_module.dataset_cfg.split_seed = seed
 
-cfg.wandb.project_name = "HyperFusion_revision_test"
+cfg.wandb.project_name = "HyperFusion_revision_brainage_test"
 
-cfg.experiment_name = f"{experiment}{vers}-seed{seed}-fs{f_set}"
-cfg.data_module.dataset_cfg.features_set = f_set
+cfg.experiment_name = f"{experiment}{vers.split(',')[0]}"
 
+cfg.versions = vers
 
-cfg.checkpointing.ckpt_dir = "/home/duenias/PycharmProjects/tmp_ckpts"
+cfg.data_module.dataset_cfg.partial_data = None
 
 # flags:
-cfg.data_module.dataset_cfg.load2ram = False
 cfg.checkpointing.enable = False
 # cfg.data_module.dataset_cfg.only_tabular = True
 

@@ -23,12 +23,6 @@ class BrainAgeDataModule(pl.LightningDataModule):
         self.valid_ds = BrainAge_Dataset(data_type="valid", transform=transform_valid, **config.dataset_cfg)
         self.test_ds = BrainAge_Dataset(data_type="test", transform=transform_valid, **config.dataset_cfg)
 
-    # def prepare_data(self):
-    #     return
-    #
-    # def setup(self, stage: str):
-    #     return
-
     def train_dataloader(self):
         return DataLoader(dataset=self.train_ds, batch_size=self.batch_size, shuffle=True, num_workers=self.num_workers)
 

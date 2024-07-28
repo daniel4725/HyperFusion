@@ -11,12 +11,11 @@ gpu = int(gpu)
 
 cfg.trainer.gpu = [gpu]
 
-# cfg.wandb.project_name = "barainage"
-cfg.wandb.project_name = "testing_barainage"
+cfg.wandb.project_name = "brainage_revision"
 
-cfg.experiment_name = f"HyperFusion_Brainage{vers}"
-cfg.model.model_name = "HyperFusion_Brainage"
-cfg.trainer.epochs = 80
+cfg.experiment_name = f"B_nofill__FFFT{vers}"
+cfg.model.model_name = "B_nofill__FFFT"
+cfg.trainer.epochs = 50
 
 cfg.data_module.dataset_cfg.partial_data = None
 
