@@ -14,8 +14,7 @@ trainer:
 
 checkpointing:
   enable: false
-#  ckpt_dir: "/media/rrtammyfs/Users/daniel/HyperProj_checkpoints"
-  ckpt_dir: "/home/duenias/PycharmProjects/tmp_ckpts"
+  ckpt_dir: "/media/rrtammyfs/Users/daniel/HyperProj_checkpoints"
   continue_train_from_ckpt: false  # either false or the ckpt path
 
 
@@ -44,7 +43,7 @@ data_module:
   num_workers: 1
   class_names: ["CN", "MCI", "AD"]
   dataset_cfg:
-    adni_dir: "/home/duenias/PycharmProjects/HyperFusion/Datasets/ADNI_2023/ADNI"
+    adni_dir: "/data/users/daniel/ADNI_2023/ADNI"
     transform_train: "hippo_crop_lNr_l2r"
     transform_valid: "None"
     l2r_tform_train: "hippo_crop_2sides_for_load_2_ram_func"

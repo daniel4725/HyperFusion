@@ -36,3 +36,4 @@ command = f"python3 /home/duenias/PycharmProjects/HyperFusion/train.py --config_
 print(f"executing experiment with config path: {config_path}")
 os.system(command)
 os.remove(config_path)
+
