@@ -1,5 +1,3 @@
-import torch
-import torch.nn as nn
 from models.base_models import *
 
 # -----------------------------------------------------------------------------
@@ -108,7 +106,3 @@ class RES_Tab_concat1(nn.Module):
         out = self.fc2(out)
 
         return out
-
-
-if __name__ == '__main__':
-    pass

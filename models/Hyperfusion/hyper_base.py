@@ -2,8 +2,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
-from .hyper_hist_init import hypernet_histloss_init
-
 
 class HyperNetwork(nn.Module):
     def __init__(self, embedding_model, embedding_output_size, num_weights, num_biases):
@@ -79,9 +77,6 @@ class HyperNetwork(nn.Module):
             print("embedding_variance weights initialization")
             var_w, var_b = self.calc_variance4init(fan_in, train_loader, hyper_input_type, embd_vars=True)
             self.variance_uniform_init(var_w, var_b)
-        elif weights_init_method == "histogram":
-            print("histogram weights initialization")
-            hypernet_histloss_init(self, fan_in, train_loader, GPU)
         else:
             raise ValueError("HyperNetwork initialization type not implemented!")
 
@@ -312,21 +307,3 @@ class HyperPreactivResBlock_TTF(HyperPreactivResBlock):
         hyper_embedding_models = [embedding_model, embedding_model, None]
         super().__init__(in_channels, out_channels, bn_momentum=bn_momentum, dropout=dropout, stride=stride,
                          hyper_embedding_models=hyper_embedding_models, **hyper_kwargs)
-
-
-
-
-if __name__ == "__main__":
-    embedding_output_size = 3
-    embedding = nn.Sequential(nn.Linear(10, embedding_output_size))
-
-    model = LinearLayer(16, 4)
-    # model = LinearLayer(16, 4, embedding_model=embedding, embedding_output_size=embedding_output_size,
-    #                     weights_init_method=None, train_loader=None, hyper_input_type="tabular")
-
-    x = torch.randn((5, 16))
-    tabular = torch.randn((5, 10))
-    batch = (x, tabular)
-
-    print(model(batch).shape)
-

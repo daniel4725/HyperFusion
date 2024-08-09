@@ -2,19 +2,12 @@ import numpy as np
 import time
 import os
 from pytorch_lightning.callbacks import Callback, ModelCheckpoint
-from datetime import datetime
 
 
 def CheckpointCallbackAD(ckpt_dir, experiment_name, data_fold):
-    now = datetime.now()
-    dt_string = now.strftime("%dd%mm%yy-%Hh%Mm%Ss")
-    # print("date and time =", dt_string)
-
     checkpoint_callback = ModelCheckpoint(
         dirpath=os.path.join(ckpt_dir, experiment_name, f"fold_{data_fold}"),
-        # dirpath=os.path.join(checkpoint_dir, experiment_name +"_" + dt_string, f"fold_{kwargs['data_fold']}"),
         filename='best_val',
-        # filename=experiment_name + '-epoch={epoch}-val_balanced_acc={val/balanced_acc:.3f}',
         save_top_k=1,
         save_last=True,
         auto_insert_metric_name=False,
@@ -22,20 +15,13 @@ def CheckpointCallbackAD(ckpt_dir, experiment_name, data_fold):
         mode="max"
         )
     checkpoint_callback.CHECKPOINT_NAME_LAST = "last"
-    # checkpoint_callback.CHECKPOINT_NAME_LAST = experiment_name + "-epoch={epoch}-last"
     return checkpoint_callback
 
 
 def CheckpointCallbackBrainage(ckpt_dir, experiment_name):
-    now = datetime.now()
-    dt_string = now.strftime("%dd%mm%yy-%Hh%Mm%Ss")
-    # print("date and time =", dt_string)
-
     checkpoint_callback = ModelCheckpoint(
         dirpath=os.path.join(ckpt_dir, experiment_name),
-        # dirpath=os.path.join(checkpoint_dir, experiment_name +"_" + dt_string, f"fold_{kwargs['data_fold']}"),
         filename='best_val',
-        # filename=experiment_name + '-epoch={epoch}-val_balanced_acc={val/balanced_acc:.3f}',
         save_top_k=1,
         save_last=True,
         auto_insert_metric_name=False,
@@ -43,7 +29,6 @@ def CheckpointCallbackBrainage(ckpt_dir, experiment_name):
         mode="min"
         )
     checkpoint_callback.CHECKPOINT_NAME_LAST = "last"
-    # checkpoint_callback.CHECKPOINT_NAME_LAST = experiment_name + "-epoch={epoch}-last"
     return checkpoint_callback
 
 
@@ -89,15 +74,10 @@ class TimeEstimatorCallback(Callback):
         time_from_start = time.time() - self.start_train
         estimated_time_remain = epoch_mean_time * self.epochs_left
 
-        # epoch_time = show_time(epoch_time)
         epoch_mean_time = show_time(epoch_mean_time)
         time_from_start = show_time(time_from_start)
         estimated_time_remain = show_time(estimated_time_remain)
 
-        # epoch_time = time.strftime(self.time_format, time.gmtime(epoch_time))
-        # time_from_start = time.strftime(self.time_format, time.gmtime(time_from_start))
-        # estimated_time_remain = time.strftime(self.time_format, time.gmtime(estimated_time_remain))
-        
         print(f"\n\nmean epoch time: {epoch_mean_time}")
         print(f'time from start: {time_from_start}')
         print(f'estimated time remain: {estimated_time_remain}\n')

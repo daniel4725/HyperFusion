@@ -403,14 +403,3 @@ def feature_properties(df_col):
     df_col.hist()
     plt.show()
 
-
-if __name__ == "__main__":
-    
-    features_set_idx = 2
-
-    ADNI_dir = f"/home/duenias/PycharmProjects/HyperNetworks/ADNI_2023"
-    metadata_dir = "metadata_by_features_sets"
-    save_metadata_path = os.path.join(metadata_dir, f"set-{features_set_idx}.csv")
-
-    create_metadata_csv(features_set_idx=features_set_idx)
-

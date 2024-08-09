@@ -1,12 +1,10 @@
 import os
-import cv2
 import pandas as pd
 from torch.utils.data import Dataset, DataLoader
 import numpy as np
 from tqdm import tqdm
 import shutil
 import pytorch_lightning as pl
-import torch
 
 
 class BrainAgeDataModule(pl.LightningDataModule):
@@ -111,15 +109,3 @@ def copy_data_to_server(metadata_path, dest_dir):
 
         dest_path = os.path.join(dest_dir, subject + ".npy")
         shutil.copyfile(img_path, dest_path)
-
-if __name__ == "__main__":
-    # base_csv_path = "/media/rrtammyfs/labDatabase/BrainAge/Healthy_subjects_divided_pipe_v2.csv"
-    # save_metadata_dir = os.path.join(os.path.dirname(os.getcwd()), "Datasets", "BrainAgeDataset")
-    # create_MRI_metadata(base_csv_path, save_metadata_dir)
-
-    data_dir = "/home/duenias/PycharmProjects/HyperFusion/Datasets/BrainAgeDataset/data"
-    metadata_path = "/home/duenias/PycharmProjects/HyperFusion/Datasets/BrainAgeDataset/metadata_age_prediction.csv"
-    copy_data_to_server(metadata_path, dest_dir=data_dir)
-
-
-    pass

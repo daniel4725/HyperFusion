@@ -141,7 +141,6 @@ def wandb_interface(config: EasyDict):
             # the agent's CUDA_VISIBLE_DEVICES is alredy set:
             config.trainer.gpu = [0]
 
-        # run_id = datetime.datetime.now().strftime("%d-%m-%Y %Hh%Mm%Ss - ") + args.experiment_name
         os.makedirs(wandb_args.logs_dir, exist_ok=True)
         if config.task == "AD_classification":
             exp_name = config.experiment_name + f"-f{config.data_module.dataset_cfg.fold}"
@@ -181,43 +180,18 @@ if __name__ == '__main__':
     with open(args.config_path, 'r') as file:
         config = EasyDict(yaml.safe_load(file))
 
-
+    # debug mode using an IDE
     ide_debug_mode = any('pydevd' in s for s in sys.modules)
     if args.debug or ide_debug_mode:
         print("debug mode activated!")
 
-        config_path = os.path.join(os.getcwd(), "experiments", "AD_classification", "default_train_config.yml")
-        # config_path = os.path.join(os.getcwd(), "experiments", "brain_age_prediction", "default_train_config.yml")
-        # config_path = "/home/duenias/PycharmProjects/HyperFusion/experiments/AD_classification/temp_configs/240606_224245_972599.yaml"
+        config_path = "/path/to/config.yml"
         with open(config_path, 'r') as file:
             config = EasyDict(yaml.safe_load(file))
 
         config.data_module.num_workers = 0
-
-        config.trainer.gpu = [3]
-
-        # config.data_module.dataset_cfg.fold = 0
-        # config.data_module.dataset_cfg.split_seed = 0
-        #
-        # # config.wandb.project_name = "HyperNetworks_final_splitseed"
-        # # config.wandb.project_name = "HyperNets_imgNtabular"
-        # config.wandb.project_name = "testing"
-        # config.experiment_name = f"test"
-        #
-        # config.model.model_name = "HyperFusion"
-        # # config.data_module.dataset_cfg.only_tabular = True
-        # # config.model.model_name = "MLP_8_bn_prl"
-        #
-        # config.data_module.dataset_cfg.features_set = 15
-        # config.trainer.epochs = 10
-        # config.lightning_wrapper.loss.class_weights = [1.1, 0.6962, 1.4]
-        #
-        # config.data_module.dataset_cfg.transform_train = "hippo_crop_lNr"
-        # config.data_module.dataset_cfg.transform_valid = "hippo_crop_2sides"
-        #
-        # # flags:
-        config.data_module.dataset_cfg.load2ram = False
-        # config.checkpointing.enable = False
+        config.trainer.gpu = [1]
         config.wandb.enable = False
+        config.data_module.dataset_cfg.load2ram = False
 
     main(config)

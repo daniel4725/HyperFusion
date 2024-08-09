@@ -1,11 +1,8 @@
 import torch
 from torch.utils.data import Dataset, DataLoader
-from tqdm import tqdm
 import cv2
 import nibabel as nib
 from .MetadataPreprocess import *
-from skmultilearn.model_selection import IterativeStratification
-from .transformation import tform_dict
 import pytorch_lightning as pl
 
 
@@ -38,11 +35,6 @@ class ADNIDataModule(pl.LightningDataModule):
             self.test_ds = ADNI_Dataset(tr_val_tst="test", transform=transform_valid,
                                          l2r_tform=l2r_tform_valid, **config.dataset_cfg)
 
-    # def prepare_data(self):
-    #     return
-    #
-    # def setup(self, stage: str):
-    #     return
 
     def train_dataloader(self):
         return DataLoader(dataset=self.train_ds, batch_size=self.batch_size, shuffle=True, num_workers=self.num_workers)
@@ -89,20 +81,6 @@ class ADNI_Dataset(Dataset):
             raise ValueError("tr_val_tst error: must be in ['valid', 'train', 'test']!!")
         self.metadata = self.metadata.loc[idxs_dict[tr_val_tst], :]  # tr_val_tst is valid, train or test
 
-
-        # --------- for missing values evaluation: ---------
-        # csv = pd.read_csv("/home/duenias/PycharmProjects/HyperNetworks/ADNI_2023/my_adnimerege.csv")
-        # csv = csv.loc[idxs_dict[tr_val_tst], :]
-        # missing_csf = csv.TAU.isna()
-        # missing_PET = (csv.FDG.isna()) | (csv.AV45.isna())
-        #
-        # missing_mask = missing_csf
-        # # missing_mask = missing_PET
-        # # missing_mask = missing_PET | missing_csf
-        # self.metadata = self.metadata[missing_mask]
-        # # self.metadata = self.metadata[~missing_mask]
-        # ---------------------------------------------------
-
         self.metadata.reset_index(drop=True, inplace=True)
 
         self.data_in_ram = False
@@ -112,18 +90,6 @@ class ADNI_Dataset(Dataset):
             self.data_in_ram = True
 
     def get_folds_split(self, fold, split_seed=0):
-        # to repeat the same data splits
-
-        # ----------- split w.r.t the label distribution alone -----------------
-        # np.random.seed(0)
-        # # print(f"splitting the data with split seed {split_seed}")
-        # skf = StratifiedKFold(n_splits=5, random_state=split_seed, shuffle=True)
-        # X = self.metadata.drop(['Subject', 'Group'], axis=1)
-        # y = self.metadata["Group"]
-        # list_of_splits = list(skf.split(X, y))
-        # _, val_idxs = list_of_splits[fold]
-        # _, test_idxs = list_of_splits[4]
-
         # ----------- split w.r.t the joint distribution of the label, sex & age -----------------
         df = self.metadata.copy()
         df = df.sample(frac=1, random_state=split_seed)
@@ -189,22 +155,13 @@ class ADNI_Dataset(Dataset):
             loader = DataLoader(dataset=self, batch_size=1, shuffle=False, num_workers=5)
             for batch in tqdm(loader, f'Loading {self.tr_val_tst} data to ram: '):
                 self.imgs_ram_lst.append((batch[0][0].type(torch.float32), batch[1][0], batch[2][0]))
-            # for img, _, _ in tqdm(loader, f'Loading {self.tr_val_tst} data to ram: '):
-            #     self.imgs_ram_lst.append(np.array(img[0, 0]))
 
         if self.tr_val_tst == "train":
             loader = DataLoader(dataset=self, batch_size=1, shuffle=False, num_workers=20)
-            # for batch in tqdm(loader, f'Loading {self.tr_val_tst} data to ram: '):
-            #     self.imgs_ram_lst.append((batch[0][0], batch[1][0], batch[2][0]))
             for img, _, _ in tqdm(loader, f'Loading {self.tr_val_tst} data to ram: '):
                 self.imgs_ram_lst.append(np.array(img[0, 0]))
 
-        # for img, _, _ in tqdm(loader, f'Loading {self.tr_val_tst} data to ram: '):
-        #     self.imgs_ram_lst.append(img[0, 0].type(torch.float32))
-
-
         self.transform = save_tform
-
 
     def __len__(self):
         return len(self.metadata)
@@ -214,7 +171,6 @@ class ADNI_Dataset(Dataset):
             if self.tr_val_tst in ["valid", "test"]:
                 img, features, label = self.imgs_ram_lst[index]
                 return img.type(torch.float32), features, label
-                # img = self.imgs_ram_lst[index]
             if self.tr_val_tst == "train":
                 img = self.imgs_ram_lst[index].copy()
 
@@ -249,8 +205,4 @@ def scanshow(img):
         if cv2.waitKey(70) != -1:
             print("Stopped!")
             cv2.waitKey(0)
-
-
-if __name__ == "__main__":
-    from .transformation import tform_dict
 
