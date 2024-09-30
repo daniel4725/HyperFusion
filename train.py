@@ -12,7 +12,7 @@ import sys
 # per model and data imports:
 from utils.costum_callbacks import CheckpointCallbackBrainage, CheckpointCallbackAD
 from utils.utils import get_class_weight
-from pl_wrap import PlModelWrapADcls, PlModelWrapBrainAge, PlModelWrapADcls2Classes, PlModelWrapADcls2ClassesBinary
+from pl_wrap import PlModelWrapADcls, PlModelWrapBrainAge
 from data_utils.ADNI_data_handler import ADNIDataModule
 from data_utils.BrainAge_data_handler import BrainAgeDataModule
 from models.Hyperfusion.HyperFusion_AD_model import *
