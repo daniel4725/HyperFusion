@@ -16,7 +16,7 @@ cfg.wandb.project_name = "testing_barainage"
 
 cfg.experiment_name = f"Brainage_concat{vers}"
 cfg.model.model_name = "Brainage_concat"
-cfg.trainer.epochs = 40
+cfg.trainer.epochs = 50
 
 cfg.data_module.dataset_cfg.partial_data = None
 
