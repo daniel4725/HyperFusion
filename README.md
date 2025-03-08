@@ -5,7 +5,7 @@
     <img src='https://img.shields.io/badge/arXiv-2403.13319-brightgreen' alt='arXiv'>
   </a>
   <a href='https://www.sciencedirect.com/science/article/pii/S1361841525000519' style='padding-left: 0.5rem;'>
-    <img src='https://img.shields.io/badge/Media-2025.103503-red' alt='Media Journal'>
+    <img src='https://img.shields.io/badge/Media.Journal-2025.103503-red' alt='Media Journal'>
   </a>
 </p>
 
