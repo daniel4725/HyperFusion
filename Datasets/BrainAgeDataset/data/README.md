@@ -1,1 +1,0 @@
-This directory holds the MRI data of the brain age prediction experiment
